@@ -191,7 +191,7 @@ export const staticData = {
         },
       ],
     },
-      technicalPerformance: {
+    technicalPerformance: {
       label: "Technical performance",
 
       headingParts: [
@@ -277,6 +277,170 @@ export const staticData = {
           labels:["Custom width", "Color options"]
         }
       ],
+    },
+    solutionsByApplication:{
+      label: "Solutions by application",
+
+      headingParts: [
+        {
+          text: "A secure-load system starts with the load itself.",
+          color: "#111118",
+          style: "normal",
+          weight: "600",
+        },
+      ],
+
+      description:
+        "We align strap material, dimensions, joining method and equipment with your product and process—not the other way around.",
+
+      list: [
+        {
+          title: "Pallet stabilization",
+          description:
+            "Maintain load integrity through handling, warehousing and long-haul transit.",
+          href: "/services/web-development",
+          image: "/images/service/service_img_1.png",
+          labels:["High tensile", "Low relaxation"]
+        },
+        {
+          title: "Carton closure",
+          description:
+            "Fast, repeatable strapping for dispatch lines and distribution centers.",
+          href: "/services/software-development",
+          image: "/images/service/service_img_2.png",
+          labels:["Flexible ", "Machine compatible"]
+        },
+        {
+          title: "Bundling profiles & tubes",
+          description:
+            "Contain long, rigid or irregular products without surface damage.",
+          href: "/services/mobile-applications",
+          image: "/images/service/service_img_3.png",
+          labels:["Durable", "Weather resistant"]
+        },
+        {
+          title: "Heavy unitizing",
+          description:
+            "High-retention systems for dense materials and demanding load cycles.",
+          href: "/services/ui-ux-design",
+          image: "/images/service/service_img_4.png",
+          labels:["Custom width", "Color options"]
+        }
+      ],
+    },
+    manufactureQuality:{
+      label: "Manufacturing & quality",
+
+      headingParts: [
+        {
+          text: "Repeatability is manufactured into every coil.",
+          color: "#111118",
+          style: "normal",
+          weight: "600",
+        },
+      ],
+
+      description:
+        "Our process is structured around material discipline, stable extrusion, controlled winding and practical verification before a batch is prepared for shipment.",
+
+      list: [
+        {
+          title: "Material & setup review",
+          description:
+            "Raw material, formulation and production settings are checked against the planned grade.",
+          href: "/services/web-development",
+          image: "/images/service/service_img_1.png",
+          labels:["High tensile", "Low relaxation"]
+        },
+        {
+          title: "In-process verification",
+          description:
+            "Dimensions, surface, winding and running behavior are monitored during production.",
+          href: "/services/software-development",
+          image: "/images/service/service_img_2.png",
+          labels:["Flexible ", "Machine compatible"]
+        },
+        {
+          title: "Final batch release",
+          description:
+            "Finished coils receive visual and performance checks, identification and packing review.",
+          href: "/services/mobile-applications",
+          image: "/images/service/service_img_3.png",
+          labels:["Durable", "Weather resistant"]
+        }
+      ],
+      labels:[
+        {
+          label: "Documented checks",
+          image: "/images/service/service_img_1.png",
+        },
+        {
+          label: "Batch traceability",
+          image: "/images/service/service_img_2.png",
+        },
+        {
+          label: "Shipment review",
+          image: "/images/service/service_img_3.png",
+        }
+      ],
+      button:"How we manufacture",
+
+    },
+    exportAndGlobalReach:{
+      label: "Export & global reach",
+
+      headingParts: [
+        {
+          text: "Made in India. Prepared for the world.",
+          color: "#ffffff",
+          style: "normal",
+          size:"48px",
+          weight: "700",
+        },
+      ],
+
+      description:
+        "Export supply demands more than a strong strap. We support clear specifications, robust secondary packing and consistent shipment identification for international B2B buyers.",
+
+      labels:[
+        {
+          label: "Buyer-led labeling",
+          image: "/images/service/service_img_1.png",
+        },
+        {
+          label: "Palletized coil protection",
+          image: "/images/service/service_img_1.png",
+        },
+        {
+          label: "Commercial documentation",
+          image: "/images/service/service_img_2.png",
+        },
+        {
+          label: "Dispatch coordination",
+          image: "/images/service/service_img_3.png",
+        }
+      ],
+      specifications:[
+        {
+          value:6,
+          label: "Integrated product families",
+        },
+        {
+          value:3,
+          label: "Quality-control stages",
+        },
+        {
+          value:20,
+          suffix:"+",
+          label: "Industrial load applications",
+        },
+        {
+          value:24,
+          suffix:"h",
+          label: "Target inquiry response",
+        }
+      ],
+
     },
     caseStudies: {
       label: "Our Work",

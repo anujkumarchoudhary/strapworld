@@ -44,7 +44,7 @@ const Blog = ({ data }: any) => {
       <MaxWidth>
         <div className="w-[70%] mx-auto">
           <Heading
-          label="Our Blog"
+          label="Our Blog111"
           labelColor="#9333EA"
           accentColor="#9333EA"
           isAccentLine

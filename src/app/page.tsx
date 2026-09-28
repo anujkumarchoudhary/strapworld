@@ -13,8 +13,11 @@ import FinalCTA from "../components/FinalCTA";
 import TechnologySection from "../components/TechnologySection";
 import OurServices from "../components/OurServices";
 import TechnicalPerformance from "../components/TechnicalPerformance";
+import SolutionsByApplication from "../components/SolutionsByApplication";
+import ManufactureQuality from "../components/ManufactureQuality";
+import ExportAndGlobalReach from "../components/ExportAndGlobalReach";
 const page = () => {
-  const { ourProducts, services, caseStudies, process, team, blogs, technologes,technicalPerformance, finalCta } =
+  const { ourProducts, services, caseStudies, process, team, blogs, technologes,technicalPerformance,solutionsByApplication,manufactureQuality,exportAndGlobalReach, finalCta } =
     staticData?.home;
 
   return (
@@ -22,16 +25,11 @@ const page = () => {
       <Banner />
       <Services data={ourProducts} />
       <TechnicalPerformance data={technicalPerformance}/>
+      <SolutionsByApplication data={solutionsByApplication}/>
       <OurServices data={services} />
-      <CaseStudies data={caseStudies} />
-      <About />
-      <ProcessSection data={process} />
-      <TeamSection data={team} />
-      <TechnologySection data={technologes} />
-      <Feedback />
-      <Blog data={blogs} />
-      <FAQ />
-      <FinalCTA />
+      <ManufactureQuality data={manufactureQuality}/>
+      <ExportAndGlobalReach data={exportAndGlobalReach}/>
+      <Blog data={blogs}/>
     </div>
   );
 };

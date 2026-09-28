@@ -42,16 +42,15 @@ const TechnicalPerformance = ({ data }: any) => {
                 </div>
 
                 {/* ================= SERVICES ================= */}
-                <div className="flex gap-4 justify-between">
+                <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] gap-4 justify-between">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         {listOne?.map((service: any, index: number) => {
-                            console.log(service, "service1212")
                             return (
                                 <div
                                     key={service.title}
                                     className={`
                   group relative
-                  p-6
+                  py-6
                   transition-all duration-300
                   bg-transparent
                   hover:bg-[#0B1E2D]/20
@@ -94,7 +93,6 @@ const TechnicalPerformance = ({ data }: any) => {
                     group-hover:text-[#7C3AED]
                   "
                                     >
-                                        {/* <ArrowUpRight size={17} strokeWidth={1.8} /> */}
                                     </div>
 
                                     {/* Hover Line */}
@@ -111,46 +109,23 @@ const TechnicalPerformance = ({ data }: any) => {
                             );
                         })}
                     </div>
-                    <div className="">
+                    <div className="bg-[#132B3A] divide divide-y pl-10 pr-15 py-6 rounded-[20px]">
                         {listTwo?.map((service: any, index: number) => {
                             return (
                                 <div
-                                    key={service.title}
-                                    className={`
-                  group relative
-                  border-b border-[#D7D9D3]
-                  p-6
-                  transition-all duration-300
-                  bg-white
-                  hover:bg-[#FAF9FF]
-                  border rounded-[5px]
-                `}
-                                >
+                                    key={service.title}>
+                                        
                                     {/* Content */}
-                                    <div className="mt-8 flex gap-10">
-                                        <p className="text-[15px] text-center lg:text-left my-auto  leading-7 text-[#647077]">
+                                    <div className="py-6  grid grid-cols-[20%_40%_40%] gap-4">
+                                        <p className="text-[15px] text-center lg:text-left my-auto  leading-7 text-[#39B972]">
                                             {service?.label}
                                         </p>
-                                        <h3 className="text-[20px] text-center text-nowrap my-auto lg:text-left font-bold tracking-[-0.01em] text-[#101820]">
+                                        <h3 className="text-[20px] text-center text-nowrap my-auto lg:text-left font-bold tracking-[-0.01em] text-[#ffffff]">
                                             {service?.title}
                                         </h3>
-                                        <p className=" text-[15px] text-center lg:text-left my-auto  leading-7 text-[#647077]">
+                                        <p className=" text-[15px] text-center lg:text-left my-auto  leading-7 text-[#DCE5E8]">
                                             {service?.description}
                                         </p>
-                                    </div>
-
-                                    {/* Arrow */}
-                                    <div
-                                        className="
-                    absolute bottom-5 right-5
-                    flex h-7 w-7 items-center justify-center
-                    text-[#9999A3]
-                    transition-all duration-300
-                    group-hover:translate-x-1
-                    group-hover:text-[#7C3AED]
-                  "
-                                    >
-                                        {/* <ArrowUpRight size={17} strokeWidth={1.8} /> */}
                                     </div>
 
                                     {/* Hover Line */}

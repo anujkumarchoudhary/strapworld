@@ -87,7 +87,7 @@ const OurServices = ({ data }: any) => {
                 {/* Arrow */}
                 <div
                   className="
-                    absolute bottom-5 right-5
+                    absolute top-5 right-5
                     flex h-7 w-7 items-center justify-center
                     text-[#9999A3]
                     transition-all duration-300
@@ -95,7 +95,7 @@ const OurServices = ({ data }: any) => {
                     group-hover:text-[#7C3AED]
                   "
                 >
-                  {/* <ArrowUpRight size={17} strokeWidth={1.8} /> */}
+                  <MdArrowBack size={16} className="rotate-140 text-[#647077]"  />
                 </div>
 
                 {/* Hover Line */}
