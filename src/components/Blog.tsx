@@ -128,7 +128,7 @@ const Blog = ({ data }: any) => {
         </div>
 
         {/* Pagination */}
-        {blog?.length > 3 &&
+        {blog &&
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
