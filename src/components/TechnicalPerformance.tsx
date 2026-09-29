@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
 import Icon from "../utills/iconMap ";
-import { useResponsive } from "../hooks/useResponsive";
-import { MdArrowBack } from "react-icons/md";
 import Image from "next/image";
 
 type Service = {
@@ -20,7 +17,7 @@ const TechnicalPerformance = ({ data }: any) => {
     return (
         <div className="relative bg-[#0B1E2D]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-[50%_18%] justify-between">
+                <div className="grid grid-cols-1 lg:grid-cols-[40%_20%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}
@@ -35,75 +32,107 @@ const TechnicalPerformance = ({ data }: any) => {
                     />
 
                     <div className="mt-auto pl-4">
-                        <p className="text-[14px] text-[#39B972] pt-2">PET STRAP REFERENCE RANGE</p>
-                        <h3 className="text-[36px]  py-2 font-bold text-[#ffffff]">9–32 mm</h3>
-                        <p className="text-[14px] text-[#647077]">Width availability varies by grade and application requirement.</p>
+                        <p className="pt-2 text-[clamp(10px,0.9vw,14px)] text-[#39B972]">
+                            PET STRAP REFERENCE RANGE
+                        </p>
+
+                        <h3 className="py-2 text-[clamp(26px,3vw,36px)] font-bold text-[#ffffff]">
+                            9–32 mm
+                        </h3>
+
+                        <p className="text-[clamp(11px,0.9vw,14px)] text-[#DCE5E8]">
+                            Width availability varies by grade and application requirement.
+                        </p>
                     </div>
                 </div>
 
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] gap-4 justify-between">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
-                        {listOne?.map((service: any, index: number) => {
+                        {listOne?.map((product: any, index: number) => {
                             return (
                                 <div
-                                    key={service.title}
-                                    className={`
-                  group relative
-                  py-6
-                  transition-all duration-300
-                  bg-transparent
-                  hover:bg-[#0B1E2D]/20
-                  
-                `}
+                                    key={index}
+                                    className="
+    group relative
+    bg-transparent
+    py-6
+    transition-all duration-300
+    hover:bg-[#0B1E2D]/20
+  "
                                 >
                                     {/* Icon */}
                                     <div
                                         className="
-                    flex h-11 w-11 mx-auto lg:mx-0 items-center justify-center
-                    rounded-full
-                    bg-[#132B3A]
-                    p-2
-                    transition-transform duration-300
-                    group-hover:-translate-y-1
-                  "
+      mx-auto flex h-[clamp(40px,3.5vw,44px)]
+      w-[clamp(40px,3.5vw,44px)]
+      items-center justify-center
+      rounded-full
+      bg-[#132B3A]
+      p-2
+      transition-transform duration-300
+      group-hover:-translate-y-1
+      lg:mx-0
+    "
                                     >
-                                        <Image src={"/images/service/icon_6.svg"} width={20} height={20} alt="img" />
+                                        <Image
+                                            src={product?.image}
+                                            width={20}
+                                            height={20}
+                                            alt="img"
+                                        />
                                     </div>
 
                                     {/* Content */}
                                     <div className="mt-8">
-                                        <h3 className="text-[20px] text-center lg:text-left font-bold tracking-[-0.01em] text-[#ffffff]">
-                                            {service.title}
+                                        <h3
+                                            className="
+        text-center
+        text-[clamp(18px,1.7vw,20px)]
+        font-bold
+        tracking-[-0.01em]
+        text-[#ffffff]
+        lg:text-left
+      "
+                                        >
+                                            {product?.title}
                                         </h3>
 
-                                        <p className="mt-3 text-[15px] text-center lg:text-left leading-7 text-[#DCE5E8]">
-                                            {service.description}
+                                        <p
+                                            className="
+        mt-3
+        text-center
+        text-[clamp(13px,1.2vw,15px)]
+        leading-7
+        text-[#DCE5E8]
+        lg:text-left
+      "
+                                        >
+                                            {product?.description}
                                         </p>
                                     </div>
 
                                     {/* Arrow */}
                                     <div
                                         className="
-                    absolute bottom-5 right-5
-                    flex h-7 w-7 items-center justify-center
-                    text-[#9999A3]
-                    transition-all duration-300
-                    group-hover:translate-x-1
-                    group-hover:text-[#7C3AED]
-                  "
-                                    >
-                                    </div>
+      absolute bottom-5 right-5
+      flex h-7 w-7 items-center justify-center
+      text-[#9999A3]
+      transition-all duration-300
+      group-hover:translate-x-1
+      group-hover:text-[#7C3AED]
+    "
+                                    />
 
                                     {/* Hover Line */}
                                     <div
                                         className="
-                    absolute bottom-0 left-0
-                    h-0.5 w-0
-                    bg-[#218B55]
-                    transition-all duration-300
-                    group-hover:w-full
-                  "
+      absolute bottom-0 left-0
+      h-0.5 w-0
+      bg-[#218B55]
+      transition-all duration-300
+      group-hover:w-full
+    "
                                     />
                                 </div>
                             );
@@ -113,31 +142,52 @@ const TechnicalPerformance = ({ data }: any) => {
                         {listTwo?.map((service: any, index: number) => {
                             return (
                                 <div
-                                    key={service.title}>
-                                        
+                                    key={index}
+                                    className="group relative"
+                                >
                                     {/* Content */}
-                                    <div className="py-6  grid grid-cols-[20%_40%_40%] gap-4">
-                                        <p className="text-[15px] text-center lg:text-left my-auto  leading-7 text-[#39B972]">
+                                    <div className="grid grid-cols-[20%_40%_40%] gap-4 py-6">
+                                        <p
+                                            className="
+        my-auto
+        text-center
+        text-[clamp(11px,1vw,15px)]
+        leading-7
+        text-[#39B972]
+        lg:text-left
+      "
+                                        >
                                             {service?.label}
                                         </p>
-                                        <h3 className="text-[20px] text-center text-nowrap my-auto lg:text-left font-bold tracking-[-0.01em] text-[#ffffff]">
+
+                                        <h3
+                                            className="
+        my-auto
+        text-center
+        text-[clamp(16px,1.5vw,20px)]
+        font-bold
+        tracking-[-0.01em]
+        text-nowrap
+        text-[#ffffff]
+        lg:text-left
+      "
+                                        >
                                             {service?.title}
                                         </h3>
-                                        <p className=" text-[15px] text-center lg:text-left my-auto  leading-7 text-[#DCE5E8]">
+
+                                        <p
+                                            className="
+        my-auto
+        text-center
+        text-[clamp(12px,1.1vw,15px)]
+        leading-7
+        text-[#DCE5E8]
+        lg:text-left
+      "
+                                        >
                                             {service?.description}
                                         </p>
                                     </div>
-
-                                    {/* Hover Line */}
-                                    <div
-                                        className="
-                    absolute bottom-0 left-0
-                    h-0.5 w-0
-                    bg-[#218B55]
-                    transition-all duration-300
-                    group-hover:w-full
-                  "
-                                    />
                                 </div>
                             );
                         })}

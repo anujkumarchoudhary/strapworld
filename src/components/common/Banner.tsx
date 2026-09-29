@@ -5,14 +5,7 @@ import MaxWidth from "../layout/MaxWidth";
 import { useInViewOnce } from "@/src/hooks/useInViewOnce";
 import { staticData } from "@/src/utills/Data";
 import Heading from "./Heading";
-import banner_img from "../../../public/images/home/banner_05.png";
 import SaveAndCancel from "./SaveAndCancel";
-import { useResponsive } from "@/src/hooks/useResponsive";
-import img_1 from "../../../public/images/partner/aws.png";
-import img_2 from "../../../public/images/partner/digitalocean.png";
-import img_3 from "../../../public/images/partner/google.png";
-import img_4 from "../../../public/images/partner/microsoft.png";
-import img_5 from "../../../public/images/partner/vercel.png";
 import { useState } from "react";
 import GetEnquiryForm from "../form/GetEnquiryForm";
 
@@ -25,12 +18,16 @@ const Banner = () => {
   return (
     <section
       ref={ref}
-      className="py-12 lg:py-20 bg-primary-bg  w-full overflow-hidden"
+      className="relative h-[88vh] w-full overflow-hidden"
+      style={{
+        backgroundImage: "url('/images/home/here_banner.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-
-      {/* Content */}
-      <MaxWidth className="my-auto">
-        <div className="grid  grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-2 z-10">
+      <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pt-10">
+        <div className="grid  grid-cols-1 lg:grid-cols-[50%_50%] justify-between gap-2 z-10">
           <div className="space-y-10 my-auto">
             <div className="hidden lg:block">
               <Heading
@@ -38,10 +35,10 @@ const Banner = () => {
                 isDart={true}
                 isAccentLine={true}
                 label={label}
-                breakIndex={5}
                 labelColor="#39B972"
                 accentColor="#39B972"
                 textColor="#ffffff"
+                descriptionSize="clamp(13px, 1.4vw, 18px)"
                 isGradient={true}
                 headingParts={headingParts}
                 description={description}
@@ -53,7 +50,7 @@ const Banner = () => {
                 as="h1"
                 label={label}
                 isCenter={true}
-                isSparkles={true}
+                isAccentLine={true}
                 labelColor="#39B972"
                 accentColor="#39B972"
                 textColor="#ffffff"
@@ -65,7 +62,7 @@ const Banner = () => {
 
             {/* Buttons */}
             <div
-              className={`flex pb-10 gap-4 transition-all duration-700 delay-500
+              className={`flex pb-6 gap-4 transition-all duration-700 delay-500
              `}
             >
               <SaveAndCancel
@@ -84,19 +81,20 @@ const Banner = () => {
                 className="mx-auto lg:mx-0"
               />
             </div>
-
-
           </div>
           <div className="flex h-fit my-auto justify-end">
           </div>
         </div>
 
-        <div className="flex w-fit border-t py-10 border-[#29414E] gap-14 mt-8">
+        <div className="flex w-fit border-t pt-6 border-[#29414E] gap-14 mt-8">
           {specifications.map((item: any, index: number) => (
             <div key={index} className="space-y-1">
-              <h3 className="text-white text-[20px]">{item?.value}</h3>
-              <p className="text-white text-[12px]">{item?.name}</p>
-
+              <h3 className="text-[clamp(17px,1.5vw,20px)] text-white">
+                {item?.value}
+              </h3>
+              <p className="text-[clamp(10px,0.9vw,12px)] font-medium text-white">
+                {item?.name}
+              </p>
             </div>
           ))}
         </div>

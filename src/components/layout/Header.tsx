@@ -18,16 +18,22 @@ const Header = () => {
   return (
     <div className="bg-primary-bg w-full sticky top-0 z-50">
       <div className="bg-[#101820] border-b border-[#29414E] py-2">
-        <MaxWidth className="flex justify-between">
-          <p className="text-[11px] my-auto text-[#DCE5E8]">INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME</p>
-          <div className="flex gap-4 my-auto">
-            <div className="flex gap-2">
-              <MdPhonelinkRing className="text-[#39B972]"/>
-              <p className="text-[11px] my-auto text-[#DCE5E8]">+91 123 456 7890</p>
+        <MaxWidth className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="my-auto text-[clamp(9px,0.7vw,11px)] text-[#DCE5E8]">
+            INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
+          </p>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-2">
+              <MdPhonelinkRing className="shrink-0 text-[#39B972]" />
+              <p className="my-auto text-[clamp(9px,0.7vw,11px)] text-[#DCE5E8]">
+                +91 123 456 7890
+              </p>
             </div>
-              <div className="flex gap-2 my-auto">
-              <MdMarkEmailUnread className="text-[#39B972]"/>
-              <p className="text-[11px] my-auto text-[#DCE5E8]">enquiry@strapworld.com</p>
+            <div className="flex items-center gap-2">
+              <MdMarkEmailUnread className="shrink-0 text-[#39B972]" />
+              <p className="my-auto text-[clamp(9px,0.7vw,11px)] text-[#DCE5E8]">
+                enquiry@strapworld.com
+              </p>
             </div>
           </div>
         </MaxWidth>
@@ -52,7 +58,7 @@ const Header = () => {
               <p
                 key={idx}
                 onClick={() => router.push(menu.link)}
-                className="my-auto mx-4 capitalize font-semibold text-secondary-color cursor-pointer"
+                className="my-auto mx-4 capitalize text-[clamp(11px,0.85vw,14px)] font-semibold text-secondary-color cursor-pointer"
               >
                 {menu.title}
               </p>
@@ -60,7 +66,7 @@ const Header = () => {
           })}
         </div>
         <div className="hidden lg:flex gap-8">
-          <SaveAndCancel saveText="Get a Quote" handleClick={undefined}/>
+          <SaveAndCancel saveText="Get a Quote" handleClick={undefined} />
 
         </div>
 

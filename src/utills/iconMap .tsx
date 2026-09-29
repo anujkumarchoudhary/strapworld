@@ -40,6 +40,7 @@ import { FaGithub } from "react-icons/fa6";
 import { HiLightBulb } from "react-icons/hi";
 import { IoRocketOutline } from "react-icons/io5";
 import { LuHandshake } from "react-icons/lu";
+import { MdOutlineArrowDownward } from "react-icons/md";
 
 const iconMap = {
   FaGithub,
@@ -52,6 +53,7 @@ const iconMap = {
   FaRegUser,
   LuHandshake,
   IoRocketOutline,
+  MdOutlineArrowDownward,
   Code2,
   Layers3,
   Smartphone,

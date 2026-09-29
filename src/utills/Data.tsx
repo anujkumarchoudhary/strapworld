@@ -211,7 +211,7 @@ export const staticData = {
           description:
             "Grades selected around load retention, elongation and recovery needs.",
           href: "/services/web-development",
-          image: "/images/service/icon_1.svg",
+          image: "/images/products/product_icon_01.svg",
           labels:["High tensile", "Low relaxation"]
         },
         {
@@ -219,7 +219,7 @@ export const staticData = {
           description:
             "Attention to width, thickness, winding and edge quality for reliable feed.",
           href: "/services/software-development",
-          image: "/images/service/icon_2.svg",
+          image: "/images/products/product_icon_02.svg",
           labels:["Flexible ", "Machine compatible"]
         },
         {
@@ -227,7 +227,7 @@ export const staticData = {
           description:
             "Surface options engineered for friction-weld, seal and buckle applications.",
           href: "/services/mobile-applications",
-          image: "/images/service/icon_3.svg",
+          image: "/images/products/product_icon_03.svg",
           labels:["Durable", "Weather resistant"]
         },
         {
@@ -235,7 +235,7 @@ export const staticData = {
           description:
             "Material options for outdoor exposure, storage and long-haul handling.",
           href: "/services/ui-ux-design",
-          image: "/images/service/icon_4.svg",
+          image: "/images/products/product_icon_04.svg",
           labels:["Custom width", "Color options"]
         }
       ],
@@ -286,7 +286,7 @@ export const staticData = {
           text: "A secure-load system starts with the load itself.",
           color: "#111118",
           style: "normal",
-          weight: "600",
+          weight: "700",
         },
       ],
 
@@ -299,7 +299,7 @@ export const staticData = {
           description:
             "Maintain load integrity through handling, warehousing and long-haul transit.",
           href: "/services/web-development",
-          image: "/images/service/service_img_1.png",
+          image: "/images/solutions/solution_01.svg",
           labels:["High tensile", "Low relaxation"]
         },
         {
@@ -307,7 +307,7 @@ export const staticData = {
           description:
             "Fast, repeatable strapping for dispatch lines and distribution centers.",
           href: "/services/software-development",
-          image: "/images/service/service_img_2.png",
+          image: "/images/solutions/solution_02.svg",
           labels:["Flexible ", "Machine compatible"]
         },
         {
@@ -315,7 +315,7 @@ export const staticData = {
           description:
             "Contain long, rigid or irregular products without surface damage.",
           href: "/services/mobile-applications",
-          image: "/images/service/service_img_3.png",
+          image: "/images/solutions/solution_03.svg",
           labels:["Durable", "Weather resistant"]
         },
         {
@@ -323,7 +323,7 @@ export const staticData = {
           description:
             "High-retention systems for dense materials and demanding load cycles.",
           href: "/services/ui-ux-design",
-          image: "/images/service/service_img_4.png",
+          image: "/images/solutions/solution_04.svg",
           labels:["Custom width", "Color options"]
         }
       ],
@@ -628,48 +628,49 @@ export const staticData = {
     },
 
     blogs: {
-      label: "Our Insights",
+      label: "Technical resources",
 
       headingParts: [
         {
-          text: "Ideas, insights & digital thinking.",
+          text: "Better specifications make better shipments.",
           color: "#000000",
           weight: "700",
         },
       ],
+      description:"Clear, practical guidance for packaging engineers, procurement teams and operations leaders.",
 
       list: [
         {
-          img: "/images/blogs/blog_01.png",
-          category: "Web Development",
+          img: "/images/blogs/blog_001.png",
+          category: "Selection guide",
           title:
-            "Building Modern Web Applications That Scale With Your Business",
+            "PET vs PP strapping: where each material performs best",
           excerpt:
-            "Discover how the right technology, architecture, and development approach can help businesses build faster, more secure, and scalable web applications.",
+            "Compare retention, recovery, handling and equipment fit before choosing a grade.",
           date: "Aug 28, 2026",
           readTime: "6 min read",
           href: "/blog/building-modern-web-applications-that-scale",
         },
 
         {
-          img: "/images/blogs/blog_02.png",
-          category: "UI/UX Design",
+          img: "/images/blogs/blog_002.png",
+          category: "Application checklist",
           title:
-            "Why Great UI/UX Design Is More Than Just a Beautiful Interface",
+            "What to specify for a stable export pallet",
           excerpt:
-            "Learn how thoughtful user experiences, intuitive interactions, and purposeful design can create digital products people enjoy using and trust.",
+            "A practical checklist covering load geometry, edges, transit, storage and joining.",
           date: "Aug 21, 2026",
           readTime: "5 min read",
           href: "/blog/why-great-ui-ux-design-matters",
         },
 
         {
-          img: "/images/blogs/blog_03.png",
-          category: "Software Development",
+          img: "/images/blogs/blog_003.png",
+          category: "Technical note",
           title:
-            "From Idea to Product: Building Software That Creates Real Business Value",
+            "Improving friction-weld joint consistency",
           excerpt:
-            "Explore the key decisions behind successful software products, from validating an idea and choosing technology to building for long-term growth.",
+            "Understand tool setup, strap surface and maintenance factors that affect the joint.",
           date: "Aug 14, 2026",
           readTime: "7 min read",
           href: "/blog/from-idea-to-product",

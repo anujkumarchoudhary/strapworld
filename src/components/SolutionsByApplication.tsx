@@ -19,11 +19,11 @@ const SolutionsByApplication = ({ data }: any) => {
     const { headingParts, label, list, description } = data || {};
     const { isDesktop } = useResponsive();
     return (
-        <div className="bg-[#ffffff] py-10 sm:py-12 lg:py-16">
+        <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
 
             <MaxWidth className=" ">
                 {/* ================= HEADER ================= */}
-                <div className="mb-12 grid grid-cols-2">
+                <div className="mb-12 grid grid-cols-[50%_20%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}
@@ -35,19 +35,53 @@ const SolutionsByApplication = ({ data }: any) => {
                         isGradient={true}
                         headingParts={headingParts}
                         description={description}
-                    />  <div className="flex gap-2 cursor-pointer justify-end h-fit mt-auto">
-                        <p className="text-[14px] font-bold text-[#101820] my-auto">Discuss your application</p>
-                        <MdArrowBack className="text-[#39B972] rotate-180 my-auto" />
+                    />
+                    <div className="group mt-auto flex h-fit cursor-pointer items-center justify-end gap-2">
+                        <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+                            Discuss your application
+                        </p>
+
+                        <MdArrowBack
+                            className="
+      my-auto
+      rotate-180
+      text-[#39B972]
+      transition-transform
+      duration-300
+      group-hover:translate-x-1
+    "
+                        />
                     </div>
                 </div>
 
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] justify-between gap-10">
-                    <div className="relative h-125">
-                        <Image src={"/images/home/solutionsbyapplication.png"} fill alt="SolutionsByApplication" className="object-fill" />
-                        <div className="absolute bottom-6 left-6 bg-[#0B1E2D] w-90 p-5 rounded-[5px]">
-                            <p className="text-[#39B972] text-[12px] font-bold">LOAD STUDY / EXPORT PALLET</p>
-                            <p  className="text-[#ffffff] text-[28px] font-bold">Containment that stays stable beyond the factory gate.</p>
+                    <div className="relative w-full aspect-[16/12] overflow-hidden rounded-[5px]">
+                        <Image
+                            src="/images/home/solutionsbyapplication.png"
+                            fill
+                            alt="SolutionsByApplication"
+                            className="object-cover"
+                        />
+
+                        <div
+                            className="
+      absolute
+      bottom-[clamp(16px,2vw,24px)]
+      left-[clamp(16px,2vw,24px)]
+      w-[clamp(260px,28vw,360px)]
+      rounded-[5px]
+      bg-[#0B1E2D]
+      p-[clamp(16px,1.5vw,20px)]
+    "
+                        >
+                            <p className="text-[clamp(10px,0.8vw,12px)] font-bold text-[#39B972]">
+                                LOAD STUDY / EXPORT PALLET
+                            </p>
+
+                            <p className="mt-2 text-[clamp(20px,2vw,28px)] font-bold leading-[1.2] text-white">
+                                Containment that stays stable beyond the factory gate.
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -56,35 +90,80 @@ const SolutionsByApplication = ({ data }: any) => {
                                 return (
                                     <div
                                         key={service.title}
-                                        className={`
-                                            flex gap-4
-                              group relative
-                              py-6
-                              transition-all duration-300
-                              bg-transparent                              
-                            `}
+                                        className="
+    group relative
+    flex gap-4
+    bg-transparent
+    py-6
+    transition-all duration-300
+  "
                                     >
                                         {/* Icon */}
                                         <div
                                             className="
-                                flex h-11 w-11 lg:my-auto
-                                justify-center
-                                justify-items-center
-                                rounded-full
-                                bg-[#E6F5EC]
-                                p-2
-                              "
+    flex
+    h-[clamp(40px,3.5vw,44px)]
+    w-[clamp(40px,3.5vw,44px)]
+    shrink-0
+    items-center
+    justify-center
+    rounded-full
+    bg-[#E6F5EC]
+    p-2
+    transition-colors
+    duration-300
+    group-hover:bg-[#218B55]
+    lg:my-auto
+  "
                                         >
-                                            <Image src={"/images/service/icon_6.svg"} width={20} height={20} alt="img" />
+                                            <span
+                                                className="
+      block
+      h-5
+      w-5
+      bg-[#218B55]
+      transition-colors
+      duration-300
+      group-hover:bg-white
+      [mask-image:var(--icon)]
+      [mask-position:center]
+      [mask-repeat:no-repeat]
+      [mask-size:contain]
+      [-webkit-mask-image:var(--icon)]
+      [-webkit-mask-position:center]
+      [-webkit-mask-repeat:no-repeat]
+      [-webkit-mask-size:contain]
+    "
+                                                style={{
+                                                    "--icon": `url(${service?.image})`,
+                                                } as React.CSSProperties}
+                                            />
                                         </div>
 
                                         {/* Content */}
                                         <div className="space-y-1">
-                                            <h3 className="text-[20px] text-center lg:text-left font-bold tracking-[-0.01em] text-[#101820]">
+                                            <h3
+                                                className="
+        text-center
+        text-[clamp(17px,1.5vw,20px)]
+        font-bold
+        tracking-[-0.01em]
+        text-[#101820]
+        lg:text-left
+      "
+                                            >
                                                 {service.title}
                                             </h3>
 
-                                            <p className="text-[15px] text-center lg:text-left leading-7 text-[#647077]">
+                                            <p
+                                                className="
+        text-center
+        text-[clamp(13px,1.1vw,15px)]
+        leading-7
+        text-[#647077]
+        lg:text-left
+      "
+                                            >
                                                 {service.description}
                                             </p>
                                         </div>
@@ -92,15 +171,30 @@ const SolutionsByApplication = ({ data }: any) => {
                                         {/* Arrow */}
                                         <div
                                             className="
-                                absolute bottom-5 right-5
-                                flex h-7 w-7 items-center justify-center
-                                text-[#9999A3]
-                                transition-all duration-300
-                                group-hover:translate-x-1
-                                group-hover:text-[#7C3AED]
-                              "
+      absolute
+      bottom-5
+      right-5
+      flex
+      h-7
+      w-7
+      items-center
+      justify-center
+      text-[#9999A3]
+      transition-all
+      duration-300
+      group-hover:translate-x-1
+    "
                                         >
-                                            <MdArrowBack className="text-[#101820] group-hover:text-[#218B55] rotate-[140deg]"/>
+                                            <MdArrowBack
+                                                size={20}
+                                                className="
+        rotate-[140deg]
+        text-[#101820]
+        transition-colors
+        duration-300
+        group-hover:text-[#218B55]
+      "
+                                            />
                                         </div>
                                     </div>
                                 );
