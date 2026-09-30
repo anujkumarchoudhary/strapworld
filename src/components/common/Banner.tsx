@@ -27,7 +27,7 @@ const Banner = () => {
       }}
     >
       <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pt-10">
-        <div className="grid  grid-cols-1 lg:grid-cols-[50%_50%] justify-between gap-2 z-10">
+        <div className="grid  grid-cols-1 lg:grid-cols-[55%_45%] justify-between gap-2 z-10">
           <div className="space-y-10 my-auto">
             <div className="hidden lg:block">
               <Heading
@@ -38,7 +38,7 @@ const Banner = () => {
                 labelColor="#39B972"
                 accentColor="#39B972"
                 textColor="#ffffff"
-                descriptionSize="clamp(13px, 1.4vw, 18px)"
+                // descriptionSize="clamp(13px, 1.4vw, 18px)"
                 isGradient={true}
                 headingParts={headingParts}
                 description={description}

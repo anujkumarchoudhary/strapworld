@@ -244,7 +244,7 @@ function WorkStepCard({
               <div className="h-px w-8 bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500 group-hover:w-14" />
 
               <span className="text-[10px] uppercase tracking-[0.18em] text-white/20 transition-colors group-hover:text-white/40">
-                SoftQivo
+                
               </span>
             </div>
           </div>

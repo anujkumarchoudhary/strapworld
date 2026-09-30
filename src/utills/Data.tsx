@@ -133,7 +133,7 @@ list: [
           title: "Metals & steel",
           description:
             "Coils, profiles, fabricated parts",
-          href: "/services/web-development",
+          href: "#",
           image: "/images/service/icon_1.svg",
           labels:["High tensile", "Low relaxation"]
         },
@@ -141,7 +141,7 @@ list: [
           title: "Building materials",
           description:
             "Tiles, boards, blocks, panels",
-          href: "/services/software-development",
+          href: "#",
           image: "/images/service/icon_2.svg",
           labels:["Flexible ", "Machine compatible"]
         },
@@ -149,7 +149,7 @@ list: [
           title: "Corrugated packaging",
           description:
             "Cartons, sheets, dispatch loads",
-          href: "/services/mobile-applications",
+          href: "#",
           image: "/images/service/icon_3.svg",
           labels:["Durable", "Weather resistant"]
         },
@@ -157,7 +157,7 @@ list: [
           title: "Food & beverage",
           description:
             "Cases, crates, dry-goods pallets",
-          href: "/services/ui-ux-design",
+          href: "#",
           image: "/images/service/icon_4.svg",
           labels:["Custom width", "Color options"]
         },
@@ -165,7 +165,7 @@ list: [
           title: "Textiles",
           description:
             "Bales, rolls, bundled finished goods",
-          href: "/services/api-backend",
+          href: "#",
           image: "/images/service/icon_5.svg",
           labels:["Tension", "Seal", "Cut"]
         },
@@ -173,7 +173,7 @@ list: [
           title: "Automotive",
           description:
             "Components, kits, returnable loads",
-          href: "/services/cloud-devops",
+          href: "#",
           image: "/images/service/icon_6.svg",
           labels:["Tabletop", "Arch", "Integrated"]
         },
@@ -181,7 +181,7 @@ list: [
           title: "Logistics",
           description:
             "Warehousing, fulfillment, export cargo",
-          href: "/services/api-backend",
+          href: "#",
           image: "/images/service/icon_7.svg",
           labels:["Tension", "Seal", "Cut"]
         },
@@ -189,7 +189,7 @@ list: [
           title: "Wood & furniture",
           description:
             "Boards, panels, assembled goods",
-          href: "/services/cloud-devops",
+          href: "#",
           image: "/images/service/icon_8.svg",
           labels:["Tabletop", "Arch", "Integrated"]
         },
@@ -222,7 +222,7 @@ list: [
           title: "Consistent profile",
           description:
             "Attention to width, thickness, winding and edge quality for reliable feed.",
-          href: "/services/software-development",
+          href: "#",
           image: "/images/products/product_icon_02.svg",
           labels:["Flexible ", "Machine compatible"]
         },
@@ -230,7 +230,7 @@ list: [
           title: "Secure joining",
           description:
             "Surface options engineered for friction-weld, seal and buckle applications.",
-          href: "/services/mobile-applications",
+          href: "#",
           image: "/images/products/product_icon_03.svg",
           labels:["Durable", "Weather resistant"]
         },
@@ -238,7 +238,7 @@ list: [
           title: "Transit resilience",
           description:
             "Material options for outdoor exposure, storage and long-haul handling.",
-          href: "/services/ui-ux-design",
+          href: "#",
           image: "/images/products/product_icon_04.svg",
           labels:["Custom width", "Color options"]
         }
@@ -273,7 +273,7 @@ list: [
           title: "Carton closure",
           description:
             "Fast, repeatable strapping for dispatch lines and distribution centers.",
-          href: "/services/software-development",
+          href: "#",
           image: "/images/solutions/solution_02.svg",
           labels:["Flexible ", "Machine compatible"]
         },
@@ -281,7 +281,7 @@ list: [
           title: "Bundling profiles & tubes",
           description:
             "Contain long, rigid or irregular products without surface damage.",
-          href: "/services/mobile-applications",
+          href: "#",
           image: "/images/solutions/solution_03.svg",
           labels:["Durable", "Weather resistant"]
         },
@@ -323,7 +323,7 @@ list: [
           title: "In-process verification",
           description:
             "Dimensions, surface, winding and running behavior are monitored during production.",
-          href: "/services/software-development",
+          href: "#",
           image: "/images/service/service_img_2.png",
           labels:["Flexible ", "Machine compatible"]
         },

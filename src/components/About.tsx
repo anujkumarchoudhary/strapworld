@@ -38,7 +38,7 @@ export default function AboutSection() {
             <Heading
               isCenter={isDesktop ? false : true}
               isAccentLine={true}
-              label="About SoftQivo"
+              label="About "
               headingParts={[
                 { text: "We Turn Complex Ideas Into Simple ", weight: "600" },
                 {
@@ -51,7 +51,7 @@ export default function AboutSection() {
             />
 
             <p className="mt-6 text-center lg:text-left text-lg leading-relaxed text-gray-600">
-              At SoftQivo, we combine technology, design, and creative thinking
+              At , we combine technology, design, and creative thinking
               to build digital products that make businesses better.
             </p>
 

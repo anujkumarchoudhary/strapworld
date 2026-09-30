@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <div className="bg-white w-full sticky top-0 z-50">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
-        <MaxWidth className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center sm:justify-between">
+        <MaxWidth className="flex flex-col gap-2 lg:py-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
             INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
           </p>
@@ -69,19 +69,25 @@ const Header = () => {
 
         </div>
 
-        {open ? (
+        {/* {open ? (
           <MdClose
             onClick={() => setOpen(!open)}
             size={35}
-            className="block lg:hidden cursor-pointer"
+            className="block lg:hidden cursor-pointer text-[#000000]"
           />
         ) : (
           <IoReorderThreeSharp
             onClick={() => setOpen(!open)}
             size={35}
-            className="block lg:hidden cursor-pointer"
+            className="block lg:hidden text-[#000000] cursor-pointer"
           />
-        )}
+        )} */}
+
+               <IoReorderThreeSharp
+            onClick={() => setOpen(!open)}
+            size={35}
+            className="block lg:hidden text-[#000000] cursor-pointer"
+          />
       </MaxWidth>
       {open && (
         <div className="absolute top-full left-0 right-0 bg-white pb-4 divide-y divide-[#000000]/20  space-y-4 py-1 lg:hidden">
@@ -121,10 +127,10 @@ const Header = () => {
             </a>
 
             <a
-              href="https://x.com/softqivo"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="SoftQivo on X"
+              aria-label=" on X"
               className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
             >
               <Icon name="FaTwitter" size={20} />

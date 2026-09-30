@@ -217,7 +217,7 @@ const handleSubmit = async (
 
         {/* Heading */}
         <div className="mb-8 pr-12">
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-purple-600">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#2E9B4F]">
             Get In Touch
           </span>
 
@@ -238,7 +238,7 @@ const handleSubmit = async (
                 className="mb-2 block text-sm font-semibold text-black"
               >
                 Full Name{" "}
-                <span className="text-purple-600">*</span>
+                <span className="text-red-500">*</span>
               </label>
 
               <input
@@ -252,7 +252,7 @@ const handleSubmit = async (
                 className={`w-full rounded-xl border bg-white px-4 py-2.5 text-black outline-none placeholder:text-black/30 transition ${
                   errors.name
                     ? "border-red-500"
-                    : "border-black/15 focus:border-purple-500"
+                    : "border-black/15 focus:border-[#2E9B4F]"
                 }`}
               />
 
@@ -270,7 +270,7 @@ const handleSubmit = async (
                 className="mb-2 block text-sm font-semibold text-black"
               >
                 Email Address{" "}
-                <span className="text-purple-600">*</span>
+                <span className="text-red-500">*</span>
               </label>
 
               <input
@@ -284,7 +284,7 @@ const handleSubmit = async (
                 className={`w-full rounded-xl border bg-white px-4 py-2.5 text-black outline-none placeholder:text-black/30 transition ${
                   errors.email
                     ? "border-red-500"
-                    : "border-black/15 focus:border-purple-500"
+                    : "border-black/15 focus:border-[#2E9B4F]"
                 }`}
               />
 
@@ -302,7 +302,7 @@ const handleSubmit = async (
                 className="mb-2 block text-sm font-semibold text-black"
               >
                 Phone Number{" "}
-                <span className="text-purple-600">*</span>
+                <span className="text-red-500">*</span>
               </label>
 
               <input
@@ -316,7 +316,7 @@ const handleSubmit = async (
                 className={`w-full rounded-xl border bg-white px-4 py-2.5 text-black outline-none placeholder:text-black/30 transition ${
                   errors.phone
                     ? "border-red-500"
-                    : "border-black/15 focus:border-purple-500"
+                    : "border-black/15 focus:border-[#2E9B4F]"
                 }`}
               />
 
@@ -334,7 +334,7 @@ const handleSubmit = async (
                 className="mb-2 block text-sm font-semibold text-black"
               >
                 Message{" "}
-                <span className="text-purple-600">*</span>
+                <span className="text-red-500">*</span>
               </label>
 
               <textarea
@@ -347,7 +347,7 @@ const handleSubmit = async (
                 className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-black outline-none placeholder:text-black/30 transition ${
                   errors.message
                     ? "border-red-500"
-                    : "border-black/15 focus:border-purple-500"
+                    : "border-black/15 focus:border-[#2E9B4F]"
                 }`}
               />
 
@@ -367,14 +367,14 @@ const handleSubmit = async (
                   type="checkbox"
                   checked={formData.agree}
                   onChange={handleChange}
-                  className="mt-1 h-4 w-4 cursor-pointer accent-purple-600"
+                  className="mt-1 h-4 w-4 cursor-pointer accent-[#2E9B4F]"
                 />
 
                 <label
                   htmlFor="enquiry-agree"
                   className="cursor-pointer text-sm leading-5 text-black/60"
                 >
-                  I agree to be contacted by SoftQivo
+                  I agree to be contacted by Strap World
                 </label>
               </div>
 
@@ -391,7 +391,7 @@ const handleSubmit = async (
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-full cursor-pointer bg-black px-8 py-3 font-semibold text-white transition hover:bg-purple-600 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-full w-full cursor-pointer bg-black px-8 py-3 font-semibold text-white transition hover:bg-[#2E9B4F] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Sending..." : "Send Enquiry"}
             </button>

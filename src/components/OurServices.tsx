@@ -90,7 +90,7 @@ const OurServices = ({ data }: any) => {
                 {/* Arrow */}
                 <div
                   className="
-                    absolute top-5 right-5
+                    hidden absolute top-5 right-5
                     transition-all duration-300
                     group-hover:translate-x-1
                   "

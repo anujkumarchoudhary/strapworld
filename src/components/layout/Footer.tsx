@@ -12,14 +12,14 @@ const Footer = () => {
   return (
     <footer className="overflow-hidden bg-[#020203]">
       <MaxWidth className="lg:gap-8 py-12 lg:py-16 divide divide-y space-y-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_30%] pb-10 justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_30%] space-y-8 pb-10 justify-between">
           <div className="space-y-6">
             <Image
               src={logo}
               width={306}
               height={51}
               alt="logo"
-              className="cursor-pointer"
+              className="h-auto w-[clamp(200px,22vw,306px)] cursor-pointer"
             />
 
             <p className="text-[clamp(16px,1.25vw,20px)] leading-7 text-white/70">

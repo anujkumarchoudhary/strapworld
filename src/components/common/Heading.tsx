@@ -55,32 +55,37 @@ const fontMap: Record<string, string> = {
 
 const headingDefaults = {
   h1: {
-    fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+    fontSize: "var(--h1-size)",
     fontWeight: 600,
-    lineHeight: 1.08,
+    lineHeight: "var(--h1-leading)",
   },
+
   h2: {
-    fontSize: "clamp(2rem, 4vw, 3rem)",
+    fontSize: "var(--h2-size)",
     fontWeight: 700,
-    lineHeight: 1.1,
+    lineHeight: "var(--h2-leading)",
   },
+
   h3: {
-    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+    fontSize: "var(--h3-size)",
     fontWeight: 600,
-    lineHeight: 1.15,
+    lineHeight: "var(--h3-leading)",
   },
+
   h4: {
-    fontSize: "clamp(1.25rem, 2.5vw, 1.875rem)",
+    fontSize: "var(--h4-size)",
     fontWeight: 600,
-    lineHeight: 1.2,
+    lineHeight: "var(--h4-leading)",
   },
+
   h5: {
-    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+    fontSize: "18px",
     fontWeight: 600,
     lineHeight: 1.25,
   },
+
   h6: {
-    fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+    fontSize: "16px",
     fontWeight: 600,
     lineHeight: 1.3,
   },

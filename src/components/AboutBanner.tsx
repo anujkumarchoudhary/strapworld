@@ -10,7 +10,7 @@ import { useResponsive } from "../hooks/useResponsive";
 const AboutBanner = ({ data }: { data: any }) => {
   const { isDesktop } = useResponsive()
   return (
-    <section className="relative min-h-[78vh] overflow-hidden bg-black text-white">
+    <section className="relative  overflow-hidden bg-black text-white">
 
       {/* ======================================================
           BACKGROUND
@@ -25,7 +25,6 @@ const AboutBanner = ({ data }: { data: any }) => {
           relative
           z-10
           flex
-          min-h-[78vh]
           items-center
         "
       >
@@ -33,7 +32,7 @@ const AboutBanner = ({ data }: { data: any }) => {
         <div className="w-full lg:w-[50%] py-12 lg:py-20">
 
           <Heading
-            label="ABOUT SOFTQIVO"
+            label="ABOUT "
             labelColor="rgba(255,255,255,0.45)"
             accentColor="#A855F7"
             isSparkles={true}
@@ -63,7 +62,7 @@ const AboutBanner = ({ data }: { data: any }) => {
                 lineHeight: 1.1,
               },
             ]}
-            description="SoftQivo helps startups, businesses, and entrepreneurs transform ideas into powerful digital solutions — from modern websites and applications to custom software systems built around real business needs."
+            description=" helps startups, businesses, and entrepreneurs transform ideas into powerful digital solutions — from modern websites and applications to custom software systems built around real business needs."
             descColor="rgba(255,255,255,0.45)"
             className="tracking-[-0.045em]"
           />

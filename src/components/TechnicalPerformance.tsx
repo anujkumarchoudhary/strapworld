@@ -21,7 +21,7 @@ const TechnicalPerformance = ({ data }: any) => {
     return (
         <div className="relative bg-[#1E2928]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-[40%_20%] justify-between">
+                <div className="grid grid-cols-1 lg:grid-cols-[40%_25%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}

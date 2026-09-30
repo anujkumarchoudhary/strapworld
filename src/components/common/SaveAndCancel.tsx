@@ -40,6 +40,7 @@ const SaveAndCancel = ({
           group
           inline-flex cursor-pointer items-center justify-center
           gap-2
+          whitespace-nowrap
           rounded-full
           px-5 py-3
           text-[clamp(12px,1vw,16px)]

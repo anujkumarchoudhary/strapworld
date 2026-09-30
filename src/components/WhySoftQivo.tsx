@@ -88,7 +88,7 @@ const WhySoftQivo = () => {
   transition={{ duration: 0.7 }}
 >
   <Heading
-    label="WHY SOFTQIVO"
+    label="WHY "
     labelColor="rgba(255,255,255,0.5)"
     accentColor="#A855F7"
     textColor="rgba(255,255,255,0.5)"

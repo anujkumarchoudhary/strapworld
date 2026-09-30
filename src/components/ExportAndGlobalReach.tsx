@@ -32,7 +32,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
                             headingParts={headingParts}
                             description={description}
                         />
-                        <div className="grid grid-cols-1 lg:grid-cols-3 pb-8 lg:pb-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 pb-8 lg:pb-0">
                             {labels?.map((item: any, index: number) => {
                                 return (
                                     <div

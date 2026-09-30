@@ -68,7 +68,7 @@ const OurProducts = ({ data }: any) => {
                 {/* Content */}
                 <div className="w-full space-y-3 p-6">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-[clamp(20px,2vw,28px)] text-center font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
+                    <h3 className="text-center font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
                       {product?.title}
                     </h3>
 
@@ -77,7 +77,7 @@ const OurProducts = ({ data }: any) => {
                     </p>
                   </div>
 
-                  <p className="text-[clamp(12px,1vw,14px)] leading-7 text-[#647077] text-left">
+                  <p className="text-[#647077] text-left">
                     {product.description}
                   </p>
 

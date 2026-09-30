@@ -68,7 +68,7 @@ export default function OurStory() {
             <div className="relative aspect-[1.55/1] overflow-hidden rounded-2xl bg-[#111]">
               <Image
                 src="/images/about/ourstory.png"
-                alt="SoftQivo office"
+                alt=" office"
                 fill
                 priority
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -124,7 +124,7 @@ export default function OurStory() {
   {/* Description */}
   <div className="mt-6 max-w-xl space-y-4 text-[14px] leading-6 text-gray-500">
     <p>
-      SoftQivo was founded with a simple mission — to help businesses
+       was founded with a simple mission — to help businesses
       and startups transform their ideas into powerful digital products.
     </p>
 
