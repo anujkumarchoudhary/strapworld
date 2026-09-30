@@ -7,6 +7,7 @@ import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
 import Heading from "./common/Heading";
 import { MdOutlineMailOutline, MdPhone } from "react-icons/md";
+import { useResponsive } from "../hooks/useResponsive";
 
 interface FinalCTAData {
   label: string;
@@ -22,9 +23,10 @@ interface FinalCTAProps {
 
 export default function FinalCTA() {
   const [open, setOpen] = useState(false);
+  const { isDesktop } = useResponsive()
   return (
     <section className="py-12 lg:py-16" >
-      <MaxWidth className="bg-[#39B972] py-12 lg:py-16 rounded-[10px]">
+      <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -33,25 +35,27 @@ export default function FinalCTA() {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_50%]  items-center justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
                 isAccentLine={true}
-                accentColor="#101820"
-                labelColor="#101820"
+                isCenter={isDesktop ? false : true}
+                accentColor="#ffffff"
+                labelColor="#ffffff"
+                textColor="#ffffff"
                 label="START AN INQUIRY"
-                headingParts={[{ text: "Tell us what you need to secure.", }]}
+                headingParts={[{ text: "Tell us what you need to secure.", color: "#ffffff" }]}
                 description="Share your product, load profile, monthly requirement and destination. Our team will help narrow the right strap, tool or machine configuration."
               />
-              <div className="flex gap-3">
+              <div className="hidden lg:flex gap-3">
                 <div className="flex gap-2">
-                  <MdOutlineMailOutline size={18} className="my-auto text-[#101820]" />
-                  <p className="my-auto text-[#101820] text-[14px] font-bold">sales@ompackstrap.com</p>
+                  <MdOutlineMailOutline size={18} className="my-auto text-[#FFFFFF]" />
+                  <p className="my-auto text-[#FFFFFF] text-[14px] font-bold">sales@ompackstrap.com</p>
                 </div>
                 <div className="flex gap-2">
-                  <MdPhone size={18} className="my-auto text-[#101820]" />
-                  <p className="my-auto text-[#101820] text-[14px] font-bold">+91 123 46 7890</p>
+                  <MdPhone size={18} className="my-auto text-[#FFFFFF]" />
+                  <p className="my-auto text-[#FFFFFF] text-[14px] font-bold">+91 123 46 7890</p>
                 </div>
               </div>
               <button
@@ -69,7 +73,7 @@ export default function FinalCTA() {
 
             {/* Button */}
             <div className="bg-white w-full h-full rounded-[10px]">
-              
+
             </div>
           </div>
         </motion.div>

@@ -19,24 +19,25 @@ const SolutionsByApplication = ({ data }: any) => {
     const { headingParts, label, list, description } = data || {};
     const { isDesktop } = useResponsive();
     return (
-        <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
+        <div className="bg-[#FFFFFF] py-12 lg:py-16">
 
             <MaxWidth className=" ">
                 {/* ================= HEADER ================= */}
-                <div className="mb-12 grid grid-cols-[50%_20%] justify-between">
+                <div className="mb-12 grid grid-cols-1 lg:grid-cols-[50%_20%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}
                         isAccentLine={true}
                         label={label}
+                        isCenter={isDesktop ? false : true}
                         labelColor="#39B972"
                         accentColor="#39B972"
-                        textColor="#647077"
+                        textColor="#000000"
                         isGradient={true}
                         headingParts={headingParts}
                         description={description}
                     />
-                    <div className="group mt-auto flex h-fit cursor-pointer items-center justify-end gap-2">
+                    <div className="group mt-auto hidden lg:flex h-fit cursor-pointer items-center justify-end gap-2">
                         <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
                             Discuss your application
                         </p>
@@ -56,7 +57,7 @@ const SolutionsByApplication = ({ data }: any) => {
 
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] justify-between gap-10">
-                    <div className="relative w-full aspect-[16/12] overflow-hidden rounded-[5px]">
+                    <div className="relative w-full aspect-[16/12] overflow-hidden rounded-[30px]">
                         <Image
                             src="/images/home/solutionsbyapplication.png"
                             fill
@@ -69,30 +70,31 @@ const SolutionsByApplication = ({ data }: any) => {
       absolute
       bottom-[clamp(16px,2vw,24px)]
       left-[clamp(16px,2vw,24px)]
-      w-[clamp(260px,28vw,360px)]
-      rounded-[5px]
-      bg-[#0B1E2D]
+      right-[clamp(16px,2vw,24px)]
+      rounded-[20px]
+      pr-20
+      bg-[#2E9B4F]
       p-[clamp(16px,1.5vw,20px)]
     "
                         >
-                            <p className="text-[clamp(10px,0.8vw,12px)] font-bold text-[#39B972]">
+                            <p className="text-[clamp(10px,0.8vw,15px)] font-bold text-[#FFFFFF]">
                                 LOAD STUDY / EXPORT PALLET
                             </p>
 
-                            <p className="mt-2 text-[clamp(20px,2vw,28px)] font-bold leading-[1.2] text-white">
+                            <p className="mt-2 text-[clamp(18px,2vw,25px)] font-semibold leading-[1.2] text-white">
                                 Containment that stays stable beyond the factory gate.
                             </p>
                         </div>
                     </div>
                     <div>
-                        <div className="space-y-4 divide divide-y">
+                        <div className="space-y-4 divide divide-dotted divide-y">
                             {list?.map((service: any, index: number) => {
                                 return (
                                     <div
                                         key={service.title}
                                         className="
     group relative
-    flex gap-4
+    block lg:flex gap-4
     bg-transparent
     py-6
     transition-all duration-300
@@ -107,6 +109,8 @@ const SolutionsByApplication = ({ data }: any) => {
     shrink-0
     items-center
     justify-center
+    mx-auto
+    lg:mx-0
     rounded-full
     bg-[#E6F5EC]
     p-2
@@ -174,7 +178,8 @@ const SolutionsByApplication = ({ data }: any) => {
       absolute
       bottom-5
       right-5
-      flex
+      hidden
+      lg:flex
       h-7
       w-7
       items-center
@@ -186,7 +191,7 @@ const SolutionsByApplication = ({ data }: any) => {
     "
                                         >
                                             <MdArrowBack
-                                                size={20}
+                                                size={40}
                                                 className="
         rotate-[140deg]
         text-[#101820]
@@ -201,6 +206,22 @@ const SolutionsByApplication = ({ data }: any) => {
                             })}
                         </div>
                     </div>
+                </div>
+                <div className="group mt-auto flex lg:hidden h-fit cursor-pointer items-center justify-center gap-2">
+                    <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+                        Discuss your application
+                    </p>
+
+                    <MdArrowBack
+                        className="
+      my-auto
+      rotate-180
+      text-[#39B972]
+      transition-transform
+      duration-300
+      group-hover:translate-x-1
+    "
+                    />
                 </div>
             </MaxWidth>
         </div>

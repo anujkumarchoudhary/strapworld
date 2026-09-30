@@ -181,7 +181,7 @@ const Heading = ({
           )}
 
           {isAccentLine &&
-            <div className={`flex items-center gap-5 justify-center lg:justify-normal  ${isCenter ? "text-center w-fit mx-auto" : "w-full"}`}>
+            <div className={`flex items-center gap-2 lg:justify-normal  ${isCenter ? "text-center w-fit mx-auto" : "w-full"}`}>
               <span className="h-px w-4 lg:w-7 " style={{ backgroundColor: accentColor ?? "#A855F7", animationDelay: "0s", }} />
 
               <span
@@ -191,10 +191,8 @@ const Heading = ({
     bg-transparent
     px-0 py-2
     uppercase
-    font-roboto-mono
-    text-[clamp(9px,0.75vw,12px)]
-    font-semibold
-    tracking-[0.15em]
+    text-[clamp(9px,0.75vw,15px)]
+    font-bold
       `}
                 style={{
                   color: labelColor ?? textColor,
@@ -304,10 +302,11 @@ const Heading = ({
       transition-all
       duration-700
       delay-300
-      w-[90%]
+w-full
+      lg:w-[90%]
       ${isCenter
               ? "mx-auto text-center"
-              : "mx-auto text-center lg:mx-0 lg:text-left lg:w-full"
+              : "mx-auto text-left lg:w-full"
             }
       ${isVisible
               ? "opacity-100 translate-y-0"

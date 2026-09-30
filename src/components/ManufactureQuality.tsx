@@ -18,12 +18,13 @@ type Service = {
 
 const ManufactureQuality = ({ data }: any) => {
     const { headingParts, label, list, labels, description } = data || {};
+    const { isDesktop } = useResponsive()
     return (
         <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
             <MaxWidth className=" ">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">
-                    <div className="relative w-full aspect-[16/17] overflow-hidden rounded-[5px]">
+                    <div className="relative w-full aspect-[16/15] overflow-hidden rounded-[30px]">
                         <Image
                             src="/images/manufacture_quality/image_1.png"
                             fill
@@ -37,7 +38,7 @@ const ManufactureQuality = ({ data }: any) => {
       top-[clamp(16px,2vw,24px)]
       left-[clamp(16px,2vw,24px)]
       w-[clamp(260px,28vw,360px)]
-      rounded-[5px]
+      rounded-[15px]
       bg-[#0B1E2D]
       p-[clamp(16px,1.5vw,20px)]
     "
@@ -65,62 +66,61 @@ const ManufactureQuality = ({ data }: any) => {
                             description={description}
                             className="w-[90%]"
                         />
-                        <div className="space-y-4 divide divide-y">
+                        <div className="space-y-4 divide divide-y divide-gray-300">
                             {list?.map((service: any, index: number) => {
                                 return (
                                     <div
                                         key={index}
                                         className="
-    group relative
-    flex gap-4
-    bg-transparent
-    py-6
-    transition-all duration-300
-  "
+        group relative
+        flex gap-4
+        bg-transparent
+        py-5 sm:py-6
+        transition-all duration-300
+      "
                                     >
                                         {/* Index */}
                                         <div
                                             className="
-      flex
-      h-[clamp(40px,3.5vw,44px)]
-      w-[clamp(40px,3.5vw,44px)]
-      shrink-0
-      items-center
-      justify-center
-      rounded-full
-      bg-[#0B1E2D]
-      p-2
-      lg:my-auto
-    "
+          flex
+          h-[clamp(38px,3.5vw,44px)]
+          w-[clamp(38px,3.5vw,44px)]
+          shrink-0
+          items-center
+          justify-center
+          rounded-full
+          bg-[#2E9B4F]
+          p-2
+          lg:my-auto
+        "
                                         >
-                                            <p className="text-[clamp(10px,0.9vw,12px)] font-bold text-[#39B972]">
+                                            <p className="text-[clamp(10px,0.9vw,12px)] font-bold text-[#FFFFFF]">
                                                 0{index + 1}
                                             </p>
                                         </div>
 
                                         {/* Content */}
-                                        <div className="space-y-1">
+                                        <div className="min-w-0 flex-1 space-y-1">
                                             <h3
                                                 className="
-        text-center
-        text-[clamp(17px,1.5vw,20px)]
-        font-bold
-        tracking-[-0.01em]
-        text-[#101820]
-        lg:text-left
-      "
+            text-left
+            text-[clamp(17px,1.5vw,20px)]
+            font-bold
+            leading-tight
+            tracking-[-0.01em]
+            text-[#101820]
+          "
                                             >
                                                 {service.title}
                                             </h3>
 
                                             <p
                                                 className="
-        text-center
-        text-[clamp(13px,1.1vw,15px)]
-        leading-7
-        text-[#647077]
-        lg:text-left
-      "
+            text-left
+            text-[clamp(13px,1.1vw,15px)]
+            leading-6 sm:leading-7
+            text-[#647077]
+          "
                                             >
                                                 {service.description}
                                             </p>
@@ -129,17 +129,9 @@ const ManufactureQuality = ({ data }: any) => {
                                 );
                             })}
                         </div>
-                        <div className="grid grid-cols-3 border-t py-8 gap-4">
-                            {labels?.map((item: any, idx: number) => {
-                                return (
-                                    <div className="bg-[#E6F5EC] flex gap-4 px-6 py-4 rounded-[10px]">
-                                        <MdCheck size={18}/>
-                                        <p className="text-[#101820] text-[12px] font-bold">{item?.label}</p>
-                                    </div>
-                                )
-                            })}
+                        <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
+                            <SaveAndCancel saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" />
                         </div>
-                        <SaveAndCancel saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" />
                     </div>
                 </div>
             </MaxWidth>

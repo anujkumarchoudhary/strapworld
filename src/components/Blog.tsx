@@ -14,10 +14,12 @@ import { ArrowUpRight } from "lucide-react";
 import Pagination from "./Pagination";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
+import { useResponsive } from "../hooks/useResponsive";
 
 const Blog = ({ data }: any) => {
   const { ref, isVisible } =
     useInViewOnce<HTMLDivElement>();
+  const { isDesktop } = useResponsive()
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -44,11 +46,12 @@ const Blog = ({ data }: any) => {
     >
       <MaxWidth>
         {/* ================= HEADER ================= */}
-        <div className="mb-12 grid grid-cols-[70%_30%]">
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-[70%_30%]">
           <Heading
             as="h2"
             isDart={true}
             isAccentLine={true}
+            isCenter={isDesktop ? false : true}
             label={data?.label}
             labelColor="#39B972"
             accentColor="#39B972"
@@ -56,9 +59,9 @@ const Blog = ({ data }: any) => {
             isGradient={true}
             headingParts={data?.headingParts}
             description={data?.description}
-            className="w-150"
+            className="w-full lg:w-150"
           />
-          <div className="flex gap-2 cursor-pointer justify-end h-fit mt-auto">
+          <div className="hidden lg:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
             <p className="text-[14px] font-bold text-[#101820] my-auto">Discuss your application</p>
             <MdArrowBack className="text-[#39B972] rotate-180 my-auto" />
           </div>
@@ -128,12 +131,12 @@ const Blog = ({ data }: any) => {
         </div>
 
         {/* Pagination */}
-        {blog &&
+        {/* {blog &&
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
-          />}
+          />} */}
       </MaxWidth>
     </section>
   );

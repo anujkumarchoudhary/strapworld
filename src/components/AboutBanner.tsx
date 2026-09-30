@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 
 import MaxWidth from "@/src/components/layout/MaxWidth";
 import Heading from "./common/Heading";
-import BackgroundEffects from "./BackgroundEffects";
 import { useResponsive } from "../hooks/useResponsive";
 
 const AboutBanner = ({ data }: { data: any }) => {
@@ -16,9 +15,6 @@ const AboutBanner = ({ data }: { data: any }) => {
       {/* ======================================================
           BACKGROUND
       ====================================================== */}
-
-      <BackgroundEffects variant={2} />
-
 
       {/* ======================================================
           CONTENT

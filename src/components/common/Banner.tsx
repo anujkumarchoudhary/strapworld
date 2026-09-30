@@ -12,7 +12,7 @@ import GetEnquiryForm from "../form/GetEnquiryForm";
 const Banner = () => {
   const [open, setOpen] = useState(false);
   const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
-  const { label, headingParts, description, button, button2, specifications } =
+  const { label, headingParts, description, specifications } =
     staticData?.home?.banner;
 
   return (
@@ -20,7 +20,7 @@ const Banner = () => {
       ref={ref}
       className="relative h-[88vh] w-full overflow-hidden"
       style={{
-        backgroundImage: "url('/images/home/here_banner.png')",
+        backgroundImage: "url('/images/home/hero_banner.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -86,7 +86,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="flex w-fit border-t pt-6 border-[#29414E] gap-14 mt-8">
+        <div className="lg:flex w-fit border-t hidden pt-6 border-[#29414E] gap-14 mt-8">
           {specifications.map((item: any, index: number) => (
             <div key={index} className="space-y-1">
               <h3 className="text-[clamp(17px,1.5vw,20px)] text-white">

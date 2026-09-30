@@ -9,9 +9,10 @@ import ManufactureQuality from "../components/ManufactureQuality";
 import ExportAndGlobalReach from "../components/ExportAndGlobalReach";
 import OurProducts from "../components/OurProducts";
 import FinalCTA from "../components/FinalCTA";
+import FAQ from "../components/FAQ";
 
 const page = () => {
-  const { ourProducts, services, blogs, technicalPerformance, solutionsByApplication, manufactureQuality, exportAndGlobalReach, finalCta } =
+  const { ourProducts, services, blogs, technicalPerformance, solutionsByApplication, manufactureQuality, exportAndGlobalReach } =
     staticData?.home;
 
   return (
@@ -25,6 +26,7 @@ const page = () => {
       <ExportAndGlobalReach data={exportAndGlobalReach} />
       <Blog data={blogs} />
       <FinalCTA />
+      <FAQ/>
     </div>
   );
 };

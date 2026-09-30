@@ -4,6 +4,8 @@ import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
 import Icon from "../utills/iconMap ";
 import Image from "next/image";
+import SaveAndCancel from "./common/SaveAndCancel";
+import { useResponsive } from "../hooks/useResponsive";
 
 type Service = {
     title: string;
@@ -13,9 +15,11 @@ type Service = {
 };
 
 const TechnicalPerformance = ({ data }: any) => {
-    const { headingParts, label, listOne, listTwo, description } = data || {};
+    const { headingParts, label, description } = data || {};
+    const { isDesktop } = useResponsive();
+
     return (
-        <div className="relative bg-[#0B1E2D]">
+        <div className="relative bg-[#1E2928]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-[40%_20%] justify-between">
                     <Heading
@@ -23,70 +27,70 @@ const TechnicalPerformance = ({ data }: any) => {
                         isDart={true}
                         isAccentLine={true}
                         label={label}
+                        isCenter={isDesktop ? false: true}
                         labelColor="#39B972"
                         accentColor="#39B972"
-                        textColor="#DCE5E8"
-                        isGradient={true}
+                        textColor="#ffffff"
+                        isGradient={isDesktop ? false : true}
                         headingParts={headingParts}
                         description={description}
                     />
 
-                    <div className="mt-auto pl-4">
-                        <p className="pt-2 text-[clamp(10px,0.9vw,14px)] text-[#39B972]">
-                            PET STRAP REFERENCE RANGE
-                        </p>
-
-                        <h3 className="py-2 text-[clamp(26px,3vw,36px)] font-bold text-[#ffffff]">
-                            9–32 mm
-                        </h3>
-
-                        <p className="text-[clamp(11px,0.9vw,14px)] text-[#DCE5E8]">
-                            Width availability varies by grade and application requirement.
-                        </p>
+                    <div className="my-auto  hidden lg:flex justify-end pr-2">
+                        <SaveAndCancel saveText={data?.button} />
                     </div>
                 </div>
 
                 {/* ================= SERVICES ================= */}
-                <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] gap-4 justify-between">
-                    <div className="grid grid-cols-1 lg:grid-cols-2">
-                        {listOne?.map((product: any, index: number) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className="
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {data?.list?.map((product: any, index: number) => {
+                        return (
+                            <div
+                                key={index}
+                                className="
     group relative
-    bg-transparent
-    py-6
+    border border-white/10
+    bg-[#101C1B]/20
+    p-6
+    backdrop-blur-md
+    rounded-2xl
     transition-all duration-300
+    hover:border-[#39B972]/30
     hover:bg-[#0B1E2D]/20
   "
-                                >
-                                    {/* Icon */}
-                                    <div
-                                        className="
+                            >
+                                <div
+                                    className="
       mx-auto flex h-[clamp(40px,3.5vw,44px)]
       w-[clamp(40px,3.5vw,44px)]
       items-center justify-center
       rounded-full
-      bg-[#132B3A]
-      p-2
+      bg-[#39B972]
+      p-3
       transition-transform duration-300
       group-hover:-translate-y-1
       lg:mx-0
     "
-                                    >
-                                        <Image
-                                            src={product?.image}
-                                            width={20}
-                                            height={20}
-                                            alt="img"
-                                        />
-                                    </div>
+                                >
+                                    <div
+                                        className="h-full w-full bg-white"
+                                        style={{
+                                            maskImage: `url(${product?.image})`,
+                                            WebkitMaskImage: `url(${product?.image})`,
+                                            maskRepeat: "no-repeat",
+                                            WebkitMaskRepeat: "no-repeat",
+                                            maskPosition: "center",
+                                            WebkitMaskPosition: "center",
+                                            maskSize: "contain",
+                                            WebkitMaskSize: "contain",
+                                        }}
+                                    />
+                                </div>
 
-                                    {/* Content */}
-                                    <div className="mt-8">
-                                        <h3
-                                            className="
+                                {/* Content */}
+                                <div className="mt-8">
+                                    <h3
+                                        className="
         text-center
         text-[clamp(18px,1.7vw,20px)]
         font-bold
@@ -94,27 +98,27 @@ const TechnicalPerformance = ({ data }: any) => {
         text-[#ffffff]
         lg:text-left
       "
-                                        >
-                                            {product?.title}
-                                        </h3>
+                                    >
+                                        {product?.title}
+                                    </h3>
 
-                                        <p
-                                            className="
+                                    <p
+                                        className="
         mt-3
         text-center
         text-[clamp(13px,1.2vw,15px)]
-        leading-7
+        leading-6
         text-[#DCE5E8]
         lg:text-left
       "
-                                        >
-                                            {product?.description}
-                                        </p>
-                                    </div>
+                                    >
+                                        {product?.description}
+                                    </p>
+                                </div>
 
-                                    {/* Arrow */}
-                                    <div
-                                        className="
+                                {/* Arrow */}
+                                <div
+                                    className="
       absolute bottom-5 right-5
       flex h-7 w-7 items-center justify-center
       text-[#9999A3]
@@ -122,76 +126,13 @@ const TechnicalPerformance = ({ data }: any) => {
       group-hover:translate-x-1
       group-hover:text-[#7C3AED]
     "
-                                    />
-
-                                    {/* Hover Line */}
-                                    <div
-                                        className="
-      absolute bottom-0 left-0
-      h-0.5 w-0
-      bg-[#218B55]
-      transition-all duration-300
-      group-hover:w-full
-    "
-                                    />
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="bg-[#132B3A] divide divide-y pl-10 pr-15 py-6 rounded-[20px]">
-                        {listTwo?.map((service: any, index: number) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className="group relative"
-                                >
-                                    {/* Content */}
-                                    <div className="grid grid-cols-[20%_40%_40%] gap-4 py-6">
-                                        <p
-                                            className="
-        my-auto
-        text-center
-        text-[clamp(11px,1vw,15px)]
-        leading-7
-        text-[#39B972]
-        lg:text-left
-      "
-                                        >
-                                            {service?.label}
-                                        </p>
-
-                                        <h3
-                                            className="
-        my-auto
-        text-center
-        text-[clamp(16px,1.5vw,20px)]
-        font-bold
-        tracking-[-0.01em]
-        text-nowrap
-        text-[#ffffff]
-        lg:text-left
-      "
-                                        >
-                                            {service?.title}
-                                        </h3>
-
-                                        <p
-                                            className="
-        my-auto
-        text-center
-        text-[clamp(12px,1.1vw,15px)]
-        leading-7
-        text-[#DCE5E8]
-        lg:text-left
-      "
-                                        >
-                                            {service?.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className="my-auto  lg:hidden flex justify-center">
+                    <SaveAndCancel saveText={data?.button} />
                 </div>
             </MaxWidth>
         </div>

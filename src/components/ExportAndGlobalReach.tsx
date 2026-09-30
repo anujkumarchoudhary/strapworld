@@ -14,11 +14,11 @@ type Service = {
 };
 
 const ExportAndGlobalReach = ({ data }: any) => {
-    const { headingParts, label, labels, specifications, listOne, listTwo, description } = data || {};
+    const { headingParts, label, labels, specifications, description } = data || {};
     return (
-        <div className="relative bg-[#101820]">
-            <MaxWidth className="py-10 sm:py-12 lg:py-16 space-y-10 divide divide-y">
-                <div className=" overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-14 pb-15 space-y-10 ">
+        <div className="relative bg-[#1E2928]">
+            <MaxWidth className="py-10 sm:py-12 lg:py-16 space-y-10">
+                <div className=" overflow-hidden grid grid-cols-1 lg:grid-cols-[45%_45%] justify-between ">
                     <div className="space-y-5">
                         <Heading
                             as="h2"
@@ -32,7 +32,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
                             headingParts={headingParts}
                             description={description}
                         />
-                        <div className="grid grid-cols-3">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 pb-8 lg:pb-0">
                             {labels?.map((item: any, index: number) => {
                                 return (
                                     <div
@@ -41,7 +41,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
     group relative
     flex gap-2
     bg-transparent
-    py-2
+    lg:py-2
     transition-all duration-300
     hover:bg-[#0B1E2D]/20
   "
@@ -81,14 +81,25 @@ const ExportAndGlobalReach = ({ data }: any) => {
                         />
                     </div>
                 </div>
-                <div className="flex justify-between gap-4">
+                <div className="grid grid-cols-2 gap-y-6 rounded-[20px] bg-white p-5 sm:p-7 lg:flex lg:gap-0 lg:p-10">
                     {specifications?.map((item: any, idx: number) => (
-                        <div key={idx}>
-                            <h3 className="text-[clamp(28px,3.2vw,44px)] font-bold text-[#ffffff]">
+                        <div
+                            key={idx}
+                            className={`
+        flex-1
+        px-4 sm:px-6
+        lg:px-0
+        ${idx % 2 !== 0 ? "border-l border-dotted border-black/20" : ""}
+        ${idx >= 2 ? "border-t border-dotted border-black/20 pt-6 lg:border-t-0 lg:pt-0" : ""}
+        ${idx !== 0 ? "lg:border-l lg:border-dotted lg:border-black/20 lg:pl-15" : "lg:pr-10"}
+      `}
+                        >
+                            <h3 className="text-[clamp(38px,5vw,75px)] font-normal leading-none text-[#000000]">
                                 {item?.value}
+                                {item?.suffix}
                             </h3>
 
-                            <p className="text-[clamp(11px,1vw,14px)] font-medium text-[#DCE5E8]">
+                            <p className="mt-2 text-[clamp(14px,1.5vw,22px)] font-semibold leading-tight text-[#000000]">
                                 {item?.label}
                             </p>
                         </div>

@@ -22,12 +22,13 @@ const OurServices = ({ data }: any) => {
     <div className="relative bg-[#F3F1EA]">
 
       <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[50%_18%] justify-between">
+        <div className="grid space-y-6 grid-cols-1 lg:grid-cols-[50%_18%] justify-between">
           <Heading
             as="h2"
             isDart={true}
             isAccentLine={true}
             label={label}
+            isCenter={isDesktop ? false:true}
             labelColor="#39B972"
             accentColor="#39B972"
             textColor="#647077"
@@ -60,7 +61,7 @@ const OurServices = ({ data }: any) => {
                   transition-all duration-300
                   bg-white
                   hover:bg-[#FAF9FF]
-                  border rounded-[5px]
+                   rounded-[10px]
                 `}
               >
                 {/* Icon */}

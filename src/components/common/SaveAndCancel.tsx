@@ -62,7 +62,7 @@ const SaveAndCancel = ({
           className="
         inline-flex items-center cursor-pointer justify-center
         gap-2
-        rounded-md
+        rounded-full
         border border-[#29414E]
         bg-transparent
         px-5 py-3

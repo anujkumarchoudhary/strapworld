@@ -19,10 +19,10 @@ const Header = () => {
     <div className="bg-white w-full sticky top-0 z-50">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
         <MaxWidth className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
+          <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
             INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
           </p>
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap justify-between lg:items-center gap-3 sm:gap-4">
             <div className="flex items-center gap-2">
               <MdPhone className="shrink-0 text-[#ffffff]" />
               <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">

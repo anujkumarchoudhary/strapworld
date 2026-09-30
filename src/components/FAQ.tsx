@@ -7,44 +7,44 @@ import Heading from "./common/Heading";
 
 const faqData = [
   {
-    question: "What services does SoftQivo provide?",
+    question: "What is PET strapping used for?",
     answer:
-      "SoftQivo provides custom software development, web application development, SaaS development, CRM solutions, UI/UX development, API development, and other digital solutions tailored to business requirements.",
+      "PET strapping is commonly used for bundling, palletizing and securing products during storage, handling and transportation. It is used for cartons, textile products, industrial goods, automotive parts and other packaged loads.",
   },
   {
-    question: "Can you build a custom software solution for my business?",
+    question: "What is the difference between PET and polyester strapping?",
     answer:
-      "Yes. We develop custom software solutions based on your business processes, requirements, and goals. Our solutions are designed to be scalable, secure, and easy to maintain.",
+      "PET and polyester strapping are both used for load securing and packaging applications. Their properties and suitable applications depend on the material, dimensions, strength and required performance.",
   },
   {
-    question: "Do you develop SaaS applications?",
+    question: "What PET strap sizes do you manufacture?",
     answer:
-      "Yes. We build scalable SaaS platforms with features such as multi-tenancy, authentication, subscription management, dashboards, role-based access control, APIs, and cloud-ready architecture.",
+      "We manufacture and supply multiple PET strapping specifications based on width, thickness, strength, coil weight and application requirements. Contact us for current specifications.",
   },
   {
-    question: "Which technologies do you use?",
+    question: "Can you supply customized PET strapping?",
     answer:
-      "We work with modern technologies including React.js, Next.js, Node.js, Express.js, TypeScript, MongoDB, PostgreSQL, and other technologies depending on the project requirements.",
+      "Yes. Requirements can be discussed based on dimensions, strength, application, quantity and packaging requirements.",
   },
   {
-    question: "How long does it take to develop a website or application?",
+    question: "Do you export PET strapping from India?",
     answer:
-      "The timeline depends on the scope and complexity of the project. A simple website may take a few weeks, while a larger custom application or SaaS platform can take several months.",
+      "Yes. Strap World Pvt. Ltd. supplies customers across India and international markets including the UAE, Bangladesh, USA, Australia and other destinations.",
   },
   {
-    question: "Do you provide ongoing maintenance and support?",
+    question: "Which industries use PET strapping?",
     answer:
-      "Yes. We can provide ongoing maintenance, performance optimization, bug fixes, security updates, feature enhancements, and technical support after the initial development.",
+      "PET strapping is used across textile, automotive, packaging, steel and metal, construction, logistics, furniture and general manufacturing applications.",
   },
   {
-    question: "Can you integrate third-party APIs?",
+    question: "Can I purchase PET strapping in bulk?",
     answer:
-      "Yes. We can integrate payment gateways, authentication providers, CRMs, communication platforms, analytics tools, maps, cloud services, and other third-party APIs.",
+      "Yes. We support B2B bulk requirements and repeat supply. Contact us with your required specification and quantity.",
   },
   {
-    question: "How can I start a project with SoftQivo?",
+    question: "How can I request a quotation?",
     answer:
-      "You can contact us with your project requirements, goals, and estimated timeline. We will discuss your requirements, suggest an appropriate solution, and plan the next steps.",
+      "Send us your required product, dimensions, strength, quantity, application and delivery destination. Our team will review your requirement and respond with the appropriate quotation details.",
   },
 ];
 
@@ -56,17 +56,18 @@ const FAQ = () => {
   };
 
   return (
-    <section className="bg-white py-12 lg:py-16">
+    <section className="bg-white pb-12 lg:pb-16">
       <MaxWidth>
         {/* Section Heading */}
         <div className="mx-auto mb-14 w-[90%] lg:w-[50%] text-center">
           <Heading
             label="FAQ"
-            // accentColor="#0000FF"
+            as="h2"
             isCenter={true}
-            headingParts={[{ text: "Frequently Asked Questions" }]}
-            description="Everything you need to know about our services, development process,
-            and working with SoftQivo."
+            headingParts={[
+              { text: "Frequently Asked Questions About PET Strapping" },
+            ]}
+            description="Find answers to common questions about PET strapping, specifications, applications, bulk supply, customization, exports, and quotations."
           />
         </div>
 
@@ -97,11 +98,10 @@ const FAQ = () => {
                       className={`
                 text-lg font-semibold md:text-xl
                 transition-colors duration-300
-                ${
-                  isOpen
-                    ? "text-primary-bg"
-                    : "text-primary-bg group-hover:text-primary-bg"
-                }
+                ${isOpen
+                          ? "text-primary-bg"
+                          : "text-primary-bg group-hover:text-primary-bg"
+                        }
               `}
                     >
                       {faq.question}
@@ -112,11 +112,10 @@ const FAQ = () => {
                 flex h-9 w-9 shrink-0 items-center justify-center
                 rounded-full border
                 transition-all duration-300
-                ${
-                  isOpen
-                    ? "rotate-45 border-primary-bg bg-primary-bg text-white"
-                    : "border-black/10 bg-transparent text-primary-bg group-hover:border-primary-bg group-hover:bg-primary-bg group-hover:text-white"
-                }
+                ${isOpen
+                          ? "rotate-45 border-[#2E9B4F] bg-[#2E9B4F] text-white"
+                          : "border-black/10 bg-transparent text-primary-bg group-hover:border-[#2E9B4F] group-hover:bg-[#2E9B4F] group-hover:text-white"
+                        }
               `}
                     >
                       <Icon name="plus" size={18} />
@@ -127,11 +126,10 @@ const FAQ = () => {
                   <div
                     className={`
               grid transition-all duration-300 ease-in-out
-              ${
-                isOpen
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "grid-rows-[0fr] opacity-0"
-              }
+              ${isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                      }
             `}
                   >
                     <div className="overflow-hidden">

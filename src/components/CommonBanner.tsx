@@ -2,7 +2,6 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import BackgroundEffects from "./BackgroundEffects";
 import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
 import { useResponsive } from "../hooks/useResponsive";
@@ -27,7 +26,6 @@ export default function CommonBanner({
   const {isDesktop}=useResponsive()
   return (
 <section className="relative isolate overflow-hidden bg-black text-white">
-  <BackgroundEffects />
 
   <MaxWidth className=" py-12 max-w-310 sm:px-8 lg:px-12 lg:py-24">
       <Heading
