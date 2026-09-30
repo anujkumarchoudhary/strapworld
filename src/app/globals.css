@@ -44,6 +44,9 @@
   .font-roboto-mono {
     font-family: var(--font-roboto-mono), monospace;
   }
+  .font-mona {
+    font-family: var(--font-mona-sans), sans-serif;
+  }
 }
 
 /* ================================
@@ -53,7 +56,7 @@
   body {
     background: var(--secondary-bg);
     color: var(--text-color);
-    font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-mona-sans), sans-serif;
   }
 
   h1 {

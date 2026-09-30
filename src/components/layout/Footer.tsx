@@ -1,183 +1,79 @@
 "use client";
 import React from "react";
 import MaxWidth from "./MaxWidth";
-import { footerMenuData } from "@/src/data/menu";
+import { footerColumns } from "@/src/data/menu";
 import Icon from "@/src/utills/iconMap ";
 import Image from "next/image";
+import logo from '../../../public/logo.svg'
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden bg-primary-bg text-white">
-      <MaxWidth className="grid grid-cols-1 gap-10 py-12 lg:grid-cols-4 lg:gap-8 lg:py-20">
-        {/* Brand */}
-        <div>
-          {/* <Image
-            src="/softqivo_04.png"
-            width={225}
-            height={50}
-            alt="logo"
-            style={{
-              width: "clamp(180px, 18vw, 225px)",
-              height: "auto",
-            }}
-          /> */}
-          <h3 className="text-[#39B972]">Strap World</h3>
+    <footer className="overflow-hidden bg-[#020203]">
+      <MaxWidth className="lg:gap-8 py-12 lg:py-16 divide divide-y space-y-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_30%] pb-10 justify-between">
+          <div className="space-y-6">
+            <Image
+              src={logo}
+              width={306}
+              height={51}
+              alt="logo"
+              className="cursor-pointer"
+            />
 
-          <p className="mt-5 leading-7 text-white/70">
-            Industrial strapping and packaging systems for secure, efficient movement.
-          </p>
+            <p className="text-[clamp(16px,1.25vw,20px)] leading-7 text-white/70">
+              Industrial strapping and packaging systems for secure, efficient movement.
+            </p>
+          </div>
 
-          {/* Social Icons */}
-          <div className="mt-7 flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="FaLinkedinIn"
-              className="flex h-15 w-15 items-center justify-center rounded-full border border-white/15 transition hover:border-white hover:bg-white hover:text-black"
-            >
-              <Icon name="FaLinkedinIn" size={30} />
-            </a>
+          <div className="space-y-3">
+            <p className="text-[clamp(11px,0.8125vw,13px)] text-[#39B972] font-medium">
+              EXPORT & SALES
+            </p>
+
+            <p className="leading-7 text-[clamp(18px,1.375vw,22px)] text-white/70">
+              Send your load details, volume and destination for a product-led recommendation.
+            </p>
 
             <a
-              href="#"
-              aria-label="FaInstagram"
-              className="flex h-15 w-15 items-center justify-center rounded-full border border-white/15 transition hover:border-white hover:bg-white hover:text-black"
+              href="mailto:sales@strapworld.com"
+              className="flex items-center gap-2 text-[clamp(17px,1.25vw,20px)] font-bold text-[#ffffff]"
             >
-              <Icon name="FaInstagram" size={30} />
-            </a>
-
-            <a
-              href="https://x.com/softqivo"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="SoftQivo on X"
-              className="flex h-15 w-15 items-center justify-center rounded-full border border-white/15 transition hover:border-white hover:bg-white hover:text-black"
-            >
-              <Icon name="FaTwitter" size={30} />
+              sales@strapworld.com
+              <MdArrowOutward className="text-[#39B972]" />
             </a>
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="mb-8 text-[25px] text-white font-semibold">
-            Quick Links
-          </h3>
+        <div className="grid space-y-10 grid-cols-1 lg:grid-cols-5 justify-between">
+          {footerColumns.map((column) => (
+            <div key={column.title} className="space-y-4">
+              <h3 className="text-[clamp(12px,0.9375vw,15px)] text-[#39B972] font-bold font-roboto-mono">
+                {column.title}
+              </h3>
 
-          <ul className="space-y-3">
-            {footerMenuData.slice(0, 5).map((menu, idx) => (
-              <li key={idx}>
-                <a
-                  href={`${menu.link}`}
-                  className="group flex items-center gap-2 text-[18px] text-white/70 transition hover:text-white"
-                >
-                  <Icon
-                    name="chevronRight"
-                    size={15}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-
-                  <span>{menu.title}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Services */}
-        <div>
-          <h3 className="mb-8 text-[25px] text-white font-semibold">
-            Custom Software
-          </h3>
-
-          <ul className="space-y-3">
-            {footerMenuData.slice(5).map((menu, idx) => (
-              <li key={idx}>
-                <a
-                  href={`${menu.link}`}
-                  className="group flex items-center gap-2 text-[18px] text-white/70 transition hover:text-white"
-                >
-                  <Icon
-                    name="chevronRight"
-                    size={15}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-
-                  <span>{menu.title}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h3 className="mb-8 text-[25px] text-white font-semibold">
-            Contact Us
-          </h3>
-
-          <div className="space-y-5">
-            {/* Address */}
-            <div className="flex gap-3">
-              <Icon name="location" size={22} className="mt-1 shrink-0" />
-
-              <a
-                href="https://share.google/E7oFNNvoY9Nm77Ais"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group"
-              >
-                <p className="mb-1 text-[18px] font-medium text-white">
-                  Head Office
-                </p>
-
-                <p className="text-[16px] lg:text-[18px] leading-7 text-white/65 transition-colors group-hover:text-white">
-                  A-21, 2nd Floor, BSI Business Park, Sector-63, Noida, Uttar Pradesh, India
-                </p>
-              </a>
+              <ul className="space-y-2">
+                {column.links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.path}
+                      className="text-[clamp(14px,1.0625vw,17px)] text-[#DCE5E8] font-medium"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            {/* Phone */}
-            <div className="flex gap-3">
-              <div className="mt-1 shrink-0">
-                <Icon name="phone" size={19} className="text-white" />
-              </div>
-
-              <div>
-                <p className="mb-1 text-[18px] font-medium text-white">Phone</p>
-
-                <a
-                  href="tel:+919953176985"
-                  className="text-[18px] text-white/65 transition hover:text-white"
-                >
-                  +91 99531 76985
-                </a>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="flex gap-3">
-              <div className="mt-1 shrink-0">
-                <Icon name="mail" size={19} className="text-white" />
-              </div>
-
-              <div>
-                <p className="mb-1 text-[18px] font-medium text-white">Email</p>
-
-                <a
-                  href="mailto:softqivo@gmail.com"
-                  className="text-[18px] text-white/65 transition hover:text-white"
-                >
-                  softqivo@gmail.com
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </MaxWidth>
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <MaxWidth className="flex flex-col items-center justify-between gap-3 py-5 text-sm text-white/50 md:flex-row">
-          <p>© {new Date().getFullYear()} SoftQivo Technology. All rights reserved.</p>
+        <MaxWidth className="flex flex-col items-center justify-between gap-3 py-5 text-[clamp(12px,0.875vw,14px)] text-white/50 md:flex-row">
+          <p>© {new Date().getFullYear()} Strap World. All rights reserved.</p>
 
           <div className="flex gap-5">
             <a href="/privacy-policy" className="transition hover:text-white">

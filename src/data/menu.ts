@@ -1,20 +1,60 @@
 export const menuData = [
-  { title: "About", link: "/about" },
-  { title: "Services", link: "/service" },
-  { title: "Blog", link: "/blog" },
-  { title: "Portfolio", link: "/portfolio" },
+  { title: "Products", link: "#" },
+  { title: "Solutions", link: "#" },
+  { title: "Industories", link: "#" },
+  { title: "About Us", link: "#" },
+  { title: "Resources", link: "/blog" },
   { title: "Contact", link: "/contact" },
 ];
 
-export const footerMenuData = [
-  { title: "Privacy Policy", link: "/privacy-policy" },
-  { title: "Terms of Service", link: "/terms-of-service" },
-  { title: "Help Center", link: "#" },
-  { title: "Careers", link: "#" },
-  { title: "Sitemap", link: "/sitemap" },
-  { title: "Accessibility", link: "#" },
-  { title: "Cookie Policy", link: "#" },
-  { title: "Press", link: "#" },
-  { title: "Blog", link: "/blog" },
-  { title: "Contact", link: "/contact" },
+export const footerColumns = [
+  {
+    title: "PRODUCTS",
+    links: [
+      { name: "PET Straps", path: "#" },
+      { name: "PP Straps", path: "#" },
+      { name: "Polyester Straps", path: "#" },
+      { name: "Packing Straps", path: "#" },
+      { name: "Strapping Tools", path: "#" },
+      { name: "Packaging Machines", path: "#" },
+    ],
+  },
+  {
+    title: "SOLUTIONS",
+    links: [
+      { name: "Pallet Stabilization", path: "#" },
+      { name: "Carton Closure", path: "#" },
+      { name: "Bundling", path: "#" },
+      { name: "Heavy Unitizing", path: "#" },
+      { name: "Automation Support", path: "#" },
+    ],
+  },
+  {
+    title: "INDUSTRIES",
+    links: [
+      { name: "Metals & Steel", path: "#" },
+      { name: "Building Materials", path: "#" },
+      { name: "Corrugated Packaging", path: "#" },
+      { name: "Food & Beverage", path: "#" },
+      { name: "Logistics", path: "#" },
+    ],
+  },
+  {
+    title: "COMPANY",
+    links: [
+      { name: "About Us", path: "#" },
+      { name: "Manufacturing", path: "#" },
+      { name: "Quality Approach", path: "#" },
+      { name: "Export Support", path: "#" },
+      { name: "Contact", path: "#" },
+    ],
+  },
+    {
+    title: "CONTACT",
+    links: [
+      { name: "Manufacturing & dispatch Gujarat, India", path: "#" },
+      { name: "+91 79 4000 0000", path: "#" },
+      { name: "Mon–Sat 09:30–18:30 IST", path: "#" }
+    ],
+  },
 ];

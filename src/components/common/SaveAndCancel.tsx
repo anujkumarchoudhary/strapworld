@@ -40,19 +40,19 @@ const SaveAndCancel = ({
           group
           inline-flex cursor-pointer items-center justify-center
           gap-2
-          rounded-md
+          rounded-full
           px-5 py-3
-          text-[clamp(12px,1vw,14px)]
-          font-semibold
+          text-[clamp(12px,1vw,16px)]
+          font-medium
           transition-all
           duration-300
           hover:scale-[1.03]
           hover:shadow-purple-500/30
         "
       >
-        <span>{saveText}</span>
+        <span className="text-[#ffffff]">{saveText}</span>
 
-        <MdArrowOutward />
+        <MdArrowOutward size={18} className="text-[#ffffff]" />
       </button>
 
       {/* Explore Our Work */}
