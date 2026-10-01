@@ -18,7 +18,7 @@ const Banner = () => {
   return (
     <section
       ref={ref}
-      className="relative h-[88vh] w-full overflow-hidden"
+      className="relative h-[85vh] md:h-[60vh] lg:h-[88vh] w-full overflow-hidden"
       style={{
         backgroundImage: "url('/images/home/hero_banner.png')",
         backgroundSize: "cover",

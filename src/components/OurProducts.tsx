@@ -66,7 +66,7 @@ const OurProducts = ({ data }: any) => {
                 </div>
 
                 {/* Content */}
-                <div className="w-full space-y-3 p-6">
+                <div className="w-full space-y-5 p-6">
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="text-center font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
                       {product?.title}
