@@ -4,7 +4,7 @@ import Link from "next/link";
 import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
 import { useResponsive } from "../hooks/useResponsive";
-import { MdArrowBack, MdArrowRight } from "react-icons/md";
+import { MdArrowBack, MdArrowOutward, MdArrowRight } from "react-icons/md";
 import Image from "next/image";
 import React from "react";
 import SaveAndCancel from "./common/SaveAndCancel";
@@ -16,11 +16,11 @@ type Service = {
   icon: React.ElementType;
 };
 
-const OurProducts = ({ data }: any) => {
+const IndustriesWeServe = ({ data }: any) => {
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
   return (
-    <div className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
+    <div className="bg-[#F5F7F2] py-10 sm:py-12 lg:py-16">
 
       <MaxWidth className=" ">
         {/* ================= HEADER ================= */}
@@ -39,9 +39,9 @@ const OurProducts = ({ data }: any) => {
             headingParts={headingParts}
             description={description}
           />
-          <div className="hidden md:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
+          {/* <div className="hidden md:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
             <SaveAndCancel saveText="View all products" />
-          </div>
+          </div> */}
         </div>
 
         {/* ================= SERVICES ================= */}
@@ -74,51 +74,13 @@ const OurProducts = ({ data }: any) => {
                 {/* Content */}
                 <div className="flex flex-1 flex-col w-full space-y-5 p-8">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-center font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
+                    <h3 className="text-center text-[21px] font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
                       {product?.title}
                     </h3>
 
-                    <p className="text-[clamp(10px,4vw,26px)] font-bold text-[#218B55]/60">
-                      0{index + 1}
-                    </p>
+                    <MdArrowOutward size={21} className="text-[#2E9B4F]"/>
                   </div>
 
-                  <p className="text-[#000000]/80 text-left">
-                    {product.description}
-                  </p>
-
-                  <div className="flex mt-auto  items-end justify-between gap-4">
-                    {/* Labels */}
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                      {product?.labels?.map((item: string, idx: number) => (
-                        <React.Fragment key={idx}>
-                          {idx > 0 && (
-                            <span className="text-[10px] text-[#A0A8AD]">
-                              •
-                            </span>
-                          )}
-
-                          <p className="text-[clamp(9px,0.75vw,10px)] font-semibold uppercase text-[#647077]">
-                            {item}
-                          </p>
-                        </React.Fragment>
-                      ))}
-                    </div>
-
-                    {/* View */}
-                    <Link
-                      href={"#"}
-                      className="mt-auto flex h-fit cursor-pointer items-center justify-end gap-2 shrink-0"
-                    >
-                      <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
-                        {product.button}
-                      </p>
-
-                      <MdArrowBack
-                        className="my-auto rotate-180 text-[#39B972] transition-all duration-300 group-hover:translate-x-1"
-                      />
-                    </Link>
-                  </div>
                 </div>
               </div>
             );
@@ -129,4 +91,4 @@ const OurProducts = ({ data }: any) => {
   );
 };
 
-export default OurProducts;
+export default IndustriesWeServe;

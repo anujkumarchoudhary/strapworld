@@ -6,9 +6,10 @@ import Icon from "@/src/utills/iconMap ";
 import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
 import Heading from "./common/Heading";
-import { MdOutlineMailOutline, MdPhone } from "react-icons/md";
+import { MdCheck, MdOutlineMailOutline, MdPhone } from "react-icons/md";
 import { useResponsive } from "../hooks/useResponsive";
 import SaveAndCancel from "./common/SaveAndCancel";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 interface FinalCTAData {
   label: string;
@@ -36,7 +37,7 @@ export default function FinalCTA({ data }: any) {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mb-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[35%_55%] justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
@@ -45,36 +46,209 @@ export default function FinalCTA({ data }: any) {
                 accentColor="#ffffff"
                 labelColor="#ffffff"
                 textColor="#ffffff"
-                label="START AN INQUIRY"
-                headingParts={[{ text: "Tell us what you need to secure.", color: "#ffffff" }]}
-                description="Share your product, load profile, monthly requirement and destination. Our team will help narrow the right strap, tool or machine configuration."
+                label={data?.label}
+                headingParts={data?.headingParts}
+                description={data?.description}
               />
-              <div className="hidden lg:flex gap-3">
-                <div className="flex gap-2">
-                  <MdOutlineMailOutline size={18} className="my-auto text-[#FFFFFF]" />
-                  <p className="my-auto text-[#FFFFFF] text-[14px] font-bold">sales@ompackstrap.com</p>
-                </div>
-                <div className="flex gap-2">
-                  <MdPhone size={18} className="my-auto text-[#FFFFFF]" />
-                  <p className="my-auto text-[#FFFFFF] text-[14px] font-bold">+91 123 46 7890</p>
-                </div>
+              <div className="bg-[#FFFFFF]/10 p-5 rounded-[10px] space-y-3">
+                {data?.list?.map((item: any, idx: number) => {
+                  return (
+                    <div className="flex gap-2">
+                      <MdCheck size={15} className="text-[#FFFFFF]" />
+                      <p className="my-auto text-[15px] font-normal text-[#FFFFFF]">
+                        {item?.label}
+                      </p>
+                    </div>
+                  )
+                })}
               </div>
-              <button
-                onClick={() => setOpen(true)}
-                className="group cursor-pointer flex text-center shrink-0 mt-10 lg:mt-0 items-center gap-2 rounded-[4px] mx-auto lg:mx-0 w-fit bg-black px-5 py-3 text-[18px] font-semibold text-white transition-all duration-300 hover:bg-white hover:text-black sm:px-7 sm:py-3.5"
-              >
-                Let's Talk
-                <Icon
-                  name="arrow"
-                  size={14}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </button>
             </div>
 
             {/* Button */}
-            <div className="bg-white w-full h-full rounded-[10px]">
+            <div className="w-full  rounded-[14px] bg-white p-5 sm:p-10">
+              {/* Heading */}
+              <h2 className="mb-4 text-[clamp(18px,1.5vw,28px)] font-semibold leading-tight text-[#101820]">
+                Tell us about your requirement.
+              </h2>
 
+              <form className="space-y-2.5">
+                {/* Name + Company */}
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Company name"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+                </div>
+
+                {/* Email + Phone */}
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="name@company.com"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="Phone number"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+                </div>
+
+                {/* Product + Quantity */}
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Product
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="PET Strap"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                      Quantity
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Required quantity"
+                      className="
+              py-3.5 w-full rounded-[5px]
+              border border-[#DCE3DF]
+              bg-[#F4F7F4]
+              px-2.5
+              text-[13px] text-[#101820]
+              outline-none
+              placeholder:text-[#8A9490]
+              focus:border-[#218B55]
+            "
+                    />
+                  </div>
+                </div>
+
+                {/* Requirements */}
+                <div>
+                  <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                    Requirements
+                  </label>
+
+                  <input
+                    type="text"
+                    placeholder="Width, thickness, strength, color or other details"
+                    className="
+            py-3.5 w-full rounded-[5px]
+            border border-[#DCE3DF]
+            bg-[#F4F7F4]
+            px-2.5
+            text-[13px] text-[#101820]
+            outline-none
+            placeholder:text-[#8A9490]
+            focus:border-[#218B55]
+          "
+                  />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="mb-1 block text-[13px] font-medium text-[#101820]">
+                    Message
+                  </label>
+
+                  <textarea
+                    rows={4}
+                    placeholder="Application, delivery location and any additional information"
+                    className="
+            min-h-[56px] w-full resize-none rounded-[5px]
+            border border-[#DCE3DF]
+            bg-[#F4F7F4]
+            px-2.5 py-2
+            text-[13px] text-[#101820]
+            outline-none
+            placeholder:text-[#8A9490]
+            focus:border-[#218B55]
+          "
+                  />
+                </div>
+
+                {/* Button */}
+                <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" />
+
+              </form>
             </div>
           </div>
         </motion.div>
@@ -143,18 +317,18 @@ export default function FinalCTA({ data }: any) {
                 description={data?.description2}
 
               />
-<div className="flex justify-start lf:justify-center">
+              <div className="flex justify-start lf:justify-center">
                 <SaveAndCancel
-                saveText={data?.buttonText}
-                cancelText={data?.buttonText2}
-                saveBgColor="#063F3D"
-                cancelBgColor="#FFFFFF"
-                cancelTextColor="#000000"
-                handleClick={() => setOpen(true)}
-                isButton2={true}
+                  saveText={data?.buttonText}
+                  cancelText={data?.buttonText2}
+                  saveBgColor="#063F3D"
+                  cancelBgColor="#FFFFFF"
+                  cancelTextColor="#000000"
+                  handleClick={() => setOpen(true)}
+                  isButton2={true}
 
-              />
-</div>
+                />
+              </div>
             </div>
           </div>
         </motion.div>

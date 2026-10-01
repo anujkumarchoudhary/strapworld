@@ -3,7 +3,7 @@
 import Image from "next/image";
 import img from "../../../public/images/skill2.jpg";
 import MaxWidth from "../layout/MaxWidth";
-import Button from "./Button";
+import Button from "./ButtonLink";
 import { useInViewOnce } from "@/src/hooks/useInViewOnce";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 

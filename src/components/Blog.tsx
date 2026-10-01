@@ -8,7 +8,7 @@ import blog2 from "../../public/images/blog2.jpg";
 import blog3 from "../../public/images/blog3.jpg";
 import Image from "next/image";
 import { useInViewOnce } from "@/src/hooks/useInViewOnce";
-import Button from "./common/Button";
+import Button from "./common/ButtonLink";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import Pagination from "./Pagination";

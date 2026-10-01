@@ -14,14 +14,14 @@ type Service = {
     icon: React.ElementType;
 };
 
-const ExportAndGlobalReach = ({ data }: any) => {
+const Applications = ({ data }: any) => {
     const { headingParts, label, description } = data || {};
     const { isDesktop } = useResponsive();
 
     return (
-        <div className="relative bg-[#063F3D]">
+        <div className="relative bg-[#FFFFFF]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-[55%_25%] justify-between">
+                <div className="grid grid-cols-1 lg:grid-cols-[45%_25%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}
@@ -30,7 +30,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
                         isCenter={isDesktop ? false : true}
                         labelColor="#39B972"
                         accentColor="#39B972"
-                        textColor="#ffffff"
+                        textColor="#000000"
                         isGradient={isDesktop ? false : true}
                         headingParts={headingParts}
                         description={description}
@@ -49,14 +49,14 @@ const ExportAndGlobalReach = ({ data }: any) => {
                                 key={index}
                                 className="
     group relative
-    border border-white/10
-    bg-[#101C1B]/20
+    border border-[#39B972]
+    bg-[#FFFFFF]
     p-6
     backdrop-blur-md
     rounded-2xl
     transition-all duration-300
-    hover:border-[#39B972]/30
-    hover:bg-[#0B1E2D]/20
+    hover:border-[#39B972]
+    hover:bg-[#39B972]
   "
                             >
                                 <div
@@ -65,7 +65,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
       w-[clamp(40px,3.5vw,44px)]
       items-center justify-center
       rounded-full
-      bg-[#063F3D]
+      bg-[#E6F5EC]
       p-3
       transition-transform duration-300
       group-hover:-translate-y-1
@@ -73,7 +73,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
     "
                                 >
                                     <div
-                                        className="h-full w-full bg-white"
+                                        className="h-full w-full bg-[#2E9B4F]"
                                         style={{
                                             maskImage: `url(${product?.image})`,
                                             WebkitMaskImage: `url(${product?.image})`,
@@ -95,7 +95,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
         text-[clamp(18px,1.7vw,20px)]
         font-bold
         tracking-[-0.01em]
-        text-[#ffffff]
+        text-[#101820]
         lg:text-left
       "
                                     >
@@ -108,7 +108,7 @@ const ExportAndGlobalReach = ({ data }: any) => {
         text-center
         text-[clamp(13px,1.2vw,15px)]
         leading-6
-        text-[#DCE5E8]
+        text-[#000000]
         lg:text-left
       "
                                     >
@@ -139,4 +139,4 @@ const ExportAndGlobalReach = ({ data }: any) => {
     );
 };
 
-export default ExportAndGlobalReach;
+export default Applications;

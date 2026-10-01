@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import Button from "../common/Button";
+import Button from "../common/ButtonLink";
 
 export interface PriceCardProps {
   idx: number;

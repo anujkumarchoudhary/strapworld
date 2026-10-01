@@ -3,7 +3,7 @@ import React from "react";
 import MaxWidth from "./layout/MaxWidth";
 import Image from "next/image";
 import img from "../../public/images/pricing.jpg";
-import Button from "./common/Button";
+import Button from "./common/ButtonLink";
 
 const LetsStart = () => {
   return (

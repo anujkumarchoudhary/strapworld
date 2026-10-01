@@ -10,23 +10,30 @@ import ExportAndGlobalReach from "../components/ExportAndGlobalReach";
 import OurProducts from "../components/OurProducts";
 import FinalCTA from "../components/FinalCTA";
 import FAQ from "../components/FAQ";
+import KayStatas from "../components/KayStatas";
+import Applications from "../components/Applications";
+import IndustriesWeServe from "../components/IndustriesWeServe";
+import ManufactureProcess from "../components/ManufactureProcess";
 
 const page = () => {
-  const { ourProducts, services, blogs, technicalPerformance, solutionsByApplication, manufactureQuality, exportAndGlobalReach } =
+  const { banner, keyStats, ourProducts,applications,industriesWeServe,manufactureProcess, services, blogs, technicalPerformance, solutionsByApplication, manufactureQuality, exportAndGlobalReach, finalCTA } =
     staticData?.home;
 
   return (
     <div>
-      <Banner data={staticData?.home?.banner} />
+      <Banner data={banner} />
+      <KayStatas data={keyStats} />
       <OurProducts data={ourProducts} />
-      <TechnicalPerformance data={technicalPerformance} />
-      <SolutionsByApplication data={solutionsByApplication} />
-      <OurServices data={services} />
-      <ManufactureQuality data={manufactureQuality} />
+      <Applications data={applications} />
+      <IndustriesWeServe data={industriesWeServe} />
+      <ManufactureProcess data={manufactureProcess} />
+      {/* <TechnicalPerformance data={technicalPerformance} /> */}
+      {/* <SolutionsByApplication data={solutionsByApplication} /> */}
+      {/* <ManufactureQuality data={manufactureQuality} /> */}
       <ExportAndGlobalReach data={exportAndGlobalReach} />
       <Blog data={blogs} />
-      <FinalCTA />
-      <FAQ/>
+      <FAQ />
+      <FinalCTA data={finalCTA} />
     </div>
   );
 };

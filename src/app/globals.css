@@ -225,10 +225,10 @@
 @media (min-width: 1920px) {
   :root {
     --h1-size: 65px;
-    --h1-leading: 1.4;
+    --h1-leading: 1.2;
 
     --h2-size: 45px;
-    --h2-leading: 1.2;
+    --h2-leading: 1.4;
 
     --h3-size: 26px;
     --h3-leading: 1.15;

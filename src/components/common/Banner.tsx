@@ -8,6 +8,7 @@ import Heading from "./Heading";
 import SaveAndCancel from "./SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "../form/GetEnquiryForm";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const Banner = ({data}:any) => {
   const [open, setOpen] = useState(false);
@@ -27,8 +28,8 @@ const Banner = ({data}:any) => {
       }}
     >
       <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="grid  grid-cols-1 lg:grid-cols-[50%_45%] justify-between gap-2 z-10">
-          <div className="space-y-12 my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[50%_45%] justify-between gap-2 z-10">
+          <div className="my-auto space-y-14">
             <div className="hidden lg:block">
               <Heading
                 as="h1"
@@ -60,14 +61,29 @@ const Banner = ({data}:any) => {
               />
             </div>
 
+            {/* <div>
+              {data?.specifications?.length > 0 && (
+                <div className="flex w-fit pt-6 pb-8 gap-4 ">
+                  {data?.specifications?.map((item: any, index: number) => (
+                    <div key={index} className="space-y-1 flex gap-3">
+                      <IoMdCheckmarkCircleOutline size={20} className="text-[#2E9B4F]"/>
+                      <p className="text-[clamp(10px,0.9vw,14px)] font-medium text-white">
+                        {item?.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div> */}
+
             {/* Buttons */}
             <div
               className={`flex pt-6 gap-4 transition-all duration-700 delay-500
              `}
             >
               <SaveAndCancel
-                saveText="Get a Quote"
-                cancelText="Explore Products"
+                saveText={data?.button}
+                cancelText={data?.button2}
                 isButton2={true}
                 handleClick={() => setOpen(!open)}
                 handleClick2={() => {
