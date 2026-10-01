@@ -24,7 +24,7 @@ export const sendEnquiryEmail = async ({
   }
 
   const mailOptions = {
-    from: `"SoftQivo Website" <${process.env.MAIL_FROM}>`,
+    from: `"Strap World" <${process.env.MAIL_FROM}>`,
 
     to: process.env.MAIL_TO,
 
@@ -230,7 +230,7 @@ export const sendEnquiryEmail = async ({
                 "
               >
                 This email was automatically generated from the
-                SoftQivo website enquiry form.
+                Strap World website enquiry form.
               </div>
 
             </div>

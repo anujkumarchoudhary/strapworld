@@ -15,6 +15,7 @@ import Pagination from "./Pagination";
 import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import { useResponsive } from "../hooks/useResponsive";
+import SaveAndCancel from "./common/SaveAndCancel";
 
 const Blog = ({ data }: any) => {
   const { ref, isVisible } =
@@ -42,7 +43,7 @@ const Blog = ({ data }: any) => {
   return (
     <section
       ref={ref}
-      className="py-12 lg:py-16 bg-[#F3F1EA]"
+      className="py-12 lg:py-16 bg-[#FFFFFF]"
     >
       <MaxWidth>
         {/* ================= HEADER ================= */}
@@ -62,8 +63,7 @@ const Blog = ({ data }: any) => {
             className="w-full lg:w-150"
           />
           <div className="hidden lg:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
-            <p className="text-[14px] font-bold text-[#101820] my-auto">Discuss your application</p>
-            <MdArrowBack className="text-[#39B972] rotate-180 my-auto" />
+            <SaveAndCancel saveText="View All Blogs"/>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ const Blog = ({ data }: any) => {
                 transitionDelay: `${index * 150}ms`,
               }}
               className={`
-                group relative overflow-hidden rounded-2xl
+                group relative overflow-hidden rounded-2xl flex flex-col
                 border border-[#647077]/20
                 bg-white
                 hover:border-[#218B55]/20
@@ -99,7 +99,7 @@ const Blog = ({ data }: any) => {
               </div>
 
               {/* Content */}
-              <div className=" space-y-4 px-6 py-5">
+              <div className="flex flex-1 flex-col space-y-4 px-6 py-5">
 
                 {/* Date + Read Time */}
                 <div className="flex justify-between gap-3 text-gray-500">
@@ -120,9 +120,9 @@ const Blog = ({ data }: any) => {
                 {/* Read More */}
                 <Link
                   href={item.href}
-                  className="group/link flex items-center gap-2 text-sm font-bold text-[#101820] transition-colors hover:text-primary-color"
+                  className="group/link p-2 mt-auto flex items-center gap-2 text-sm font-bold text-[#101820] transition-colors hover:text-primary-color"
                 >
-                  Read resource
+                  Read more
                   <ArrowUpRight className="h-4 w-4 rotate-45 font-bold text-[#218B55] transition-all duration-300 group-hover/link:-translate-x-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-[#218B55]" />
                 </Link>
               </div>

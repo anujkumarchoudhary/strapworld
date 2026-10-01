@@ -2,7 +2,7 @@ export const menuData = [
   { title: "Products", link: "#" },
   { title: "Solutions", link: "#" },
   { title: "Industories", link: "#" },
-  { title: "About Us", link: "#" },
+  { title: "About Us", link: "/about" },
   { title: "Resources", link: "/blog" },
   { title: "Contact", link: "/contact" },
 ];
@@ -42,7 +42,7 @@ export const footerColumns = [
   {
     title: "COMPANY",
     links: [
-      { name: "About Us", path: "#" },
+      { name: "About Us", path: "/about" },
       { name: "Manufacturing", path: "#" },
       { name: "Quality Approach", path: "#" },
       { name: "Export Support", path: "#" },

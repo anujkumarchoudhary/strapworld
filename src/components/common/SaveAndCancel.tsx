@@ -13,7 +13,7 @@ type SaveAndCancelProps = {
 };
 
 const SaveAndCancel = ({
-  saveBgColor = "#39B972",
+  saveBgColor = "#2E9B4F",
   saveTextColor = "#000000",
   saveText = "Start a Project",
   cancelText = "Explore Our Work",

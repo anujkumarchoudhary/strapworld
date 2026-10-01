@@ -67,7 +67,7 @@ async function startServer() {
     app.get("/api/health", (_req, res) => {
       res.status(200).json({
         success: true,
-        message: "SoftQivo backend API is running",
+        message: "Strap World backend API is running",
       });
     });
     app.use("/api/enquiries", enquiryRoutes);
@@ -89,7 +89,7 @@ async function startServer() {
     createServer(app).listen(port, () => {
       console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 SoftQivo Server Started
+🚀 Strap World Server Started
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Frontend:
