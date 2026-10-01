@@ -49,28 +49,37 @@ const monaSans = Mona_Sans({
 
 
 export const metadata: Metadata = {
-  title: "Strap World",
+  title: "Strap World | PET & Polyester Strapping Manufacturer",
 
   description:
-    "Strap World",
+    "Strap World Pvt. Ltd. manufactures and supplies PET and polyester strapping for packaging, palletizing, bundling and industrial load-securing applications across India and international markets.",
 
   keywords: [
-    "SoftQivo",
-    "web development company",
-    "web development services",
-    "website development",
-    "custom web development",
-    "website design",
-    "responsive web development",
-    "business website",
-    "SEO-friendly websites",
-    "modern website development",
-    "professional web development",
+    "Strap World",
+    "Strap World Pvt Ltd",
+    "PET strapping manufacturer",
+    "PET strap manufacturer",
+    "PET strapping supplier",
+    "PET strapping exporter",
+    "PET packing strap",
+    "PET strapping band",
+    "industrial PET strapping",
+    "polyester strapping manufacturer",
+    "polyester strap manufacturer",
+    "polyester strapping supplier",
+    "polyester packing strap",
+    "packaging strap manufacturer",
+    "packaging strap exporter",
+    "PET strapping manufacturer India",
+    "PET strap exporter India",
+    "PET strapping supplier India",
+    "industrial strapping solutions",
+    "load securing straps",
   ],
 
-  authors: [{ name: "SoftQivo" }],
-  creator: "SoftQivo",
-  publisher: "SoftQivo",
+  authors: [{ name: "Strap World Pvt. Ltd." }],
+  creator: "Strap World Pvt. Ltd.",
+  publisher: "Strap World Pvt. Ltd.",
 
   robots: {
     index: true,
@@ -85,22 +94,22 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "SoftQivo | Modern Web Development Solutions",
+    title: "Strap World | PET & Polyester Strapping Manufacturer",
     description:
-      "Create a powerful digital presence with SoftQivo. We develop modern, responsive, fast, user-friendly, and SEO-friendly websites for businesses and brands.",
-    siteName: "SoftQivo",
+      "PET and polyester strapping manufactured for packaging, palletizing, bundling and industrial load-securing applications. Serving customers across India and international markets.",
+    siteName: "Strap World",
     type: "website",
-    locale: "en_US",
+    locale: "en_IN",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "SoftQivo | Modern Web Development Solutions",
+    title: "Strap World | PET & Polyester Strapping Manufacturer",
     description:
-      "Professional web development and website design solutions built for performance, usability, and business growth.",
+      "Manufacturer and supplier of PET and polyester strapping for packaging, palletizing, bundling and industrial load-securing applications.",
   },
 
-  category: "technology",
+  category: "manufacturing",
 };
 
 export default function RootLayout({
