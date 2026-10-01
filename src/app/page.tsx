@@ -17,7 +17,7 @@ const page = () => {
 
   return (
     <div>
-      <Banner />
+      <Banner data={staticData?.home?.banner} />
       <OurProducts data={ourProducts} />
       <TechnicalPerformance data={technicalPerformance} />
       <SolutionsByApplication data={solutionsByApplication} />

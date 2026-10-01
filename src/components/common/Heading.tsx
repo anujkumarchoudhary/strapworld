@@ -21,9 +21,10 @@ type HeadingProps = {
 
   labelColor?: string;
   accentColor?: string;
-  description?: string;
+  description?: any;
 
   headingParts?: HeadingPart[];
+  subHeading?: string;
   descriptionSize?: string
   textColor?: string;
   descColor?: string;
@@ -56,7 +57,7 @@ const fontMap: Record<string, string> = {
 const headingDefaults = {
   h1: {
     fontSize: "var(--h1-size)",
-    fontWeight: 600,
+    fontWeight: 400,
     lineHeight: "var(--h1-leading)",
   },
 
@@ -74,7 +75,7 @@ const headingDefaults = {
 
   h4: {
     fontSize: "var(--h4-size)",
-    fontWeight: 600,
+    fontWeight: 400,
     lineHeight: "var(--h4-leading)",
   },
 
@@ -101,6 +102,7 @@ const Heading = ({
   descriptionSize,
   description,
   headingParts,
+  subHeading,
   textColor = "#000000",
   isDart = false,
   isCenter = false,
@@ -299,34 +301,67 @@ const Heading = ({
           });
         })()}
       </Tag>
+      {subHeading && <h4 className="py-2" style={{
+        color: textColor,
+        fontSize: descriptionSize
+      }}>{subHeading}</h4>}
+
 
       {/* Description */}
-      {description && (
+{description && (
+  <>
+    {Array.isArray(description) ? (
+      description.map((desc: string, index: number) => (
         <p
+          key={index}
           className={`
-      transition-all
-      duration-700
-      delay-300
-w-full
-      lg:w-[90%]
-      ${isCenter
+            w-full
+            transition-all duration-700 delay-300
+            lg:w-[90%]
+            ${isCenter
               ? "mx-auto text-center"
               : "mx-auto text-left lg:w-full"
             }
-      ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
+            ${isVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-10 opacity-0"
             }
-      mt-6 lg:mt-5
-    `}
+            mt-6 lg:mt-5
+          `}
           style={{
             color: textColor,
-            fontSize: descriptionSize
+            fontSize: descriptionSize,
           }}
         >
-          {description}
+          {desc}
         </p>
-      )}
+      ))
+    ) : (
+      <p
+        className={`
+          w-full
+          transition-all duration-700 delay-300
+          lg:w-[90%]
+          ${isCenter
+            ? "mx-auto text-center"
+            : "mx-auto text-left lg:w-full"
+          }
+          ${isVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-10 opacity-0"
+          }
+          mt-6 lg:mt-5
+        `}
+        style={{
+          color: textColor,
+          fontSize: descriptionSize,
+        }}
+      >
+        {description}
+      </p>
+    )}
+  </>
+)}
     </div>
   );
 };

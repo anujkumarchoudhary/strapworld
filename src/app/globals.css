@@ -224,8 +224,8 @@
 ================================ */
 @media (min-width: 1920px) {
   :root {
-    --h1-size: 60px;
-    --h1-leading: 1.2;
+    --h1-size: 65px;
+    --h1-leading: 1.4;
 
     --h2-size: 45px;
     --h2-leading: 1.2;
@@ -233,11 +233,11 @@
     --h3-size: 26px;
     --h3-leading: 1.15;
 
-    --h4-size: 30px;
+    --h4-size: 28px;
     --h4-leading: 1.2;
 
-    --p-size: 19px;
-    --p-leading: 1.6;
+    --p-size: 18px;
+    --p-leading: 1.5;
   }
 }
 

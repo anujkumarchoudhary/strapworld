@@ -9,7 +9,7 @@ import SaveAndCancel from "./SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "../form/GetEnquiryForm";
 
-const Banner = () => {
+const Banner = ({data}:any) => {
   const [open, setOpen] = useState(false);
   const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
   const { label, headingParts, description, specifications } =
@@ -20,28 +20,28 @@ const Banner = () => {
       ref={ref}
       className="relative h-[80vh] md:h-[60vh] lg:h-[88vh] w-full overflow-hidden"
       style={{
-        backgroundImage: "url('/images/home/hero_banner.png')",
+        backgroundImage: `url('${data?.bgImage || "/imagswes/home/hero_banner.png"}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pt-10">
-        <div className="grid  grid-cols-1 lg:grid-cols-[55%_45%] justify-between gap-2 z-10">
-          <div className="space-y-10 my-auto">
+      <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="grid  grid-cols-1 lg:grid-cols-[50%_45%] justify-between gap-2 z-10">
+          <div className="space-y-12 my-auto">
             <div className="hidden lg:block">
               <Heading
                 as="h1"
                 isDart={true}
                 isAccentLine={true}
-                label={label}
+                label={data?.label}
                 labelColor="#39B972"
                 accentColor="#39B972"
                 textColor="#ffffff"
-                // descriptionSize="clamp(13px, 1.4vw, 18px)"
                 isGradient={true}
-                headingParts={headingParts}
-                description={description}
+                headingParts={data?.headingParts}
+                subHeading={data?.subHeading}
+                description={data?.description}
               />
             </div>
             <div className="block lg:hidden">
@@ -62,7 +62,7 @@ const Banner = () => {
 
             {/* Buttons */}
             <div
-              className={`flex pb-6 gap-4 transition-all duration-700 delay-500
+              className={`flex pt-6 gap-4 transition-all duration-700 delay-500
              `}
             >
               <SaveAndCancel
@@ -86,7 +86,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="lg:flex w-fit border-t hidden pt-6 border-[#29414E] gap-14 mt-8">
+        {/* <div className="lg:flex w-fit border-t hidden pt-6 border-[#29414E] gap-14 mt-8">
           {specifications.map((item: any, index: number) => (
             <div key={index} className="space-y-1">
               <h3 className="text-[clamp(17px,1.5vw,20px)] text-white">
@@ -97,7 +97,7 @@ const Banner = () => {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </MaxWidth>
       <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
     </section>

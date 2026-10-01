@@ -21,7 +21,7 @@ const TechnicalPerformance = ({ data }: any) => {
     return (
         <div className="relative bg-[#1E2928]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-[40%_25%] justify-between">
+                <div className="grid grid-cols-1 lg:grid-cols-[45%_25%] justify-between">
                     <Heading
                         as="h2"
                         isDart={true}
@@ -37,7 +37,7 @@ const TechnicalPerformance = ({ data }: any) => {
                     />
 
                     <div className="my-auto  hidden lg:flex justify-end pr-2">
-                        <SaveAndCancel saveText={data?.button} />
+                        <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" />
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@ const TechnicalPerformance = ({ data }: any) => {
       w-[clamp(40px,3.5vw,44px)]
       items-center justify-center
       rounded-full
-      bg-[#39B972]
+      bg-[#063F3D]
       p-3
       transition-transform duration-300
       group-hover:-translate-y-1

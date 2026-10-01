@@ -5,6 +5,8 @@ type SaveAndCancelProps = {
   saveText?: string;
   saveBgColor?: string,
   saveTextColor?: string,
+  cancelBgColor?: string,
+  cancelTextColor?: string,
   cancelText?: string;
   isButton2?: boolean;
   handleClick?: () => void;
@@ -15,6 +17,8 @@ type SaveAndCancelProps = {
 const SaveAndCancel = ({
   saveBgColor = "#2E9B4F",
   saveTextColor = "#000000",
+  cancelBgColor = "transparent",
+  cancelTextColor = "#2E9B4F",
   saveText = "Start a Project",
   cancelText = "Explore Our Work",
   isButton2,
@@ -59,7 +63,12 @@ const SaveAndCancel = ({
       {/* Explore Our Work */}
       {isButton2 && (
         <button
+          style={{
+            backgroundColor: cancelBgColor,
+            color: cancelTextColor,
+          }}
           onClick={handleClick2}
+
           className="
         inline-flex items-center cursor-pointer justify-center
         gap-2

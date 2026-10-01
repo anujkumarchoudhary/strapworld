@@ -8,6 +8,7 @@ import GetEnquiryForm from "./form/GetEnquiryForm";
 import Heading from "./common/Heading";
 import { MdOutlineMailOutline, MdPhone } from "react-icons/md";
 import { useResponsive } from "../hooks/useResponsive";
+import SaveAndCancel from "./common/SaveAndCancel";
 
 interface FinalCTAData {
   label: string;
@@ -21,12 +22,12 @@ interface FinalCTAProps {
   data: FinalCTAData;
 }
 
-export default function FinalCTA() {
+export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop } = useResponsive()
   return (
     <section className="py-12 lg:py-16" >
-      <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
+      {data?.isVariant === "01" && <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -77,7 +78,87 @@ export default function FinalCTA() {
             </div>
           </div>
         </motion.div>
-      </MaxWidth>
+      </MaxWidth>}
+
+      {data?.isVariant === "02" && <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0.96 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden "
+        >
+          {/* Content */}
+          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
+            {/* Left */}
+            <div className="space-y-5 ">
+              <Heading
+                isAccentLine={true}
+                isCenter={isDesktop ? false : true}
+                accentColor="#ffffff"
+                labelColor="#ffffff"
+                textColor="#ffffff"
+                label={data?.label}
+                headingParts={data?.headingParts}
+                description={data?.description}
+              />
+              <div className="hidden lg:flex gap-3">
+                <a
+                  href="mailto:sales@starpworld.com"
+                  className="flex gap-2"
+                >
+                  <MdOutlineMailOutline
+                    size={18}
+                    className="my-auto text-[#FFFFFF]"
+                  />
+                  <p className="my-auto text-[14px] font-bold text-[#FFFFFF]">
+                    sales@starpworld.com
+                  </p>
+                </a>
+
+                <a
+                  href="tel:+91123467890"
+                  className="flex gap-2"
+                >
+                  <MdPhone
+                    size={18}
+                    className="my-auto text-[#FFFFFF]"
+                  />
+                  <p className="my-auto text-[14px] font-bold text-[#FFFFFF]">
+                    +91 123 46 7890
+                  </p>
+                </a>
+              </div>
+            </div>
+
+            {/* Button */}
+            <div className="bg-white space-y-10 w-full p-10 h-full rounded-[10px]">
+              <Heading
+                isAccentLine={true}
+                accentColor="#2E9B4F"
+                labelColor="#2E9B4F"
+                textColor="#647077"
+                label={data?.formLabel}
+                headingParts={data?.headingParts2}
+                description={data?.description2}
+
+              />
+<div className="flex justify-start lf:justify-center">
+                <SaveAndCancel
+                saveText={data?.buttonText}
+                cancelText={data?.buttonText2}
+                saveBgColor="#063F3D"
+                cancelBgColor="#FFFFFF"
+                cancelTextColor="#000000"
+                handleClick={() => setOpen(true)}
+                isButton2={true}
+
+              />
+</div>
+            </div>
+          </div>
+        </motion.div>
+      </MaxWidth>}
       <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
     </section>
   );
