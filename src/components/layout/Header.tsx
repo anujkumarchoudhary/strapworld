@@ -101,7 +101,7 @@ const Header = () => {
 
       </MaxWidth>
       {open && (
-        <div className="fixed inset-x-0 top-[11.9vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
+        <div className="fixed inset-x-0 top-[11.8vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
           {/* Mobile Navigation */}
           <div className="flex-1 overflow-y-auto">
             <div className="flex flex-col divide-y divide-black/10">
