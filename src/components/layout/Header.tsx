@@ -45,7 +45,7 @@ const Header = () => {
           </div>
         </MaxWidth>
       </div>
-      <MaxWidth className="flex justify-between items-center py-2 lg:py-3 text-white">
+      <MaxWidth className="flex justify-between items-center py-4 lg:py-3 text-white">
         <div onClick={() => router.push("/")} className="cursor-pointer">
           <Image
             src={logo}
@@ -79,64 +79,69 @@ const Header = () => {
         {open ? (
           <MdClose
             onClick={() => setOpen(!open)}
-            size={35}
+            size={30}
             className="block lg:hidden cursor-pointer text-[#000000]"
           />
         ) : (
           <IoReorderThreeSharp
             onClick={() => setOpen(!open)}
-            size={35}
+            size={30}
             className="block lg:hidden text-[#000000] cursor-pointer"
           />
         )}
 
       </MaxWidth>
       {open && (
-        <div className="absolute top-full left-0 right-0 bg-white pb-4 divide-y divide-[#000000]/20  space-y-4 py-1 lg:hidden">
-          <div className="flex flex-col ">
-            {menuData?.map((menu, idx) => {
-              return (
-                <p
-                  key={idx}
-                  onClick={() => {
-                    router.push(menu.link);
-                    setOpen(false);
-                  }}
-                  className="cursor-pointer px-6 py-4 hover:bg-black/10 text-primary-color font-semibold"
-                >
-                  {menu.title}
-                </p>
-              );
-            })}
+        <div className="fixed inset-x-0 top-[12vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
+          {/* Mobile Navigation */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="flex flex-col divide-y divide-black/10">
+              {menuData?.map((menu, idx) => {
+                return (
+                  <p
+                    key={idx}
+                    onClick={() => {
+                      router.push(menu.link);
+                      setOpen(false);
+                    }}
+                    className="cursor-pointer px-6 py-5 text-primary-color font-semibold hover:bg-black/5"
+                  >
+                    {menu.title}
+                  </p>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex px-6 items-center gap-3">
-            <a
-              href="#"
-              aria-label="FaLinkedinIn"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
-            >
-              <Icon name="FaLinkedinIn" size={20} />
-            </a>
+          {/* Social Icons - Bottom */}
+          <div className="mt-auto border-t border-black/10 px-6 py-6">
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
+              >
+                <Icon name="FaLinkedinIn" size={20} />
+              </a>
 
-            <a
-              href="#"
-              aria-label="FaInstagram"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
-            >
-              <Icon name="FaInstagram" size={20} />
-            </a>
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
+              >
+                <Icon name="FaInstagram" size={20} />
+              </a>
 
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label=" on X"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
-            >
-              <Icon name="FaTwitter" size={20} />
-            </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-black/50 transition hover:border-black hover:bg-black hover:text-white"
+              >
+                <Icon name="FaTwitter" size={20} />
+              </a>
+            </div>
           </div>
         </div>
       )}

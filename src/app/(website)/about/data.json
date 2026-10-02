@@ -35,6 +35,7 @@
   },
   "whoWeAre": {
     "label": "Who we are",
+    "aspectRatio": "16/12",
     "headingParts": [
       {
         "text": "Built around dependable PET strapping.",
@@ -48,24 +49,10 @@
       "Our PET straps are designed to help businesses secure, bundle, and stabilize products during storage, handling, and transportation. We serve customers across industries that require dependable strapping materials for their packaging and load-securing operations.",
       "With a focus on controlled manufacturing, product consistency, and customer requirements, we aim to provide PET strapping solutions suitable for different applications and order requirements."
     ],
-    "list": [
+    "labels": [
       {
         "icon": "/images/about/quib_check.svg",
         "name": "Application-focused products. Consistent supply. Clear technical communication."
-      }
-    ],
-    "labels": [
-      {
-        "label": "Documented checks",
-        "image": "/images/service/service_img_1.png"
-      },
-      {
-        "label": "Batch traceability",
-        "image": "/images/service/service_img_2.png"
-      },
-      {
-        "label": "Shipment review",
-        "image": "/images/service/service_img_3.png"
       }
     ],
     "buttown": "How we manufacture"
@@ -128,7 +115,7 @@
       {
         "text": "Tell us what you need to secure.",
         "color": "#000000",
-        "size":"30px",
+        "size": "30px",
         "style": "normal",
         "weight": "400"
       }
@@ -141,7 +128,6 @@
     "btn2TextColor": "#000000",
     "btnBgColor": "#063F3D",
     "btnTextColor": "#000000"
-
   },
   "whyChoose": {
     "label": "Why Choose Strap World ?",

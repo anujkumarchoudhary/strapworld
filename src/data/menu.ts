@@ -1,9 +1,8 @@
 export const menuData = [
   { title: "Products", link: "/products" },
-  { title: "Solutions", link: "#" },
   { title: "Industories", link: "#" },
+  { title: "manufacturing", link: "/manufacturing" },
   { title: "About Us", link: "/about" },
-  { title: "Resources", link: "/blog" },
   { title: "Contact", link: "/contact" },
 ];
 
@@ -49,12 +48,12 @@ export const footerColumns = [
       { name: "Contact", path: "#" },
     ],
   },
-    {
+  {
     title: "CONTACT",
     links: [
       { name: "Manufacturing & dispatch Gujarat, India", path: "#" },
       { name: "+91 79 4000 0000", path: "#" },
-      { name: "Mon–Sat 09:30–18:30 IST", path: "#" }
+      { name: "Mon–Sat 09:30–18:30 IST", path: "#" },
     ],
   },
 ];

@@ -22,7 +22,9 @@ const TechnicalPerformance = ({ data }: any) => {
     const { isDesktop } = useResponsive();
 
     return (
-        <div className="relative bg-[#1E2928]">
+        <div
+        style={{background:data?.bgColor ?? "#1E2928"}}
+        className="relative">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_25%] justify-between">
                     <Heading

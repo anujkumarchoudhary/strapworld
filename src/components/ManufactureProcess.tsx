@@ -23,7 +23,7 @@ const ManufactureProcess = ({ data }: any) => {
     const [open, setOpen] = useState(false);
     const { headingParts, label, list, labels, description } = data || {};
     const { isDesktop } = useResponsive()
-    console.log(data?.floatingCard?.label,"data121")
+    console.log(data?.floatingCard?.label, "data121")
     return (
         <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
             <MaxWidth className=" ">
@@ -51,13 +51,13 @@ const ManufactureProcess = ({ data }: any) => {
       flex gap-2
     "
                         >
-                            {data?.floatingCard?.icon && <FiMapPin size={20} className="text-[#2E9B4F]"/>}
+                            {data?.floatingCard?.icon && <FiMapPin size={20} className="text-[#2E9B4F]" />}
                             <p className="text-[clamp(10px,1.2vw,14px)] uppercase font-bold text-[#101820]">
-                              {data?.floatingCard?.label ?? "In-process inspection"}  
+                                {data?.floatingCard?.label ?? "In-process inspection"}
                             </p>
                         </div>
                     </div>
-                    <div>
+                    <div className="space-y-4">
                         <Heading
                             as="h2"
                             isDart={true}
@@ -71,7 +71,7 @@ const ManufactureProcess = ({ data }: any) => {
                             description={description}
                             className="w-[90%]"
                         />
-                        <div className="space-y-4 divide divide-y divide-gray-300">
+                        <div className=" divide divide-y divide-gray-300">
                             {list?.map((service: any, index: number) => {
                                 return (
                                     <div
@@ -80,7 +80,7 @@ const ManufactureProcess = ({ data }: any) => {
         group relative
         flex gap-4
         bg-transparent
-        py-5 sm:py-6
+        py-4 sm:py-5
         transition-all duration-300
       "
                                     >

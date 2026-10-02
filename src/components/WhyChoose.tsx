@@ -25,7 +25,6 @@ const WhyChoose = ({ data }: any) => {
     <div className="bg-[#FFFFFF] py-12 lg:py-16">
 
       <MaxWidth className=" ">
-
         {/* ================= SERVICES ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-[40%_50%] justify-between gap-10">
           <div className="space-y-14">
@@ -43,7 +42,7 @@ const WhyChoose = ({ data }: any) => {
               description={description}
             />
             <div className="group mt-auto hidden lg:flex h-fit cursor-pointer items-center justify-start gap-2">
-              <p onClick={()=>setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+              <p onClick={() => setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
                 Discuss your application
               </p>
 
@@ -71,6 +70,7 @@ const WhyChoose = ({ data }: any) => {
     block lg:flex gap-4
     bg-transparent
     py-6
+    space-y-6
     transition-all duration-300
   "
                   >
@@ -167,7 +167,7 @@ const WhyChoose = ({ data }: any) => {
           </div>
         </div>
         <div className="group mt-auto flex lg:hidden h-fit cursor-pointer items-center justify-center gap-2">
-          <p onClick={()=>setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+          <p onClick={() => setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
             Discuss your application
           </p>
 

@@ -20,7 +20,7 @@ type SupportItem = {
 export const staticData = {
   home: {
     banner: {
-      "id":"home",
+      "id": "home",
       "bgImage": "/images/home/hero_banner.png",
       label: "PET Strap Manufacturer & Exporter from India",
 
@@ -517,7 +517,7 @@ export const staticData = {
     },
     manufactureProcess: {
       label: "MANUFACTURING PROCESS",
-    "aspectRatio": "16 / 15",
+      "aspectRatio": "16/24",
 
       headingParts: [
         {

@@ -27,8 +27,8 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className=" bg-[#2E9B4F] md:bg-transparent md:py-12 lg:py-16" >
-      {data?.isVariant === "01" && <MaxWidth className="md:bg-[#2E9B4F] py-12 lg:lg:py-16 rounded-[10px]">
+    <section className=" bg-[#2E9B4F] md:py-12 lg:py-16" >
+      {data?.isVariant === "01" && <MaxWidth className="rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -254,7 +254,7 @@ export default function FinalCTA({ data }: any) {
         </motion.div>
       </MaxWidth>}
 
-      {data?.isVariant === "02" && <MaxWidth className="bg-[#2E9B4F]  py-6 lg:lg:py-16 rounded-[10px]">
+      {data?.isVariant === "02" && <MaxWidth className="py-6 lg:lg:py-16 rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
