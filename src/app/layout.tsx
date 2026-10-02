@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter, Mona_Sans, Playfair_Display, Poppins, Roboto_
 import "./globals.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import SmoothScroll from "../components/layout/SmoothScroll";
+import ChatWidget from "../components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -123,8 +125,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${playfair.variable} ${poppins.variable} ${inter.variable} ${robotoMono.variable} ${monaSans.variable}`}
       >
         <Header />
+        <main>
+          <SmoothScroll />
 
-        <main>{children}</main>
+          {children}
+          <ChatWidget />
+        </main>
 
         <Footer />
       </body>
