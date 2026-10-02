@@ -309,6 +309,7 @@ export default function FinalCTA({ data }: any) {
             <div className="bg-white space-y-10 w-full p-5 md:p-10 h-full rounded-[10px]">
               <Heading
                 isAccentLine={true}
+                isCenter={isDesktop ? false : true}
                 accentColor="#2E9B4F"
                 labelColor="#2E9B4F"
                 textColor="#647077"
@@ -317,10 +318,11 @@ export default function FinalCTA({ data }: any) {
                 description={data?.description2}
 
               />
-              <div className="flex justify-start lf:justify-center">
+              <div className="flex justify-center lg:justify-start">
                 <SaveAndCancel
                   saveText={data?.buttonText}
                   cancelText={data?.buttonText2}
+                  
                   saveBgColor="#063F3D"
                   cancelBgColor="#FFFFFF"
                   cancelTextColor="#000000"

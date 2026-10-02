@@ -29,7 +29,11 @@ const OurProducts = ({ data }: any) => {
   });
 
   return (
-    <div id="our-products" ref={productsRef} className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
+    <div 
+    style={{
+      background: data?.bgColor || "#063F3D",
+    }}
+    id="our-products" ref={productsRef} className=" py-10 sm:py-12 lg:py-16">
 
       <MaxWidth className=" ">
         {/* ================= HEADER ================= */}

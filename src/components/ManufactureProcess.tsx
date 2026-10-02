@@ -10,6 +10,7 @@ import Image from "next/image";
 import SaveAndCancel from "./common/SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
+import { FiMapPin } from "react-icons/fi";
 
 type Service = {
     title: string;
@@ -19,17 +20,20 @@ type Service = {
 };
 
 const ManufactureProcess = ({ data }: any) => {
-      const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
     const { headingParts, label, list, labels, description } = data || {};
     const { isDesktop } = useResponsive()
+    console.log(data?.floatingCard?.label,"data121")
     return (
         <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
             <MaxWidth className=" ">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">
-                    <div className="relative w-full aspect-[16/27] overflow-hidden rounded-[30px]">
+                    <div
+                        style={{ aspectRatio: data?.aspectRatio }}
+                        className="relative w-full  overflow-hidden rounded-[30px]">
                         <Image
-                            src="/images/home/process.png"
+                            src={data?.image ?? "/images/home/process.png"}
                             fill
                             alt="SolutionsByApplication"
                             className="object-cover"
@@ -44,10 +48,12 @@ const ManufactureProcess = ({ data }: any) => {
       rounded-[15px]
       bg-[#FFFFFF]
       p-[clamp(16px,1.5vw,20px)]
+      flex gap-2
     "
                         >
-                            <p className="text-[clamp(10px,1.2vw,18px)] font-bold text-[#101820]">
-                                In-process inspection
+                            {data?.floatingCard?.icon && <FiMapPin size={20} className="text-[#2E9B4F]"/>}
+                            <p className="text-[clamp(10px,1.2vw,14px)] uppercase font-bold text-[#101820]">
+                              {data?.floatingCard?.label ?? "In-process inspection"}  
                             </p>
                         </div>
                     </div>

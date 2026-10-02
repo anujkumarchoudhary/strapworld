@@ -19,7 +19,11 @@ const Banner = ({ data }: any) => {
   return (
     <section
       ref={ref}
-      className={`relative ${data?.id === "about" ? "h-[74vh] md:h-[60vh] lg:h-[78vh]" : "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  w-full overflow-hidden `}
+      className={`relative 
+        ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
+         ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
+        ${data?.id === "home" && "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  
+        w-full overflow-hidden `}
     >
       {/* Optimized Background Image */}
       <Image

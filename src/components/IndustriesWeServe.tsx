@@ -93,9 +93,11 @@ const IndustriesWeServe = ({ data }: any) => {
                     <h3 className="text-center text-[21px] font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
                       {product?.title}
                     </h3>
-
                     <MdArrowOutward size={21} className="text-[#2E9B4F]" />
                   </div>
+                                      {product?.description && <p className="text-[#666666] text-[16px] leading-[1.5]">
+                      {product.description}
+                    </p>}
 
                 </div>
               </div>
