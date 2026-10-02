@@ -8,6 +8,7 @@ import SaveAndCancel from "./common/SaveAndCancel";
 import { useResponsive } from "../hooks/useResponsive";
 import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
+import { useStaggerReveal } from "../hooks/useStaggerReveal";
 
 type Service = {
     title: string;
@@ -17,12 +18,20 @@ type Service = {
 };
 
 const ExportAndGlobalReach = ({ data }: any) => {
-      const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
     const { headingParts, label, description } = data || {};
     const { isDesktop } = useResponsive();
 
+    const {
+        ref: productsRef,
+        visibleItems,
+    } = useStaggerReveal(data?.list?.length || 0, {
+        delay: 180,
+        threshold: 0.25,
+    });
+
     return (
-        <div className="relative bg-[#063F3D]">
+        <div ref={productsRef} className="relative bg-[#063F3D]">
             <MaxWidth className=" overflow-hidden space-y-12 py-10 sm:py-12 lg:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-[55%_25%] justify-between">
                     <Heading
@@ -47,11 +56,16 @@ const ExportAndGlobalReach = ({ data }: any) => {
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {data?.list?.map((product: any, index: number) => {
+                        const isCardVisible = visibleItems.includes(index);
+
                         return (
                             <div
                                 key={index}
-                                className="
-    group relative
+                                style={{
+                                    transitionDelay: `${index * 50}ms`,
+                                }}
+                                className=
+                                {`    group relative
     border border-white/10
     bg-[#101C1B]/20
     p-6
@@ -59,8 +73,11 @@ const ExportAndGlobalReach = ({ data }: any) => {
     rounded-2xl
     transition-all duration-300
     hover:border-[#39B972]/30
-    hover:bg-[#0B1E2D]/20
-  "
+    hover:bg-[#0B1E2D]/20 ${isCardVisible
+                                        ? "translate-y-0 opacity-100"
+                                        : "translate-y-10 opacity-0"
+                                    }`}
+
                             >
                                 <div
                                     className="

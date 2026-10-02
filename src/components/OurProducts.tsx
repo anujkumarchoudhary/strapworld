@@ -8,6 +8,7 @@ import { MdArrowBack, MdArrowRight } from "react-icons/md";
 import Image from "next/image";
 import React from "react";
 import SaveAndCancel from "./common/SaveAndCancel";
+import { useStaggerReveal } from "../hooks/useStaggerReveal";
 
 type Service = {
   title: string;
@@ -19,8 +20,16 @@ type Service = {
 const OurProducts = ({ data }: any) => {
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
+  const {
+    ref: productsRef,
+    visibleItems,
+  } = useStaggerReveal(list?.length || 0, {
+    delay: 150,
+    threshold: 0.15,
+  });
+
   return (
-    <div id="our-products" className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
+    <div id="our-products" ref={productsRef} className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
 
       <MaxWidth className=" ">
         {/* ================= HEADER ================= */}
@@ -40,7 +49,7 @@ const OurProducts = ({ data }: any) => {
             description={description}
           />
           <div className="hidden lg:flex gap-2 justify-end h-fit mt-auto">
-                                    <SaveAndCancel saveText={"View all products"} saveBgColor="#063F3D"  />
+            <SaveAndCancel saveText={"View all products"} saveBgColor="#063F3D" />
 
           </div>
         </div>
@@ -48,16 +57,25 @@ const OurProducts = ({ data }: any) => {
         {/* ================= SERVICES ================= */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {list.map((product: any, index: number) => {
+            const isCardVisible = visibleItems.includes(index);
+
             return (
               <div
                 key={product.title}
-                className="    
-                group
+                style={{
+                  transitionDelay: `${index * 50}ms`,
+                }}
+                className=
+                {`group
     flex h-full flex-col
     overflow-hidden
     rounded-[10px]
     bg-white
-    transition-all duration-300 "
+    transition-all duration-300  ${isCardVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-10 opacity-0"
+                  }`}
+
               >
                 {/* image */}
                 <div className="relative w-full aspect-[16/9]">
