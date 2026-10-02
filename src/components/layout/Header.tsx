@@ -26,7 +26,7 @@ const Header = () => {
           </p>
           <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
             <a
-              href="tel:+911234567890"
+              href="tel:+919978735708"
               className="flex items-center gap-2"
             >
               <MdPhone
@@ -39,7 +39,7 @@ const Header = () => {
             </a>
 
             <a
-              href="mailto:enquiry@strapworld.com"
+              href="mailto:sales@strapworld.com"
               className="flex items-center gap-2"
             >
               <MdMarkEmailUnread
