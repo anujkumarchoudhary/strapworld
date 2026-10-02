@@ -179,7 +179,7 @@ const ChatWidget = () => {
               </p>
 
               <p className="truncate text-[12px] text-[#647077]">
-                enquiry@strapworld.com
+                sales@strapworld.com
               </p>
             </div>
 
