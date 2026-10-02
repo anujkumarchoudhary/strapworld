@@ -15,6 +15,8 @@ import GetEnquiryForm from "../form/GetEnquiryForm";
 const Header = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+    const [openForm, setOpenForm] = useState(false);
+
   return (
     <div className="bg-white w-full sticky top-0 z-50">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
@@ -31,7 +33,7 @@ const Header = () => {
       className="shrink-0 text-white animate-contact-attention"
     />
 
-    <p className="my-auto text-[clamp(9px,0.7vw,14px)] text-[#DCE5E8]">
+    <p className="my-auto text-[clamp(11px,0.7vw,14px)] text-[#DCE5E8]">
       +91 123 456 7890
     </p>
   </a>
@@ -45,8 +47,8 @@ const Header = () => {
       style={{ animationDelay: "10s" }}
     />
 
-    <p className="my-auto text-[clamp(9px,0.7vw,14px)] text-[#DCE5E8]">
-      enquiry@strapworld.com
+    <p className="my-auto text-[clamp(12px,0.7vw,14px)] text-[#DCE5E8]">
+      sales@strapworld.com
     </p>
   </a>
 </div>
@@ -79,7 +81,7 @@ const Header = () => {
           })}
         </div>
         <div className="hidden lg:flex gap-8">
-          <SaveAndCancel saveText="Get a Quote" handleClick={() => setOpen(!open)} />
+          <SaveAndCancel saveText="Get a Quote" handleClick={() => setOpenForm(!openForm)} />
 
         </div>
 
@@ -152,6 +154,7 @@ const Header = () => {
           </div>
         </div>
       )}
+      <GetEnquiryForm isOpen={openForm} handleClose={()=>setOpenForm(false)}/>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import Image from "next/image";
 import React from "react";
 import SaveAndCancel from "./common/SaveAndCancel";
 import { useStaggerReveal } from "../hooks/useStaggerReveal";
+import ButtonLink from "./common/ButtonLink";
 
 type Service = {
   title: string;
@@ -53,7 +54,7 @@ const OurProducts = ({ data }: any) => {
             description={description}
           />
           <div className="hidden lg:flex gap-2 justify-end h-fit mt-auto">
-            <SaveAndCancel saveText={"View all products"} saveBgColor="#063F3D" />
+            <ButtonLink saveText={"View all products"} saveBgColor="#063F3D" href={"/products"} />
 
           </div>
         </div>

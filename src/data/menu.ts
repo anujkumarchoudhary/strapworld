@@ -42,7 +42,7 @@ export const footerColumns = [
     title: "COMPANY",
     links: [
       { name: "About Us", path: "/about" },
-      { name: "Manufacturing", path: "#" },
+      { name: "Manufacturing", path: "/manufacturing" },
       { name: "Quality Approach", path: "#" },
       { name: "Export Support", path: "#" },
       { name: "Contact", path: "#" },

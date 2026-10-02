@@ -11,6 +11,7 @@ import SaveAndCancel from "./common/SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
 import { FiMapPin } from "react-icons/fi";
+import ButtonLink from "./common/ButtonLink";
 
 type Service = {
     title: string;
@@ -135,7 +136,7 @@ const ManufactureProcess = ({ data }: any) => {
                             })}
                         </div>
                         <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
-                            <SaveAndCancel saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" handleClick={() => setOpen(!open)} />
+                            <ButtonLink saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" href={"/manufacturing"} />
                         </div>
                     </div>
                 </div>
