@@ -27,8 +27,8 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className="py-12 lg:py-16" >
-      {data?.isVariant === "01" && <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
+    <section className=" bg-[#2E9B4F] md:bg-transparent md:py-12 lg:py-16" >
+      {data?.isVariant === "01" && <MaxWidth className="md:bg-[#2E9B4F] py-12 lg:lg:py-16 rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -37,7 +37,7 @@ export default function FinalCTA({ data }: any) {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mb-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[35%_55%] justify-between gap-6 space-y-10 px-7 py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mb-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[35%_55%] justify-between gap-6 space-y-10 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
@@ -254,7 +254,7 @@ export default function FinalCTA({ data }: any) {
         </motion.div>
       </MaxWidth>}
 
-      {data?.isVariant === "02" && <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
+      {data?.isVariant === "02" && <MaxWidth className="bg-[#2E9B4F]  py-6 lg:lg:py-16 rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
