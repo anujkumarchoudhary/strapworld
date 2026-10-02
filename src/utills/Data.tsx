@@ -84,6 +84,7 @@ export const staticData = {
     ourProducts: {
       label: "OUR PRODUCTS",
       textColor: "#ffffff",
+      "href":"products",
       headingParts: [
         {
           text: "PET Strapping Products for Industrial Packaging",

@@ -9,8 +9,11 @@ import SaveAndCancel from "./SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "../form/GetEnquiryForm";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 const Banner = ({ data }: any) => {
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
   const { label, headingParts, description, specifications } =
@@ -85,12 +88,16 @@ const Banner = ({ data }: any) => {
                 isButton2={true}
                 handleClick={() => setOpen(!open)}
                 handleClick2={() => {
-                  document
-                    .getElementById("our-products")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
+                  if (data?.id === "home") {
+                    document
+                      .getElementById("our-products")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                  } else {
+                    router.push("/contact");
+                  }
                 }}
                 className="mx-auto lg:mx-0"
               />
