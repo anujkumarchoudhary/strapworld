@@ -47,12 +47,12 @@ const contactDetails = [
     icon: <FaMapLocationDot size={32} />,
     title: "Head Office",
     description:
-      "A-21, 2nd Floor, BSI Business Park, Sector-63, Noida, Uttar Pradesh, India",
+      "Rajkot, Gujarat, India",
   },
   {
     icon: <IoIosMailOpen size={32} />,
     title: "Email Us",
-    description: "enquiry@strapworld.com",
+    description: "sales@strapworld.com",
   },
   {
     icon: <FaHeadphonesSimple size={32} />,

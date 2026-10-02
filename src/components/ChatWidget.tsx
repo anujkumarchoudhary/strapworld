@@ -225,7 +225,7 @@ const ChatWidget = () => {
               </p>
 
               <p className="text-[12px] text-[#647077]">
-                +91 123 456 7890
+                +91 997 873 5708
               </p>
             </div>
 

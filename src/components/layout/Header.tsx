@@ -15,7 +15,7 @@ import GetEnquiryForm from "../form/GetEnquiryForm";
 const Header = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-    const [openForm, setOpenForm] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
 
   return (
     <div className="bg-white w-full sticky top-0 z-50">
@@ -24,34 +24,34 @@ const Header = () => {
           <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
             INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
           </p>
-<div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
-  <a
-    href="tel:+911234567890"
-    className="flex items-center gap-2"
-  >
-    <MdPhone
-      className="shrink-0 text-white animate-contact-attention"
-    />
+          <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+            <a
+              href="tel:+911234567890"
+              className="flex items-center gap-2"
+            >
+              <MdPhone
+                className="shrink-0 text-white animate-contact-attention"
+              />
 
-    <p className="my-auto text-[clamp(11px,0.7vw,14px)] text-[#DCE5E8]">
-      +91 123 456 7890
-    </p>
-  </a>
+              <p className="my-auto text-[clamp(11px,0.7vw,14px)] text-[#DCE5E8]">
+                +91 997 873 5708
+              </p>
+            </a>
 
-  <a
-    href="mailto:enquiry@strapworld.com"
-    className="flex items-center gap-2"
-  >
-    <MdMarkEmailUnread
-      className="shrink-0 text-white animate-contact-attention"
-      style={{ animationDelay: "10s" }}
-    />
+            <a
+              href="mailto:enquiry@strapworld.com"
+              className="flex items-center gap-2"
+            >
+              <MdMarkEmailUnread
+                className="shrink-0 text-white animate-contact-attention"
+                style={{ animationDelay: "10s" }}
+              />
 
-    <p className="my-auto text-[clamp(12px,0.7vw,14px)] text-[#DCE5E8]">
-      sales@strapworld.com
-    </p>
-  </a>
-</div>
+              <p className="my-auto text-[clamp(12px,0.7vw,14px)] text-[#DCE5E8]">
+                sales@strapworld.com
+              </p>
+            </a>
+          </div>
         </MaxWidth>
       </div>
       <MaxWidth className="flex justify-between items-center py-4 lg:py-3 text-white">
@@ -101,7 +101,7 @@ const Header = () => {
 
       </MaxWidth>
       {open && (
-        <div className="fixed inset-x-0 top-[12vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
+        <div className="fixed inset-x-0 top-[11.9vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
           {/* Mobile Navigation */}
           <div className="flex-1 overflow-y-auto">
             <div className="flex flex-col divide-y divide-black/10">
@@ -154,7 +154,7 @@ const Header = () => {
           </div>
         </div>
       )}
-      <GetEnquiryForm isOpen={openForm} handleClose={()=>setOpenForm(false)}/>
+      <GetEnquiryForm isOpen={openForm} handleClose={() => setOpenForm(false)} />
     </div>
   );
 };

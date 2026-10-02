@@ -52,7 +52,7 @@ export const footerColumns = [
     title: "CONTACT",
     links: [
       { name: "Manufacturing & dispatch Gujarat, India", path: "#" },
-      { name: "+91 79 4000 0000", path: "#" },
+      { name: "+91 997 873 5708", path: "#" },
       { name: "Mon–Sat 09:30–18:30 IST", path: "#" },
     ],
   },
