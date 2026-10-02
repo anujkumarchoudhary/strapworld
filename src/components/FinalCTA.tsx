@@ -263,7 +263,7 @@ export default function FinalCTA({ data }: any) {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px- py-4 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
