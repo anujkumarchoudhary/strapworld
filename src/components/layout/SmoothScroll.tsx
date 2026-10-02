@@ -5,25 +5,30 @@ import Lenis from "lenis";
 
 const SmoothScroll = () => {
   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+    // Let mobile devices use native touch scrolling
+    if (isMobile) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       smoothWheel: true,
-      syncTouch: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.9,
       touchMultiplier: 1,
+      autoRaf: false,
     });
 
-    let animationFrame: number;
+    let rafId: number;
 
     const raf = (time: number) => {
       lenis.raf(time);
-      animationFrame = requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     };
 
-    animationFrame = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
