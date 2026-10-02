@@ -25,7 +25,7 @@ interface FinalCTAProps {
 
 export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
-  const { isDesktop } = useResponsive()
+  const { isDesktop, isMobile } = useResponsive()
   return (
     <section className="py-12 lg:py-16" >
       {data?.isVariant === "01" && <MaxWidth className="bg-[#2E9B4F] py-12 lg:py-16 rounded-[10px]">
@@ -37,7 +37,7 @@ export default function FinalCTA({ data }: any) {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mb-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[35%_55%] justify-between gap-6 px-7 py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mb-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[35%_55%] justify-between gap-6 space-y-10 px-7 py-4 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
@@ -306,7 +306,7 @@ export default function FinalCTA({ data }: any) {
             </div>
 
             {/* Button */}
-            <div className="bg-white space-y-10 w-full p-10 h-full rounded-[10px]">
+            <div className="bg-white space-y-10 w-full p-5 md:p-10 h-full rounded-[10px]">
               <Heading
                 isAccentLine={true}
                 accentColor="#2E9B4F"
@@ -325,7 +325,7 @@ export default function FinalCTA({ data }: any) {
                   cancelBgColor="#FFFFFF"
                   cancelTextColor="#000000"
                   handleClick={() => setOpen(true)}
-                  isButton2={true}
+                  isButton2={isMobile ? false : true}
 
                 />
               </div>

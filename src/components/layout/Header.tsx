@@ -10,6 +10,7 @@ import { IoReorderThreeSharp } from "react-icons/io5";
 import Icon from "@/src/utills/iconMap ";
 import { MdClose, MdMarkEmailUnread, MdPhone, MdPhonelinkRing } from "react-icons/md";
 import SaveAndCancel from "../common/SaveAndCancel";
+import GetEnquiryForm from "../form/GetEnquiryForm";
 
 const Header = () => {
   const router = useRouter();
@@ -21,19 +22,26 @@ const Header = () => {
           <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
             INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
           </p>
-          <div className="flex flex-wrap justify-between lg:items-center gap-3 sm:gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+            <a
+              href="tel:+911234567890"
+              className="flex items-center gap-2"
+            >
               <MdPhone className="shrink-0 text-[#ffffff]" />
               <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
                 +91 123 456 7890
               </p>
-            </div>
-            <div className="flex items-center gap-2">
+            </a>
+
+            <a
+              href="mailto:enquiry@strapworld.com"
+              className="flex items-center gap-2"
+            >
               <MdMarkEmailUnread className="shrink-0 text-[#ffffff]" />
               <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
                 enquiry@strapworld.com
               </p>
-            </div>
+            </a>
           </div>
         </MaxWidth>
       </div>
@@ -64,11 +72,11 @@ const Header = () => {
           })}
         </div>
         <div className="hidden lg:flex gap-8">
-          <SaveAndCancel saveText="Get a Quote" handleClick={undefined} />
+          <SaveAndCancel saveText="Get a Quote" handleClick={() => setOpen(!open)} />
 
         </div>
 
-        {/* {open ? (
+        {open ? (
           <MdClose
             onClick={() => setOpen(!open)}
             size={35}
@@ -80,13 +88,8 @@ const Header = () => {
             size={35}
             className="block lg:hidden text-[#000000] cursor-pointer"
           />
-        )} */}
+        )}
 
-               <IoReorderThreeSharp
-            onClick={() => setOpen(!open)}
-            size={35}
-            className="block lg:hidden text-[#000000] cursor-pointer"
-          />
       </MaxWidth>
       {open && (
         <div className="absolute top-full left-0 right-0 bg-white pb-4 divide-y divide-[#000000]/20  space-y-4 py-1 lg:hidden">

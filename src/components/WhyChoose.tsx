@@ -7,6 +7,8 @@ import Icon from "../utills/iconMap ";
 import { useResponsive } from "../hooks/useResponsive";
 import { MdArrowBack, MdArrowRight } from "react-icons/md";
 import Image from "next/image";
+import { useState } from "react";
+import GetEnquiryForm from "./form/GetEnquiryForm";
 
 type Service = {
   title: string;
@@ -16,6 +18,7 @@ type Service = {
 };
 
 const WhyChoose = ({ data }: any) => {
+  const [open, setOpen] = useState(false);
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
   return (
@@ -40,7 +43,7 @@ const WhyChoose = ({ data }: any) => {
               description={description}
             />
             <div className="group mt-auto hidden lg:flex h-fit cursor-pointer items-center justify-start gap-2">
-              <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+              <p onClick={()=>setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
                 Discuss your application
               </p>
 
@@ -164,7 +167,7 @@ const WhyChoose = ({ data }: any) => {
           </div>
         </div>
         <div className="group mt-auto flex lg:hidden h-fit cursor-pointer items-center justify-center gap-2">
-          <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
+          <p onClick={()=>setOpen(!open)} className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
             Discuss your application
           </p>
 
@@ -180,6 +183,7 @@ const WhyChoose = ({ data }: any) => {
           />
         </div>
       </MaxWidth>
+      <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
     </div>
   );
 };

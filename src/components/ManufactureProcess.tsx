@@ -8,6 +8,8 @@ import { useResponsive } from "../hooks/useResponsive";
 import { MdArrowBack, MdArrowRight, MdCheck } from "react-icons/md";
 import Image from "next/image";
 import SaveAndCancel from "./common/SaveAndCancel";
+import { useState } from "react";
+import GetEnquiryForm from "./form/GetEnquiryForm";
 
 type Service = {
     title: string;
@@ -17,6 +19,7 @@ type Service = {
 };
 
 const ManufactureProcess = ({ data }: any) => {
+      const [open, setOpen] = useState(false);
     const { headingParts, label, list, labels, description } = data || {};
     const { isDesktop } = useResponsive()
     return (
@@ -126,11 +129,12 @@ const ManufactureProcess = ({ data }: any) => {
                             })}
                         </div>
                         <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
-                            <SaveAndCancel saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" />
+                            <SaveAndCancel saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" handleClick={() => setOpen(!open)} />
                         </div>
                     </div>
                 </div>
             </MaxWidth>
+            <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
         </div>
     );
 };

@@ -20,7 +20,7 @@ const OurProducts = ({ data }: any) => {
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
   return (
-    <div className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
+    <div id="our-products" className="bg-[#063F3D] py-10 sm:py-12 lg:py-16">
 
       <MaxWidth className=" ">
         {/* ================= HEADER ================= */}
@@ -39,8 +39,9 @@ const OurProducts = ({ data }: any) => {
             headingParts={headingParts}
             description={description}
           />
-          <div className="hidden md:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
-            <SaveAndCancel saveText="View all products" />
+          <div className="hidden lg:flex gap-2 justify-end h-fit mt-auto">
+                                    <SaveAndCancel saveText={"View all products"} saveBgColor="#063F3D"  />
+
           </div>
         </div>
 
@@ -123,6 +124,9 @@ const OurProducts = ({ data }: any) => {
               </div>
             );
           })}
+        </div>
+        <div className="flex lg:hidden gap-2 pt-10  justify-center h-fit mt-auto">
+          <SaveAndCancel saveText="View all products" />
         </div>
       </MaxWidth>
     </div>

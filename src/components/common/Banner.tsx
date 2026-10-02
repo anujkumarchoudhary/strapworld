@@ -17,106 +17,89 @@ const Banner = ({data}:any) => {
     staticData?.home?.banner;
 
   return (
-    <section
-      ref={ref}
-      className="relative h-[80vh] md:h-[60vh] lg:h-[88vh] w-full overflow-hidden"
-      style={{
-        backgroundImage: `url('${data?.bgImage || "/imagswes/home/hero_banner.png"}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <MaxWidth className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="grid grid-cols-1 lg:grid-cols-[50%_45%] justify-between gap-2 z-10">
-          <div className="my-auto space-y-14">
-            <div className="hidden lg:block">
-              <Heading
-                as="h1"
-                isDart={true}
-                isAccentLine={true}
-                label={data?.label}
-                labelColor="#39B972"
-                accentColor="#39B972"
-                textColor="#ffffff"
-                isGradient={true}
-                headingParts={data?.headingParts}
-                subHeading={data?.subHeading}
-                description={data?.description}
-              />
-            </div>
-            <div className="block lg:hidden">
-              <Heading
-                isDart={true}
-                as="h1"
-                label={label}
-                isCenter={true}
-                isAccentLine={true}
-                labelColor="#39B972"
-                accentColor="#39B972"
-                textColor="#ffffff"
-                isGradient={true}
-                headingParts={headingParts}
-                description={description}
-              />
-            </div>
+<section
+  ref={ref}
+  className="relative h-[90vh] w-full overflow-hidden md:h-[60vh] lg:h-[88vh]"
+>
+  {/* Optimized Background Image */}
+  <Image
+    src={data?.bgImage || "/images/home/hero_banner.png"}
+    alt="Strap World PET and polyester strapping"
+    fill
+    priority
+    fetchPriority="high"
+    sizes="100vw"
+    className="object-cover object-center"
+  />
 
-            {/* <div>
-              {data?.specifications?.length > 0 && (
-                <div className="flex w-fit pt-6 pb-8 gap-4 ">
-                  {data?.specifications?.map((item: any, index: number) => (
-                    <div key={index} className="space-y-1 flex gap-3">
-                      <IoMdCheckmarkCircleOutline size={20} className="text-[#2E9B4F]"/>
-                      <p className="text-[clamp(10px,0.9vw,14px)] font-medium text-white">
-                        {item?.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div> */}
+  {/* Optional overlay */}
+  <div className="absolute inset-0 z-[1] bg-black/10" />
 
-            {/* Buttons */}
-            <div
-              className={`flex pt-6 gap-4 transition-all duration-700 delay-500
-             `}
-            >
-              <SaveAndCancel
-                saveText={data?.button}
-                cancelText={data?.button2}
-                isButton2={true}
-                handleClick={() => setOpen(!open)}
-                handleClick2={() => {
-                  document
-                    .getElementById("case-studies")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                }}
-                className="mx-auto lg:mx-0"
-              />
-            </div>
-          </div>
-          <div className="flex h-fit my-auto justify-end">
-          </div>
+  <MaxWidth className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+    <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[50%_45%]">
+      <div className="my-auto space-y-8 lg:space-y-14">
+
+        <div className="hidden lg:block">
+          <Heading
+            as="h1"
+            isDart={true}
+            isAccentLine={true}
+            label={data?.label}
+            labelColor="#39B972"
+            accentColor="#39B972"
+            textColor="#ffffff"
+            isGradient={true}
+            headingParts={data?.headingParts}
+            subHeading={data?.subHeading}
+            description={data?.description}
+          />
         </div>
 
-        {/* <div className="lg:flex w-fit border-t hidden pt-6 border-[#29414E] gap-14 mt-8">
-          {specifications.map((item: any, index: number) => (
-            <div key={index} className="space-y-1">
-              <h3 className="text-[clamp(17px,1.5vw,20px)] text-white">
-                {item?.value}
-              </h3>
-              <p className="text-[clamp(10px,0.9vw,12px)] font-medium text-white">
-                {item?.name}
-              </p>
-            </div>
-          ))}
-        </div> */}
-      </MaxWidth>
-      <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
-    </section>
+        <div className="block lg:hidden">
+          <Heading
+            isDart={true}
+            as="h1"
+            label={label}
+            isCenter={true}
+            isAccentLine={true}
+            labelColor="#39B972"
+            accentColor="#39B972"
+            textColor="#ffffff"
+            isGradient={true}
+            headingParts={headingParts}
+            description={description}
+          />
+        </div>
+
+        {/* Buttons */}
+        <div className="flex gap-4 transition-all duration-700 delay-500 lg:pt-6">
+          <SaveAndCancel
+            saveText={data?.button}
+            cancelText={data?.button2}
+            isButton2={true}
+            handleClick={() => setOpen(!open)}
+            handleClick2={() => {
+              document
+                .getElementById("our-products")
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+            }}
+            className="mx-auto lg:mx-0"
+          />
+        </div>
+      </div>
+
+      <div className="my-auto flex h-fit justify-end" />
+    </div>
+  </MaxWidth>
+
+  <GetEnquiryForm
+    isOpen={open}
+    handleClose={() => setOpen(false)}
+  />
+</section>
   );
 };
 

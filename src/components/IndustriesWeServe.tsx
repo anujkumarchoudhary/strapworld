@@ -6,7 +6,7 @@ import MaxWidth from "./layout/MaxWidth";
 import { useResponsive } from "../hooks/useResponsive";
 import { MdArrowBack, MdArrowOutward, MdArrowRight } from "react-icons/md";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import SaveAndCancel from "./common/SaveAndCancel";
 
 type Service = {

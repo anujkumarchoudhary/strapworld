@@ -25,7 +25,7 @@ const KeyStats = ({ data }: any) => {
 
             <MaxWidth className=" ">
                 {/* ================= HEADER ================= */}
-                <div className="mb-12 grid lg:grid-cols-[50%_25%] justify-between">
+                <div className="mb-12 grid lg:grid-cols-[50%_25%] justify-between gap-10">
                     {/* Left */}
                     <Heading
                         as="h2"
@@ -40,7 +40,7 @@ const KeyStats = ({ data }: any) => {
                         headingParts={headingParts}
                         description={description}
                     />
-                    <div className="hidden md:flex gap-2 cursor-pointer justify-end h-fit mt-auto">
+                    <div className="hidden md:flex gap-2 justify-center lg:justify-end h-fit mt-auto">
                         <ButtonLink saveText="About Our Company" href="/about" />
                     </div>
                 </div>

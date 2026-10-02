@@ -6,6 +6,8 @@ import Icon from "../utills/iconMap ";
 import Image from "next/image";
 import SaveAndCancel from "./common/SaveAndCancel";
 import { useResponsive } from "../hooks/useResponsive";
+import { useState } from "react";
+import GetEnquiryForm from "./form/GetEnquiryForm";
 
 type Service = {
     title: string;
@@ -15,6 +17,7 @@ type Service = {
 };
 
 const TechnicalPerformance = ({ data }: any) => {
+    const [open, setOpen] = useState(false);
     const { headingParts, label, description } = data || {};
     const { isDesktop } = useResponsive();
 
@@ -37,7 +40,7 @@ const TechnicalPerformance = ({ data }: any) => {
                     />
 
                     <div className="my-auto  hidden lg:flex justify-end pr-2">
-                        <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" />
+                        <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" handleClick={() => setOpen(!open)} />
                     </div>
                 </div>
 
@@ -132,9 +135,10 @@ const TechnicalPerformance = ({ data }: any) => {
                     })}
                 </div>
                 <div className="my-auto  lg:hidden flex justify-center">
-                    <SaveAndCancel saveText={data?.button} />
+                    <SaveAndCancel saveText={data?.button} handleClick={()=>setOpen(!open)} />
                 </div>
             </MaxWidth>
+            <GetEnquiryForm isOpen={open} handleClose={() => setOpen(false)} />
         </div>
     );
 };
