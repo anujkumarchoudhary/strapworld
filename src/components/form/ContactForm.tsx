@@ -1,7 +1,6 @@
 import React from "react";
 // import Heading from "../common/Heading";
 import InputField from "../ui/InputField";
-import Button from "../common/ButtonLink";
 import SelectField from "../ui/SelectField";
 import MessageField from "../ui/MessageField";
 
@@ -17,11 +16,7 @@ const ContactForm = () => {
          label="Subject" placeholder="Enter your subject" />
       </div>
       <MessageField label="Message" placeholder="Enter your message" />
-      <Button
-        name="Send Message"
-        className="mt-[2rem] w-full"
-        buttonWidth="full"
-      />
+
     </div>
   );
 };

@@ -3,7 +3,6 @@ import React from "react";
 import MaxWidth from "./layout/MaxWidth";
 import Image from "next/image";
 import img from "../../public/images/pricing.jpg";
-import Button from "./common/ButtonLink";
 
 const LetsStart = () => {
   return (
@@ -18,7 +17,6 @@ const LetsStart = () => {
 
         <h2 className="text-[#ffffff] my-[1rem]">Got a Projects For Software Custimization With Us</h2>
 
-        <Button name={"Contact Us"} />
       </div>
     </MaxWidth>
   );

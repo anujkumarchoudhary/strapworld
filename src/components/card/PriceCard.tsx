@@ -1,6 +1,5 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import Button from "../common/ButtonLink";
 
 export interface PriceCardProps {
   idx: number;
@@ -57,7 +56,6 @@ const PriceCard = ({
             </li>
           ))}
         </ul>
-        <Button name="Get Started" />
       </div>
     </div>
   );
