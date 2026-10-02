@@ -519,6 +519,8 @@ export const staticData = {
       label: "MANUFACTURING PROCESS",
       "aspectRatio": "16/24",
 
+"floatingCardOne":{ "icon":"","title":"From plant to destination"},
+    "floatingCardTwo":{"description":"A practical strapping material for varied products and distribution conditions."},
       headingParts: [
         {
           text: "PET Strap Manufacturing Process",
