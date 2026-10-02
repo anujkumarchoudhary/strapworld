@@ -27,7 +27,7 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className=" bg-[#2E9B4F] md:py-12 lg:py-16" >
+    <section className=" bg-[#2E9B4F] py-12 lg:py-16" >
       {data?.isVariant === "01" && <MaxWidth className="rounded-[10px]">
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
@@ -246,7 +246,9 @@ export default function FinalCTA({ data }: any) {
                 </div>
 
                 {/* Button */}
-                <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" />
+               <div className="flex justify-center lg:justify-start">
+                 <SaveAndCancel saveText={data?.button} saveBgColor="#063F3D" />
+               </div>
 
               </form>
             </div>
