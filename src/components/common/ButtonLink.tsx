@@ -21,8 +21,8 @@ const ButtonLink = ({
   cancelBgColor = "transparent",
   cancelTextColor = "#2E9B4F",
   href,
-  saveText = "Start a Project",
-  cancelText = "Explore Our Work",
+  saveText,
+  cancelText,
   isButton2,
   handleClick = () => { },
   handleClick2,
@@ -36,7 +36,7 @@ const ButtonLink = ({
   `}
     >
       {/* Start a Project */}
-      <Link
+      {saveText && <Link
         href={href ? href : "#"}
         style={{
           backgroundColor: saveBgColor,
@@ -60,7 +60,8 @@ const ButtonLink = ({
         <span className="text-[#ffffff]">{saveText}</span>
 
         <MdArrowOutward size={18} className="text-[#ffffff]" />
-      </Link>
+      </Link>}
+
 
       {/* Explore Our Work */}
       {isButton2 && (

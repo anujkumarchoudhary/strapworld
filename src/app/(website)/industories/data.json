@@ -1,17 +1,17 @@
 {
   "banner": {
     "id": "manufacturing",
-    "label": "Manufacturing",
+    "label": "Industries",
     "headingParts": [
       {
-        "text": "PET Strap Manufacturing",
+        "text": "Industries We Serve",
         "color": "#FFFFFF",
         "weight": "400"
       }
     ],
-    "description":[ "SWe manufacture PET strapping for industrial packaging, load securing, product bundling, and transportation applications. Our production processes are designed to maintain consistent product dimensions, strength, and performance across different PET strap specifications.", "From raw material processing to finished roll packaging, each stage is carried out according to defined production and quality requirements."],
+    "subHeading":"PET Strapping Solutions for Diverse Industrial Applications",
+    "description":"We supply PET strapping for secure bundling, load stabilization and transportation across varied industrial products, packaging methods and handling environments.",
     "button": "Request a Quote",
-    "button2": "Our Products",
     "specifications": [
       {
         "value": "6",
@@ -32,6 +32,74 @@
     ],
     "bgImage": "/images/manufacturing/manufacturing_banner.png"
   },
+  "industriesWeServe": {
+  "label": "Industrial sectors",
+  "textColor": "#000000",
+
+  "headingParts": [
+    {
+      "text": "Strapping support shaped around the product and load.",
+      "color": "#000000",
+      "style": "normal",
+      "weight": "500"
+    }
+  ],
+
+  "description": "Each sector presents a different combination of product form, handling method, storage conditions and transportation needs.",
+
+  "list": [
+    {
+      "title": "Steel & Metal",
+      "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
+      "button": "Explore Solutions",
+      "href": "/industries/steel-metal",
+      "image": "/images/industry/Industry_01.png",
+      "labels": ["Heavy loads", "Load securing"]
+    },
+    {
+      "title": "Construction",
+      "description": "Reliable strapping for bundling construction materials, packaged products and building components for safer handling and transportation.",
+      "button": "Explore Solutions",
+      "href": "/industries/construction",
+      "image": "/images/industry/Industry_02.png",
+      "labels": ["Durable", "Secure bundling"]
+    },
+    {
+      "title": "Paper & Packaging",
+      "description": "PET strapping for securing paper rolls, cartons, packaging materials and palletized products throughout storage and transportation.",
+      "button": "Explore Solutions",
+      "href": "/industries/paper-packaging",
+      "image": "/images/industry/Industry_03.png",
+      "labels": ["Pallet securing", "Packaging"]
+    },
+    {
+      "title": "Textile",
+      "description": "PET strapping for bundling textile rolls, fabric packages, yarn products and other textile materials for efficient handling and shipment.",
+      "button": "Explore Solutions",
+      "href": "/industries/textile",
+      "image": "/images/industry/Industry_04.png",
+      "labels": ["Textile bundling", "Secure handling"]
+    },
+    {
+      "title": "Wood & Timber",
+      "description": "Strapping solutions for bundling timber, wooden boards, panels and other wood products during storage, handling and transportation.",
+      "button": "Explore Solutions",
+      "href": "/industries/wood-timber",
+      "image": "/images/industry/Industry_05.png",
+      "labels": ["Strong bundling", "Transport ready"]
+    },
+    {
+      "title": "Logistics & Warehousing",
+      "description": "PET strapping for pallet stabilization, load bundling and securing packaged goods across warehousing, distribution and logistics operations.",
+      "button": "Discuss Your Requirement",
+      "href": "/contact-us",
+      "image": "/images/industry/Industry_06.png",
+      "labels": ["Load stabilization", "Logistics"]
+    }
+  ]
+  
+},
+
   "whoWeAre": {
     "label": "PET strap manufacturing facility",
     "aspectRatio": "16/10",
@@ -48,31 +116,53 @@
       "Our facility produces PET strapping in different specifications for varied industrial packaging applications. Controlled production stages support consistent product dimensions, strength, surface and roll formation.",
       "Quality inspection is integrated into manufacturing, while production planning supports reliable supply for domestic and international orders."
     ],
+      "labels":[    {
+      "name": "Steel & Metal",
+      "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
+      "button": "Explore Solutions",
+      "href": "/industries/steel-metal",
+      "image": "/images/industry/Industry_01.png",
+      "labels": ["Heavy loads", "Load securing"]
+    }],
     "list": [
       {
-        "title": "Production Capability",
-        "description": "Dedicated production for PET strapping requirements.",
+        "title": "Load Requirements",
+        "description": "The weight, stability and handling needs of the load.",
         "href": "/products/pet-straps",
         "image": "/images/products/product_icon_01.svg",
         "labels": ["High tensile", "Low relaxation"]
       },
       {
-        "title": "Product Range",
+        "title": "Product Type",
         "description": "PET strap options in different specifications.",
         "href": "/products/pp-straps",
         "image": "/images/products/product_icon_02.svg",
         "labels": ["Flexible", "Machine compatible"]
       },
       {
-        "title": "Bulk Production",
-        "description": "Planning support for ongoing and large-volume orders.",
+        "title": "Packaging Method",
+        "description": "Manual, tool-assisted or machine-based strapping operations.",
         "href": "/products/polyester-straps",
         "image": "/images/products/product_icon_03.svg",
         "labels": ["Durable", "Weather resistant"]
       },
       {
-        "title": "Export Supply",
-        "description": "Order support for domestic and international delivery.",
+        "title": "Transportation Conditions",
+        "description": "Handling, storage and movement conditions across the journey.",
+        "href": "/products/packing-straps",
+        "image": "/images/products/product_icon_04.svg",
+        "labels": ["Custom width", "Color options"]
+      },
+            {
+        "title": "Required Strap Strength",
+        "description": "The strength level needed for the intended load-securing role.",
+        "href": "/products/polyester-straps",
+        "image": "/images/products/product_icon_03.svg",
+        "labels": ["Durable", "Weather resistant"]
+      },
+      {
+        "title": "Product Dimensions",
+        "description": "The size, geometry and bundling arrangement of the product.",
         "href": "/products/packing-straps",
         "image": "/images/products/product_icon_04.svg",
         "labels": ["Custom width", "Color options"]
@@ -82,69 +172,41 @@
   },
   "technicalPerformance": {
     "bgColor":"#063F3D",
-    "label": "Our PET strap manufacturing process",
+    "label": "Common PET strapping applications",
     "headingParts": [
       {
-        "text": "Eight controlled stages from preparation to dispatch.",
+        "text": "Four essential roles across industrial packaging.",
         "color": "#ffffff",
         "style": "normal",
         "weight": "600"
       }
     ],
-    "description": "The manufacturing flow is organized to form, stabilize, inspect, wind and package PET strap according to defined product requirements.",
+    "description": "From individual bundles to palletized loads, PET strapping supports secure product movement through the supply chain.",
     "list": [
       {
-        "title": "Raw Material Preparation",
-        "description": "PET material is prepared for controlled processing and production.",
+        "title": "Pallet Stabilization",
+        "description": "Helps hold palletized products together for handling and storage.",
         "href": "/products/pet-straps",
         "image": "/images/products/product_icon_01.svg",
         "labels": ["High tensile", "Low relaxation"]
       },
       {
-        "title": "Extrusion",
-        "description": "Prepared material is processed through extrusion to form the strap profile.",
+        "title": "Heavy Load Securing",
+        "description": "Supports secure containment of demanding industrial loads.",
         "href": "/products/pp-straps",
         "image": "/images/products/product_icon_02.svg",
         "labels": ["Flexible", "Machine compatible"]
       },
       {
-        "title": "Stretching & Orientation",
-        "description": "The strap is stretched and oriented to develop the required product characteristics.",
+        "title": "Product Bundling",
+        "description": "Groups products and materials into manageable transport units.",
         "href": "/products/polyester-straps",
         "image": "/images/products/product_icon_03.svg",
         "labels": ["Durable", "Weather resistant"]
       },
       {
-        "title": "Embossing",
-        "description": "The strap surface is formed according to the required smooth or embossed finish.",
-        "href": "/products/packing-straps",
-        "image": "/images/products/product_icon_04.svg",
-        "labels": ["Custom width", "Color options"]
-      },
-       {
-        "title": "Cooling & Stabilization",
-        "description": "The strap is cooled and stabilized as it moves through the production line.",
-        "href": "/products/pet-straps",
-        "image": "/images/products/product_icon_01.svg",
-        "labels": ["High tensile", "Low relaxation"]
-      },
-      {
-        "title": "Quality Testing",
-        "description": "Dimensions, strength and visible product condition are reviewed during production.",
-        "href": "/products/pp-straps",
-        "image": "/images/products/product_icon_02.svg",
-        "labels": ["Flexible", "Machine compatible"]
-      },
-      {
-        "title": "Winding",
-        "description": "Finished strap is wound into rolls with attention to roll formation and handling.",
-        "href": "/products/polyester-straps",
-        "image": "/images/products/product_icon_03.svg",
-        "labels": ["Durable", "Weather resistant"]
-      },
-      {
-        "title": "Packaging & Dispatch",
-        "description": "Approved rolls are packed as required and prepared for dispatch.",
+        "title": "Export Packaging",
+        "description": "Supports secure bundling for longer distribution journeys.",
         "href": "/products/packing-straps",
         "image": "/images/products/product_icon_04.svg",
         "labels": ["Custom width", "Color options"]
@@ -153,62 +215,51 @@
     "button": "Discuss Your Requirement"
   },
   "manufactureProcess": {
-    "label": "Quality control at every stage",
-    "aspectRatio": "16 / 20",
-
+    "bgColor":"#F5F7F2",
+    "label": "Why industries choose PET strapping",
+    "image":"/images/industry/warehouse.png",
+    "aspectRatio": "16 / 14",
+    "floatingCardOne":{ "icon":"","title":"From plant to destination"},
+    "floatingCardTwo":{"description":"A practical strapping material for varied products and distribution conditions."},
     "headingParts": [
       {
-        "text": "Inspection points throughout the production flow.",
+        "text": "Strength and usability for everyday industrial packaging.",
         "color": "#111118",
         "style": "normal",
         "weight": "400"
       }
     ],
 
-    "description": "Quality control begins before production and continues through dimensional, strength, surface and final product review.",
+    "description1": "Quality control begins before production and continues through dimensional, strength, surface and final product review.",
 
     "list": [
       {
-        "title": "Raw Material Inspection",
-        "description": "Incoming material is reviewed before production processing.",
+        "title": "High Strength",
+        "description": "Suitable specification options for varied industrial loads.",
         "href": "#",
         "image": "/images/service/service_img_1.png",
         "labels": ["PET raw material", "Specification"]
       },
       {
-        "title": "In-Process Inspection",
-        "description": "Production conditions and strap formation are monitored during manufacturing.",
+        "title": "Reliable Load Securing",
+        "description": "Supports stable bundling through storage, handling and transportation.",
         "href": "#",
         "image": "/images/service/service_img_2.png",
         "labels": ["Controlled extrusion", "PET strap"]
       },
       {
-        "title": "Dimensional Checks",
-        "description": "Width, thickness and related dimensions are checked against the requirement.",
+        "title": "Easy Handling",
+        "description": "Practical for industrial packaging operations and workflows.",
         "href": "#",
         "image": "/images/service/service_img_3.png",
         "labels": ["Tensile performance", "Orientation"]
       },
       {
-        "title": "Strength Testing",
-        "description": "Strap strength is reviewed against the defined product specification.",
+        "title": "Suitable for Industrial Packaging",
+        "description": "Adaptable to a broad range of products and packaging methods.",
         "href": "#",
         "image": "/images/service/service_img_4.png",
         "labels": ["Surface texture", "Handling"]
-      },
-      {
-        "title": "Surface & Appearance Inspection",
-        "description": "Surface, color, roll formation and visible condition are inspected.",
-        "href": "#",
-        "image": "/images/service/service_img_5.png",
-        "labels": ["Cooling", "Stabilization"]
-      },
-      {
-        "title": "Final Product Approval",
-        "description": "Finished rolls are reviewed before packaging and dispatch.",
-        "href": "#",
-        "image": "/images/service/service_img_6.png",
-        "labels": ["Quality testing", "Parameter checks"]
       }
     ],
 
@@ -225,10 +276,7 @@
         "label": "Shipment review",
         "image": "/images/service/service_img_3.png"
       }
-    ],
-     "floatingCardOne":{ "icon":"/icons/map_icon.svg","title":"In-process inspection"},
-    "floatingCardTwo":{"description":"Checks are integrated through production, not left to the final stage."}
-    },
+    ]  },
   "finalCTA": {
     "isVariant": "02",
     "label": "Start a conversation",

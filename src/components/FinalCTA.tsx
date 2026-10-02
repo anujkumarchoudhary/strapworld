@@ -27,8 +27,8 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className=" bg-[#2E9B4F] py-12 lg:py-16" >
-      {data?.isVariant === "01" && <MaxWidth className="rounded-[10px]">
+    <section className=" bg-[#2E9B4F] py-12 lg:py-26" >
+      {data?.isVariant === "01" && <MaxWidth>
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -64,7 +64,7 @@ export default function FinalCTA({ data }: any) {
               </div>
             </div>
 
-            {/* Button */}
+            {/* Form */}
             <div className="w-full  rounded-[14px] bg-white p-5 sm:p-10">
               {/* Heading */}
               <h2 className="mb-4 text-[clamp(18px,1.5vw,28px)] font-semibold leading-tight text-[#101820]">
@@ -256,7 +256,7 @@ export default function FinalCTA({ data }: any) {
         </motion.div>
       </MaxWidth>}
 
-      {data?.isVariant === "02" && <MaxWidth className="py-6 lg:lg:py-16 rounded-[10px]">
+      {data?.isVariant === "02" && <MaxWidth>
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -265,7 +265,7 @@ export default function FinalCTA({ data }: any) {
           className="relative overflow-hidden "
         >
           {/* Content */}
-          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 px- py-4 sm:px-10 md:px-16">
+          <div className="relative w-full mx-auto z-10 lg:grid grid-cols-1 lg:grid-cols-[50%_40%]  items-center justify-between gap-6 sm:px-10 md:px-16">
             {/* Left */}
             <div className="space-y-5 ">
               <Heading
@@ -322,9 +322,8 @@ export default function FinalCTA({ data }: any) {
               />
               <div className="flex justify-center lg:justify-start">
                 <SaveAndCancel
-                  saveText={data?.buttonText}
-                  cancelText={data?.buttonText2}
-                  
+                  saveText={"Start a Project"}
+                  cancelText={"Explore Our Work"}
                   saveBgColor="#063F3D"
                   cancelBgColor="#FFFFFF"
                   cancelTextColor="#000000"

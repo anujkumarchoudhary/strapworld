@@ -18,9 +18,9 @@ const SaveAndCancel = ({
   saveBgColor = "#2E9B4F",
   saveTextColor = "#000000",
   cancelBgColor = "transparent",
-  cancelTextColor = "#2E9B4F",
-  saveText = "Start a Project",
-  cancelText = "Explore Our Work",
+  cancelTextColor = "#FFFFFF",
+  saveText,
+  cancelText,
   isButton2,
   handleClick = () => { },
   handleClick2,
@@ -34,7 +34,7 @@ const SaveAndCancel = ({
   `}
     >
       {/* Start a Project */}
-      <button
+      {saveText && <button
         onClick={handleClick}
         style={{
           backgroundColor: saveBgColor,
@@ -58,10 +58,11 @@ const SaveAndCancel = ({
         <span className="text-[#ffffff]">{saveText}</span>
 
         <MdArrowOutward size={18} className="text-[#ffffff]" />
-      </button>
+      </button>}
+
 
       {/* Explore Our Work */}
-      {isButton2 && (
+      {cancelText && (
         <button
           style={{
             backgroundColor: cancelBgColor,

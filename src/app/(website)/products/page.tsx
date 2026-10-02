@@ -47,12 +47,6 @@ const page = () => {
             <IndustriesWeServe data={industriesWeServe} />
             <TechnicalPerformance data={whyChoose} />
             <ManufactureProcess data={bulkAndCustomOrders} />
-
-
-            {/* <IndustriesWeServe data={industriesWeServe} />
-            <ManufactureProcess data={manufactureProcess} />
-            <ExportAndGlobalReach data={exportAndGlobalReach} /> */}
-            {/* <Blog data={blogs} /> */}
             <FAQ />
             <FinalCTA data={finalCTA} />
         </div>

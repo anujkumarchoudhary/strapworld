@@ -78,7 +78,7 @@ const ChooseRight = ({ data }: any) => {
     transition-colors
     duration-300
     group-hover:bg-[#218B55]
-    lg:my-auto
+    lg:mb-auto
   "
                     >
                       <span
@@ -137,7 +137,7 @@ const ChooseRight = ({ data }: any) => {
                     <div
                       className="
       absolute
-      bottom-5
+      top-5
       right-5
       hidden
       lg:flex

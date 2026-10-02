@@ -26,7 +26,9 @@ const ManufactureProcess = ({ data }: any) => {
     const { isDesktop } = useResponsive()
     console.log(data?.floatingCard?.label, "data121")
     return (
-        <div className="bg-[#FCFBF7] py-10 sm:py-12 lg:py-16">
+        <div 
+        style={{background: data?.bgColor ??"#FCFBF7"}}
+        className="py-12 lg:py-16">
             <MaxWidth className=" ">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">
@@ -52,10 +54,26 @@ const ManufactureProcess = ({ data }: any) => {
       flex gap-2
     "
                         >
-                            {data?.floatingCard?.icon && <FiMapPin size={20} className="text-[#2E9B4F]" />}
+                            {data?.floatingCardOne?.icon && <FiMapPin size={20} className="text-[#2E9B4F]" />}
                             <p className="text-[clamp(10px,1.2vw,14px)] uppercase font-bold text-[#101820]">
-                                {data?.floatingCard?.label ?? "In-process inspection"}
+                                {data?.floatingCardOne?.title ?? "In-process inspection"}
                             </p>
+                        </div>
+                        <div
+                            className="
+      absolute
+      bottom-[clamp(16px,2vw,24px)]
+      left-[clamp(16px,2vw,24px)]
+      w-fit
+      rounded-[15px]
+      bg-transparent
+      p-[clamp(16px,1.5vw,20px)]
+      flex gap-2
+    "
+                        >
+                            <h3 className=" capitalize font-normal pr-20 text-[#FFFFFF]">
+                                {data?.floatingCardTwo?.description ?? "In-process inspection"}
+                            </h3>
                         </div>
                     </div>
                     <div className="space-y-4">
@@ -97,7 +115,7 @@ const ManufactureProcess = ({ data }: any) => {
           rounded-full
           bg-[#E6F5EC]
           p-2
-          lg:my-auto
+          lg:mb-auto
         "
                                         >
                                             <p className="text-[clamp(10px,0.9vw,12px)] font-bold text-[#2E9B4F]">
