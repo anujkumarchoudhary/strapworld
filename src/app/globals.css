@@ -455,3 +455,27 @@
 .gradient-border-btn:hover .gradient-arrow {
   transform: translateX(4px);
 }
+
+
+@keyframes contact-attention {
+  0%,
+  46%,
+  100% {
+    transform: translateY(0);
+     color: #ffffff;
+  }
+
+  48% {
+    transform: translateY(-4px);
+     color: #2E9B4F;
+  }
+
+  50% {
+    transform: translateY(0);
+     color: #ffffff;
+  }
+}
+
+@utility animate-contact-attention {
+  animation: contact-attention 4s ease-in-out infinite;
+}

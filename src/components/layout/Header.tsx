@@ -18,31 +18,38 @@ const Header = () => {
   return (
     <div className="bg-white w-full sticky top-0 z-50">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
-        <MaxWidth className="flex flex-col gap-2 lg:py-2 sm:flex-row sm:items-center sm:justify-between">
+        <MaxWidth className="flex flex-col gap-2 lg:py-1 sm:flex-row sm:items-center sm:justify-between">
           <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
             INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
           </p>
-          <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
-            <a
-              href="tel:+911234567890"
-              className="flex items-center gap-2"
-            >
-              <MdPhone className="shrink-0 text-[#ffffff]" />
-              <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
-                +91 123 456 7890
-              </p>
-            </a>
+<div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+  <a
+    href="tel:+911234567890"
+    className="flex items-center gap-2"
+  >
+    <MdPhone
+      className="shrink-0 text-white animate-contact-attention"
+    />
 
-            <a
-              href="mailto:enquiry@strapworld.com"
-              className="flex items-center gap-2"
-            >
-              <MdMarkEmailUnread className="shrink-0 text-[#ffffff]" />
-              <p className="my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
-                enquiry@strapworld.com
-              </p>
-            </a>
-          </div>
+    <p className="my-auto text-[clamp(9px,0.7vw,14px)] text-[#DCE5E8]">
+      +91 123 456 7890
+    </p>
+  </a>
+
+  <a
+    href="mailto:enquiry@strapworld.com"
+    className="flex items-center gap-2"
+  >
+    <MdMarkEmailUnread
+      className="shrink-0 text-white animate-contact-attention"
+      style={{ animationDelay: "10s" }}
+    />
+
+    <p className="my-auto text-[clamp(9px,0.7vw,14px)] text-[#DCE5E8]">
+      enquiry@strapworld.com
+    </p>
+  </a>
+</div>
         </MaxWidth>
       </div>
       <MaxWidth className="flex justify-between items-center py-4 lg:py-3 text-white">
