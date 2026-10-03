@@ -4,6 +4,8 @@ import helmet from "helmet";
 
 import enquiryRoutes from "./routes/enquiry.routes";
 
+console.log("🔥 VERCEL EXPRESS FUNCTION LOADED");
+
 const app = express();
 
 app.use(helmet());
