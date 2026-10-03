@@ -48,7 +48,7 @@ const faqData = [
   },
 ];
 
-const FAQ = () => {
+const FAQ = ({ data }: any) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -74,7 +74,7 @@ const FAQ = () => {
         {/* FAQ List */}
         <div className="mx-auto w-full md:w-[80%]">
           <div>
-            {faqData.map((faq, index) => {
+            {data?.list?.map((faq: any, index: number) => {
               const isOpen = activeIndex === index;
 
               return (
@@ -85,7 +85,7 @@ const FAQ = () => {
             transition-all duration-300
             hover:bg-primary-bg/[0.03]
             ${index !== 0 ? "border-t border-black/10" : ""}
-            ${index === faqData.length - 1 ? "border-b-0" : ""}
+            ${index === data?.list?.length - 1 ? "border-b-0" : ""}
           `}
                 >
                   <button
