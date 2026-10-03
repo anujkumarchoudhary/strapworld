@@ -293,7 +293,7 @@ export default function FinalCTA({ data }: any) {
                 </a>
 
                 <a
-                  href="tel:+91123467890"
+                  href="tel:+919978735708"
                   className="flex gap-2"
                 >
                   <MdPhone
@@ -301,7 +301,7 @@ export default function FinalCTA({ data }: any) {
                     className="my-auto text-[#FFFFFF]"
                   />
                   <p className="my-auto text-[14px] font-bold text-[#FFFFFF]">
-                    +91 123 46 7890
+                    +91 997 873 5708
                   </p>
                 </a>
               </div>
