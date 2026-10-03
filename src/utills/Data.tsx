@@ -60,7 +60,7 @@ export const staticData = {
         "Strap World Pvt. Ltd. is a PET strap manufacturer focused on supplying high-performance strapping solutions for industrial packaging and load securing. Our manufacturing and quality processes are designed to deliver consistent PET strapping for different applications, industries and transportation requirements.",
       specifications: [
         {
-          value: 15,
+          value: 11,
           suffix: "K+",
           label: "Projects Delivered",
         },
@@ -70,12 +70,12 @@ export const staticData = {
           label: "Skilled Tech Experts",
         },
         {
-          value: 20,
+          value: 9,
           suffix: "+",
           label: "Industries Expertise",
         },
         {
-          value: 4.5,
+          value: 151,
           suffix: "K+",
           label: "Trusted Global Clients",
         }
