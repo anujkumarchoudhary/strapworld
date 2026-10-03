@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsx backend/server.ts",
+"dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production tsx backend/server.ts",
     "lint": "eslint"
