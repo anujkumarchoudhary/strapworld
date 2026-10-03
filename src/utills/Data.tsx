@@ -76,7 +76,7 @@ export const staticData = {
         },
         {
           value: 151,
-          suffix: "K+",
+          suffix: "+",
           label: "Trusted Global Clients",
         }
       ],
