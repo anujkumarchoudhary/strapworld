@@ -7,7 +7,7 @@ import ProductOverview from "@/src/components/ProductOverview";
 import TechnicalOverview from "@/src/components/TechnicalOverview";
 import RelatedProducts from "@/src/components/RelatedProducts";
 import { BaseUrl } from "../../baseurl";
-
+//d
 interface PageProps {
   params: Promise<{
     slug: string;
