@@ -1,87 +1,67 @@
-// import { createServer } from "http";
-// import next from "next";
-// import expressApp from "./backend/app";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
-// const dev = process.env.NODE_ENV !== "production";
-// const hostname = "localhost";
-// const port = 3000;
+// import connectDB from "./config/db";
 
-// async function startServer() {
-//   const nextApp = next({
-//     dev,
-//     hostname,
-//     port,
-//   });
+dotenv.config();
 
-//   const handle = nextApp.getRequestHandler();
+const app = express();
 
-//   await nextApp.prepare();
+/* -------------------- Middleware -------------------- */
 
-//   const server = createServer((req, res) => {
-//     if (req.url?.startsWith("/api")) {
-//       expressApp(req, res);
-//     } else {
-//       handle(req, res);
-//     }
-//   });
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
-//   server.listen(port, () => {
-//     console.log(`Server running at http://${hostname}:${port}`);
-//   });
-// }
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// startServer();
+/* -------------------- Database -------------------- */
 
-import { createServer } from "http";
-import next from "next";
-import expressApp from "./backend/app";
+// connectDB();
 
-const dev = process.env.NODE_ENV !== "production";
+/* -------------------- Routes -------------------- */
 
-const hostname = dev ? "localhost" : "0.0.0.0";
-const port = Number(process.env.PORT) || 3000;
-
-async function startServer() {
-  const nextApp = next({
-    dev,
-    hostname,
-    port,
+app.get("/api", (_req, res) => {
+  res.json({
+    success: true,
+    message: "API is running",
   });
+});
 
-  const handle = nextApp.getRequestHandler();
 
-  await nextApp.prepare();
+/* -------------------- Error Handler -------------------- */
 
-  const server = createServer((req, res) => {
-    // API health check
-    if (req.url === "/api/health") {
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json");
+app.use(
+  (
+    err: Error,
+    _req: express.Request,
+    res: express.Response,
+    _next: express.NextFunction
+  ) => {
+    console.error(err);
 
-      res.end(
-        JSON.stringify({
-          success: true,
-          message: "API is running",
-          environment: process.env.NODE_ENV || "development",
-        })
-      );
+    res.status(500).json({
+      success: false,
+      message: err.message || "Internal Server Error",
+    });
+  }
+);
 
-      return;
-    }
+/* -------------------- Local Development -------------------- */
 
-    // Express API
-    if (req.url?.startsWith("/api")) {
-      expressApp(req, res);
-      return;
-    }
+const PORT = process.env.PORT || 7000;
 
-    // Next.js
-    handle(req, res);
-  });
-
-  server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 
-startServer();
+/* -------------------- Vercel -------------------- */
+
+export default app;
