@@ -84,7 +84,7 @@ export const staticData = {
     ourProducts: {
       label: "OUR PRODUCTS",
       textColor: "#ffffff",
-      "href":"products",
+      "href": "products",
       headingParts: [
         {
           text: "PET Strapping Products for Industrial Packaging",
@@ -96,298 +96,59 @@ export const staticData = {
 
       description:
         "Explore our range of PET strapping products designed for secure packaging, load stabilization and transportation. Our PET straps are available in different specifications to meet the requirements of industrial and commercial applications.",
-"list": [
-  {
-    "title": "PP Strap",
-    "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
-    "button": "View PP Strap",
-    "href": "/products/pp-strap",
-    "image": "/images/service/service_img_1.png",
-    "labels": ["Lightweight", "Versatile"]
-  },
-  {
-    "title": "PET Strap",
-    "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
-    "button": "View PET Strap",
-    "href": "/products/pet-strap",
-    "image": "/images/service/service_img_2.png",
-    "labels": ["High strength", "Load securing"]
-  },
-  {
-    "title": "Plastic Box Strapping Roll",
-    "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
-    "button": "View Strapping Roll",
-    "href": "/products/plastic-box-strapping-roll",
-    "image": "/images/service/service_img_3.png",
-    "labels": ["Box packaging", "Easy handling"]
-  },
-  {
-    "title": "PP Box Color Strap",
-    "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
-    "button": "View PP Color Strap",
-    "href": "/products/pp-box-color-strap",
-    "image": "/images/service/service_img_4.png",
-    "labels": ["Color options", "Box packaging"]
-  },
-  {
-    "title": "Polyester PET Strap",
-    "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
-    "button": "View Polyester PET Strap",
-    "href": "/products/polyester-pet-strap",
-    "image": "/images/service/service_img_5.png",
-    "labels": ["Durable", "Reliable"]
-  },
-  {
-    "title": "Cotton Bale Strap",
-    "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
-    "button": "View Cotton Bale Strap",
-    "href": "/products/cotton-bale-strap",
-    "image": "/images/service/service_img_6.png",
-    "labels": ["Bale securing", "Heavy duty"]
-  }
-]
-,
-    },
-    services: {
-      label: "Industries served",
-
-      headingParts: [
+      "list": [
         {
-          text: "Built around real handling conditions.",
-          color: "#111118",
-          style: "normal",
-          weight: "600",
-        },
-      ],
-
-      description:
-        "From rigid heavy loads to high-volume cartons, we help operations select a strapping system with the right balance of strength, recovery and line speed.",
-
-      list: [
-        {
-          title: "Metals & steel",
-          description:
-            "Coils, profiles, fabricated parts",
-          href: "#",
-          image: "/images/service/icon_1.svg",
-          labels: ["High tensile", "Low relaxation"]
+          "title": "PP Strap",
+          "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
+          "button": "View PP Strap",
+          "href": "/pp-strap",
+          "image": "/images/service/service_img_1.png",
+          "labels": ["Lightweight", "Versatile"]
         },
         {
-          title: "Building materials",
-          description:
-            "Tiles, boards, blocks, panels",
-          href: "#",
-          image: "/images/service/icon_2.svg",
-          labels: ["Flexible ", "Machine compatible"]
+          "title": "PET Strap",
+          "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
+          "button": "View PET Strap",
+          "href": "/products/pet-strap",
+          "image": "/images/service/service_img_2.png",
+          "labels": ["High strength", "Load securing"]
         },
         {
-          title: "Corrugated packaging",
-          description:
-            "Cartons, sheets, dispatch loads",
-          href: "#",
-          image: "/images/service/icon_3.svg",
-          labels: ["Durable", "Weather resistant"]
+          "title": "Plastic Box Strapping Roll",
+          "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
+          "button": "View Strapping Roll",
+          "href": "/products/plastic-box-strapping-roll",
+          "image": "/images/service/service_img_3.png",
+          "labels": ["Box packaging", "Easy handling"]
         },
         {
-          title: "Food & beverage",
-          description:
-            "Cases, crates, dry-goods pallets",
-          href: "#",
-          image: "/images/service/icon_4.svg",
-          labels: ["Custom width", "Color options"]
+          "title": "PP Box Color Strap",
+          "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
+          "button": "View PP Color Strap",
+          "href": "/products/pp-box-color-strap",
+          "image": "/images/service/service_img_4.png",
+          "labels": ["Color options", "Box packaging"]
         },
         {
-          title: "Textiles",
-          description:
-            "Bales, rolls, bundled finished goods",
-          href: "#",
-          image: "/images/service/icon_5.svg",
-          labels: ["Tension", "Seal", "Cut"]
+          "title": "Polyester PET Strap",
+          "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
+          "button": "View Polyester PET Strap",
+          "href": "/products/polyester-pet-strap",
+          "image": "/images/service/service_img_5.png",
+          "labels": ["Durable", "Reliable"]
         },
         {
-          title: "Automotive",
-          description:
-            "Components, kits, returnable loads",
-          href: "#",
-          image: "/images/service/icon_6.svg",
-          labels: ["Tabletop", "Arch", "Integrated"]
-        },
-        {
-          title: "Logistics",
-          description:
-            "Warehousing, fulfillment, export cargo",
-          href: "#",
-          image: "/images/service/icon_7.svg",
-          labels: ["Tension", "Seal", "Cut"]
-        },
-        {
-          title: "Wood & furniture",
-          description:
-            "Boards, panels, assembled goods",
-          href: "#",
-          image: "/images/service/icon_8.svg",
-          labels: ["Tabletop", "Arch", "Integrated"]
-        },
-      ],
-    },
-    technicalPerformance: {
-      label: "Technical performance",
-
-      headingParts: [
-        {
-          text: "A secure-load system starts with the load itself.",
-          color: "#ffffff",
-          style: "normal",
-          weight: "600",
-        },
-      ],
-      description:
-        "Consistent PET and PP strapping, tools and packaging systems built for secure loads, efficient lines and export-ready operations.",
-
-      list: [
-        {
-          title: "Controlled Tension",
-          description:
-            "Grades selected around load retention, elongation and recovery needs.",
-          href: "/services/web-development",
-          image: "/images/products/product_icon_01.svg",
-          labels: ["High tensile", "Low relaxation"]
-        },
-        {
-          title: "Consistent profile",
-          description:
-            "Attention to width, thickness, winding and edge quality for reliable feed.",
-          href: "#",
-          image: "/images/products/product_icon_02.svg",
-          labels: ["Flexible ", "Machine compatible"]
-        },
-        {
-          title: "Secure joining",
-          description:
-            "Surface options engineered for friction-weld, seal and buckle applications.",
-          href: "#",
-          image: "/images/products/product_icon_03.svg",
-          labels: ["Durable", "Weather resistant"]
-        },
-        {
-          title: "Transit resilience",
-          description:
-            "Material options for outdoor exposure, storage and long-haul handling.",
-          href: "#",
-          image: "/images/products/product_icon_04.svg",
-          labels: ["Custom width", "Color options"]
+          "title": "Cotton Bale Strap",
+          "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
+          "button": "View Cotton Bale Strap",
+          "href": "/products/cotton-bale-strap",
+          "image": "/images/service/service_img_6.png",
+          "labels": ["Bale securing", "Heavy duty"]
         }
-      ],
-      button: "Discuss Your Requirement"
+      ]
+      ,
     },
-    solutionsByApplication: {
-      label: "Solutions by application",
 
-      headingParts: [
-        {
-          text: "A secure-load system starts with the load itself.",
-          color: "#111118",
-          style: "normal",
-          weight: "700",
-        },
-      ],
-
-      description:
-        "We align strap material, dimensions, joining method and equipment with your product and process—not the other way around.",
-
-      list: [
-        {
-          title: "Pallet stabilization",
-          description:
-            "Maintain load integrity through handling, warehousing and long-haul transit.",
-          href: "/services/web-development",
-          image: "/images/solutions/solution_01.svg",
-          labels: ["High tensile", "Low relaxation"]
-        },
-        {
-          title: "Carton closure",
-          description:
-            "Fast, repeatable strapping for dispatch lines and distribution centers.",
-          href: "#",
-          image: "/images/solutions/solution_02.svg",
-          labels: ["Flexible ", "Machine compatible"]
-        },
-        {
-          title: "Bundling profiles & tubes",
-          description:
-            "Contain long, rigid or irregular products without surface damage.",
-          href: "#",
-          image: "/images/solutions/solution_03.svg",
-          labels: ["Durable", "Weather resistant"]
-        },
-        {
-          title: "Heavy unitizing",
-          description:
-            "High-retention systems for dense materials and demanding load cycles.",
-          href: "/services/ui-ux-design",
-          image: "/images/solutions/solution_04.svg",
-          labels: ["Custom width", "Color options"]
-        }
-      ],
-    },
-    manufactureQuality: {
-      label: "Manufacturing & quality",
-
-      headingParts: [
-        {
-          text: "Repeatability is manufactured into every coil.",
-          color: "#111118",
-          style: "normal",
-          weight: "600",
-        },
-      ],
-
-      description:
-        "Our process is structured around material discipline, stable extrusion, controlled winding and practical verification before a batch is prepared for shipment.",
-
-      list: [
-        {
-          title: "Material & setup review",
-          description:
-            "Raw material, formulation and production settings are checked against the planned grade.",
-          href: "/services/web-development",
-          image: "/images/service/service_img_1.png",
-          labels: ["High tensile", "Low relaxation"]
-        },
-        {
-          title: "In-process verification",
-          description:
-            "Dimensions, surface, winding and running behavior are monitored during production.",
-          href: "#",
-          image: "/images/service/service_img_2.png",
-          labels: ["Flexible ", "Machine compatible"]
-        },
-        {
-          title: "Final batch release",
-          description:
-            "Finished coils receive visual and performance checks, identification and packing review.",
-          href: "/services/mobile-applications",
-          image: "/images/service/service_img_3.png",
-          labels: ["Durable", "Weather resistant"]
-        }
-      ],
-      labels: [
-        {
-          label: "Documented checks",
-          image: "/images/service/service_img_1.png",
-        },
-        {
-          label: "Batch traceability",
-          image: "/images/service/service_img_2.png",
-        },
-        {
-          label: "Shipment review",
-          image: "/images/service/service_img_3.png",
-        }
-      ],
-      button: "How we manufacture",
-
-    },
     applications: {
       label: "APPLICATIONS",
 
@@ -515,8 +276,8 @@ export const staticData = {
       label: "MANUFACTURING PROCESS",
       "aspectRatio": "16/24",
 
-"floatingCardOne":{ "icon":"","title":"From plant to destination"},
-    "floatingCardTwo":{"description":"A practical strapping material for varied products and distribution conditions."},
+      "floatingCardOne": { "icon": "", "title": "From plant to destination" },
+      "floatingCardTwo": { "description": "A practical strapping material for varied products and distribution conditions." },
       headingParts: [
         {
           text: "PET Strap Manufacturing Process",

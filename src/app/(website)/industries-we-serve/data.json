@@ -9,8 +9,8 @@
         "weight": "400"
       }
     ],
-    "subHeading":"PET Strapping Solutions for Diverse Industrial Applications",
-    "description":"We supply PET strapping for secure bundling, load stabilization and transportation across varied industrial products, packaging methods and handling environments.",
+    "subHeading": "PET Strapping Solutions for Diverse Industrial Applications",
+    "description": "We supply PET strapping for secure bundling, load stabilization and transportation across varied industrial products, packaging methods and handling environments.",
     "button": "Request a Quote",
     "specifications": [
       {
@@ -33,73 +33,71 @@
     "bgImage": "/images/manufacturing/manufacturing_banner.png"
   },
   "industriesWeServe": {
-  "label": "Industrial sectors",
-  "textColor": "#000000",
+    "label": "Industrial sectors",
+    "textColor": "#000000",
 
-  "headingParts": [
-    {
-      "text": "Strapping support shaped around the product and load.",
-      "color": "#000000",
-      "style": "normal",
-      "weight": "500"
-    }
-  ],
+    "headingParts": [
+      {
+        "text": "Strapping support shaped around the product and load.",
+        "color": "#000000",
+        "style": "normal",
+        "weight": "500"
+      }
+    ],
 
-  "description": "Each sector presents a different combination of product form, handling method, storage conditions and transportation needs.",
+    "description": "Each sector presents a different combination of product form, handling method, storage conditions and transportation needs.",
 
-  "list": [
-    {
-      "title": "Steel & Metal",
-      "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
-      "button": "Explore Solutions",
-      "href": "/industries/steel-metal",
-      "image": "/images/industry/Industry_01.png",
-      "labels": ["Heavy loads", "Load securing"]
-    },
-    {
-      "title": "Construction",
-      "description": "Reliable strapping for bundling construction materials, packaged products and building components for safer handling and transportation.",
-      "button": "Explore Solutions",
-      "href": "/industries/construction",
-      "image": "/images/industry/Industry_02.png",
-      "labels": ["Durable", "Secure bundling"]
-    },
-    {
-      "title": "Paper & Packaging",
-      "description": "PET strapping for securing paper rolls, cartons, packaging materials and palletized products throughout storage and transportation.",
-      "button": "Explore Solutions",
-      "href": "/industries/paper-packaging",
-      "image": "/images/industry/Industry_03.png",
-      "labels": ["Pallet securing", "Packaging"]
-    },
-    {
-      "title": "Textile",
-      "description": "PET strapping for bundling textile rolls, fabric packages, yarn products and other textile materials for efficient handling and shipment.",
-      "button": "Explore Solutions",
-      "href": "/industries/textile",
-      "image": "/images/industry/Industry_04.png",
-      "labels": ["Textile bundling", "Secure handling"]
-    },
-    {
-      "title": "Wood & Timber",
-      "description": "Strapping solutions for bundling timber, wooden boards, panels and other wood products during storage, handling and transportation.",
-      "button": "Explore Solutions",
-      "href": "/industries/wood-timber",
-      "image": "/images/industry/Industry_05.png",
-      "labels": ["Strong bundling", "Transport ready"]
-    },
-    {
-      "title": "Logistics & Warehousing",
-      "description": "PET strapping for pallet stabilization, load bundling and securing packaged goods across warehousing, distribution and logistics operations.",
-      "button": "Discuss Your Requirement",
-      "href": "/contact-us",
-      "image": "/images/industry/Industry_06.png",
-      "labels": ["Load stabilization", "Logistics"]
-    }
-  ]
-  
-},
-
+    "list": [
+      {
+        "title": "Steel & Metal",
+        "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/steel-metal",
+        "image": "/images/industry/Industry_01.png",
+        "labels": ["Heavy loads", "Load securing"]
+      },
+      {
+        "title": "Construction",
+        "description": "Reliable strapping for bundling construction materials, packaged products and building components for safer handling and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/construction",
+        "image": "/images/industry/Industry_02.png",
+        "labels": ["Durable", "Secure bundling"]
+      },
+      {
+        "title": "Paper & Packaging",
+        "description": "PET strapping for securing paper rolls, cartons, packaging materials and palletized products throughout storage and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/paper-packaging",
+        "image": "/images/industry/Industry_03.png",
+        "labels": ["Pallet securing", "Packaging"]
+      },
+      {
+        "title": "Textile",
+        "description": "PET strapping for bundling textile rolls, fabric packages, yarn products and other textile materials for efficient handling and shipment.",
+        "button": "Explore Solutions",
+        "href": "/industries/textile",
+        "image": "/images/industry/Industry_04.png",
+        "labels": ["Textile bundling", "Secure handling"]
+      },
+      {
+        "title": "Wood & Timber",
+        "description": "Strapping solutions for bundling timber, wooden boards, panels and other wood products during storage, handling and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/wood-timber",
+        "image": "/images/industry/Industry_05.png",
+        "labels": ["Strong bundling", "Transport ready"]
+      },
+      {
+        "title": "Logistics & Warehousing",
+        "description": "PET strapping for pallet stabilization, load bundling and securing packaged goods across warehousing, distribution and logistics operations.",
+        "button": "Discuss Your Requirement",
+        "href": "/contact-us",
+        "image": "/images/industry/Industry_06.png",
+        "labels": ["Load stabilization", "Logistics"]
+      }
+    ]
+  },
   "whoWeAre": {
     "label": "PET strap manufacturing facility",
     "aspectRatio": "16/10",
@@ -116,14 +114,16 @@
       "Our facility produces PET strapping in different specifications for varied industrial packaging applications. Controlled production stages support consistent product dimensions, strength, surface and roll formation.",
       "Quality inspection is integrated into manufacturing, while production planning supports reliable supply for domestic and international orders."
     ],
-      "labels":[    {
-      "name": "Steel & Metal",
-      "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
-      "button": "Explore Solutions",
-      "href": "/industries/steel-metal",
-      "image": "/images/industry/Industry_01.png",
-      "labels": ["Heavy loads", "Load securing"]
-    }],
+    "labels": [
+      {
+        "name": "Steel & Metal",
+        "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/steel-metal",
+        "image": "/images/industry/Industry_01.png",
+        "labels": ["Heavy loads", "Load securing"]
+      }
+    ],
     "list": [
       {
         "title": "Load Requirements",
@@ -153,7 +153,7 @@
         "image": "/images/products/product_icon_04.svg",
         "labels": ["Custom width", "Color options"]
       },
-            {
+      {
         "title": "Required Strap Strength",
         "description": "The strength level needed for the intended load-securing role.",
         "href": "/products/polyester-straps",
@@ -171,7 +171,7 @@
     "buttown": "How we manufacture"
   },
   "technicalPerformance": {
-    "bgColor":"#063F3D",
+    "bgColor": "#063F3D",
     "label": "Common PET strapping applications",
     "headingParts": [
       {
@@ -215,12 +215,14 @@
     "button": "Discuss Your Requirement"
   },
   "manufactureProcess": {
-    "bgColor":"#F5F7F2",
+    "bgColor": "#F5F7F2",
     "label": "Why industries choose PET strapping",
-    "image":"/images/industry/warehouse.png",
+    "image": "/images/industry/warehouse.png",
     "aspectRatio": "16 / 14",
-    "floatingCardOne":{ "icon":"","title":"From plant to destination"},
-    "floatingCardTwo":{"description":"A practical strapping material for varied products and distribution conditions."},
+    "floatingCardOne": { "icon": "", "title": "From plant to destination" },
+    "floatingCardTwo": {
+      "description": "A practical strapping material for varied products and distribution conditions."
+    },
     "headingParts": [
       {
         "text": "Strength and usability for everyday industrial packaging.",
@@ -276,7 +278,8 @@
         "label": "Shipment review",
         "image": "/images/service/service_img_3.png"
       }
-    ]  },
+    ]
+  },
   "finalCTA": {
     "isVariant": "02",
     "label": "Start a conversation",

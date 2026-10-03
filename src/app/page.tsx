@@ -2,10 +2,6 @@ import React from "react";
 import Banner from "../components/common/Banner";
 import Blog from "../components/Blog";
 import { staticData } from "@/src/utills/Data";
-import OurServices from "../components/OurServices";
-import TechnicalPerformance from "../components/TechnicalPerformance";
-import SolutionsByApplication from "../components/SolutionsByApplication";
-import ManufactureQuality from "../components/ManufactureQuality";
 import ExportAndGlobalReach from "../components/ExportAndGlobalReach";
 import OurProducts from "../components/OurProducts";
 import FinalCTA from "../components/FinalCTA";
@@ -16,7 +12,7 @@ import IndustriesWeServe from "../components/IndustriesWeServe";
 import ManufactureProcess from "../components/ManufactureProcess";
 
 const page = () => {
-  const { banner, keyStats, ourProducts,applications,industriesWeServe,manufactureProcess, services, blogs, technicalPerformance, solutionsByApplication, manufactureQuality, exportAndGlobalReach, finalCTA } =
+  const { banner, keyStats, ourProducts, applications, industriesWeServe, manufactureProcess, blogs, exportAndGlobalReach, finalCTA } =
     staticData?.home;
 
   return (
@@ -27,9 +23,6 @@ const page = () => {
       <Applications data={applications} />
       <IndustriesWeServe data={industriesWeServe} />
       <ManufactureProcess data={manufactureProcess} />
-      {/* <TechnicalPerformance data={technicalPerformance} /> */}
-      {/* <SolutionsByApplication data={solutionsByApplication} /> */}
-      {/* <ManufactureQuality data={manufactureQuality} /> */}
       <ExportAndGlobalReach data={exportAndGlobalReach} />
       <Blog data={blogs} />
       <FAQ />

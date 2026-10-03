@@ -1,10 +1,10 @@
 import Banner from '@/src/components/common/Banner'
 import data from './data.json'
-import TechnicalPerformance from '@/src/components/TechnicalPerformance'
 import FinalCTA from '@/src/components/FinalCTA'
-import ManufactureProcess from '@/src/components/ManufactureProcess'
-import IndustriesWeServe from '@/src/components/IndustriesWeServe'
-import SelectionApproch from '@/src/components/SelectionApproch'
+import FAQ from '@/src/components/FAQ'
+import ProductOverview from '@/src/components/ProductOverview'
+import TechnicalOverview from '@/src/components/TechnicalOverview'
+import RelatedProducts from '@/src/components/RelatedProducts'
 
 export const metadata = {
   title: "PET Strap Manufacturing Process | Strap World",
@@ -23,14 +23,14 @@ export const metadata = {
 };
 
 const page = () => {
-  const { banner, industriesWeServe, whoWeAre, technicalPerformance, manufactureProcess, finalCTA } = data || {};
+  const { banner, productOverview, technicalOverview, relatedProducts, finalCTA } = data || {};
   return (
     <div>
       <Banner data={banner} />
-      <IndustriesWeServe data={industriesWeServe} />
-      <SelectionApproch data={whoWeAre} />
-      <TechnicalPerformance data={technicalPerformance} />
-      <ManufactureProcess data={manufactureProcess} />
+      <ProductOverview data={productOverview} />
+      <TechnicalOverview data={technicalOverview} />
+      <RelatedProducts data={relatedProducts} />
+      <FAQ />
       <FinalCTA data={finalCTA} />
     </div>
   )

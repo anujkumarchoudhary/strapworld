@@ -1,0 +1,394 @@
+{
+  "banner": {
+    "id": "manufacturing",
+    "label": "Industrial strapping",
+    "headingParts": [
+      {
+        "text": "PET Strap",
+        "color": "#FFFFFF",
+        "weight": "400"
+      }
+    ],
+    "subHeading": "High-Strength PET Strapping for Industrial Packaging & Load Securing",
+    "description": "PET Strap is a high-strength polyester strapping solution used for pallet stabilization, product bundling, load securing, and industrial packaging.",
+    "button": "Request a Quote",
+    "specifications": [
+      {
+        "value": "6",
+        "name": "High Tensile Strength"
+      },
+      {
+        "value": "3-stage",
+        "name": "Multiple Sizes Available"
+      },
+      {
+        "value": "B2B",
+        "name": "Industrial Grade"
+      },
+      {
+        "value": "Global",
+        "name": "Bulk & Export Supply"
+      }
+    ],
+    "floatingLabel": "PET / Polyester",
+    "floatingCard": {
+      "title": "Key specifications",
+      "list": [
+        { "name": "Material", "desc": "PET / Polyester" },
+        { "name": "Surface", "desc": "Smooth / Embossed" },
+        { "name": "Color", "desc": "Green / Black / Custom" }
+      ]
+    },
+    "image": "/images/products/pp_strap/pet_strap.png",
+    "bgColor": "#063F3D"
+  },
+  "productOverview": {
+    "label": "Product overview",
+    "aspectRatio": "16/10",
+    "image": "/images/manufacturing/manufacturing_01.png",
+    "headingParts": [
+      {
+        "text": "PET Strap for Secure Industrial Packaging",
+        "color": "#111118",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "description": [
+      "Our facility produces PET strapping in different specifications for varied industrial packaging applications. Controlled production stages support consistent product dimensions, strength, surface and roll formation.",
+      "Quality inspection is integrated into manufacturing, while production planning supports reliable supply for domestic and international orders."
+    ],
+    "labels": [
+      {
+        "name": "High Tensile Strength"
+      },
+      {
+        "name": "Multiple Sizes Available"
+      },
+      {
+        "name": "Industrial Grade"
+      },
+      {
+        "name": "Bulk & Export Supply"
+      }
+    ],
+    "list": [
+      {
+        "title": "Load Requirements",
+        "description": "The weight, stability and handling needs of the load.",
+        "href": "/products/pet-straps",
+        "image": "/images/products/product_icon_01.svg",
+        "labels": ["High tensile", "Low relaxation"]
+      },
+      {
+        "title": "Product Type",
+        "description": "PET strap options in different specifications.",
+        "href": "/products/pp-straps",
+        "image": "/images/products/product_icon_02.svg",
+        "labels": ["Flexible", "Machine compatible"]
+      },
+      {
+        "title": "Packaging Method",
+        "description": "Manual, tool-assisted or machine-based strapping operations.",
+        "href": "/products/polyester-straps",
+        "image": "/images/products/product_icon_03.svg",
+        "labels": ["Durable", "Weather resistant"]
+      },
+      {
+        "title": "Transportation Conditions",
+        "description": "Handling, storage and movement conditions across the journey.",
+        "href": "/products/packing-straps",
+        "image": "/images/products/product_icon_04.svg",
+        "labels": ["Custom width", "Color options"]
+      }
+    ],
+    "slides": [
+      {
+        "image": "/images/products/pp_strap/pet_strap_01.png"
+      },
+      {
+        "image": "/images/products/pp_strap/pet-strap_02.jpg"
+      },
+      {
+        "image": "/images/products/pp_strap/pet-strap_03.jpg"
+      },
+      {
+        "image": "/images/products/pp_strap/pet-strap_04.jpeg"
+      }
+    ],
+    "buttown": "How we manufacture"
+  },
+
+  "technicalOverview": {
+    "label": "PET strap manufacturing facility",
+    "aspectRatio": "16/10",
+    "image": "/images/manufacturing/manufacturing_01.png",
+    "headingParts": [
+      {
+        "text": "A production setup focused on repeatable PET strap quality.",
+        "color": "#111118",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "description": [
+      "Our facility produces PET strapping in different specifications for varied industrial packaging applications. Controlled production stages support consistent product dimensions, strength, surface and roll formation.",
+      "Quality inspection is integrated into manufacturing, while production planning supports reliable supply for domestic and international orders."
+    ],
+    "labels": [
+      {
+        "name": "Steel & Metal",
+        "description": "PET strapping solutions for securing steel coils, metal products, pipes and other heavy industrial materials during handling, storage and transportation.",
+        "button": "Explore Solutions",
+        "href": "/industries/steel-metal",
+        "image": "/images/industry/Industry_01.png",
+        "labels": ["Heavy loads", "Load securing"]
+      }
+    ],
+    "list": [
+      {
+        "productCode": "OPP 806",
+        "width": 8.0,
+        "thickness": 0.6,
+        "length": 2000,
+        "weight": 5.8,
+        "averageBreakLoad": 65,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 807",
+        "width": 8.0,
+        "thickness": 0.7,
+        "length": 2000,
+        "weight": 6.3,
+        "averageBreakLoad": 80,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 955",
+        "width": 9.0,
+        "thickness": 0.55,
+        "length": 4000,
+        "weight": 12.0,
+        "averageBreakLoad": 75,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 906",
+        "width": 9.0,
+        "thickness": 0.6,
+        "length": 2000,
+        "weight": 6.3,
+        "averageBreakLoad": 80,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 907",
+        "width": 9.0,
+        "thickness": 0.7,
+        "length": 2000,
+        "weight": 7.0,
+        "averageBreakLoad": 85,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1006",
+        "width": 10.0,
+        "thickness": 0.6,
+        "length": 2000,
+        "weight": 6.75,
+        "averageBreakLoad": 85,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 1106",
+        "width": 11.0,
+        "thickness": 0.6,
+        "length": 2000,
+        "weight": 7.0,
+        "averageBreakLoad": 90,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1107",
+        "width": 11.0,
+        "thickness": 0.7,
+        "length": 2000,
+        "weight": 8.0,
+        "averageBreakLoad": 110,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1255",
+        "width": 12.0,
+        "thickness": 0.55,
+        "length": 2500,
+        "weight": 10.0,
+        "averageBreakLoad": 120,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 1206",
+        "width": 12.0,
+        "thickness": 0.6,
+        "length": 2000,
+        "weight": 8.0,
+        "averageBreakLoad": 110,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1207",
+        "width": 12.0,
+        "thickness": 0.7,
+        "length": 2000,
+        "weight": 9.0,
+        "averageBreakLoad": 120,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1208",
+        "width": 12.0,
+        "thickness": 0.8,
+        "length": 2000,
+        "weight": 10.0,
+        "averageBreakLoad": 120,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 1506",
+        "width": 15.0,
+        "thickness": 0.6,
+        "length": 1000,
+        "weight": 6.0,
+        "averageBreakLoad": 130,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1507",
+        "width": 15.0,
+        "thickness": 0.7,
+        "length": 1000,
+        "weight": 7.0,
+        "averageBreakLoad": 150,
+        "remarks": "Standard"
+      },
+      {
+        "productCode": "OPP 1508",
+        "width": 15.0,
+        "thickness": 0.8,
+        "length": 1000,
+        "weight": 8.0,
+        "averageBreakLoad": 160,
+        "remarks": "Customized"
+      },
+      {
+        "productCode": "OPP 1509",
+        "width": 15.0,
+        "thickness": 0.9,
+        "length": 1000,
+        "weight": 9.0,
+        "averageBreakLoad": 170,
+        "remarks": "Customized"
+      }
+    ],
+    "button": "How we manufacture"
+  },
+
+  "relatedProducts": {
+    "label": "RELATED PRODUCTS",
+    "bgColor": "#F5F7F2",
+    "textColor": "#39464A",
+    "headingParts": [
+      {
+        "text": "Strapping Products for Industrial Packaging",
+        "color": "#101820",
+        "style": "normal",
+        "weight": "500"
+      }
+    ],
+    "button": "PET Strap Manufacturing",
+    "href": "/pet-strap-manufacturing",
+
+    "description": "Strap World Pvt. Ltd. manufactures and supplies PET and polyester strapping for businesses across India and international markets. Explore our products and find the specification suited to your application.",
+    "list": [
+      {
+        "title": "PET Strap",
+        "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
+        "button": "View PET Strap",
+        "href": "/products/pet-strap",
+        "image": "/images/service/service_img_2.png",
+        "labels": ["High strength", "Load securing"]
+      },
+      {
+        "title": "Plastic Box Strapping Roll",
+        "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
+        "button": "View Strapping Roll",
+        "href": "/products/plastic-box-strapping-roll",
+        "image": "/images/service/service_img_3.png",
+        "labels": ["Box packaging", "Easy handling"]
+      },
+      {
+        "title": "PP Box Color Strap",
+        "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
+        "button": "View PP Color Strap",
+        "href": "/products/pp-box-color-strap",
+        "image": "/images/service/service_img_4.png",
+        "labels": ["Color options", "Box packaging"]
+      },
+      {
+        "title": "Polyester PET Strap",
+        "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
+        "button": "View Polyester PET Strap",
+        "href": "/products/polyester-pet-strap",
+        "image": "/images/service/service_img_5.png",
+        "labels": ["Durable", "Reliable"]
+      },
+      {
+        "title": "Cotton Bale Strap",
+        "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
+        "button": "View Cotton Bale Strap",
+        "href": "/products/cotton-bale-strap",
+        "image": "/images/service/service_img_6.png",
+        "labels": ["Bale securing", "Heavy duty"]
+      },
+      {
+        "title": "Semi Automatic PP Strap",
+        "description": "PP strapping suitable for semi-automatic packaging machines used for efficient carton and box bundling.",
+        "button": "View Semi Automatic PP Strap",
+        "href": "/products/semi-automatic-pp-strap",
+        "image": "/images/service/service_img_1.png",
+        "labels": ["Machine compatible", "Efficient"]
+      }
+    ]
+  },
+
+  "finalCTA": {
+    "isVariant": "01",
+    "label": "Start a conversation",
+    "headingParts": [
+      {
+        "text": "Looking for a Reliable PET Strap Manufacturer?",
+        "color": "#ffffff",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "headingParts2": [
+      {
+        "text": "Tell us what you need to secure.",
+        "color": "#000000",
+        "size": "30px",
+        "style": "normal",
+        "weight": "400"
+      }
+    ],
+    "description": "Share your PET strapping requirements, quantity, application and delivery location with our team. We’ll help identify a suitable product and supply approach.",
+    "description2": "Include your product, load profile, expected quantity and destination for a more relevant response.",
+    "button": "Request a Quote",
+    "button2": "Contact Us",
+    "btn2BgColor": "#FFFFFF",
+    "btn2TextColor": "#000000",
+    "btnBgColor": "#063F3D",
+    "btnTextColor": "#000000"
+  }
+}

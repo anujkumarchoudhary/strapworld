@@ -12,7 +12,7 @@ export const footerColumns = [
     links: [
       { name: "About Us", path: "/about-us" },
       { name: "Manufacturing", path: "/pet-strap-manufacturing" },
-      { name: "Blogs", path: "/blogs" },
+      { name: "Blogs", path: "#" },
       { name: "Contact", path: "contact" },
       { name: "Site Map", path: "sitemap" },
 
@@ -22,12 +22,11 @@ export const footerColumns = [
   {
     title: "PRODUCTS",
     links: [
-      { name: "PET Straps", path: "#" },
-      { name: "PP Straps", path: "#" },
-      { name: "Polyester Straps", path: "#" },
-      { name: "Packing Straps", path: "#" },
-      { name: "Strapping Tools", path: "#" },
-      { name: "Packaging Machines", path: "#" },
+      { name: "PET Straps", path: "/products/pet-straps" },
+      { name: "PP Straps", path: "/products/pp-straps" },
+      { name: "Plastic Box Strapping Roll", path: "/products/plastic_box-strapping-roll" },
+      { name: "PP Box Color Strap", path: "/products/pp-box_color-strap" },
+      { name: "Polyester PET Strap", path: "/products/polyester-pet-strap" },
     ],
   },
   {
@@ -40,23 +39,6 @@ export const footerColumns = [
       { name: "Pneumatic Strapping", path: "#" },
     ],
   },
-  {
-    title: "INDUSTRIES",
-    links: [
-      { name: "Metals & Steel", path: "/industries-we-serve" },
-      { name: "Building Materials", path: "/industries-we-serve" },
-      { name: "Corrugated Packaging", path: "/industries-we-serve" },
-      { name: "Food & Beverage", path: "/industries-we-serve" },
-      { name: "Logistics", path: "/industries-we-serve" },
-    ],
-  },
 
-  {
-    title: "CONTACT",
-    links: [
-      { name: "Manufacturing & dispatch Gujarat, India", path: "#" },
-      { name: "+91 997 873 5708", path: "#" },
-      { name: "Mon–Sat 09:30–18:30 IST", path: "#" },
-    ],
-  },
+
 ];

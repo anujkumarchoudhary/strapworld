@@ -18,7 +18,7 @@ type Service = {
   icon: React.ElementType;
 };
 
-const OurProducts = ({ data }: any) => {
+const RelatedProducts = ({ data }: any) => {
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
   const {
@@ -156,4 +156,4 @@ const OurProducts = ({ data }: any) => {
   );
 };
 
-export default OurProducts;
+export default RelatedProducts;

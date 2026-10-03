@@ -6,7 +6,8 @@ import Icon from "@/src/utills/iconMap ";
 import Image from "next/image";
 import logo from '../../../public/logo.svg'
 import Link from "next/link";
-import { MdArrowOutward } from "react-icons/md";
+import { MdApartment, MdArrowOutward, MdOutlinePhone } from "react-icons/md";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -46,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid space-y-10 grid-cols-1 lg:grid-cols-5 justify-between">
+        <div className="grid space-y-10 grid-cols-1 lg:grid-cols-4 justify-between">
           {footerColumns.map((column) => (
             <div key={column.title} className="space-y-4">
               <h3 className="text-[clamp(12px,0.9375vw,15px)] text-[#39B972] font-bold font-roboto-mono">
@@ -67,6 +68,59 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+          <div>
+            <h3 className="text-[clamp(12px,0.9375vw,15px)] font-bold font-roboto-mono text-[#39B972]">
+              CONTACT
+            </h3>
+
+            <div className="my-4 flex gap-4">
+              <div className="flex h-6 w-6 shrink-0 items-start justify-center">
+                <FaMapMarkerAlt
+                  size={22}
+                  className="text-[#2E9B4F]"
+                />
+              </div>
+
+              <p className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8]">
+                Gokul Industries Estate - A,
+                <br />
+                Plot No 16 & 17, S no 261/P1,
+                <br />
+                Morbi Highway, Nr Khodiyar Temple,
+                <br />
+                Kagdadi town, Rajkot - 360003.
+              </p>
+            </div>
+
+            <div className="flex gap-4 pb-1">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+                <MdOutlinePhone
+                  size={22}
+                  className="text-[#2E9B4F]"
+                />
+              </div>
+
+              <a
+                href="tel:+919978735708"
+                className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8] transition-colors hover:text-[#39B972]"
+              >
+                +91 997 873 5708
+              </a>
+            </div>
+
+            <div className="flex gap-4 py-2">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+                <MdApartment
+                  size={22}
+                  className="text-[#2E9B4F]"
+                />
+              </div>
+
+              <p className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8]">
+                Mon–Sat 09:30–18:30 IST
+              </p>
+            </div>
+          </div>
         </div>
       </MaxWidth>
 

@@ -1,8 +1,8 @@
+import Heading from "@/src/components/common/Heading";
 import CommonBanner from "@/src/components/CommonBanner";
 import ContactForm from "@/src/components/form/ContactForm";
 import MaxWidth from "@/src/components/layout/MaxWidth";
 import type { Metadata } from "next";
-import React from "react";
 import { FaHeadphonesSimple, FaMapLocationDot } from "react-icons/fa6";
 import { IoIosMailOpen } from "react-icons/io";
 
@@ -47,7 +47,10 @@ const contactDetails = [
     icon: <FaMapLocationDot size={32} />,
     title: "Head Office",
     description:
-      "Rajkot, Gujarat, India",
+      `Gokul Industries Estate - A, 
+Plot No 16 & 17, S no 261/P1, 
+Morbi Highway, Nr Khodiyar Temple, 
+Kagdadi town, Rajkot - 360003.`,
   },
   {
     icon: <IoIosMailOpen size={32} />,
@@ -73,35 +76,24 @@ const Page = () => {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[45%_55%] lg:gap-16">
             {/* Left - Contact Details */}
             <div className="my-auto">
-              <p className="text-sm font-semibold tracking-[0.15em] text-[#39B972]">
-                LET'S CONNECT
-              </p>
-
-              <h1 className="mt-4 text-3xl font-semibold leading-tight text-[#001845] md:text-4xl lg:text-5xl">
-                Let’s Discuss Your{" "}
-                <span className="text-[#168F68]">Requirement.</span>
-              </h1>
-
-              <p className="mt-6 max-w-lg text-sm leading-7 text-gray-600">
-                Have a product requirement, specification or packaging
+              <Heading isAccentLine={true} labelColor="2E9B4F" accentColor="#2E9B4F" label="LET'S CONNECT" headingParts={[{ text: " Let’s Discuss " }]} description={`Have a product requirement, specification or packaging
                 challenge? Tell us what you need, and our team will get back
-                to you with the right PET strapping solution.
-              </p>
+                to you with the right PET strapping solution.`} />
 
               {/* Details */}
               <div className="mt-10 space-y-7">
                 {contactDetails.map((item, idx) => (
-                  <div key={idx} className="flex gap-5">
+                  <div key={idx} className="flex space-y-10 gap-5">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0F7F5] text-[#063F3D]">
                       {item.icon}
                     </div>
 
-                    <div>
-                      <h3 className="text-base font-semibold text-[#001845]">
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-[#001845]">
                         {item.title}
                       </h3>
 
-                      <p className="mt-1 max-w-md text-sm leading-6 text-gray-600">
+                      <p className="mt-1 max-w-md text- leading-6 text-gray-600">
                         {item.description}
                       </p>
                     </div>
@@ -133,7 +125,7 @@ const Page = () => {
                   Visit Our Head Office
                 </h2>
 
-                <p className="mt-5 text-sm leading-7 text-[#DCE5E8]">
+                <p className="mt-5  leading-7 text-[#DCE5E8]">
                   Our team is available to discuss PET strapping products,
                   specifications, supply requirements and business enquiries.
                 </p>
@@ -144,8 +136,20 @@ const Page = () => {
                     className="mt-1 shrink-0 text-[#39B972]"
                   />
 
-                  <p className="text-sm my-auto leading-7 text-[#DCE5E8]">
-             Rajkot, Gujarat, India
+                  <p className="leading-7 text-[#DCE5E8]">
+                    <span className="font-semibold text-[#FFFFFF]">
+                      Nalanda Industries,
+                    </span>
+                    <br />
+                    Gokul Industries Estate - A,
+                    <br />
+                    Plot No. 16 & 17, S. No. 261/P1,
+                    <br />
+                    Morbi Highway, Near Khodiyar Temple,
+                    <br />
+                    Kagdadi Town, Rajkot - 360003,
+                    <br />
+                    Gujarat, India.
                   </p>
                 </div>
               </div>
@@ -153,13 +157,13 @@ const Page = () => {
               {/* Google Map */}
               <div className="h-[350px] lg:h-[450px]">
                 <iframe
-                  src="https://www.google.com/maps?q=Rajkot,+Gujarat,+India&output=embed"
+                  src="https://www.google.com/maps?q=Nalanda+Industries,+Gokul+Industries+Estate+A,+Plot+No+16+17,+S+No+261%2FP1,+Morbi+Highway,+Near+Khodiyar+Temple,+Kagdadi,+Rajkot,+Gujarat+360003,+India&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Strap World Location - Rajkot, Gujarat, India"
+                  title="Nalanda Industries Location - Rajkot, Gujarat"
                 />
               </div>
             </div>
