@@ -1,5 +1,3 @@
-console.log("🔥 VERCEL EXPRESS FUNCTION LOADED");
+import expressApp from "../backend/app";
 
-import app from "../backend/app";
-
-export default app;
+export default expressApp;

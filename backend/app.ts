@@ -1,24 +1,21 @@
 import express from "express";
 import cors from "cors";
-import helmet from "helmet";
-
-import enquiryRoutes from "./routes/enquiry.routes";
-
-console.log("🔥 VERCEL EXPRESS FUNCTION LOADED");
 
 const app = express();
 
-app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Express API is working",
-  });
-});
-
-app.use("/api/enquiry", enquiryRoutes);
+// routes
+// app.use("/api/users", userRoutes);
+// app.use("/api/products", productRoutes);
+// app.use("/api/...", ...);
 
 export default app;
