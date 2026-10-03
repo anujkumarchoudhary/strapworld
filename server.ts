@@ -32,15 +32,14 @@
 
 // startServer();
 
-
-
 import { createServer } from "http";
 import next from "next";
 import expressApp from "./backend/app";
 
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = 3000;
+
+const hostname = dev ? "localhost" : "0.0.0.0";
+const port = Number(process.env.PORT) || 3000;
 
 async function startServer() {
   const nextApp = next({
@@ -54,7 +53,7 @@ async function startServer() {
   await nextApp.prepare();
 
   const server = createServer((req, res) => {
-    // Health check
+    // API health check
     if (req.url === "/api/health") {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
@@ -76,11 +75,11 @@ async function startServer() {
       return;
     }
 
-    // Next.js frontend
+    // Next.js
     handle(req, res);
   });
 
-  server.listen(port, () => {
+  server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}`);
   });
 }
