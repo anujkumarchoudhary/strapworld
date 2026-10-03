@@ -2,11 +2,23 @@ export const menuData = [
   { title: "Products", link: "/products" },
   { title: "Industries", link: "/industries-we-serve" },
   { title: "Manufacturing", link: "/pet-strap-manufacturing" },
-  { title: "About Us", link: "/about" },
+  { title: "About Us", link: "/about-us" },
   { title: "Contact", link: "/contact" },
 ];
 
 export const footerColumns = [
+    {
+    title: "COMPANY",
+    links: [
+      { name: "About Us", path: "/about-us" },
+      { name: "Manufacturing", path: "/pet-strap-manufacturing" },
+      { name: "Blogs", path: "/blogs" },
+      { name: "Contact", path: "contact" },
+      { name: "Site Map", path: "sitemap" },
+
+    ],
+  },
+  
   {
     title: "PRODUCTS",
     links: [
@@ -19,35 +31,26 @@ export const footerColumns = [
     ],
   },
   {
-    title: "SOLUTIONS",
+    title: "TOOLS",
     links: [
-      { name: "Pallet Stabilization", path: "#" },
-      { name: "Carton Closure", path: "#" },
-      { name: "Bundling", path: "#" },
-      { name: "Heavy Unitizing", path: "#" },
-      { name: "Automation Support", path: "#" },
+      { name: "Digital Power Strapping", path: "#" },
+      { name: "Digital Smart Strapping", path: "#" },
+      { name: "Manual Packaging", path: "#" },
+      { name: "Manual Strapping", path: "#" },
+      { name: "Pneumatic Strapping", path: "#" },
     ],
   },
   {
     title: "INDUSTRIES",
     links: [
-      { name: "Metals & Steel", path: "#" },
-      { name: "Building Materials", path: "#" },
-      { name: "Corrugated Packaging", path: "#" },
-      { name: "Food & Beverage", path: "#" },
-      { name: "Logistics", path: "#" },
+      { name: "Metals & Steel", path: "/industries-we-serve" },
+      { name: "Building Materials", path: "/industries-we-serve" },
+      { name: "Corrugated Packaging", path: "/industries-we-serve" },
+      { name: "Food & Beverage", path: "/industries-we-serve" },
+      { name: "Logistics", path: "/industries-we-serve" },
     ],
   },
-  {
-    title: "COMPANY",
-    links: [
-      { name: "About Us", path: "/about" },
-      { name: "Manufacturing", path: "/manufacturing" },
-      { name: "Quality Approach", path: "#" },
-      { name: "Export Support", path: "#" },
-      { name: "Contact", path: "#" },
-    ],
-  },
+
   {
     title: "CONTACT",
     links: [

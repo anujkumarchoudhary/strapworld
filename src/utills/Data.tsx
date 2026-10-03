@@ -96,62 +96,57 @@ export const staticData = {
 
       description:
         "Explore our range of PET strapping products designed for secure packaging, load stabilization and transportation. Our PET straps are available in different specifications to meet the requirements of industrial and commercial applications.",
-      list: [
-        {
-          title: "PET Strapping",
-          description:
-            "High-strength PET strapping for securing cartons, pallets, textile products and industrial loads during storage and transportation.",
-          button: "View PET Strapping",
-          href: "/products/pet-straps",
-          image: "/images/service/service_img_1.png",
-          labels: ["High strength", "Load securing"],
-        },
-        {
-          title: "Polyester Strapping",
-          description:
-            "Durable polyester strapping for applications requiring reliable load retention and consistent performance.",
-          button: "View Polyester Strapping",
-          href: "/products/polyester-straps",
-          image: "/images/service/service_img_2.png",
-          labels: ["Durable", "Reliable retention"],
-        },
-        {
-          title: "PET Packing Strap",
-          description:
-            "PET packing strap for bundling and securing cartons, textile products, packaged goods and industrial materials.",
-          button: "View PET Packing Strap",
-          href: "/products/packing-straps",
-          image: "/images/service/service_img_3.png",
-          labels: ["Versatile", "Industrial use"],
-        },
-        {
-          title: "Industrial PET Strapping",
-          description:
-            "Industrial PET strapping for demanding packaging, palletizing and transportation applications.",
-          button: "View Industrial PET Strapping",
-          href: "/products/pet-straps",
-          image: "/images/service/service_img_4.png",
-          labels: ["Heavy duty", "Transport ready"],
-        },
-        {
-          title: "PET Strapping Band",
-          description:
-            "PET strapping band available in multiple specifications for different load requirements and packaging applications.",
-          button: "View PET Strapping Band",
-          href: "/products/pet-straps",
-          image: "/images/service/service_img_5.png",
-          labels: ["Multiple sizes", "Custom specifications"],
-        },
-        {
-          title: "Custom Strapping Solutions",
-          description:
-            "Strapping specifications can be selected according to application, required strength, dimensions, quantity and packaging requirements.",
-          button: "Discuss Your Requirement",
-          href: "/contact-us",
-          image: "/images/service/service_img_6.png",
-          labels: ["Custom specs", "Application based"],
-        },
-      ],
+"list": [
+  {
+    "title": "PP Strap",
+    "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
+    "button": "View PP Strap",
+    "href": "/products/pp-strap",
+    "image": "/images/service/service_img_1.png",
+    "labels": ["Lightweight", "Versatile"]
+  },
+  {
+    "title": "PET Strap",
+    "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
+    "button": "View PET Strap",
+    "href": "/products/pet-strap",
+    "image": "/images/service/service_img_2.png",
+    "labels": ["High strength", "Load securing"]
+  },
+  {
+    "title": "Plastic Box Strapping Roll",
+    "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
+    "button": "View Strapping Roll",
+    "href": "/products/plastic-box-strapping-roll",
+    "image": "/images/service/service_img_3.png",
+    "labels": ["Box packaging", "Easy handling"]
+  },
+  {
+    "title": "PP Box Color Strap",
+    "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
+    "button": "View PP Color Strap",
+    "href": "/products/pp-box-color-strap",
+    "image": "/images/service/service_img_4.png",
+    "labels": ["Color options", "Box packaging"]
+  },
+  {
+    "title": "Polyester PET Strap",
+    "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
+    "button": "View Polyester PET Strap",
+    "href": "/products/polyester-pet-strap",
+    "image": "/images/service/service_img_5.png",
+    "labels": ["Durable", "Reliable"]
+  },
+  {
+    "title": "Cotton Bale Strap",
+    "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
+    "button": "View Cotton Bale Strap",
+    "href": "/products/cotton-bale-strap",
+    "image": "/images/service/service_img_6.png",
+    "labels": ["Bale securing", "Heavy duty"]
+  }
+]
+,
     },
     services: {
       label: "Industries served",
