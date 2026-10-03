@@ -80,7 +80,7 @@ const Footer = () => {
               Privacy Policy
             </a>
 
-            <a href="/terms" className="transition hover:text-white">
+            <a href="/terms-and-conditions" className="transition hover:text-white">
               Terms & Conditions
             </a>
           </div>

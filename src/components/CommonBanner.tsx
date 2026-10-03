@@ -1,57 +1,96 @@
-"use client";
-
-import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
-import Heading from "./common/Heading";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import MaxWidth from "./layout/MaxWidth";
-import { useResponsive } from "../hooks/useResponsive";
 
 interface CommonBannerProps {
   label?: string;
   title: string;
-  highlight?: string;
   description?: string;
-  breakIndex?: number;
-  breadcrumb?: string;
+  breadcrumbs?: {
+    name: string;
+    href?: string;
+  }[];
+  button?: {
+    text: string;
+    href: string;
+  };
 }
 
 export default function CommonBanner({
-  label = "GET IN TOUCH",
-  title = " Let's Build ",
-  highlight = "",
-  description = "",
-  breakIndex,
-  breadcrumb = "Contact",
+  label,
+  title,
+  description,
+  breadcrumbs,
+  button,
 }: CommonBannerProps) {
-  const {isDesktop}=useResponsive()
   return (
-<section className="relative isolate overflow-hidden bg-black text-white">
+    <section className="relative overflow-hidden bg-[#063F3D]">
+      <MaxWidth className="relative  py-20 lg:py-24">
+        <div className="max-w-4xl">
+          {/* Label */}
+          {label && (
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#39B972]">
+              {label}
+            </p>
+          )}
 
-  <MaxWidth className=" py-12 max-w-310 sm:px-8 lg:px-12 lg:py-24">
-      <Heading
-        label={label}
-        isAccentLine={true}
-        breakIndex={isDesktop ? breakIndex : undefined}
-        labelColor="rgba(255,255,255,0.7)"
-        accentColor="#ffffff"
-        textColor="rgba(255,255,255,0.6)"
-        isCenter={true}
-        isVisible={true}
-        as="h1"
-        headingParts={[
-          {
-            text: title,
-            color: "#FFFFFF",
-          },
-          {
-            text: highlight,
-            gradient:
-              "linear-gradient(90deg, #c084fc 0%, #a78bfa 50%, #3b82f6 100%)",
-          },
-        ]}
-        description={description}
-      />
-  </MaxWidth>
-</section>
+          {/* Title */}
+          <h1 className="mt-4 leading-tight tracking-tight text-white ">
+            {title}
+          </h1>
+
+          {/* Description */}
+          {description && (
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 md:text-lg">
+              {description}
+            </p>
+          )}
+
+          {/* Breadcrumbs */}
+          {breadcrumbs && breadcrumbs.length > 0 && (
+            <nav
+              aria-label="Breadcrumb"
+              className="mt-8 flex flex-wrap items-center gap-2 text-sm"
+            >
+              {breadcrumbs.map((item, index) => (
+                <div key={`${item.name}-${index}`} className="flex items-center gap-2">
+                  {index > 0 && (
+                    <span className="text-white/30">/</span>
+                  )}
+
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="text-white/50 transition-colors hover:text-[#39B972]"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <span className="text-white">
+                      {item.name}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </nav>
+          )}
+
+          {/* Button */}
+          {button && (
+            <Link
+              href={button.href}
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#39B972] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#2fa866]"
+            >
+              {button.text}
+
+              <ArrowRight
+                size={17}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </Link>
+          )}
+        </div>
+      </MaxWidth>
+    </section>
   );
 }
