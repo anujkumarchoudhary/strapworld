@@ -2,9 +2,9 @@
   "name": "strapworld",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "24.x"
-  },
+"engines": {
+  "node": "22.x"
+},
   "scripts": {
     "dev": "tsx backend/server.ts",
     "dev:backend": "ts-node-dev --respawn --transpile-only --project tsconfig.server.json server.ts",
