@@ -1,4 +1,5 @@
 import "dotenv/config";
+console.log("🔥 CUSTOM BACKEND SERVER.TS IS RUNNING");
 
 import express from "express";
 import helmet from "helmet";
