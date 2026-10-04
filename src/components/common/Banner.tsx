@@ -100,8 +100,8 @@ const Banner = ({ data }: any) => {
             </div>
           </div>
 
-          <div className="my-auto flex aspect-16/10 w-full justify-end">
-            {data?.image && <div className="relative h-full w-full">
+          {data?.image && <div className="my-auto flex aspect-16/10 w-full justify-end">
+            <div className="relative h-full w-full">
               <Image
                 src={data?.image}
                 fill
@@ -124,9 +124,8 @@ const Banner = ({ data }: any) => {
                   })}
                 </div>
               </div>
-            </div>}
-
-          </div>
+            </div>
+          </div>}
         </div>
       </MaxWidth>
 

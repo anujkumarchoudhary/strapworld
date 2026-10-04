@@ -46,7 +46,6 @@ async function getService(
         cache: "no-store",
       }
     );
-    console.log(response, "response121")
     if (!response.ok) {
       return null;
     }

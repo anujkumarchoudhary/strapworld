@@ -109,7 +109,7 @@ export const staticData = {
           "title": "PET Strap",
           "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
           "button": "View PET Strap",
-          "href": "/products/pet-strap",
+          "href": "/pet-strap",
           "image": "/images/service/service_img_2.png",
           "labels": ["High strength", "Load securing"]
         },
@@ -117,7 +117,7 @@ export const staticData = {
           "title": "Plastic Box Strapping Roll",
           "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
           "button": "View Strapping Roll",
-          "href": "/products/plastic-box-strapping-roll",
+          "href": "/plastic-box-strapping-roll",
           "image": "/images/service/service_img_3.png",
           "labels": ["Box packaging", "Easy handling"]
         },
@@ -125,7 +125,7 @@ export const staticData = {
           "title": "PP Box Color Strap",
           "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
           "button": "View PP Color Strap",
-          "href": "/products/pp-box-color-strap",
+          "href": "/pp-box-color-strap",
           "image": "/images/service/service_img_4.png",
           "labels": ["Color options", "Box packaging"]
         },
@@ -133,7 +133,7 @@ export const staticData = {
           "title": "Polyester PET Strap",
           "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
           "button": "View Polyester PET Strap",
-          "href": "/products/polyester-pet-strap",
+          "href": "/polyester-pet-strap",
           "image": "/images/service/service_img_5.png",
           "labels": ["Durable", "Reliable"]
         },
@@ -141,7 +141,7 @@ export const staticData = {
           "title": "Cotton Bale Strap",
           "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
           "button": "View Cotton Bale Strap",
-          "href": "/products/cotton-bale-strap",
+          "href": "/cotton-bale-strap",
           "image": "/images/service/service_img_6.png",
           "labels": ["Bale securing", "Heavy duty"]
         }
