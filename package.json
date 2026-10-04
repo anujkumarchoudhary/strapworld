@@ -5,12 +5,12 @@
   "engines": {
     "node": "24.x"
   },
-"scripts": {
-  "dev": "tsx backend/server.ts",
-  "dev:backend": "ts-node-dev --respawn --transpile-only --project tsconfig.server.json server.ts",
-  "build": "next build --webpack",
-  "start": "next start"
-},
+  "scripts": {
+    "dev": "tsx backend/server.ts",
+    "dev:backend": "ts-node-dev --respawn --transpile-only --project tsconfig.server.json server.ts",
+    "build": "next build --webpack",
+    "start": "tsx backend/server.ts"
+  },
   "dependencies": {
     "@next/env": "^16.3.6",
     "cors": "^2.8.6",
