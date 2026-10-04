@@ -7,6 +7,8 @@ import ProductOverview from "@/src/components/ProductOverview";
 import TechnicalOverview from "@/src/components/TechnicalOverview";
 import RelatedProducts from "@/src/components/RelatedProducts";
 import { BaseUrl } from "../../baseurl";
+import sData from './StaticData.json'
+import { data } from "framer-motion/client";
 
 interface PageProps {
   params: Promise<{
@@ -41,7 +43,7 @@ async function getService(
 ): Promise<ServiceData | null> {
   try {
     const response = await fetch(
-      `${BaseUrl}services/${slug}`,
+      `${BaseUrl}products/${slug}`,
       {
         cache: "no-store",
       }
@@ -148,6 +150,7 @@ export async function generateMetadata({
 
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
+  const {finalCTA} =sData|| {}
 
   const data = await getService(slug);
 
@@ -168,17 +171,15 @@ const Page = async ({ params }: PageProps) => {
   }
 
   const {
-    banner,
     productOverview,
     technicalOverview,
     relatedProducts,
-    faqData,
-    finalCTA,
+    faqData
   } = data;
 
   return (
     <main>
-      {banner && <Banner data={banner} />}
+      {/* {banner && <Banner data={banner} />} */}
 
       {productOverview && (
         <ProductOverview data={productOverview} />
@@ -194,7 +195,7 @@ const Page = async ({ params }: PageProps) => {
 
       {faqData && <FAQ data={faqData} />}
 
-      {finalCTA && <FinalCTA data={finalCTA} />}
+     <FinalCTA data={finalCTA} />
     </main>
   );
 };

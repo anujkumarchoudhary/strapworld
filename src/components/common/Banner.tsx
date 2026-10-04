@@ -23,7 +23,7 @@ const Banner = ({ data }: any) => {
         ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "manufacturing" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "home" && "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  
-        h-[74vh] md:h-[60vh] lg:h-[78vh]
+        
         w-full overflow-hidden `}
     >
       {/* Optimized Background Image */}

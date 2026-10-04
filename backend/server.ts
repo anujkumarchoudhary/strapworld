@@ -5,6 +5,7 @@ import helmet from "helmet";
 import next from "next";
 
 import enquiryRoutes from "./routes/enquiry.routes";
+import productRoutes from './routes/product.routes';
 import serviceRoutes from "./routes/service.routes";
 import { connectDB } from "./config/database";
 
@@ -71,6 +72,7 @@ async function startServer() {
     });
 
     app.use("/api/enquiries", enquiryRoutes);
+app.use("/api/products", productRoutes);
 
     app.use("/api/services", serviceRoutes);
 

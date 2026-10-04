@@ -1,47 +1,4 @@
 {
-  "banner": {
-    "id": "manufacturing",
-    "label": "Industrial strapping",
-    "headingParts": [
-      {
-        "text": "PET Strap",
-        "color": "#FFFFFF",
-        "weight": "400"
-      }
-    ],
-    "subHeading": "High-Strength PET Strapping for Industrial Packaging & Load Securing",
-    "description": "PET Strap is a high-strength polyester strapping solution used for pallet stabilization, product bundling, load securing, and industrial packaging.",
-    "button": "Request a Quote",
-    "specifications": [
-      {
-        "value": "6",
-        "name": "High Tensile Strength"
-      },
-      {
-        "value": "3-stage",
-        "name": "Multiple Sizes Available"
-      },
-      {
-        "value": "B2B",
-        "name": "Industrial Grade"
-      },
-      {
-        "value": "Global",
-        "name": "Bulk & Export Supply"
-      }
-    ],
-    "floatingLabel": "PET / Polyester",
-    "floatingCard": {
-      "title": "Key specifications",
-      "list": [
-        { "name": "Material", "desc": "PET / Polyester" },
-        { "name": "Surface", "desc": "Smooth / Embossed" },
-        { "name": "Color", "desc": "Green / Black / Custom" }
-      ]
-    },
-    "image": "/images/products/pp_strap/pet_strap.png",
-    "bgColor": "#063F3D"
-  },
   "productOverview": {
     "label": "Product overview",
     "aspectRatio": "16/10",
@@ -371,9 +328,8 @@
       }
     ]
   },
-
-  "finalCTA": {
-    "isVariant": "01",
+    "finalCTA": {
+    "isVariant": "02",
     "label": "Start a conversation",
     "headingParts": [
       {

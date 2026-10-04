@@ -18,7 +18,7 @@ const Header = () => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
-    <div className="bg-white w-full sticky top-0 z-50">
+    <div className="bg-white w-full sticky top-0 z-50 shadow-2xl">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
         <MaxWidth className="flex flex-col gap-2 lg:py-1 sm:flex-row sm:items-center sm:justify-between">
           <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">

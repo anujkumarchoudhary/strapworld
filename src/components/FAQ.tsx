@@ -55,8 +55,10 @@ const FAQ = ({ data }: any) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const [top, bottom]=data?.padding?? ["4rem", "4rem"]
+
   return (
-    <section className="bg-white pb-12 lg:pb-12">
+    <section style={{paddingTop:top, paddingBottom:bottom}} className="bg-white">
       <MaxWidth>
         {/* Section Heading */}
         <div className="mx-auto mb-14 w-[90%] lg:w-[50%] text-center">

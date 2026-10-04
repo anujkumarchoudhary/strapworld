@@ -61,7 +61,7 @@ const RelatedProducts = ({ data }: any) => {
 
         {/* ================= SERVICES ================= */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {list.map((product: any, index: number) => {
+          {list?.map((product: any, index: number) => {
             const isCardVisible = visibleItems.includes(index);
 
             return (

@@ -61,7 +61,7 @@ const ProductOverview = ({ data }: any) => {
             my-auto
           "
                                             >
-                                                {service.name}
+                                                {service.text}
                                             </p>
                                         </div>
                                     </div>
