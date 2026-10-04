@@ -3,12 +3,12 @@
   "name": "strapworld",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build --webpack",
-    "start": "tsx backend/server.ts",
-    "lint": "eslint"
-  },
+"scripts": {
+  "dev": "tsx server.ts",
+  "build": "next build --webpack",
+  "start": "tsx server.ts",
+  "lint": "eslint"
+},
   "dependencies": {
     "@next/env": "^16.3.8",
     "@tailwindcss/postcss": "^4.0.0",
