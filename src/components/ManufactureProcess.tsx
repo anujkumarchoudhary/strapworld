@@ -24,7 +24,6 @@ const ManufactureProcess = ({ data }: any) => {
     const [open, setOpen] = useState(false);
     const { headingParts, label, list, labels, description } = data || {};
     const { isDesktop } = useResponsive()
-    console.log(data?.floatingCard?.label, "data121")
     return (
         <div 
         style={{background: data?.bgColor ??"#FCFBF7"}}

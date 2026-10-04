@@ -1,6 +1,5 @@
 import "dotenv/config";
 
-import { createServer } from "http";
 import express from "express";
 import helmet from "helmet";
 import next from "next";
@@ -22,34 +21,41 @@ const port = Number(process.env.PORT) || 8000;
 const nextApp = next({
   dev,
   hostname,
-  port,
+  // Do NOT pass port here.
+  // Express owns the HTTP server.
 });
 
 const handle = nextApp.getRequestHandler();
 
 // ========================================
-// START SERVER
+// EXPRESS
+// ========================================
+
+const app = express();
+
+// ========================================
+// START
 // ========================================
 
 async function startServer() {
   try {
+    console.log("🚀 Starting Strap World server...");
+
     // ------------------------------------
     // DATABASE
     // ------------------------------------
 
     await connectDB();
 
+    console.log("✅ MongoDB connected");
+
     // ------------------------------------
-    // PREPARE NEXT.JS
+    // NEXT.JS
     // ------------------------------------
 
     await nextApp.prepare();
 
-    // ------------------------------------
-    // EXPRESS
-    // ------------------------------------
-
-    const app = express();
+    console.log("✅ Next.js prepared");
 
     // ====================================
     // SECURITY
@@ -74,7 +80,7 @@ async function startServer() {
     );
 
     // ====================================
-    // API HEALTH
+    // HEALTH CHECK
     // ====================================
 
     app.get("/api/health", (_req, res) => {
@@ -115,10 +121,10 @@ async function startServer() {
     });
 
     // ====================================
-    // START HTTP SERVER
+    // HTTP SERVER
     // ====================================
 
-    createServer(app).listen(port, hostname, () => {
+    const server = app.listen(port, hostname, () => {
       console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 Strap World Server Started
@@ -154,6 +160,46 @@ http://localhost:${port}/api/enquiries
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       `);
     });
+
+    // ====================================
+    // ERROR HANDLING
+    // ====================================
+
+    server.on("error", (error) => {
+      console.error("❌ HTTP server error:", error);
+    });
+
+    // ====================================
+    // GRACEFUL SHUTDOWN
+    // ====================================
+
+    const shutdown = async (signal: string) => {
+      console.log(`\n⚠️ ${signal} received. Shutting down...`);
+
+      server.close(async (error) => {
+        if (error) {
+          console.error("❌ Error while closing server:", error);
+          process.exit(1);
+        }
+
+        console.log("✅ HTTP server closed");
+
+        try {
+          await nextApp.close();
+
+          console.log("✅ Next.js closed");
+          console.log("👋 Strap World server stopped");
+
+          process.exit(0);
+        } catch (error) {
+          console.error("❌ Error closing Next.js:", error);
+          process.exit(1);
+        }
+      });
+    };
+
+    process.once("SIGTERM", () => shutdown("SIGTERM"));
+    process.once("SIGINT", () => shutdown("SIGINT"));
   } catch (error) {
     console.error("❌ Failed to start server:", error);
 
