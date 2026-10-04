@@ -1,14 +1,17 @@
+
 {
   "name": "strapworld",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsx server.ts",
+    "dev": "tsx backend/server.ts",
     "build": "next build --webpack",
-    "start": "tsx server.ts"
+    "start": "tsx backend/server.ts",
+    "lint": "eslint"
   },
   "dependencies": {
     "@next/env": "^16.3.8",
+    "@tailwindcss/postcss": "^4.0.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.4",
     "express": "^5.2.1",
@@ -24,7 +27,6 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/cors": "^2.8.19",
     "@types/express": "^5",
     "@types/node": "^20",
@@ -33,7 +35,7 @@
     "concurrently": "^10.0.5",
     "eslint": "^9",
     "eslint-config-next": "^16.3.8",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.0.0",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4",
     "typescript": "^5"
