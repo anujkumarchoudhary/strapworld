@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsx backend/server.ts",
+    "dev": "tsx server.ts",
     "build": "next build",
-    "start": "NODE_ENV=production tsx backend/server.ts",
-    "lint": "eslint"
+    "start": "tsx server.ts"
   },
   "dependencies": {
     "@next/env": "^16.3.6",

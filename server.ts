@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
-import { connectDB } from "./config/database";
-import enquiryRoutes from "./routes/enquiry.routes";
+import { connectDB } from "./backend/config/database";
+import enquiryRoutes from "./backend/routes/enquiry.routes";
 
 dotenv.config();
 
