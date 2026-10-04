@@ -1,17 +1,57 @@
-import "dotenv/config";
-
+import dotenv from "dotenv";
 import express from "express";
+import helmet from "helmet";
+import { connectDB } from "./config/database";
+import enquiryRoutes from "./routes/enquiry.routes";
+
+dotenv.config();
 
 const app = express();
 
-const hostname = process.env.HOST || "0.0.0.0";
-const port = Number(process.env.PORT) || 8000;
+const PORT = Number(process.env.PORT) || 3000;
+const HOST = "0.0.0.0";
 
-app.get("/", (_req, res) => {
-  res.send("Strap World server is running");
+// Security
+app.use(helmet());
+
+// Body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// API
+app.get("/api/health", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "SoftQivo backend API is running",
+  });
 });
 
-app.listen(port, hostname, () => {
-  console.log("🚀 Strap World server is running");
-  console.log(`📡 Port: ${port}`);
-});
+app.use("/api/enquiries", enquiryRoutes);
+
+// Start server
+async function startServer() {
+  try {
+    await connectDB();
+
+    app.listen(PORT, HOST, () => {
+      console.log(`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 SoftQivo Express Server Started
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+API:
+http://localhost:${PORT}/api
+
+Health:
+http://localhost:${PORT}/api/health
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `);
+    });
+  } catch (error) {
+    console.error("❌ Failed to start server:", error);
+    process.exit(1);
+  }
+}
+
+startServer();
