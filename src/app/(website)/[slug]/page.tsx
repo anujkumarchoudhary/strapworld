@@ -6,7 +6,6 @@ import FAQ from "@/src/components/FAQ";
 import ProductOverview from "@/src/components/ProductOverview";
 import TechnicalOverview from "@/src/components/TechnicalOverview";
 import RelatedProducts from "@/src/components/RelatedProducts";
-import { BaseUrl } from "../../baseurl";
 import sData from './StaticData.json'
 import { data } from "framer-motion/client";
 
@@ -43,7 +42,7 @@ async function getService(
 ): Promise<ServiceData | null> {
   try {
     const response = await fetch(
-      `${BaseUrl}products/${slug}`,
+      `https://mintcream-quail-120088.hostingersite.com/api/products/${slug}`,
       {
         cache: "no-store",
       }

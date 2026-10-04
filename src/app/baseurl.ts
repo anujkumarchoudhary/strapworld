@@ -1,8 +1,2 @@
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8000/api/";
-
-export const BaseUrl = baseUrl.endsWith("/")
-  ? baseUrl
-  : `${baseUrl}/`;
+const BaseUrl ="https://mintcream-quail-120088.hostingersite.com/api"
