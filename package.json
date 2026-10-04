@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsx backend/server.ts",
+    "dev": "next dev",
     "build": "next build --webpack",
     "start": "tsx backend/server.ts",
     "lint": "eslint"
