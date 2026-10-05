@@ -26,7 +26,7 @@ const Banner = ({ data }: any) => {
         ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "manufacturing" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "home" && "h-[85vh] md:h-[60vh] lg:h-[88vh]"}  
+        ${data?.id === "home" && "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  
         
         w-full overflow-hidden `}
     >
@@ -80,7 +80,7 @@ const Banner = ({ data }: any) => {
                 description={data?.description}
               />
             </div>
-            <div className="flex gap-4 flex-row sm:gap-8">
+            <div className="hidden lg:flex gap-4 flex-row sm:gap-8">
               <div className="flex items-center gap-2.5  sm:gap-4">
                 <SlCalender
                   size={40}

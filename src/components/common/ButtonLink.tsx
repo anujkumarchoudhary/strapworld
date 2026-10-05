@@ -4,7 +4,7 @@ import { MdArrowOutward, MdOutlineArrowDownward, MdOutlineArrowForward } from "r
 type ButtonLinkProps = {
   saveText?: string;
   saveBgColor?: string,
-  saveTextColor?: string,
+  btnColor?: string,
   cancelBgColor?: string,
   cancelTextColor?: string,
   cancelText?: string;
@@ -16,10 +16,10 @@ type ButtonLinkProps = {
 };
 
 const ButtonLink = ({
-  saveBgColor = "#2E9B4F",
-  saveTextColor = "#000000",
+  saveBgColor ,
+  btnColor,
   cancelBgColor = "transparent",
-  cancelTextColor = "#2E9B4F",
+  cancelTextColor ,
   href,
   saveText,
   cancelText,
@@ -40,7 +40,7 @@ const ButtonLink = ({
         href={href ? href : "#"}
         style={{
           backgroundColor: saveBgColor,
-          color: saveTextColor,
+          color: "#000000",
         }}
         className="
           group
@@ -57,9 +57,9 @@ const ButtonLink = ({
           hover:shadow-purple-500/30
         "
       >
-        <span className="text-[#ffffff]">{saveText}</span>
+        <span style={{color:btnColor}} className="">{saveText}</span>
 
-        <MdArrowOutward size={18} className="text-[#ffffff]" />
+        <MdArrowOutward style={{color:btnColor}} size={18} />
       </Link>}
 
 

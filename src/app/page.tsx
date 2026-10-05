@@ -60,7 +60,7 @@ const page = async () => {
   const productsData = {
     headingParts,
     label,
-    list: products.slice(2, 8),
+    list: products.slice(2, 7),
     description,
   };
 
@@ -70,7 +70,7 @@ const page = async () => {
 
       <KayStatas data={keyStats} />
 
-      <OurProducts data={productsData} />
+      <OurProducts data={ourProducts} />
 
       <Applications data={applications} />
 
