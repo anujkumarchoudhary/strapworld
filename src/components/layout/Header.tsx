@@ -26,7 +26,7 @@ const Header = () => {
           {/* <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
              | 
           </p> */}
-             <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+             <div className="hidden lg:flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
             <a
               className="flex items-center gap-2"
             >
@@ -61,7 +61,7 @@ const Header = () => {
                 className="shrink-0 text-white animate-contact-attention"
               />
 
-              <p className="my-auto text-[clamp(11px,1.2vw,16px)] text-[#DCE5E8]">
+              <p className="my-auto text-[clamp(14px,1.2vw,16px)] text-[#DCE5E8]">
                 +91 997 873 5708
               </p>
             </a>
@@ -75,7 +75,7 @@ const Header = () => {
                 style={{ animationDelay: "10s" }}
               />
 
-              <p className="my-auto text-[clamp(11px,1.2vw,16px)] text-[#DCE5E8]">
+              <p className="my-auto text-[clamp(14px,1.2vw,16px)] text-[#DCE5E8]">
                 sales@strapworld.com
               </p>
             </a>
