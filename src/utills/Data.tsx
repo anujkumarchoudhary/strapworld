@@ -160,22 +160,7 @@ export const staticData = {
           "href": "/plastic-box-strapping-roll",
           "image": "/images/service/service_img_3.png",
           "labels": ["Box packaging", "Easy handling"]
-        },
-        {
-          "title": "PP Box Color Strap",
-          "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
-          "button": "View PP Color Strap",
-          "href": "/pp-box-color-strap",
-          "image": "/images/service/service_img_4.png",
-          "labels": ["Color options", "Box packaging"]
-        },     {
-          "title": "PP Box Color Strap",
-          "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
-          "button": "View PP Color Strap",
-          "href": "/pp-box-color-strap",
-          "image": "/images/service/service_img_4.png",
-          "labels": ["Color options", "Box packaging"]
-        },
+        }
       ]
       ,
     },

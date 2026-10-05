@@ -28,12 +28,12 @@ const OurProducts = ({ data }: any) => {
     delay: 150,
     threshold: 0.15,
   });
-const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
+  const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
   return (
     <div
       style={{
-        paddingTop:top,
-        paddingBottom:bottom,
+        paddingTop: top,
+        paddingBottom: bottom,
         background: data?.bgColor || "#063F3D",
       }}
       id="our-products" ref={productsRef} className=" py-10 sm:py-12 lg:py-16">
@@ -62,7 +62,7 @@ const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
         </div>
 
         {/* ================= SERVICES ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {list.map((product: any, index: number) => {
             const isCardVisible = visibleItems.includes(index);
 
@@ -85,7 +85,7 @@ const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
 
               >
                 {/* image */}
-                <div className="relative w-full aspect-16/14">
+                <div className="relative w-full aspect-16/12">
                   <Image
                     src={product?.image}
                     fill
@@ -98,36 +98,33 @@ const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
                 </div>
 
                 {/* Content */}
-                <div className="space-y-5 p-8">
-                  <h3 className="text-center text-[20px] font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
+                <div className="space-y-3 p-6">
+                  <div className="flex justify-between"><h3 className="text-center text-[20px] font-semibold tracking-[-0.01em] text-[#16161D] lg:text-left">
                     {product?.title}
 
                   </h3>
+                    <Link
+                      href={product?.slug ?? "#"}
+                      className="mt-auto flex h-fit cursor-pointer items-center justify-end gap-2 shrink-0"
+                    >
+                      <MdArrowBack
+                        size={40}
+                        className="my-auto rotate-180 text-[#39B972] bg-[w#063F3D] p-2 transition-all duration-300 rounded-full group-hover:translate-x-1"
+                      />
+                    </Link></div>
                   <p className="text-[#000000]/80 text-[16px] text-left">
                     {product.description?.slice(0, 50)}
                   </p>
 
                   {/* View */}
-                  <Link
-                    href={product?.slug ?? "#"}
-                    className="mt-auto flex h-fit cursor-pointer items-center justify-end gap-2 shrink-0"
-                  >
-                    {/* <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
-                        {product?.button}
-                      </p> */}
 
-                    <MdArrowBack
-                      size={40}
-                      className="my-auto rotate-180 text-[#39B972] bg-[#39B972]/20 p-2 transition-all duration-300 rounded-full group-hover:translate-x-1"
-                    />
-                  </Link>
                 </div>
               </div>
             );
           })}
         </div>
         <div className="flex lg:hidden gap-2 pt-10  justify-center h-fit mt-auto">
-          <ButtonLink saveText={data?.button ?? "View all products"} saveBgColor="#063F3D" href={data?.href ?? "/content"} />
+            <ButtonLink saveText={data?.button ?? "View all products"} btnColor="#063F3D" href={data?.href ?? "/content"} />
         </div>
       </MaxWidth>
     </div>
