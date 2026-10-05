@@ -3,7 +3,7 @@ import { MdArrowOutward, MdOutlineArrowDownward, MdOutlineArrowForward } from "r
 
 type ButtonLinkProps = {
   saveText?: string;
-  saveBgColor?: string,
+  btnBgColor?: string,
   btnColor?: string,
   cancelBgColor?: string,
   cancelTextColor?: string,
@@ -16,7 +16,7 @@ type ButtonLinkProps = {
 };
 
 const ButtonLink = ({
-  saveBgColor ,
+  btnBgColor ,
   btnColor,
   cancelBgColor = "transparent",
   cancelTextColor ,
@@ -39,8 +39,7 @@ const ButtonLink = ({
       {saveText && <Link
         href={href ? href : "#"}
         style={{
-          backgroundColor: saveBgColor,
-          color: "#000000",
+          backgroundColor: btnBgColor,
         }}
         className="
           group

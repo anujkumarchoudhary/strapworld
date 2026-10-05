@@ -35,7 +35,7 @@ const ManufactureProcess = ({ data }: any) => {
                         style={{ aspectRatio: data?.aspectRatio }}
                         className="relative w-full  overflow-hidden rounded-[30px]">
                         <Image
-                            src={data?.image ?? "/images/home/process.png"}
+                            src={data?.image ?? "/images/home/process_01.png"}
                             fill
                             alt="SolutionsByApplication"
                             className="object-cover"
@@ -153,7 +153,7 @@ const ManufactureProcess = ({ data }: any) => {
                             })}
                         </div>
                         <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
-                            <ButtonLink saveText={data?.button}  btnColor="#ffffff" href={"/manufacturing"} />
+                            <ButtonLink saveText={data?.button} btnBgColor={"#063F3D"}  btnColor={"#ffffff"} href={"/manufacturing"} />
                         </div>
                     </div>
                 </div>

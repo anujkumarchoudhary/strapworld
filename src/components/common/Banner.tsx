@@ -84,7 +84,7 @@ const Banner = ({ data }: any) => {
               <div className="flex items-center gap-2.5  sm:gap-4">
                 <SlCalender
                   size={40}
-                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px] sm:h-[50px] sm:w-[50px]"
+                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px] sm:h-[45px] sm:w-[45px]"
                 />
 
                 <div>
@@ -101,7 +101,7 @@ const Banner = ({ data }: any) => {
               <div className="flex items-center gap-2.5  sm:gap-4">
                 <SlGlobe
                   size={40}
-                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px] sm:h-[50px] sm:h-[50px] sm:w-[50px] sm:h-[50px] sm:w-[50px]"
+                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px]  sm:w-[50px] sm:h-[45px] sm:w-[45px]"
                 />
 
                 <div>
@@ -110,7 +110,7 @@ const Banner = ({ data }: any) => {
                   </h3>
 
                   <p className="text-[13px] text-white/50 sm:text-[14px]">
-                    Export
+                    Exporting Worlwide
                   </p>
                 </div>
               </div>

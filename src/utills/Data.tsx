@@ -103,7 +103,7 @@ export const staticData = {
           "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
           "button": "View PP Strap",
           "href": "/pp-strap",
-          "image": "/images/service/service_img_1.png",
+          "image": "/images/products/pp_strap/pet_strap_01.png",
           "labels": ["Lightweight", "Versatile"]
         },
         {
@@ -111,14 +111,14 @@ export const staticData = {
           "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
           "button": "View PET Strap",
           "href": "/pet-strap",
-          "image": "/images/service/service_img_2.png",
+          "image": "/images/products/pp_strap/pet-strap_02.jpg",
           "labels": ["High strength", "Load securing"]
         },
         {
           "title": "Plastic Box Strapping",
           "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
           "button": "View Strapping Roll",
-          "href": "/plastic-box-strapping-roll",
+          "href": "/images/products/pp_strap/pet-strap_03.jpg",
           "image": "/images/service/service_img_3.png",
           "labels": ["Box packaging", "Easy handling"]
         },
@@ -127,7 +127,7 @@ export const staticData = {
           "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
           "button": "View PP Color Strap",
           "href": "/pp-box-color-strap",
-          "image": "/images/service/service_img_4.png",
+          "image": "/images/products/pp_strap/pet-strap_04.jpeg",
           "labels": ["Color options", "Box packaging"]
         },
         {
@@ -135,14 +135,14 @@ export const staticData = {
           "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
           "button": "View Polyester PET Strap",
           "href": "/polyester-pet-strap",
-          "image": "/images/service/service_img_5.png",
+          "image": "/images/products/pp_strap/pet_strap_01.png",
           "labels": ["Durable", "Reliable"]
         },     {
           "title": "PP Strap",
           "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
           "button": "View PP Strap",
           "href": "/pp-strap",
-          "image": "/images/service/service_img_1.png",
+          "image": "/images/products/pp_strap/pet_strap_01.png",
           "labels": ["Lightweight", "Versatile"]
         },
         {
@@ -150,14 +150,14 @@ export const staticData = {
           "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
           "button": "View PET Strap",
           "href": "/pet-strap",
-          "image": "/images/service/service_img_2.png",
+          "image": "/images/products/pp_strap/pet_strap_01.png",
           "labels": ["High strength", "Load securing"]
         },
         {
           "title": "Plastic Box Strapping",
           "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
           "button": "View Strapping Roll",
-          "href": "/plastic-box-strapping-roll",
+          "href": "/images/products/pp_strap/pet_strap_01.png",
           "image": "/images/service/service_img_3.png",
           "labels": ["Box packaging", "Easy handling"]
         }
@@ -230,7 +230,7 @@ export const staticData = {
       ],
 
       description:
-        "Our PET strapping solutions can be used across multiple industries where reliable product bundling, pallet stabilization and load securing are required.",
+        "Our PET strapping solutions can be used across multiple industries where reliable product bundling,",
       list: [
         {
           title: "Steel & Metal",

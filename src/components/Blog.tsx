@@ -99,7 +99,7 @@ const Blog = ({ data }: any) => {
               `}
               >
                 {/* Image */}
-                <div className="relative aspect-[16/8] overflow-hidden">
+                <div className="relative aspect-[16/12] overflow-hidden">
                   {item.img && (
                     <Image
                       src={item.img}

@@ -85,7 +85,7 @@ const OurProducts = ({ data }: any) => {
 
               >
                 {/* image */}
-                <div className="relative w-full aspect-16/12">
+                <div className="relative w-full aspect-16/16">
                   <Image
                     src={product?.image}
                     fill

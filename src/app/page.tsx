@@ -11,6 +11,12 @@ import Applications from "../components/Applications";
 import IndustriesWeServe from "../components/IndustriesWeServe";
 import ManufactureProcess from "../components/ManufactureProcess";
 import { BaseUrl } from "./baseurl";
+import GlobalExport from "../components/GlobalExport";
+import AboutSection from "../components/About";
+import About from "../components/About";
+import WhyChooseUs from "../components/WhyChooseUs";
+import OurQuality from "../components/OurQuality";
+import Gallery from "../components/Gallery";
 
 export const dynamic = "force-dynamic";
 
@@ -67,24 +73,16 @@ const page = async () => {
   return (
     <div>
       <Banner data={banner} />
-
       <KayStatas data={keyStats} />
-
+      <OurQuality/>
       <OurProducts data={ourProducts} />
-
-      <Applications data={applications} />
+      <WhyChooseUs/>
       <ManufactureProcess data={manufactureProcess} />
-
-
+      <GlobalExport />
+       <Gallery/>
       <IndustriesWeServe data={industriesWeServe} />
-
-
-      <ExportAndGlobalReach data={exportAndGlobalReach} />
-
       <Blog data={blogs} />
-
       <FAQ />
-
       <FinalCTA data={finalCTA} />
     </div>
   );
