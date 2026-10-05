@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from "react";
 import Banner from "@/src/components/common/Banner";
 import OurProducts from "@/src/components/OurProducts";
