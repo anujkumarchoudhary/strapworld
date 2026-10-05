@@ -28,12 +28,11 @@ export const staticData = {
         {
           text: "High-Strength PET Strapping Solutions for Industrial Packaging",
           color: "#FFFFFF",
-          weight: "400",
+          weight: "600",
         },
       ],
 
-      description:
-        "Strap World Pvt. Ltd. is an India-based manufacturer of PET and polyester strapping with 20+ years of manufacturing experience. We supply strapping for textile, automotive, packaging and industrial applications across India and export to markets including the UAE, Bangladesh, USA, Australia and other international destinations.",
+      description:"Strap World Pvt. Ltd. is an India-based manufacturer of high-quality PET and polyester strapping solutions. Established in 2018, we bring 9+ years of industry experience, serving packaging and industrial sectors across India and international markets.",
 
       button: "Request a Quote",
       button2: "Explore Products",

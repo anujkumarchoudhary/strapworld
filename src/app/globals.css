@@ -257,6 +257,9 @@
   .font-mona {
     font-family: var(--font-mona-sans), sans-serif;
   }
+  .font-montserrat {
+    font-family: var(--font-montserrat), sans-serif;
+  }
 }
 
 /* ================================
@@ -266,13 +269,13 @@
   body {
     background: var(--secondary-bg);
     color: var(--text-color);
-    font-family: var(--font-mona-sans), sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
   }
 
   h1 {
     font-size: var(--h1-size);
     line-height: var(--h1-leading);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--heading-color);
   }
 

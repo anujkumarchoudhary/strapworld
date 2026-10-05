@@ -57,7 +57,7 @@ const fontMap: Record<string, string> = {
 const headingDefaults = {
   h1: {
     fontSize: "var(--h1-size)",
-    fontWeight: 400,
+    fontWeight: 600,
     lineHeight: "var(--h1-leading)",
   },
 

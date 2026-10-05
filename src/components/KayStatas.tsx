@@ -32,12 +32,11 @@ const KeyStats = ({ data }: any) => {
 };
     
     return (
-        <div className="bg-[#F5F7F2] py-10 sm:py-12 lg:py-16">
+        <div className="bg-[#FFFFFF] py-10 sm:py-12 lg:py-16">
 
             <MaxWidth className=" ">
                 {/* ================= HEADER ================= */}
-                <div className="mb-12 grid lg:grid-cols-[50%_25%] justify-between gap-10">
-                    {/* Left */}
+                {/* <div className="mb-12 grid lg:grid-cols-[50%_25%] justify-between gap-10">
                     <Heading
                         as="h2"
                         isDart={true}
@@ -54,9 +53,9 @@ const KeyStats = ({ data }: any) => {
                     <div className="hidden md:flex gap-2 justify-center lg:justify-end h-fit mt-auto">
                         <ButtonLink saveText="About Our Company" href="/about" />
                     </div>
-                </div>
+                </div> */}
 
-                <div className="grid grid-cols-2 gap-y-6 rounded-[20px] border-[0.5px] border-gray-300 bg-white p-5 sm:p-7 lg:flex lg:gap-0 lg:p-10">
+                <div className="grid grid-cols-2 gap-y-6 rounded-[20px]  sm:px-7 lg:flex lg:gap-0 lg:px-10">
                     {data?.specifications?.map((item: any, idx: number) => (
                         <div
                             key={idx}

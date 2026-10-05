@@ -8,6 +8,10 @@ import SaveAndCancel from "./SaveAndCancel";
 import { useState } from "react";
 import GetEnquiryForm from "../form/GetEnquiryForm";
 import { useRouter } from "next/navigation";
+import { SlCalender, SlGlobe } from "react-icons/sl";
+import { IoGlobeOutline } from "react-icons/io5";
+import { IoIosGlobe } from "react-icons/io";
+import { CiGlobe } from "react-icons/ci";
 
 const Banner = ({ data }: any) => {
   const router = useRouter();
@@ -22,7 +26,7 @@ const Banner = ({ data }: any) => {
         ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "manufacturing" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "home" && "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  
+        ${data?.id === "home" && "h-[85vh] md:h-[60vh] lg:h-[88vh]"}  
         
         w-full overflow-hidden `}
     >
@@ -41,7 +45,7 @@ const Banner = ({ data }: any) => {
       {data?.bgImage && <div className="absolute inset-0 z-[1] bg-black/10" />}
 
       <MaxWidth className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[50%_45%]">
+        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[55%_45%]">
           <div className="my-auto space-y-8 lg:space-y-14">
 
             <div className="hidden lg:block">
@@ -75,6 +79,41 @@ const Banner = ({ data }: any) => {
                 subHeading={data?.subHeading}
                 description={data?.description}
               />
+            </div>
+            <div className="flex gap-4 flex-row sm:gap-8">
+              <div className="flex items-center gap-2.5  sm:gap-4">
+                <SlCalender
+                  size={40}
+                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px] sm:h-[50px] sm:w-[50px]"
+                />
+
+                <div>
+                  <h3 className="font-montserrat text-white text-[clamp(14px,1.5vw,22px)]">
+                    Since 2018
+                  </h3>
+
+                  <p className="text-[13px] text-white/50 sm:text-[14px]">
+                    9+ Years of Experience
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5  sm:gap-4">
+                <SlGlobe
+                  size={40}
+                  className="shrink-0 text-[#2E9B4F] h-[20px] w-[20px] sm:h-[50px] sm:h-[50px] sm:w-[50px] sm:h-[50px] sm:w-[50px]"
+                />
+
+                <div>
+                  <h3 className="font-montserrat text-white text-[clamp(14px,1.5vw,22px)]">
+                    Global Market
+                  </h3>
+
+                  <p className="text-[13px] text-white/50 sm:text-[14px]">
+                    Export
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Buttons */}
