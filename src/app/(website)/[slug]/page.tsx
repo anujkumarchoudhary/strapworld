@@ -1,14 +1,14 @@
 export const dynamic = "force-dynamic";
+
 import type { Metadata } from "next";
 
-import Banner from "@/src/components/common/Banner";
-import FinalCTA from "@/src/components/FinalCTA";
-import FAQ from "@/src/components/FAQ";
 import ProductOverview from "@/src/components/ProductOverview";
 import TechnicalOverview from "@/src/components/TechnicalOverview";
 import RelatedProducts from "@/src/components/RelatedProducts";
-import sData from './StaticData.json'
-import { data } from "framer-motion/client";
+import FinalCTA from "@/src/components/FinalCTA";
+import FAQ from "@/src/components/FAQ";
+
+import sData from "./StaticData.json";
 
 interface PageProps {
   params: Promise<{
@@ -32,10 +32,8 @@ interface ServiceData {
   status?: "active" | "inactive";
 }
 
-
-
 // --------------------------------------------------
-// GET SERVICE
+// GET PRODUCT
 // --------------------------------------------------
 
 async function getService(
@@ -48,7 +46,12 @@ async function getService(
         cache: "no-store",
       }
     );
+
     if (!response.ok) {
+      console.error(
+        `Failed to fetch product: ${response.status} ${response.statusText}`
+      );
+
       return null;
     }
 
@@ -56,13 +59,11 @@ async function getService(
 
     return result?.data || null;
   } catch (error) {
-    console.error("Get service error:", error);
+    console.error("Get product error:", error);
 
     return null;
   }
 }
-
-
 
 // --------------------------------------------------
 // DYNAMIC SEO META
@@ -73,30 +74,36 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const data = await getService(slug);
+  const product = await getService(slug);
 
-  if (!data) {
+  if (!product) {
     return {
-      title: "Service Not Found | Strap World",
+      title: "Product Not Found | Strap World",
       description:
-        "The requested product or service could not be found.",
+        "The requested product could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  const title = data.title || "Industrial Strapping Solutions";
+  const title =
+    product.title || "Industrial Strapping Solutions";
 
   const description =
-    data.description ||
-    data.banner?.description ||
+    product.description ||
+    product.banner?.description ||
     `Explore ${title} from Strap World Pvt. Ltd., a manufacturer and supplier of industrial strapping solutions.`;
 
   const image =
-    data.image ||
-    data.banner?.image ||
+    product.image ||
+    product.banner?.image ||
     "/images/og-image.jpg";
 
   return {
     title: `${title} | Strap World`,
+
     description,
 
     keywords: [
@@ -111,13 +118,13 @@ export async function generateMetadata({
     ],
 
     alternates: {
-      canonical: `/${data.slug}`,
+      canonical: `/${product.slug}`,
     },
 
     openGraph: {
       title: `${title} | Strap World`,
       description,
-      url: `/${data.slug}`,
+      url: `/${product.slug}`,
       siteName: "Strap World",
       type: "website",
       images: [
@@ -144,27 +151,27 @@ export async function generateMetadata({
   };
 }
 
-
 // --------------------------------------------------
 // PAGE
 // --------------------------------------------------
 
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
-  const {finalCTA} =sData|| {}
 
-  const data = await getService(slug);
+  const product = await getService(slug);
 
-  if (!data) {
+  const { finalCTA } = sData || {};
+
+  if (!product) {
     return (
       <main className="flex min-h-[60vh] items-center justify-center bg-white">
         <div className="text-center">
           <h1 className="text-3xl font-semibold text-[#101820]">
-            Service Not Found
+            Product Not Found
           </h1>
 
           <p className="mt-3 text-gray-500">
-            The requested product or service could not be found.
+            The requested product could not be found.
           </p>
         </div>
       </main>
@@ -175,13 +182,11 @@ const Page = async ({ params }: PageProps) => {
     productOverview,
     technicalOverview,
     relatedProducts,
-    faqData
-  } = data;
+    faqData,
+  } = product;
 
   return (
     <main>
-      {/* {banner && <Banner data={banner} />} */}
-
       {productOverview && (
         <ProductOverview data={productOverview} />
       )}
@@ -196,7 +201,7 @@ const Page = async ({ params }: PageProps) => {
 
       {faqData && <FAQ data={faqData} />}
 
-     <FinalCTA data={finalCTA} />
+      <FinalCTA data={finalCTA} />
     </main>
   );
 };

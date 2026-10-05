@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+
 import React from "react";
 import Banner from "@/src/components/common/Banner";
 import OurProducts from "@/src/components/OurProducts";
@@ -6,10 +7,10 @@ import FinalCTA from "@/src/components/FinalCTA";
 import FAQ from "@/src/components/FAQ";
 import IndustriesWeServe from "@/src/components/IndustriesWeServe";
 import ManufactureProcess from "@/src/components/ManufactureProcess";
-import data from './data.json'
 import ChooseRight from "@/src/components/ChooseRight";
 import TechnicalPerformance from "@/src/components/TechnicalPerformance";
 
+import data from "./data.json";
 import type { Metadata } from "next";
 import { BaseUrl } from "../../baseurl";
 
@@ -33,51 +34,72 @@ export const metadata: Metadata = {
   ],
 };
 
-async function getService(
-
-): Promise<any> {
+async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(
-      `${BaseUrl}products/`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${BaseUrl}products/`, {
+      cache: "no-store",
+    });
+
     if (!response.ok) {
-      return null;
+      console.error(
+        `Failed to fetch products: ${response.status} ${response.statusText}`
+      );
+      return [];
     }
 
     const result = await response.json();
 
-    return result?.data || null;
+    return Array.isArray(result?.data) ? result.data : [];
   } catch (error) {
     console.error("Get service error:", error);
-
-    return null;
+    return [];
   }
 }
-
-
 
 const page = async () => {
   const products = await getService();
 
-  const { banner, ourProducts, chooseRight, industriesWeServe, whyChoose, bulkAndCustomOrders, finalCTA } =
-    data;
+  const {
+    banner,
+    ourProducts,
+    chooseRight,
+    industriesWeServe,
+    whyChoose,
+    bulkAndCustomOrders,
+    finalCTA,
+  } = data;
 
-  const { headingParts, label, description, bgColor } = ourProducts
+  const {
+    headingParts,
+    label,
+    description,
+    bgColor,
+  } = ourProducts;
 
-  const productsData = { bgColor, headingParts, label, list: products?.slice(2, 8), description }
+  const productsData = {
+    bgColor,
+    headingParts,
+    label,
+    list: products.slice(2, 8),
+    description,
+  };
 
   return (
     <div>
       <Banner data={banner} />
+
       <OurProducts data={productsData} />
+
       <ChooseRight data={chooseRight} />
+
       <IndustriesWeServe data={industriesWeServe} />
+
       <TechnicalPerformance data={whyChoose} />
+
       <ManufactureProcess data={bulkAndCustomOrders} />
+
       <FAQ />
+
       <FinalCTA data={finalCTA} />
     </div>
   );

@@ -12,52 +12,78 @@ import IndustriesWeServe from "../components/IndustriesWeServe";
 import ManufactureProcess from "../components/ManufactureProcess";
 import { BaseUrl } from "./baseurl";
 
+export const dynamic = "force-dynamic";
 
-async function getService(
-
-): Promise<any> {
+async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(
-      `${BaseUrl}products`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(`${BaseUrl}products`, {
+      cache: "no-store",
+    });
+
     if (!response.ok) {
-      return null;
+      console.error(
+        `Failed to fetch products: ${response.status} ${response.statusText}`
+      );
+      return [];
     }
 
     const result = await response.json();
 
-    return result?.data || null;
+    return Array.isArray(result?.data) ? result.data : [];
   } catch (error) {
     console.error("Get service error:", error);
-
-    return null;
+    return [];
   }
 }
 
 const page = async () => {
   const products = await getService();
 
-  const { banner, keyStats, ourProducts, applications, industriesWeServe, manufactureProcess, blogs, exportAndGlobalReach, finalCTA } =
-    staticData?.home;
+  const {
+    banner,
+    keyStats,
+    ourProducts,
+    applications,
+    industriesWeServe,
+    manufactureProcess,
+    blogs,
+    exportAndGlobalReach,
+    finalCTA,
+  } = staticData?.home;
 
-  const { headingParts, label, description, } = ourProducts
+  const {
+    headingParts,
+    label,
+    description,
+  } = ourProducts;
 
-  const productsData = { headingParts, label, list: products.slice(2, 8), description }
+  const productsData = {
+    headingParts,
+    label,
+    list: products.slice(2, 8),
+    description,
+  };
 
   return (
     <div>
       <Banner data={banner} />
+
       <KayStatas data={keyStats} />
+
       <OurProducts data={productsData} />
+
       <Applications data={applications} />
+
       <IndustriesWeServe data={industriesWeServe} />
+
       <ManufactureProcess data={manufactureProcess} />
+
       <ExportAndGlobalReach data={exportAndGlobalReach} />
+
       <Blog data={blogs} />
+
       <FAQ />
+
       <FinalCTA data={finalCTA} />
     </div>
   );
