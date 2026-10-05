@@ -74,12 +74,13 @@ const page = async () => {
     <div>
       <Banner data={banner} />
       <KayStatas data={keyStats} />
-      <OurQuality/>
       <OurProducts data={ourProducts} />
-      <WhyChooseUs/>
+      <OurQuality />
+      <Applications />
+      <WhyChooseUs />
       <ManufactureProcess data={manufactureProcess} />
       <GlobalExport />
-       <Gallery/>
+      <Gallery />
       <IndustriesWeServe data={industriesWeServe} />
       <Blog data={blogs} />
       <FAQ />
