@@ -1,6 +1,7 @@
 
 "use client";
 
+import { BaseUrl } from "@/src/app/baseurl";
 import React, { useState } from "react";
 
 interface GetEnquiryFormProps {
@@ -139,7 +140,7 @@ const handleSubmit = async (
   try {
     setIsSubmitting(true);
 
-    const response = await fetch("/api/enquiries", {
+    const response = await fetch(`${BaseUrl}enquiries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -11,6 +11,8 @@ import Icon from "@/src/utills/iconMap ";
 import { MdClose, MdMarkEmailUnread, MdPhone, MdPhonelinkRing } from "react-icons/md";
 import SaveAndCancel from "../common/SaveAndCancel";
 import GetEnquiryForm from "../form/GetEnquiryForm";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { VscDebugStop } from "react-icons/vsc";
 
 const Header = () => {
   const router = useRouter();
@@ -21,9 +23,35 @@ const Header = () => {
     <div className="bg-white w-full sticky top-0 z-50 shadow-2xl">
       <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
         <MaxWidth className="flex flex-col gap-2 lg:py-1 sm:flex-row sm:items-center sm:justify-between">
-          <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
-            INDIA-BASED MANUFACTURER · EXPORT ENQUIRIES WELCOME
-          </p>
+          {/* <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
+             | 
+          </p> */}
+             <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+            <a
+              className="flex items-center gap-2"
+            >
+              <FaMapMarkerAlt
+                className="shrink-0 text-white"
+              />
+
+              <p className="my-auto text-[clamp(11px,0.7vw,14px)] text-[#DCE5E8]">
+                INDIA-BASED MANUFACTURER
+              </p>
+            </a>
+
+            <a
+              className="flex items-center gap-2"
+            >
+              <VscDebugStop
+                className="shrink-0 text-white"
+                style={{ animationDelay: "10s" }}
+              />
+
+              <p className="my-auto text-[clamp(12px,0.7vw,14px)] text-[#DCE5E8]">
+                GSTIN - 24ADUFS1418B1Z8
+              </p>
+            </a>
+          </div>
           <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
             <a
               href="tel:+919978735708"
@@ -33,7 +61,7 @@ const Header = () => {
                 className="shrink-0 text-white animate-contact-attention"
               />
 
-              <p className="my-auto text-[clamp(11px,0.7vw,14px)] text-[#DCE5E8]">
+              <p className="my-auto text-[clamp(11px,1.2vw,16px)] text-[#DCE5E8]">
                 +91 997 873 5708
               </p>
             </a>
@@ -47,7 +75,7 @@ const Header = () => {
                 style={{ animationDelay: "10s" }}
               />
 
-              <p className="my-auto text-[clamp(12px,0.7vw,14px)] text-[#DCE5E8]">
+              <p className="my-auto text-[clamp(11px,1.2vw,16px)] text-[#DCE5E8]">
                 sales@strapworld.com
               </p>
             </a>

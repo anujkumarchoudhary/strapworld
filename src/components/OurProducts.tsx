@@ -131,11 +131,11 @@ const OurProducts = ({ data }: any) => {
 
                     {/* View */}
                     <Link
-                      href={product?.href}
+                      href={product?.slug ??"#"}
                       className="mt-auto flex h-fit cursor-pointer items-center justify-end gap-2 shrink-0"
                     >
                       <p className="my-auto text-[clamp(12px,1vw,14px)] font-bold text-[#101820]">
-                        {product.button}
+                        {product?.button}
                       </p>
 
                       <MdArrowBack

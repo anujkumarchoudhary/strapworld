@@ -1,7 +1,8 @@
 export const menuData = [
   { title: "Products", link: "/products" },
-  { title: "Industries", link: "/industries-we-serve" },
-  { title: "Manufacturing", link: "/pet-strap-manufacturing" },
+  { title: "Applicatons", link: "/industries-we-serve" },
+  { title: "Blog", link: "/pet-strap-manufacturing" },
+    { title: "Gallery", link: "#" },
   { title: "About Us", link: "/about-us" },
   { title: "Contact", link: "/contact" },
 ];

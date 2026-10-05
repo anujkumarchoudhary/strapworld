@@ -10,6 +10,7 @@ import ChooseRight from "@/src/components/ChooseRight";
 import TechnicalPerformance from "@/src/components/TechnicalPerformance";
 
 import type { Metadata } from "next";
+import { BaseUrl } from "../../baseurl";
 
 export const metadata: Metadata = {
   title: "PET Straps & PET Strapping Products | Strap World",
@@ -31,22 +32,54 @@ export const metadata: Metadata = {
   ],
 };
 
-const page = () => {
-    const { banner, ourProducts, chooseRight, industriesWeServe, whyChoose, bulkAndCustomOrders, finalCTA } =
-        data;
+async function getService(
 
-    return (
-        <div>
-            <Banner data={banner} />
-            <OurProducts data={ourProducts} />
-            <ChooseRight data={chooseRight} />
-            <IndustriesWeServe data={industriesWeServe} />
-            <TechnicalPerformance data={whyChoose} />
-            <ManufactureProcess data={bulkAndCustomOrders} />
-            <FAQ />
-            <FinalCTA data={finalCTA} />
-        </div>
+): Promise<any> {
+  try {
+    const response = await fetch(
+      `${BaseUrl}products/`,
+      {
+        cache: "no-store",
+      }
     );
+    if (!response.ok) {
+      return null;
+    }
+
+    const result = await response.json();
+
+    return result?.data || null;
+  } catch (error) {
+    console.error("Get service error:", error);
+
+    return null;
+  }
+}
+
+
+
+const page = async () => {
+  const products = await getService();
+
+  const { banner, ourProducts, chooseRight, industriesWeServe, whyChoose, bulkAndCustomOrders, finalCTA } =
+    data;
+
+  const { headingParts, label, description, bgColor } = ourProducts
+
+  const productsData = { bgColor, headingParts, label, list: products?.slice(2, 8), description }
+
+  return (
+    <div>
+      <Banner data={banner} />
+      <OurProducts data={productsData} />
+      <ChooseRight data={chooseRight} />
+      <IndustriesWeServe data={industriesWeServe} />
+      <TechnicalPerformance data={whyChoose} />
+      <ManufactureProcess data={bulkAndCustomOrders} />
+      <FAQ />
+      <FinalCTA data={finalCTA} />
+    </div>
+  );
 };
 
 export default page;

@@ -10,16 +10,48 @@ import KayStatas from "../components/KayStatas";
 import Applications from "../components/Applications";
 import IndustriesWeServe from "../components/IndustriesWeServe";
 import ManufactureProcess from "../components/ManufactureProcess";
+import { BaseUrl } from "./baseurl";
 
-const page = () => {
+
+async function getService(
+
+): Promise<any> {
+  try {
+    const response = await fetch(
+      `${BaseUrl}products`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!response.ok) {
+      return null;
+    }
+
+    const result = await response.json();
+
+    return result?.data || null;
+  } catch (error) {
+    console.error("Get service error:", error);
+
+    return null;
+  }
+}
+
+const page = async () => {
+  const products = await getService();
+
   const { banner, keyStats, ourProducts, applications, industriesWeServe, manufactureProcess, blogs, exportAndGlobalReach, finalCTA } =
     staticData?.home;
+
+  const { headingParts, label, description, } = ourProducts
+
+  const productsData = { headingParts, label, list: products.slice(2, 8), description }
 
   return (
     <div>
       <Banner data={banner} />
       <KayStatas data={keyStats} />
-      <OurProducts data={ourProducts} />
+      <OurProducts data={productsData} />
       <Applications data={applications} />
       <IndustriesWeServe data={industriesWeServe} />
       <ManufactureProcess data={manufactureProcess} />
