@@ -153,7 +153,7 @@ const ManufactureProcess = ({ data }: any) => {
                             })}
                         </div>
                         <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
-                            <ButtonLink saveText={data?.button} saveBgColor="#0B1E2D" saveTextColor="#ffffff" href={"/manufacturing"} />
+                            <ButtonLink saveText={data?.button}  btnColor="#ffffff" href={"/manufacturing"} />
                         </div>
                     </div>
                 </div>

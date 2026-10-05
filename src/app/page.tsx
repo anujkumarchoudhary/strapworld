@@ -73,10 +73,11 @@ const page = async () => {
       <OurProducts data={ourProducts} />
 
       <Applications data={applications} />
+      <ManufactureProcess data={manufactureProcess} />
+
 
       <IndustriesWeServe data={industriesWeServe} />
 
-      <ManufactureProcess data={manufactureProcess} />
 
       <ExportAndGlobalReach data={exportAndGlobalReach} />
 

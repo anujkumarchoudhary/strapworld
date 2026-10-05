@@ -54,7 +54,7 @@ const RelatedProducts = ({ data }: any) => {
             description={description}
           />
           <div className="hidden lg:flex gap-2 justify-end h-fit mt-auto">
-            <ButtonLink  saveText={data?.button ?? "View all products"} saveBgColor="#063F3D" href={data?.href ?? "/content"} />
+            <ButtonLink  saveText={data?.button ?? "View all products"} btnColor="#063F3D" href={data?.href ?? "/content"} />
 
           </div>
         </div>
@@ -149,7 +149,7 @@ const RelatedProducts = ({ data }: any) => {
           })}
         </div>
         <div className="flex lg:hidden gap-2 pt-10  justify-center h-fit mt-auto">
-            <ButtonLink  saveText={data?.button ?? "View all products"} saveBgColor="#063F3D" href={data?.href ?? "/content"} />
+            <ButtonLink  saveText={data?.button ?? "View all products"} btnColor="#063F3D" href={data?.href ?? "/content"} />
         </div>
       </MaxWidth>
     </div>
