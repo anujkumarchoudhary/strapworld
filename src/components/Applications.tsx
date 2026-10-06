@@ -11,43 +11,43 @@ const applications = [
         title: "Packaging",
         description:
             "Secure cartons, boxes and packaged goods for safe handling, storage and transportation.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
+        image: "/images/applications/image_1.jpg",
     },
     {
         number: "02",
         title: "Logistics & Transportation",
         description:
             "Keep palletized loads stable and protected during handling and transportation.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
+        image: "/images/applications/image_3.jpg",
     },
     {
         number: "03",
         title: "Paper & Printing",
         description:
             "Reliable strapping for paper rolls, printed materials and paper products.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
+        image: "/images/applications/image_5.jpg",
     },
     {
         number: "04",
         title: "Textile Industry",
         description:
             "Strong strapping solutions for textile rolls, bundles and finished products.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
+        image: "/images/applications/image_4.jpg",
     },
     {
         number: "05",
         title: "Construction Materials",
         description:
             "Secure heavy construction materials and bundled products for safer movement.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
+        image: "/images/applications/image_2.jpg",
     },
-    {
-        number: "06",
-        title: "Industrial Manufacturing",
-        description:
-            "Industrial-grade strapping for demanding production and material-handling applications.",
-        image: "/images/products/pp_strap/pet_strap_01.png",
-    },
+    // {
+    //     number: "06",
+    //     title: "Industrial Manufacturing",
+    //     description:
+    //         "Industrial-grade strapping for demanding production and material-handling applications.",
+    //     image: "/images/applications/image_2.jpg",
+    // },
 ];
 
 const Applications = () => {
@@ -100,7 +100,7 @@ const Applications = () => {
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#063F3D] via-[#063F3D]/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#063F3D] via-[#063F3D]/10 to-transparent" />
 
                         <div className="absolute left-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-white font-montserrat text-xs font-bold text-[#063F3D]">
                             {featured.number}
