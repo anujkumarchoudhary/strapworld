@@ -27,7 +27,7 @@ const ManufactureProcess = ({ data }: any) => {
     return (
         <div 
         style={{background: data?.bgColor ??"#FCFBF7"}}
-        className="py-16 lg:py-20">
+        className="py-10 md:12 lg:py-20">
             <MaxWidth className=" ">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">

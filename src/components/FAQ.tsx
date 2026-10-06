@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import MaxWidth from "./layout/MaxWidth";
 import Icon from "../utills/iconMap ";
 import Heading from "./common/Heading";
+import { useResponsive } from "../hooks/useResponsive";
 
 const faqData = [
   {
@@ -49,6 +50,7 @@ const faqData = [
 ];
 
 const FAQ = ({ data }: any) => {
+  const {isDesktop} =useResponsive()
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -58,7 +60,7 @@ const FAQ = ({ data }: any) => {
   const [top, bottom]=data?.padding?? ["5rem", "5rem"]
 
   return (
-    <section style={{paddingTop:top, paddingBottom:bottom}} className="bg-white">
+    <section style={{paddingTop:isDesktop && top, paddingBottom: isDesktop && bottom}} className="bg-white py-10 md:py-12 lg:py-0">
       <MaxWidth>
         {/* Section Heading */}
         <div className="mx-auto mb-14 w-[90%] lg:w-[50%] text-center">

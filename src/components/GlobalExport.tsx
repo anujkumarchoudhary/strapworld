@@ -21,7 +21,7 @@ const GlobalExport = () => {
 
 
   return (
-    <section className="relative overflow-hidden py-16 lg:py-20">
+    <section className="relative overflow-hidden py-10 md:py-12 lg:py-20">
       {/* Background Map */}
       <div
         className="pointer-events-none absolute inset-0 z-0 bg-no-repeat"

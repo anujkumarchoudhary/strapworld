@@ -59,7 +59,7 @@ const galleryImages = [
 
 const Gallery = () => {
     return (
-        <section className="bg-white py-16 lg:py-20">
+        <section className="bg-white py-10 md:py-12 lg:py-20">
             <MaxWidth>
                 {/* Header */}
                 <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">

@@ -147,7 +147,7 @@ const interval = setInterval(() => {
   return (
     <section
       ref={sectionRef}
-      className="overflow-hidden bg-[#F5F7F2] py-16 lg:py-20"
+      className="overflow-hidden bg-[#F5F7F2] py-10 md:py-12 lg:py-20"
     >
       <MaxWidth>
 

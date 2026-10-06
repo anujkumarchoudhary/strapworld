@@ -32,11 +32,11 @@ const OurProducts = ({ data }: any) => {
   return (
     <div
       style={{
-        paddingTop: top,
-        paddingBottom: bottom,
+        paddingTop: isDesktop && top,
+        paddingBottom: isDesktop && bottom,
         background: data?.bgColor || "#063F3D",
       }}
-      id="our-products" ref={productsRef} className=" py-10 sm:py-12 lg:py-16">
+      id="our-products" ref={productsRef} className=" py-10 sm:py-12 lg:py-0">
 
       <MaxWidth className=" ">
         {/* ================= HEADER ================= */}
@@ -69,19 +69,16 @@ const OurProducts = ({ data }: any) => {
             return (
               <div
                 key={product.title}
-                style={{
-                  transitionDelay: `${index * 50}ms`,
-                }}
+                // style={{
+                //   transitionDelay: `${index * 20}ms`,
+                // }}
                 className=
                 {`group
     flex h-full flex-col
     overflow-hidden
     rounded-[10px]
     bg-white
-    transition-all duration-300  ${isCardVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
-                  }`}
+    transition-all duration-300  `}
 
               >
                 {/* image */}
@@ -124,7 +121,7 @@ const OurProducts = ({ data }: any) => {
           })}
         </div>
         <div className="flex lg:hidden gap-2 pt-10  justify-center h-fit mt-auto">
-            <ButtonLink saveText={data?.button ?? "View all products"} btnColor="#063F3D" href={data?.href ?? "/content"} />
+          <ButtonLink saveText={data?.button ?? "View all products"} btnColor="#FFFFFF" btnBgColor="#2E9B4F" href={data?.href ?? "/content"} />
         </div>
       </MaxWidth>
     </div>

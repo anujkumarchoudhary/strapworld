@@ -27,7 +27,7 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className=" bg-[#2E9B4F] py-16 lg:py-20" >
+    <section className=" bg-[#2E9B4F] py-10 md:py-12 lg:py-20" >
       {data?.isVariant === "01" && <MaxWidth>
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
