@@ -184,7 +184,7 @@ export default function PrivacyPolicyPage() {
       {/* Hero */}
       <CommonBanner
         label="LEGAL"
-        title="Privacy Policy"
+        headingParts={[{text:"Privacy Policy"}]}
         description="Your privacy matters to us. Learn how Strap World collects, uses, protects, and manages your information."
         breadcrumbs={[
           { name: "Home", href: "/" },

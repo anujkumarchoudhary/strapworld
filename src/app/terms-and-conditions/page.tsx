@@ -178,7 +178,7 @@ export default function TermsAndConditionsPage() {
     <main className="bg-white">
       <CommonBanner
         label="LEGAL"
-        title="Terms & Conditions"
+        headingParts={[{text:"Terms & Conditions"}]}
         description="Please review the terms and conditions governing your use of the Strap World website and services."
         breadcrumbs={[
           { name: "Home", href: "/" },

@@ -7,7 +7,7 @@ export default function SitemapPage() {
   return (
     <main className="min-h-screen bg-white">
       <CommonBanner
-        title="Site Map"
+        headingParts={[{text:"Site Map"}]}
         description="Explore all important pages of Strap World, including our products, industries, manufacturing information, company details, and contact information."
         breadcrumbs={[
           { name: "Home", href: "/" },
