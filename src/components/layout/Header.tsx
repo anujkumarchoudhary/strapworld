@@ -21,7 +21,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 const Header = () => {
   const router = useRouter();
-
+  const [showTopBar, setShowTopBar] = useState(true);
   const [open, setOpen] = useState(false);
   const [openForm, setOpenForm] = useState(false);
 
@@ -53,12 +53,64 @@ const Header = () => {
     setOpenForm(true);
   };
 
+  //   useEffect(() => {
+  //   let lastScrollY = window.scrollY;
+
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+
+  //     // Always show at the very top
+  //     if (currentScrollY <= 10) {
+  //       setShowTopBar(true);
+  //     }
+  //     // Hide while scrolling down
+  //     else if (currentScrollY > lastScrollY) {
+  //       setShowTopBar(false);
+  //     }
+  //     // Show while scrolling up
+  //     else if (currentScrollY < lastScrollY) {
+  //       setShowTopBar(true);
+  //     }
+
+  //     lastScrollY = currentScrollY;
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopBar(window.scrollY <= 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="sticky top-0 z-50 w-full bg-white shadow-md">
       {/* =========================================================
           DESKTOP TOP BAR
       ========================================================= */}
-      <div className="hidden border-b border-[#29414E] bg-[#063F3D] py-2 lg:block">
+      <motion.div
+        initial={false}
+        animate={{
+          height: showTopBar ? "auto" : 0,
+          opacity: showTopBar ? 1 : 0,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+        }}
+        className="hidden overflow-hidden border-b border-[#29414E] bg-[#063F3D] lg:block"
+      >
         <MaxWidth className="flex flex-col gap-2 lg:py-1 sm:flex-row sm:items-center sm:justify-between">
           {/* Left Information */}
           <div className="hidden flex-wrap justify-between gap-3 sm:gap-4 lg:flex lg:items-center">
@@ -110,8 +162,7 @@ const Header = () => {
             </a>
           </div>
         </MaxWidth>
-      </div>
-
+      </motion.div>
       {/* =========================================================
           MAIN HEADER
       ========================================================= */}
