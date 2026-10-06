@@ -166,7 +166,7 @@ const Header = () => {
       {/* =========================================================
           MAIN HEADER
       ========================================================= */}
-      <MaxWidth className="flex items-center justify-between py-5 lg:py-3">
+      <MaxWidth className="flex items-center justify-between py-3 lg:py-3">
         {/* Logo */}
         <motion.div
           whileTap={{ scale: 0.97 }}
@@ -280,7 +280,7 @@ const Header = () => {
               {/* =================================================
                   DRAWER HEADER
               ================================================= */}
-              <div className="flex shrink-0 items-center justify-between border-b border-[#063F3D]/10 px-5 py-5">
+              <div className="flex shrink-0 items-center justify-between border-b border-[#063F3D]/10 px-5 py-3">
                 <motion.div
                   whileTap={{ scale: 0.97 }}
                   onClick={handleHome}
