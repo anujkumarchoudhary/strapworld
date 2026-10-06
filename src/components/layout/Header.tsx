@@ -20,13 +20,10 @@ const Header = () => {
   const [openForm, setOpenForm] = useState(false);
 
   return (
-    <div className="bg-white w-full sticky top-0 z-50 shadow-2xl">
-      <div className="bg-[#063F3D] border-b border-[#29414E] py-2">
+    <div className="bg-white w-full sticky top-0 z-50 shadow-md">
+      <div className="hidden lg:block bg-[#063F3D] border-b border-[#29414E] py-2">
         <MaxWidth className="flex flex-col gap-2 lg:py-1 sm:flex-row sm:items-center sm:justify-between">
-          {/* <p className="hidden lg:block my-auto text-[clamp(9px,0.7vw,12px)] text-[#DCE5E8]">
-             | 
-          </p> */}
-             <div className="hidden lg:flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
+          <div className="hidden lg:flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
             <a
               className="flex items-center gap-2"
             >
@@ -82,7 +79,7 @@ const Header = () => {
           </div>
         </MaxWidth>
       </div>
-      <MaxWidth className="flex justify-between items-center py-4 lg:py-3 text-white">
+      <MaxWidth className="flex justify-between items-center lg:py-3  py-6">
         <div onClick={() => router.push("/")} className="cursor-pointer">
           <Image
             src={logo}
@@ -129,10 +126,38 @@ const Header = () => {
 
       </MaxWidth>
       {open && (
-        <div className="fixed inset-x-0 top-[11.8vh] border-t border-t-[#39B972]/20 bottom-0 z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
+        <div className="fixed top-1 left-0 w-full h-full z-40 flex flex-col bg-[#FFFFFF] lg:hidden">
+          <div className="flex justify-between px-5  py-5.5 shadow-md">
+            <div onClick={() => router.push("/")} className="cursor-pointer">
+              <Image
+                src={logo}
+                width={275}
+                height={40}
+                alt="logo"
+                style={{
+                  width: "clamp(180px, 18vw, 225px)",
+                  height: "auto",
+                }}
+              />
+            </div>
+            {open ? (
+              <MdClose
+                onClick={() => setOpen(!open)}
+                size={30}
+                className="block lg:hidden cursor-pointer text-[#000000]"
+              />
+            ) : (
+              <IoReorderThreeSharp
+                onClick={() => setOpen(!open)}
+                size={30}
+                className="block lg:hidden text-[#000000] cursor-pointer"
+              />
+            )}
+          </div>
+
           {/* Mobile Navigation */}
           <div className="flex-1 overflow-y-auto">
-            <div className="flex flex-col divide-y divide-black/10">
+            <div className="flex flex-col divide-y divide-gray-100">
               {menuData?.map((menu, idx) => {
                 return (
                   <p
