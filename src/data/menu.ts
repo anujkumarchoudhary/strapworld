@@ -32,14 +32,14 @@ export const footerColumns = [
       { name: "Polyester PET Strap", path: "/products/polyester-pet-strap" },
     ],
   },
-  {
-    title: "TOOLS",
-    links: [
-      { name: "Digital Power Strapping", path: "#" },
-      { name: "Digital Smart Strapping", path: "#" },
-      { name: "Manual Packaging", path: "#" },
-      { name: "Manual Strapping", path: "#" },
-      { name: "Pneumatic Strapping", path: "#" },
-    ],
-  },
+  // {
+  //   title: "TOOLS",
+  //   links: [
+  //     { name: "Digital Power Strapping", path: "#" },
+  //     { name: "Digital Smart Strapping", path: "#" },
+  //     { name: "Manual Packaging", path: "#" },
+  //     { name: "Manual Strapping", path: "#" },
+  //     { name: "Pneumatic Strapping", path: "#" },
+  //   ],
+  // },
 ];

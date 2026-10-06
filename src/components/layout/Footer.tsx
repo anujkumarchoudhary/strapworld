@@ -6,15 +6,15 @@ import Icon from "@/src/utills/iconMap ";
 import Image from "next/image";
 import logo from '../../../public/logo.svg'
 import Link from "next/link";
-import { MdApartment, MdArrowOutward, MdOutlinePhone } from "react-icons/md";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { MdApartment, MdArrowOutward, MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="overflow-hidden bg-[#020203]">
-      <MaxWidth className="lg:gap-8 py-12 lg:py-16 divide divide-y space-y-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_30%] space-y-8 pb-10 justify-between">
-          <div className="space-y-6">
+      <MaxWidth className="lg:gap-8 py-10 md:py-12 lg:py-20 divide divide-y space-y-10">
+        <div className="block lg:flex  space-y-10 gap-15 justify-between">
+          <div className="w-full lg:w-[25%] space-y-6">
             <Image
               src={logo}
               width={306}
@@ -26,28 +26,46 @@ const Footer = () => {
             <p className="text-[clamp(16px,1.25vw,20px)] leading-7 text-white/70">
               Industrial strapping and packaging systems for secure, efficient movement.
             </p>
+
+            {/* Social Media */}
+            <div className="space-y-3">
+              <h3 className="font-montserrat text-sm font-semibold uppercase tracking-[0.15em] text-white">
+                Follow Us
+              </h3>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:border-[#39B972] hover:bg-[#39B972] hover:text-[#063F3D]"
+                >
+                  <FaLinkedinIn size={16} />
+                </a>
+
+                <a
+                  href="#"
+                  aria-label="Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:border-[#39B972] hover:bg-[#39B972] hover:text-[#063F3D]"
+                >
+                  <FaFacebookF size={16} />
+                </a>
+
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:border-[#39B972] hover:bg-[#39B972] hover:text-[#063F3D]"
+                >
+                  <FaInstagram size={17} />
+                </a>
+              </div>
+            </div>
           </div>
-
-          <div className="space-y-3">
-            <p className="text-[clamp(11px,0.8125vw,13px)] text-[#39B972] font-medium">
-              EXPORT & SALES
-            </p>
-
-            <p className="leading-7 text-[clamp(18px,1.375vw,22px)] text-white/70">
-              Send your load details, volume and destination for a product-led recommendation.
-            </p>
-
-            <a
-              href="mailto:sales@strapworld.com"
-              className="flex items-center gap-2 text-[clamp(17px,1.25vw,20px)] font-bold text-[#ffffff]"
-            >
-              sales@strapworld.com
-              <MdArrowOutward className="text-[#39B972]" />
-            </a>
-          </div>
-        </div>
-
-        <div className="grid space-y-10 grid-cols-1 lg:grid-cols-4 justify-between">
           {footerColumns.map((column) => (
             <div key={column.title} className="space-y-4">
               <h3 className="text-[clamp(12px,0.9375vw,15px)] text-[#39B972] font-bold font-roboto-mono">
@@ -59,7 +77,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="text-[clamp(14px,1.0625vw,17px)] text-[#DCE5E8] font-medium"
+                      className="text-[clamp(14px,1.0625vw,17px)] text-white/70 font-medium"
                     >
                       {link.name}
                     </Link>
@@ -73,15 +91,16 @@ const Footer = () => {
               CONTACT
             </h3>
 
+            {/* Address */}
             <div className="my-4 flex gap-4">
-              <div className="flex h-6 w-6 shrink-0 items-start justify-center">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#39B972]/10">
                 <FaMapMarkerAlt
-                  size={22}
-                  className="text-[#2E9B4F]"
+                  size={18}
+                  className="text-[#39B972]"
                 />
               </div>
 
-              <p className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8]">
+              <p className="text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70">
                 Gokul Industries Estate - A,
                 <br />
                 Plot No 16 & 17, S no 261/P1,
@@ -92,32 +111,34 @@ const Footer = () => {
               </p>
             </div>
 
+            {/* Phone */}
             <div className="flex gap-4 pb-1">
-              <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#39B972]/10">
                 <MdOutlinePhone
-                  size={22}
-                  className="text-[#2E9B4F]"
+                  size={19}
+                  className="text-[#39B972]"
                 />
               </div>
 
               <a
                 href="tel:+919978735708"
-                className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8] transition-colors hover:text-[#39B972]"
+                className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70 transition-colors hover:text-[#39B972]"
               >
                 +91 997 873 5708
               </a>
             </div>
 
+            {/* Email */}
             <div className="flex gap-4 py-2">
-              <div className="flex h-6 w-6 shrink-0 items-center justify-center">
-                <MdApartment
-                  size={22}
-                  className="text-[#2E9B4F]"
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#39B972]/10">
+                <MdOutlineMailOutline
+                  size={19}
+                  className="text-[#39B972]"
                 />
               </div>
 
-              <p className="text-[clamp(14px,1.0625vw,17px)] font-medium text-[#DCE5E8]">
-                Mon–Sat 09:30–18:30 IST
+              <p className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70">
+                sales@strapworld.com
               </p>
             </div>
           </div>
