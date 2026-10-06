@@ -100,7 +100,7 @@ const ContactForm = () => {
           </div>
 
           {/* Product + Quantity */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {/* <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <label className="mb-1 block text-[15px] font-medium text-[#FFFFFF]">
                 Product
@@ -140,10 +140,10 @@ const ContactForm = () => {
             "
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Requirements */}
-          <div>
+          {/* <div>
             <label className="mb-1 block text-[15px] font-medium text-[#FFFFFF]">
               Requirements
             </label>
@@ -162,7 +162,7 @@ const ContactForm = () => {
             focus:border-[#218B55]
           "
             />
-          </div>
+          </div> */}
 
           {/* Message */}
           <div>
@@ -171,7 +171,7 @@ const ContactForm = () => {
             </label>
 
             <textarea
-              rows={4}
+              rows={5}
               placeholder="Application, delivery location and any additional information"
               className="
             min-h-[56px] w-full resize-none rounded-[5px]

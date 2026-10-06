@@ -20,7 +20,7 @@ type Service = {
 const WhoWeAre = ({ data }: any) => {
     const { isDesktop } = useResponsive()
     return (
-        <div className="bg-[#F5F7F2] py-10 sm:py-12 lg:py-16">
+        <div className="bg-[#F5F7F2] py-10 sm:py-12 lg:py-20">
             <MaxWidth className=" space-y-10">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">

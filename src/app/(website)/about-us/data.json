@@ -129,6 +129,48 @@
     "btnBgColor": "#063F3D",
     "btnTextColor": "#000000"
   },
+  
+  "blogs": {
+    "label": "Technical Resources",
+    "headingParts": [
+      {
+        "text": "Better specifications make better shipments.",
+        "color": "#000000",
+        "weight": "500"
+      }
+    ],
+    "description": "Clear, practical guidance for packaging engineers, procurement teams and operations leaders.",
+    "list": [
+      {
+        "img": "/images/blogs/blog_001.png",
+        "category": "Selection Guide",
+        "title": "PET vs PP Strapping: Where Each Material Performs Best",
+        "excerpt": "Compare retention, recovery, handling and equipment fit before choosing a grade.",
+        "date": "Aug 28, 2026",
+        "readTime": "6 min read",
+        "href": "/blog/pet-vs-pp-strapping"
+      },
+      {
+        "img": "/images/blogs/blog_002.png",
+        "category": "Application Checklist",
+        "title": "What to Specify for a Stable Export Pallet",
+        "excerpt": "A practical checklist covering load geometry, edges, transit, storage and joining.",
+        "date": "Aug 21, 2026",
+        "readTime": "5 min read",
+        "href": "/blog/stable-export-pallet"
+      },
+      {
+        "img": "/images/blogs/blog_003.png",
+        "category": "Technical Note",
+        "title": "Improving Friction-Weld Joint Consistency",
+        "excerpt": "Understand tool setup, strap surface and maintenance factors that affect the joint.",
+        "date": "Aug 14, 2026",
+        "readTime": "7 min read",
+        "href": "/blog/friction-weld-joint-consistency"
+      }
+    ]
+  },
+
   "whyChoose": {
     "label": "Why Choose Strap World ?",
     "headingParts": [

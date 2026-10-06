@@ -406,6 +406,7 @@ export const staticData = {
         }
       ],
       button: "How we manufacture",
+      href:"/manufacturing",
 
     },
     exportAndGlobalReach: {

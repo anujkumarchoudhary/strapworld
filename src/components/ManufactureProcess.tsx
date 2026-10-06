@@ -25,9 +25,9 @@ const ManufactureProcess = ({ data }: any) => {
     const { headingParts, label, list, labels, description } = data || {};
     const { isDesktop } = useResponsive()
     return (
-        <div 
-        style={{background: data?.bgColor ??"#FCFBF7"}}
-        className="py-10 md:12 lg:py-20">
+        <div
+            style={{ background: data?.bgColor ?? "#FCFBF7" }}
+            className="py-10 md:12 lg:py-20">
             <MaxWidth className=" ">
                 {/* ================= SERVICES ================= */}
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">
@@ -70,7 +70,7 @@ const ManufactureProcess = ({ data }: any) => {
       flex gap-2
     "
                         >
-                            <h3 className=" capitalize font-normal pr-20 text-[#FFFFFF]">
+                            <h3 className=" capitalize font-normal leading-8 lg:leading-11 pr-10 lg:pr-40 text-[#FFFFFF]">
                                 {data?.floatingCardTwo?.description ?? "In-process inspection"}
                             </h3>
                         </div>
@@ -153,7 +153,9 @@ const ManufactureProcess = ({ data }: any) => {
                             })}
                         </div>
                         <div className="grid justify-center lg:justify-center-0 lg:grid-cols-3 border-t border-t-gray-300 py-8 gap-4">
-                            <ButtonLink saveText={data?.button} btnBgColor={"#063F3D"}  btnColor={"#ffffff"} href={"/manufacturing"} />
+                            {data?.href && <ButtonLink saveText={data?.button} btnBgColor={"#063F3D"} btnColor={"#ffffff"} href={data?.href} />}
+                            {data?.isButton && <SaveAndCancel saveText={data?.button} saveBgColor={"#063F3D"} saveTextColor={"#ffffff"} handleClick={()=>setOpen(!open)} />}
+
                         </div>
                     </div>
                 </div>

@@ -68,12 +68,12 @@ const Page = () => {
   return (
     <div>
       {/* ==================== BANNER ==================== */}
-      <CommonBanner title="Contact Us" />
+      <CommonBanner headingParts={[{ text: "Contact Us", color: "#FFFFFF" }]} />
 
       {/* ==================== CONTACT ==================== */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 md:py-12 lg:py-20">
         <MaxWidth>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[45%_55%] lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[45%_45%] justify-between gap-8 lg:lg:gap-16">
             {/* Left - Contact Details */}
             <div className="my-auto">
               <Heading isAccentLine={true} labelColor="2E9B4F" accentColor="#2E9B4F" label="LET'S CONNECT" headingParts={[{ text: " Let’s Discuss " }]} description={`Have a product requirement, specification or packaging
@@ -111,64 +111,19 @@ const Page = () => {
       </section>
 
       {/* ==================== MAP ==================== */}
-      <section className="pb-16 lg:pb-20">
-        <MaxWidth>
-          <div className="overflow-hidden rounded-[30px] border border-black/10">
-            <div className="grid grid-cols-1 lg:grid-cols-[35%_65%]">
-              {/* Location Information */}
-              <div className="flex flex-col justify-center bg-[#063F3D] p-8 md:p-10 lg:p-12">
-                <p className="text-sm font-semibold tracking-[0.15em] text-[#39B972]">
-                  OUR LOCATION
-                </p>
-
-                <h2 className="mt-4 text-3xl font-semibold text-white">
-                  Visit Our Head Office
-                </h2>
-
-                <p className="mt-5  leading-7 text-[#DCE5E8]">
-                  Our team is available to discuss PET strapping products,
-                  specifications, supply requirements and business enquiries.
-                </p>
-
-                <div className="mt-8 flex gap-4">
-                  <FaMapLocationDot
-                    size={28}
-                    className="mt-1 shrink-0 text-[#39B972]"
-                  />
-
-                  <p className="leading-7 text-[#DCE5E8]">
-                    <span className="font-semibold text-[#FFFFFF]">
-                      Nalanda Industries,
-                    </span>
-                    <br />
-                    Gokul Industries Estate - A,
-                    <br />
-                    Plot No. 16 & 17, S. No. 261/P1,
-                    <br />
-                    Morbi Highway, Near Khodiyar Temple,
-                    <br />
-                    Kagdadi Town, Rajkot - 360003,
-                    <br />
-                    Gujarat, India.
-                  </p>
-                </div>
-              </div>
-
-              {/* Google Map */}
-              <div className="h-[350px] lg:h-[450px]">
-                <iframe
-                  src="https://www.google.com/maps?q=Nalanda+Industries,+Gokul+Industries+Estate+A,+Plot+No+16+17,+S+No+261%2FP1,+Morbi+Highway,+Near+Khodiyar+Temple,+Kagdadi,+Rajkot,+Gujarat+360003,+India&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Nalanda Industries Location - Rajkot, Gujarat"
-                />
-              </div>
-            </div>
-          </div>
-        </MaxWidth>
+      <section className="">
+        {/* Google Map */}
+        <div className="h-88 lg:h-125">
+          <iframe
+            src="https://www.google.com/maps?q=Nalanda+Industries,+Gokul+Industries+Estate+A,+Plot+No+16+17,+S+No+261%2FP1,+Morbi+Highway,+Near+Khodiyar+Temple,+Kagdadi,+Rajkot,+Gujarat+360003,+India&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Nalanda Industries Location - Rajkot, Gujarat"
+          />
+        </div>
       </section>
     </div>
   );

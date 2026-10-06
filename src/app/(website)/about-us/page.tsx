@@ -6,6 +6,9 @@ import WhyChoose from '@/src/components/WhyChoose'
 import FinalCTA from '@/src/components/FinalCTA'
 
 import type { Metadata } from "next";
+import WhyChooseUs from '@/src/components/WhyChooseUs'
+import OurQuality from '@/src/components/OurQuality'
+import Blog from '@/src/components/Blog'
 
 export const metadata: Metadata = {
   title: "About Strap World | PET Strap Manufacturer in India",
@@ -64,13 +67,16 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  const { banner, whoWeAre, technicalPerformance, whyChoose, finalCTA } = data || {};
+  const { banner, whoWeAre, technicalPerformance, whyChoose,blogs, finalCTA } = data || {};
   return (
     <div>
       <Banner data={banner} />
       <WhoWeAre data={whoWeAre} />
-      <TechnicalPerformance data={technicalPerformance} />
-      <WhyChoose data={whyChoose} />
+            <WhyChooseUs />
+
+            <OurQuality />
+                  <Blog data={blogs} />
+
       <FinalCTA data={finalCTA} />
 
     </div>

@@ -13,6 +13,8 @@ import TechnicalPerformance from "@/src/components/TechnicalPerformance";
 import data from "./data.json";
 import type { Metadata } from "next";
 import { BaseUrl } from "../../baseurl";
+import WhyChooseUs from "@/src/components/WhyChooseUs";
+import Applications from "@/src/components/Applications";
 
 export const metadata: Metadata = {
   title: "PET Straps & PET Strapping Products | Strap World",
@@ -88,13 +90,11 @@ const page = async () => {
     <div>
       <Banner data={banner} />
 
-      <OurProducts data={productsData} />
+      <OurProducts data={ourProducts} />
 
-      <ChooseRight data={chooseRight} />
+      <Applications />
 
-      <IndustriesWeServe data={industriesWeServe} />
-
-      <TechnicalPerformance data={whyChoose} />
+      <WhyChooseUs />
 
       <ManufactureProcess data={bulkAndCustomOrders} />
 

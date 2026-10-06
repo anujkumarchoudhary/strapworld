@@ -38,7 +38,7 @@
     "textColor": "#39464A",
     "headingParts": [
       {
-        "text": "Strapping Products for Industrial Packaging",
+        "text": "PET Strapping Products",
         "color": "#101820",
         "style": "normal",
         "weight": "500"
@@ -47,103 +47,88 @@
     "button": "PET Strap Manufacturing",
     "href": "/pet-strap-manufacturing",
 
-    "description": "Strap World Pvt. Ltd. manufactures and supplies PET and polyester strapping for businesses across India and international markets. Explore our products and find the specification suited to your application.",
+    "description": "Explore our range of PET strapping products designed for secure packaging,",
+
     "list": [
       {
-        "title": "PP Strap",
-        "description": "Polypropylene strapping for bundling and securing cartons, boxes and packaged goods during handling and transportation.",
-        "button": "View PP Strap",
-        "href": "/products/pp-strap",
-        "image": "/images/service/service_img_1.png",
-        "labels": ["Lightweight", "Versatile"]
-      },
-      {
         "title": "PET Strap",
-        "description": "High-strength PET strapping for securing cartons, pallets and industrial loads during storage and transportation.",
+        "description": "Strong, reliable strapping for general packaging",
         "button": "View PET Strap",
-        "href": "/products/pet-strap",
-        "image": "/images/service/service_img_2.png",
-        "labels": ["High strength", "Load securing"]
+        "href": "/pet-strap",
+        "image": "/images/products/pet-strap-roll.jpg",
+        "labels": ["Strong", "Reliable"]
       },
       {
-        "title": "Plastic Box Strapping Roll",
-        "description": "Plastic strapping rolls designed for bundling and securing boxes, cartons and packaged products.",
-        "button": "View Strapping Roll",
-        "href": "/products/plastic-box-strapping-roll",
-        "image": "/images/service/service_img_3.png",
-        "labels": ["Box packaging", "Easy handling"]
+        "title": "Heavy-Duty PET Strap",
+        "description": "High-strength strap for heavy industrial loads",
+        "button": "View Heavy-Duty PET Strap",
+        "href": "/heavy-duty-pet-strap",
+        "image": "/images/products/image_13.webp",
+        "labels": ["Heavy Duty", "High Strength"]
       },
       {
-        "title": "PP Box Color Strap",
-        "description": "Colored PP strapping for box bundling, product identification and secure packaging applications.",
-        "button": "View PP Color Strap",
-        "href": "/products/pp-box-color-strap",
-        "image": "/images/service/service_img_4.png",
-        "labels": ["Color options", "Box packaging"]
+        "title": "Green PET Strap",
+        "description": "Durable green strap for secure packaging",
+        "button": "View Green PET Strap",
+        "href": "/green-pet-strap",
+        "image": "/images/products/Green_PET_Strap.webp",
+        "labels": ["Green", "Durable"]
       },
       {
-        "title": "Polyester PET Strap",
-        "description": "Durable polyester PET strapping for reliable load retention across industrial packaging and transportation applications.",
-        "button": "View Polyester PET Strap",
-        "href": "/products/polyester-pet-strap",
-        "image": "/images/service/service_img_5.png",
-        "labels": ["Durable", "Reliable"]
+        "title": "Embossed PET Strap",
+        "description": "Textured surface provides improved grip and tension",
+        "button": "View Embossed PET Strap",
+        "href": "/embossed-pet-strap",
+        "image": "/images/products/image_3.jpg",
+        "labels": ["Embossed", "Better Grip"]
       },
       {
-        "title": "Cotton Bale Strap",
-        "description": "Strapping designed for securing compressed cotton bales and supporting safe handling, storage and transportation.",
-        "button": "View Cotton Bale Strap",
-        "href": "/products/cotton-bale-strap",
-        "image": "/images/service/service_img_6.png",
-        "labels": ["Bale securing", "Heavy duty"]
+        "title": "Plain PET Strap",
+        "description": "Smooth finish for clean packaging applications",
+        "button": "View Plain PET Strap",
+        "href": "/plain-pet-strap",
+        "image": "/images/products/image_9.webp",
+        "labels": ["Smooth Finish", "Clean Packaging"]
       },
       {
-        "title": "Semi Automatic PP Strap",
-        "description": "PP strapping suitable for semi-automatic packaging machines used for efficient carton and box bundling.",
-        "button": "View Semi Automatic PP Strap",
-        "href": "/products/semi-automatic-pp-strap",
-        "image": "/images/service/service_img_1.png",
-        "labels": ["Machine compatible", "Efficient"]
+        "title": "PET Jumbo Roll",
+        "description": "High-volume roll for efficient packaging operations",
+        "button": "View PET Jumbo Roll",
+        "href": "/pet-jumbo-roll",
+        "image": "/images/products/image_12.webp",
+        "labels": ["Jumbo Roll", "High Volume"]
       },
       {
-        "title": "Strapping Roll",
-        "description": "Strapping rolls for securing cartons, boxes, palletized goods and other packaged products.",
-        "button": "View Strapping Roll",
-        "href": "/products/strapping-roll",
-        "image": "/images/service/service_img_2.png",
-        "labels": ["Multiple applications", "Packaging"]
+        "title": "PET Box Strap",
+        "description": "Reliable strapping for cartons and boxes",
+        "button": "View PET Box Strap",
+        "href": "/pet-box-strap",
+        "image": "/images/products/images_4.jpg",
+        "labels": ["Box Packaging", "Reliable"]
       },
       {
-        "title": "White Strap Roll",
-        "description": "White strapping rolls for clean and consistent bundling of cartons, boxes and packaged goods.",
-        "button": "View White Strap Roll",
-        "href": "/products/white-strap-roll",
-        "image": "/images/service/service_img_3.png",
-        "labels": ["White finish", "Box bundling"]
+        "title": "Machine Grade PET Strap",
+        "description": "Optimized strap for automated packaging machines",
+        "button": "View Machine Grade PET Strap",
+        "href": "/machine-grade-pet-strap",
+        "image": "/images/products/images_5.avif",
+        "labels": ["Machine Grade", "Automation"]
       },
       {
-        "title": "Heat Sealing PP Strap",
-        "description": "Heat-sealable PP strapping designed for secure joining and efficient packaging of boxes and cartons.",
-        "button": "View Heat Sealing PP Strap",
-        "href": "/products/heat-sealing-pp-strap",
-        "image": "/images/service/service_img_4.png",
-        "labels": ["Heat sealing", "Secure joining"]
+        "title": "Export Grade PET Strap",
+        "description": "Premium strap for international shipping requirements",
+        "button": "View Export Grade PET Strap",
+        "href": "/export-grade-pet-strap",
+        "image": "/images/products/Export_Grade_PET_Strap.jpg",
+        "labels": ["Export Grade", "Premium"]
       },
       {
-        "title": "Manual Box Strapping",
-        "description": "Manual strapping solutions for securing cartons, boxes and packaged goods without automated equipment.",
-        "button": "View Manual Box Strapping",
-        "href": "/products/manual-box-strapping",
-        "image": "/images/service/service_img_5.png",
-        "labels": ["Manual use", "Easy operation"]
-      },
-      {
-        "title": "Industrial Packaging Strap",
-        "description": "Industrial packaging straps for bundling, load securing and transportation across demanding packaging applications.",
-        "button": "View Industrial Packaging Strap",
-        "href": "/products/industrial-packaging-strap",
-        "image": "/images/service/service_img_6.png",
-        "labels": ["Industrial use", "Load securing"]
+        "title": "Custom PET Strap",
+        "description": "Customized widths and thicknesses for specific needs",
+        "button": "View Custom PET Strap",
+        "href": "/custom-pet-strap",
+        "image": "/images/products/Custom_PET_Strap.jpg",
+        "labels": ["Custom", "Made To Order"]
       }
     ]
   },
@@ -325,7 +310,7 @@
         "labels": ["Tensile performance", "Orientation"]
       }
     ],
-
+    "isButton": true,
     "button": "Discuss Your Requirement"
   },
 

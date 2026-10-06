@@ -123,17 +123,19 @@ const WhyChooseUs = () => {
 
         {/* Bottom Statement */}
         <div className="mt-10 flex flex-col justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
-          <p className="max-w-2xl font-montserrat text-sm leading-6 text-white/50">
+          <p className="max-w-2xl font-montserrat text-center lg:text-left text-sm leading-6 text-white/50">
             Quality products. Reliable supply. Long-term partnerships.
           </p>
 
-          <a
+         <div className="flex justify-center lg:justify-start">
+           <a
             href="/contact"
             className="inline-flex w-fit items-center gap-3 rounded-full bg-[#39B972] px-6 py-3 font-montserrat text-sm font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#063F3D]"
           >
             Talk to Our Team
             <FiArrowUpRight />
           </a>
+         </div>
         </div>
       </MaxWidth>
     </section>

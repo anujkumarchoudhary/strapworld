@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import MaxWidth from "./layout/MaxWidth";
+import Heading from "./common/Heading";
 
 interface CommonBannerProps {
   label?: string;
-  title: string;
+  headingParts: any;
   description?: string;
   breadcrumbs?: {
     name: string;
@@ -18,33 +19,16 @@ interface CommonBannerProps {
 
 export default function CommonBanner({
   label,
-  title,
+  headingParts,
   description,
   breadcrumbs,
   button,
 }: CommonBannerProps) {
   return (
     <section className="relative overflow-hidden bg-[#063F3D]">
-      <MaxWidth className="relative  py-20 lg:py-24">
+      <MaxWidth className="relative  py-10 md:py-12 lg:py-20">
         <div className="max-w-4xl">
-          {/* Label */}
-          {label && (
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#39B972]">
-              {label}
-            </p>
-          )}
-
-          {/* Title */}
-          <h1 className="mt-4 leading-tight tracking-tight text-white ">
-            {title}
-          </h1>
-
-          {/* Description */}
-          {description && (
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 md:text-lg">
-              {description}
-            </p>
-          )}
+          <Heading headingParts={headingParts} />
 
           {/* Breadcrumbs */}
           {breadcrumbs && breadcrumbs.length > 0 && (
