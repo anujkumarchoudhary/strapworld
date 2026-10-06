@@ -8,58 +8,58 @@ import MaxWidth from "./layout/MaxWidth";
 
 const galleryImages = [
     {
-        src: "/images/products/pp_strap/pet_strap_01.png",
+        src: "/images/products/image_14.jpg",
         alt: "PET strapping manufacturing",
         title: "Manufacturing",
         className: "md:col-span-2 md:row-span-2",
     },
     {
-        src: "/images/products/pp_strap/pet-strap_02.jpg",
+        src: "/images/products/Custom_PET_Strap.jpg",
         alt: "PET strap rolls",
         title: "PET Strap Rolls",
         className: "md:col-span-1 md:row-span-1",
     },
     {
-        src: "/images/products/pp_strap/pet-strap_03.jpg",
+        src: "/images/products/Export_Grade_PET_Strap.jpg",
         alt: "Industrial packaging",
         title: "Packaging Solutions",
         className: "md:col-span-1 md:row-span-1",
     },
     {
-        src: "/images/products/pp_strap/pet-strap_04.jpeg",
+        src: "/images/products/Green_PET_Strap.webp",
         alt: "Strapping production line",
         title: "Production Line",
         className: "md:col-span-1 md:row-span-2",
     },
     {
-        src: "/images/products/pp_strap/pet_strap_01.png",
+        src: "/images/products/image_13.webp",
         alt: "Finished PET straps",
         title: "Finished Products",
         className: "md:col-span-1 md:row-span-1",
     },
     {
-        src: "/images/products/pp_strap/pet_strap_01.png",
+        src: "/images/products/image_3.jpg",
         alt: "Secured industrial pallet",
         title: "Load Securing",
         className: "md:col-span-2 md:row-span-1",
     },
         {
-        src: "/images/products/pp_strap/pet-strap_02.jpg",
-        alt: "PET strap rolls",
-        title: "PET Strap Rolls",
-        className: "md:col-span-1 md:row-span-1",
+        src: "/images/products/image_15.jpg",
+        alt: "PET strapping manufacturing",
+        title: "Manufacturing",
+        className: "md:col-span-2 md:row-span-2",
     },
     {
-        src: "/images/products/pp_strap/pet-strap_03.jpg",
-        alt: "Industrial packaging",
-        title: "Packaging Solutions",
+        src: "/images/products/image_9.webp",
+        alt: "PET strap rolls",
+        title: "PET Strap Rolls",
         className: "md:col-span-1 md:row-span-1",
     },
 ];
 
 const Gallery = () => {
     return (
-        <section className="bg-white py-16 lg:py-24">
+        <section className="bg-white py-16 lg:py-20">
             <MaxWidth>
                 {/* Header */}
                 <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">

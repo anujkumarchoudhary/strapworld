@@ -31,7 +31,7 @@ const KeyStats = ({ data }: any) => {
 };
     
     return (
-        <div className="bg-[#FFFFFF] py-10 sm:py-12 lg:py-16">
+        <div className="bg-[#FFFFFF] py-10 sm:py-16 lg:py-20">
 
             <MaxWidth className=" ">
                 {/* ================= HEADER ================= */}

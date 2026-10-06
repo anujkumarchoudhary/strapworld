@@ -40,7 +40,7 @@ const qualityPoints = [
 
 const OurQuality = () => {
     return (
-        <section className="relative overflow-hidden bg-[#F7F9F5] py-16 lg:py-24">
+        <section className="relative overflow-hidden bg-[#F7F9F5] py-16 lg:py-20">
             <MaxWidth>
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
                     {/* Left Content */}

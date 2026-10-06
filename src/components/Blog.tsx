@@ -50,7 +50,7 @@ const Blog = ({ data }: any) => {
   return (
     <section
       ref={productsRef}
-      className="py-12 lg:py-16 bg-[#FFFFFF]"
+      className="py-16 lg:py-20 bg-[#FFFFFF]"
     >
       <MaxWidth>
         {/* ================= HEADER ================= */}

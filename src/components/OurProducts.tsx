@@ -28,7 +28,7 @@ const OurProducts = ({ data }: any) => {
     delay: 150,
     threshold: 0.15,
   });
-  const [top, bottom] = data?.padding ?? ["4rem", "4rem"]
+  const [top, bottom] = data?.padding ?? ["5rem", "5rem"]
   return (
     <div
       style={{
@@ -62,7 +62,7 @@ const OurProducts = ({ data }: any) => {
         </div>
 
         {/* ================= SERVICES ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {list.map((product: any, index: number) => {
             const isCardVisible = visibleItems.includes(index);
 

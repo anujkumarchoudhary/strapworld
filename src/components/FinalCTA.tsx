@@ -27,7 +27,7 @@ export default function FinalCTA({ data }: any) {
   const [open, setOpen] = useState(false);
   const { isDesktop, isMobile } = useResponsive()
   return (
-    <section className=" bg-[#2E9B4F] py-12 lg:py-26" >
+    <section className=" bg-[#2E9B4F] py-16 lg:py-20" >
       {data?.isVariant === "01" && <MaxWidth>
         <motion.div
           initial={{ opacity: 0, scaleX: 0.96 }}
@@ -159,7 +159,7 @@ export default function FinalCTA({ data }: any) {
                 </div>
 
                 {/* Product + Quantity */}
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {/* <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-[13px] font-medium text-[#101820]">
                       Product
@@ -199,10 +199,10 @@ export default function FinalCTA({ data }: any) {
             "
                     />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Requirements */}
-                <div>
+                {/* <div>
                   <label className="mb-1 block text-[13px] font-medium text-[#101820]">
                     Requirements
                   </label>
@@ -221,7 +221,7 @@ export default function FinalCTA({ data }: any) {
             focus:border-[#218B55]
           "
                   />
-                </div>
+                </div> */}
 
                 {/* Message */}
                 <div>

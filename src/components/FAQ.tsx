@@ -55,7 +55,7 @@ const FAQ = ({ data }: any) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const [top, bottom]=data?.padding?? ["4rem", "4rem"]
+  const [top, bottom]=data?.padding?? ["5rem", "5rem"]
 
   return (
     <section style={{paddingTop:top, paddingBottom:bottom}} className="bg-white">
