@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "../utills/iconMap ";
+// import Icon from "../utills/iconMap ";
 import Heading from "./common/Heading";
 import { useResponsive } from "../hooks/useResponsive";
 
@@ -122,7 +122,7 @@ const FAQ = ({ data }: any) => {
                         }
               `}
                     >
-                      <Icon name="plus" size={18} />
+                      {/* <Icon name="plus" size={18} /> */}
                     </span>
                   </button>
 

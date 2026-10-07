@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import MaxWidth from "../layout/MaxWidth";
-import { useInViewOnce } from "@/src/hooks/useInViewOnce";
+// import { useInViewOnce } from "@/src/hooks/useInViewOnce";
 import Heading from "./Heading";
 import SaveAndCancel from "./SaveAndCancel";
 import { useState } from "react";
@@ -16,11 +16,11 @@ import { CiGlobe } from "react-icons/ci";
 const Banner = ({ data }: any) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
+  // const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
 
   return (
     <section
-      ref={ref}
+      // ref={ref}
       style={{ background: data?.bgColor }}
       className={`relative 
         ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "../utills/iconMap ";
 import { useResponsive } from "../hooks/useResponsive";
 import { MdArrowBack } from "react-icons/md";
 import Image from "next/image";

@@ -2,7 +2,6 @@
 import React from "react";
 import MaxWidth from "./MaxWidth";
 import { footerColumns } from "@/src/data/menu";
-import Icon from "@/src/utills/iconMap ";
 import Image from "next/image";
 import logo from '../../../public/logo.svg'
 import Link from "next/link";

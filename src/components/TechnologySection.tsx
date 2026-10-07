@@ -222,7 +222,6 @@
 
 import { motion } from "framer-motion";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "@/src/utills/iconMap ";
 import Image from "next/image";
 import Heading from "./common/Heading";
 import { useResponsive } from "../hooks/useResponsive";

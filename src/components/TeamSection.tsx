@@ -2,7 +2,7 @@
 
 import MaxWidth from "./layout/MaxWidth";
 import Heading from "./common/Heading";
-import Icon from "../utills/iconMap ";
+// import Icon from "../utills/iconMap ";
 import { useResponsive } from "../hooks/useResponsive";
 
 export default function TeamSection({ data }: any) {
@@ -59,7 +59,7 @@ export default function TeamSection({ data }: any) {
                         aria-label={`${member.name} LinkedIn`}
                         className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-all duration-300 hover:scale-110 hover:bg-purple-500 hover:text-white"
                       >
-                        <Icon name="FaLinkedinIn" className="h-4 w-4" />
+                        {/* <Icon name="FaLinkedinIn" className="h-4 w-4" /> */}
                       </a>
                     )}
 
@@ -71,7 +71,7 @@ export default function TeamSection({ data }: any) {
                         aria-label={`${member.name} Instagram`}
                         className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-all duration-300 hover:scale-110 hover:bg-purple-500 hover:text-white"
                       >
-                        <Icon name="FaInstagram" className="h-4 w-4" />
+                        {/* <Icon name="FaInstagram" className="h-4 w-4" /> */}
                       </a>
                     )}
 
@@ -83,7 +83,7 @@ export default function TeamSection({ data }: any) {
                         aria-label={`${member.name} Twitter`}
                         className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-all duration-300 hover:scale-110 hover:bg-purple-500 hover:text-white"
                       >
-                        <Icon name="FaTwitter" className="h-4 w-4" />
+                        {/* <Icon name="FaTwitter" className="h-4 w-4" /> */}
                       </a>
                     )}
                   </div>

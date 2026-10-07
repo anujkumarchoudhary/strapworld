@@ -3,17 +3,17 @@
 import Image from "next/image";
 import img from "../../../public/images/skill2.jpg";
 import MaxWidth from "../layout/MaxWidth";
-import { useInViewOnce } from "@/src/hooks/useInViewOnce";
+// import { useInViewOnce } from "@/src/hooks/useInViewOnce";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 export interface PageBannerProps {
   heading: string;
 }
 const PageBanner = ({ heading }: PageBannerProps) => {
-  const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
+  // const { ref, isVisible } = useInViewOnce<HTMLDivElement>();
 
   return (
-    <section ref={ref} className="relative h-[26vh] lg:h-[45vh] w-full overflow-hidden">
+    <section  className="relative h-[26vh] lg:h-[45vh] w-full overflow-hidden">
       {/* Background Image */}
       <Image src={img} alt="Banner" fill priority className="object-cover" />
 

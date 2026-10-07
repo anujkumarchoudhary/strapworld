@@ -2,7 +2,7 @@
 
 import Heading from "./common/Heading";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "../utills/iconMap ";
+// import Icon from "../utills/iconMap ";
 import Image from "next/image";
 import SaveAndCancel from "./common/SaveAndCancel";
 import { useResponsive } from "../hooks/useResponsive";

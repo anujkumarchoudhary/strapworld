@@ -7,7 +7,7 @@ import blog from "../../public/images/blog_1.jpg";
 import blog2 from "../../public/images/blog2.jpg";
 import blog3 from "../../public/images/blog3.jpg";
 import Image from "next/image";
-import { useInViewOnce } from "@/src/hooks/useInViewOnce";
+// import { useInViewOnce } from "@/src/hooks/useInViewOnce";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import Pagination from "./Pagination";
@@ -18,8 +18,8 @@ import SaveAndCancel from "./common/SaveAndCancel";
 import { useStaggerReveal } from "../hooks/useStaggerReveal";
 
 const Blog = ({ data }: any) => {
-  const { ref, isVisible } =
-    useInViewOnce<HTMLDivElement>();
+  // const { ref, isVisible } =
+  //   useInViewOnce<HTMLDivElement>();
   const { isDesktop } = useResponsive()
   const {
     ref: productsRef,

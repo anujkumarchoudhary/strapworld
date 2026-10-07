@@ -4,10 +4,10 @@ import MaxWidth from "./MaxWidth";
 import logo from "../../../public/starp_world.svg";
 
 import Image from "next/image";
-import { menuData } from "@/src/data/menu";
+// import { menuData } from "@/src/data/menu";
 import { useRouter } from "next/navigation";
 import { IoReorderThreeSharp } from "react-icons/io5";
-import Icon from "@/src/utills/iconMap ";
+// import Icon from "@/src/utills/iconMap ";
 import { MdClose, MdMarkEmailUnread, MdPhone, MdPhonelinkRing } from "react-icons/md";
 import SaveAndCancel from "../common/SaveAndCancel";
 import GetEnquiryForm from "../form/GetEnquiryForm";
@@ -190,7 +190,7 @@ const Header = () => {
             DESKTOP NAVIGATION
         ===================================================== */}
         <div className="hidden items-center gap-2 lg:flex">
-          {menuData?.map((menu, idx) => (
+          {/* {menuData?.map((menu, idx) => (
             <button
               key={idx}
               type="button"
@@ -199,10 +199,9 @@ const Header = () => {
             >
               {menu.title}
 
-              {/* Hover Line */}
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#39B972] transition-all duration-300 group-hover:w-full" />
             </button>
-          ))}
+          ))} */}
         </div>
 
         {/* Desktop Quote */}
@@ -366,7 +365,7 @@ const Header = () => {
                 </p>
 
                 <nav className="flex flex-col">
-                  {menuData?.map((menu, idx) => (
+                  {/* {menuData?.map((menu, idx) => (
                     <motion.button
                       key={idx}
                       type="button"
@@ -400,7 +399,7 @@ const Header = () => {
                         />
                       </span>
                     </motion.button>
-                  ))}
+                  ))} */}
                 </nav>
               </div>
 
@@ -431,7 +430,7 @@ const Header = () => {
                       aria-label="LinkedIn"
                       className="flex h-9 w-9 items-center justify-center rounded-full border border-[#063F3D]/20 text-[#063F3D] transition-all duration-300 hover:bg-[#063F3D] hover:text-white"
                     >
-                      <Icon name="FaLinkedinIn" size={15} />
+                      {/* <Icon name="FaLinkedinIn" size={15} /> */}
                     </a>
 
                     <a
@@ -439,7 +438,7 @@ const Header = () => {
                       aria-label="Instagram"
                       className="flex h-9 w-9 items-center justify-center rounded-full border border-[#063F3D]/20 text-[#063F3D] transition-all duration-300 hover:bg-[#063F3D] hover:text-white"
                     >
-                      <Icon name="FaInstagram" size={15} />
+                      {/* <Icon name="FaInstagram" size={15} /> */}
                     </a>
 
                     <a
@@ -449,7 +448,7 @@ const Header = () => {
                       aria-label="X"
                       className="flex h-9 w-9 items-center justify-center rounded-full border border-[#063F3D]/20 text-[#063F3D] transition-all duration-300 hover:bg-[#063F3D] hover:text-white"
                     >
-                      <Icon name="FaTwitter" size={15} />
+                      {/* <Icon name="FaTwitter" size={15} /> */}
                     </a>
                   </div>
                 </div>

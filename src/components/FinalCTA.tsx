@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "@/src/utills/iconMap ";
 import { useState } from "react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
 import Heading from "./common/Heading";

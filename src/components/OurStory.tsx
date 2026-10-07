@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import MaxWidth from "./layout/MaxWidth";
-import Icon from "@/src/utills/iconMap ";
+// import Icon from "@/src/utills/iconMap ";
 import SectionBackground from "./ui/SectionBackground";
 import Heading from "./common/Heading";
 
@@ -148,10 +148,10 @@ export default function OurStory() {
   >
     Learn More About Us
 
-    <Icon
+    {/* <Icon
       name="arrow"
       className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-    />
+    /> */}
   </motion.a>
 </motion.div>
         </div>
@@ -211,11 +211,11 @@ export default function OurStory() {
               >
                 {/* Icon */}
                 <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50 transition-all duration-500 group-hover:bg-purple-600">
-                  <Icon
+                  {/* <Icon
                     name={value.icon}
                     size={25}
                     className="text-purple-600 transition-colors duration-500 group-hover:text-white"
-                  />
+                  /> */}
                 </div>
 
                 {/* Title */}
