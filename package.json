@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build --webpack",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "ts-node --project tsconfig.server.json server.ts",
+    "build": "next build --webpack && tsc --project tsconfig.server.json",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@next/env": "^16.3.8",
