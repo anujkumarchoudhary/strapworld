@@ -46,7 +46,7 @@
     "buttown": "Get a Quote"
   },
 
-  "technicalOverview": {
+  "technicalOverviewData": {
     "label": "PET strap manufacturing facility",
     "aspectRatio": "16/10",
     "image": "/images/manufacturing/manufacturing_01.png",
@@ -221,7 +221,7 @@
     "button": "Get a Quote"
   },
 
-  "relatedProducts": {
+  "relatedProductsData": {
     "label": "RELATED PRODUCTS",
     "bgColor": "#F5F7F2",
     "textColor": "#39464A",

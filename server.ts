@@ -1,11 +1,10 @@
-
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import next from "next";
 
-import { connectDB } from "./backend/config/database";
-import enquiryRoutes from "./backend/routes/enquiry.routes";
+// import { connectDB } from "./backend/config/database";
+// import enquiryRoutes from "./backend/routes/enquiry.routes";
 
 dotenv.config();
 
@@ -23,7 +22,7 @@ const handle = nextApp.getRequestHandler();
 
 async function startServer() {
   try {
-    await connectDB();
+    // await connectDB();
 
     await nextApp.prepare();
 
@@ -45,12 +44,12 @@ async function startServer() {
     });
 
     // API routes
-    app.use("/api/enquiries", enquiryRoutes);
+    // app.use("/api/enquiries", enquiryRoutes);
 
     // Next.js
-app.use((req, res) => {
-  return handle(req, res);
-});
+    app.use((req, res) => {
+      return handle(req, res);
+    });
     app.listen(PORT, HOST, () => {
       console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
