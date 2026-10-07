@@ -7,8 +7,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const next_1 = __importDefault(require("next"));
-const database_1 = require("./backend/config/database");
-const enquiry_routes_1 = __importDefault(require("./backend/routes/enquiry.routes"));
+// import { connectDB } from "./backend/config/database";
+// import enquiryRoutes from "./backend/routes/enquiry.routes";
 dotenv_1.default.config();
 const dev = process.env.NODE_ENV !== "production";
 const HOST = "0.0.0.0";
@@ -21,7 +21,7 @@ const nextApp = (0, next_1.default)({
 const handle = nextApp.getRequestHandler();
 async function startServer() {
     try {
-        await (0, database_1.connectDB)();
+        // await connectDB();
         await nextApp.prepare();
         const app = (0, express_1.default)();
         // Security
@@ -37,7 +37,7 @@ async function startServer() {
             });
         });
         // API routes
-        app.use("/api/enquiries", enquiry_routes_1.default);
+        // app.use("/api/enquiries", enquiryRoutes);
         // Next.js
         app.use((req, res) => {
             return handle(req, res);
