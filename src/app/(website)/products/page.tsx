@@ -34,22 +34,22 @@ export const metadata: Metadata = {
   ],
 };
 
-async function getService(): Promise<any[]> {
+async function getService(): Promise<any> {
   try {
-    const response = await fetch(`${BaseUrl}products/`, {
-      cache: "no-store",
-    });
+    // const response = await fetch(`${"/"}products/`, {
+    //   cache: "no-store",
+    // });
 
-    if (!response.ok) {
-      console.error(
-        `Failed to fetch products: ${response.status} ${response.statusText}`
-      );
-      return [];
-    }
+    // if (!response.ok) {
+    //   console.error(
+    //     `Failed to fetch products: ${response.status} ${response.statusText}`
+    //   );
+    //   return [];
+    // }
 
-    const result = await response.json();
+    // const result = await response.json();
 
-    return Array.isArray(result?.data) ? result.data : [];
+    // return Array.isArray(result?.data) ? result.data : [];
   } catch (error) {
     console.error("Get service error:", error);
     return [];

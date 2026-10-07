@@ -22,16 +22,16 @@ export const dynamic = "force-dynamic";
 
 async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(`${BaseUrl}products`, {
+    const response = await fetch(`${"/"}products`, {
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      console.error(
-        `Failed to fetch products: ${response.status} ${response.statusText}`
-      );
-      return [];
-    }
+    // if (!response.ok) {
+    //   console.error(
+    //     `Failed to fetch products: ${response.status} ${response.statusText}`
+    //   );
+    //   return [];
+    // }
 
     const result = await response.json();
 
@@ -43,7 +43,7 @@ async function getService(): Promise<any[]> {
 }
 
 const page = async () => {
-  const products = await getService();
+  // const products = await getService();
 
   const {
     banner,
@@ -66,7 +66,7 @@ const page = async () => {
   const productsData = {
     headingParts,
     label,
-    list: products.slice(2, 7),
+    list: ourProducts,
     description,
   };
 

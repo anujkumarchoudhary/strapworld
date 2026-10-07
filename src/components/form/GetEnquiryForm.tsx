@@ -140,7 +140,7 @@ const handleSubmit = async (
   try {
     setIsSubmitting(true);
 
-    const response = await fetch(`${BaseUrl}enquiries`, {
+    const response = await fetch(`${"/"}enquiries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
