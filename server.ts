@@ -48,10 +48,9 @@ async function startServer() {
     app.use("/api/enquiries", enquiryRoutes);
 
     // Next.js
-    app.all("*", (req, res) => {
-      return handle(req, res);
-    });
-
+app.use((req, res) => {
+  return handle(req, res);
+});
     app.listen(PORT, HOST, () => {
       console.log(`
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
