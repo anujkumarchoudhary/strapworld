@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://www.strapworld.com";
+// const baseUrl = "https://www.strapworld.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -15,6 +15,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${"/"}/sitemap.xml`,
   };
 }

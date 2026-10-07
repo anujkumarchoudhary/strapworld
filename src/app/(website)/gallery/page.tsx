@@ -15,7 +15,7 @@ import About from "@/src/components/About";
 import WhyChooseUs from "@/src/components/WhyChooseUs";
 import OurQuality from "@/src/components/OurQuality";
 import Gallery from "@/src/components/Gallery";
-import { BaseUrl } from "../../baseurl";
+// import { BaseUrl } from "../../BaseUrl";
 
 export const dynamic = "force-dynamic";
 
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
 
 async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(`${BaseUrl}products`, {
+    const response = await fetch(`${"/"}products`, {
       cache: "no-store",
     });
 

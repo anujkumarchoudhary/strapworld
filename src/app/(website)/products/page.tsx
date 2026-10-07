@@ -12,7 +12,7 @@ import TechnicalPerformance from "@/src/components/TechnicalPerformance";
 
 import data from "./data.json";
 import type { Metadata } from "next";
-import { BaseUrl } from "../../baseurl";
+// import { BaseUrl } from "../../BaseUrl";
 import WhyChooseUs from "@/src/components/WhyChooseUs";
 import Applications from "@/src/components/Applications";
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(`${BaseUrl}products/`, {
+    const response = await fetch(`${"/"}products/`, {
       cache: "no-store",
     });
 

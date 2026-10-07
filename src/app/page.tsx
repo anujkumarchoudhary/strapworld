@@ -10,7 +10,7 @@ import KayStatas from "../components/KayStatas";
 import Applications from "../components/Applications";
 import IndustriesWeServe from "../components/IndustriesWeServe";
 import ManufactureProcess from "../components/ManufactureProcess";
-import { BaseUrl } from "./baseurl";
+// import { BaseUrl } from "./baseurl";
 import GlobalExport from "../components/GlobalExport";
 import AboutSection from "../components/About";
 import About from "../components/About";
@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
 
 async function getService(): Promise<any[]> {
   try {
-    const response = await fetch(`${BaseUrl}products`, {
+    const response = await fetch(`${"BaseUrl"}products`, {
       cache: "no-store",
     });
 
