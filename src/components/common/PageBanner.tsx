@@ -26,18 +26,18 @@ const PageBanner = ({ heading }: PageBannerProps) => {
           <div className="max-w-3xl space-y-[1.5rem] text-white">
             {/* Heading */}
             <h1
-              className={`capitalize  text-[#FFFFFF]
-              transition-all duration-700 delay-150
-              ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+              // className={`capitalize  text-[#FFFFFF]
+              // transition-all duration-700 delay-150
+              // ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
               {heading}
             </h1>
             <p
-              className={`uppercase text-[14px] lg:text-[16px] flex gap-1 my-auto font-bold text-[#FFFFFF] transition-all duration-700 delay-200 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
+              // className={`uppercase text-[14px] lg:text-[16px] flex gap-1 my-auto font-bold text-[#FFFFFF] transition-all duration-700 delay-200 ${
+              //   isVisible
+              //     ? "opacity-100 translate-y-0"
+              //     : "opacity-0 translate-y-10"
+              // }`}
             >
               Home <MdKeyboardDoubleArrowRight size={21} className="my-auto" />{" "}
               {heading}
