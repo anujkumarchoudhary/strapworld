@@ -23,10 +23,10 @@ const Banner = ({ data }: any) => {
       ref={ref}
       style={{ background: data?.bgColor }}
       className={`relative 
-        ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "manufacturing" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "home" && "h-[75vh] md:h-[60vh] lg:h-[88vh]"}  
+        ${data?.id === "about" && "h-[70vh] md:h-[60vh] lg:h-[78vh]"} 
+        ${data?.id === "product" && "h-[65vh] md:h-[60vh] lg:h-[78vh]"} 
+        ${data?.id === "manufacturing" && "h-[70vh] md:h-[60vh] lg:h-[78vh]"} 
+        ${data?.id === "home" && "h-[70vh] md:h-[60vh] lg:h-[88vh]"}  
         
         w-full overflow-hidden `}
     >
