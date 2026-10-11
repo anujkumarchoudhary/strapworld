@@ -68,7 +68,7 @@ const Page = () => {
   return (
     <div>
       {/* ==================== BANNER ==================== */}
-      <CommonBanner headingParts={[{ text: "Contact Us", color: "#FFFFFF", weight:500 }]} />
+      <CommonBanner headingParts={[{ text: "Contact Us", color: "#FFFFFF", weight:600 }]} />
 
       {/* ==================== CONTACT ==================== */}
       <section className="py-10 md:py-12 lg:py-20">

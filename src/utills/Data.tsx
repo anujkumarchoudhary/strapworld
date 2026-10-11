@@ -26,7 +26,7 @@ export const staticData = {
 
       headingParts: [
         {
-          text: "India’s Quality PET Strap Manufacturer and Global Exporter",
+          text: "India’s Quality PP & PET Strap Manufacturer and Global Exporter",
           color: "#FFFFFF",
           weight: "500",
         },

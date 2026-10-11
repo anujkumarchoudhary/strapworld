@@ -26,7 +26,7 @@ const Banner = ({ data }: any) => {
         ${data?.id === "about" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "product" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
         ${data?.id === "manufacturing" && "h-[74vh] md:h-[60vh] lg:h-[78vh]"} 
-        ${data?.id === "home" && "h-[80vh] md:h-[60vh] lg:h-[88vh]"}  
+        ${data?.id === "home" && "h-[75vh] md:h-[60vh] lg:h-[88vh]"}  
         
         w-full overflow-hidden `}
     >
@@ -57,7 +57,7 @@ const Banner = ({ data }: any) => {
       {data?.bgImage && <div className="absolute inset-0 z-[1] bg-black/70 lg:bg-black/20" />}
 
       <MaxWidth className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[50%_45%]">
+        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[55%_45%]">
           <div className="my-auto space-y-8 lg:space-y-14">
 
             <div className="hidden lg:block">
@@ -76,7 +76,7 @@ const Banner = ({ data }: any) => {
               />
             </div>
 
-            <div className="block lg:hidden">
+            <div className="block px-3 lg:hidden">
               <Heading
                 isDart={true}
                 as="h1"
