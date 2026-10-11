@@ -31,7 +31,7 @@ const Banner = ({ data }: any) => {
         w-full overflow-hidden `}
     >
       {/* Optimized Background Image */}
-      {data?.bgImage && <Image
+      {/* {data?.bgImage && <Image
         src={data?.bgImage || "/images/home/hero_banner.png"}
         alt="Strap World PET and polyester strapping"
         fill
@@ -39,13 +39,25 @@ const Banner = ({ data }: any) => {
         fetchPriority="high"
         sizes="100vw"
         className="object-cover object-center"
-      />}
+      />} */}
+      {data?.bgImage && (
+        <Image
+          src={data.bgImage}
+          alt="Strap World PET and polyester strapping"
+          fill
+          priority={data?.id === "home"}
+          fetchPriority={data?.id === "home" ? "high" : "auto"}
+          sizes="100vw"
+          quality={75}
+          className="object-cover object-center"
+        />
+      )}
 
       {/* Optional overlay */}
       {data?.bgImage && <div className="absolute inset-0 z-[1] bg-black/70 lg:bg-black/20" />}
 
       <MaxWidth className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[45%_45%]">
+        <div className="grid grid-cols-1 justify-between gap-2 lg:grid-cols-[50%_45%]">
           <div className="my-auto space-y-8 lg:space-y-14">
 
             <div className="hidden lg:block">
