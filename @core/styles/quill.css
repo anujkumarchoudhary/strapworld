@@ -1,0 +1,242 @@
+/* ===============================
+   QUILL FULL DESIGN (Strap World)
+================================ */
+
+/* 🔥 MAIN WRAPPER (FULL BORDER) */
+.quill-wrapper {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
+  width: 100%;
+  overflow-x: auto; /* ✅ allow table resize */
+}
+
+/* ===============================
+   TOOLBAR
+================================ */
+.ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  background: #f9fafb;
+  padding: 10px;
+}
+
+/* Toolbar hover + active */
+.ql-toolbar button:hover {
+  color: #1b5a96;
+}
+
+.ql-toolbar .ql-active {
+  color: #fb9100;
+}
+
+/* ===============================
+   EDITOR CONTAINER
+================================ */
+.ql-container {
+  border: none !important;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+/* ===============================
+   EDITOR CONTENT
+================================ */
+.ql-editor {
+  min-height: 250px;
+  padding: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #111827;
+}
+
+/* Focus remove outline */
+.ql-editor:focus {
+  outline: none;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+
+/* Headings */
+.ql-editor h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ql-editor h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Paragraph */
+.ql-editor p {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* ===============================
+   LISTS
+================================ */
+.ql-editor ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.ql-editor ol {
+  padding-left: 20px;
+  list-style: decimal;
+}
+
+/* ===============================
+   LINKS
+================================ */
+.ql-editor a {
+  color: #2563eb;
+  text-decoration: underline;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+}
+
+.ql-editor a:hover {
+  border-bottom: 1px solid #fb9100;
+}
+
+/* ===============================
+   CODE
+================================ */
+.ql-editor code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ===============================
+   IMAGES
+================================ */
+.ql-editor img {
+  border-radius: 12px;
+  margin: 10px 0;
+  max-width: 100%;
+}
+
+/* ===============================
+   🔥 FIX PASTE FONT SIZE ISSUE
+================================ */
+
+/* force all pasted text to inherit editor size */
+.ql-editor span {
+  font-size: inherit !important;
+}
+
+/* remove quill size classes effect */
+.ql-editor .ql-size-small,
+.ql-editor .ql-size-large,
+.ql-editor .ql-size-huge {
+  font-size: inherit !important;
+}
+
+/* prevent external inline font-size override */
+.ql-editor * {
+  font-size: inherit;
+}
+
+/* ===============================
+   🔥 TABLE DESIGN + RESIZE
+================================ */
+
+/* Table base */
+.ql-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 10px 0;
+}
+
+/* Cells */
+.ql-editor td,
+.ql-editor th {
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  position: relative;
+  vertical-align: top;
+  min-width: 80px;
+  background: #ffffff;
+}
+
+/* Header cells */
+.ql-editor th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Row spacing */
+.ql-editor tr {
+  height: auto;
+}
+
+/* ===============================
+   🔥 RESIZE HANDLE (IMPORTANT)
+================================ */
+
+/* invisible drag zone */
+.ql-editor td::after,
+.ql-editor th::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 10;
+}
+
+/* hover indicator */
+.ql-editor td:hover::after,
+.ql-editor th:hover::after {
+  background: rgba(251, 145, 0, 0.4);
+}
+
+/* active dragging (optional visual) */
+.ql-editor td.resizing::after,
+.ql-editor th.resizing::after {
+  background: #fb9100;
+}
+
+/* ===============================
+   OPTIONAL: BETTER MOBILE SCROLL
+================================ */
+.quill-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.quill-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.ql-editor table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.ql-editor td,
+.ql-editor th {
+  position: relative;
+}
+
+/* resize zone */
+.ql-editor td::after,
+.ql-editor th::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+}

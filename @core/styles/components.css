@@ -1,0 +1,206 @@
+.font-urbanist {
+  font-family: var(--font-urbanist);
+  text-rendering: optimizeLegibility;
+}
+
+.font-outfit {
+  font-family: var(--font-outfit), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.font-dafoe {
+  font-family: var(--font-dafoe), cursive;
+  text-rendering: optimizeLegibility;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.faq-item {
+  /* border-bottom: 1px solid #e5e7eb; */
+  background-color: #f9fafc;
+  padding-block: 2px;
+  padding-inline: 15px;
+  margin-block: 10px;
+  border-radius: 10px;
+}
+
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.faq-left {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.faq-number {
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 2px;
+  color: #000;
+}
+
+.faq-question {
+  font-weight: 400;
+  font-size: 21px;
+  color: #111827;
+}
+
+/* TOGGLE ICON (ROUNDED BUTTON) */
+.faq-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  /* background: #0069FF; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  font-weight: 600;
+  color: #000;
+  transition: all 0.3s ease;
+
+  /* Safari optimization */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.faq-toggle::before {
+  content: "+";
+}
+
+.faq-item.active .faq-toggle {
+  /* background: #fff4e5; */
+  /* color: #fb9100; */
+}
+
+.faq-item.active .faq-toggle::before {
+  content: "−";
+}
+
+/* ANSWER (SMOOTH ANIMATION) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+
+  /* Safari optimization */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.faq-answer-inner {
+  padding-bottom: 16px;
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   HOME COMPONENTS TYPOGRAPHY
+========================================= */
+
+.heading-service-title {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+@media (min-width: 640px) {
+  .heading-service-title {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .heading-service-title {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-service-title {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .heading-service-title {
+    font-size: 26px;
+  }
+
+  .heading-service-name {
+    font-size: 20px;
+  }
+
+  .heading-service-link {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1710px) {
+  .heading-service-title {
+    font-size: 28px;
+  }
+
+  .heading-service-name {
+    font-size: 20px;
+  }
+
+  .heading-service-link {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .heading-service-title {
+    font-size: 30px;
+  }
+
+  .heading-service-name {
+    font-size: 24px;
+  }
+
+  .heading-service-link {
+    font-size: 18px;
+  }
+}
+
+/* 2K+ */
+/*
+@media (min-width: 2400px) {
+  .heading-service-title {
+    font-size: 54px;
+  }
+
+  .heading-service-name {
+    font-size: 32px;
+  }
+
+  .heading-service-link {
+    font-size: 20px;
+  }
+}
+*/
+
+/* ==================================================
+   GLOBAL RENDERING OPTIMIZATION
+================================================== */
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+}
