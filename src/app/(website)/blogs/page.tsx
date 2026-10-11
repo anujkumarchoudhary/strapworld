@@ -7,6 +7,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BaseUrl } from "../../baseurl";
 import Blogs from "./Blogs";
+import Loading from "@/src/components/Loading";
 
 export interface BlogItem {
   _id: string;
@@ -70,9 +71,7 @@ const Page = () => {
         ]}
         description="Explore our latest insights, updates, and industry news."
       />
-      {loading ? (
-        <p className="py-10 text-center">Loading blogs...</p>
-      ) : (
+      {loading ? <Loading/> : (
         <Blogs data={blogs} />
       )}
     </div>

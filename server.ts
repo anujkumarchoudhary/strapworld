@@ -107,14 +107,6 @@ Environment : ${process.env.NODE_ENV}
 Port        : ${port}
 URL         : http://localhost:${port}
 
-Frontend:
-http://localhost:${port}
-
-API:
-http://localhost:${port}/v1/api
-
-Health:
-http://localhost:${port}/health
 
 ========================================
       `);

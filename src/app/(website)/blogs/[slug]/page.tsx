@@ -127,8 +127,6 @@ export default async function BlogDetailsPage({
         getRecentBlogs(slug),
     ]);
 
-    console.log(blog, "response12323")
-
     if (!blog) {
         return (
             <section className="py-16 md:py-24">

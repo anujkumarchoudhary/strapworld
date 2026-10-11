@@ -15,7 +15,7 @@ const applications = [
     },
     {
         number: "02",
-        title: "Logistics & Transportation",
+        title: "Metal and Pipe",
         description:
             "Keep palletized loads stable and protected during handling and transportation.",
         image: "/images/applications/image_3.jpg",
@@ -36,7 +36,7 @@ const applications = [
     },
     {
         number: "05",
-        title: "Construction Materials",
+        title: "Brick Packing",
         description:
             "Secure heavy construction materials and bundled products for safer movement.",
         image: "/images/applications/image_2.jpg",
