@@ -6,13 +6,13 @@
       {
         "text": "Explore Our Products & Manufacturing",
         "color": "#FFFFFF",
-        "weight": "400"
+        "weight": "500"
       }
     ],
     "description": "Explore our gallery showcasing PET and PP strapping products, manufacturing processes, packaging applications, quality standards, and industrial solutions. Discover our commitment to reliable packaging and strapping excellence.",
     "button": "Request a Quote",
     "button2": "Contact Us",
-    "bgImage": "/images/home/hero_banner.png"
+    "bgImage": "/images/products/products_banner_002.png"
   },
   "ourProducts": {
     "label": "OUR PRODUCTS",

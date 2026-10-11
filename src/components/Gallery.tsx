@@ -38,7 +38,7 @@ const galleryImages = [
         className: "md:col-span-1 md:row-span-1",
     },
     {
-        src: "/images/products/image_3.jpg",
+        src: "/images/products/pet-strapping-roll-500x500.webp",
         alt: "Secured industrial pallet",
         title: "Load Securing",
         className: "md:col-span-2 md:row-span-1",
@@ -50,7 +50,7 @@ const galleryImages = [
         className: "md:col-span-2 md:row-span-2",
     },
     {
-        src: "/images/products/image_9.webp",
+        src: "/images/products/Industrial-Packaging-Pet-Strap-Roll.jpg",
         alt: "PET strap rolls",
         title: "PET Strap Rolls",
         className: "md:col-span-1 md:row-span-1",

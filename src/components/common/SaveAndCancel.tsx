@@ -29,7 +29,7 @@ const SaveAndCancel = ({
   return (
     <div
       className={`
-    flex items-center gap-3
+    flex items-center gap-3 lg:gap-5
     ${className}
   `}
     >
@@ -75,7 +75,7 @@ const SaveAndCancel = ({
         inline-flex items-center cursor-pointer justify-center
         gap-2
         rounded-full
-        border border-[#29414E]
+        border border-[#FFFFFF]
         bg-transparent
         px-3
           md:px-5 py-3
@@ -84,7 +84,7 @@ const SaveAndCancel = ({
         text-white
         transition-all
         duration-300
-        hover:border-white/40
+        hover:border-[#FFFFFF]
         hover:bg-white/[0.06]
         hover:scale-[1.03]
       "

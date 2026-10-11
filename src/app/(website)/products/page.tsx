@@ -121,7 +121,7 @@ const Page = () => {
       ) : (
       )} */}
 
-              <OurProducts data={ourProducts} />
+      <OurProducts data={ourProducts} />
 
 
       {/* Applications Section */}

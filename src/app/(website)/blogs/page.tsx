@@ -66,7 +66,7 @@ const Page = () => {
       <CommonBanner
         label="OUR BLOGS"
         headingParts={[
-          { text: "Latest Blogs", color: "#FFFFFF" },
+          { text: "Latest Blogs", color: "#FFFFFF", weight:500 },
 
         ]}
         description="Explore our latest insights, updates, and industry news."

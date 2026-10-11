@@ -21,14 +21,14 @@ export const staticData = {
   home: {
     banner: {
       "id": "home",
-      "bgImage": "/images/home/hero_banner.png",
+      "bgImage": "/images/home/hero_banner_005.png",
       label: "PET Strap Manufacturer & Exporter from India",
 
       headingParts: [
         {
-          text: "High-Strength PET Strapping Solutions for Industrial Packaging",
+          text: "India’s Quality PET Strap Manufacturer and Global Exporter",
           color: "#FFFFFF",
-          weight: "600",
+          weight: "500",
         },
       ],
 
@@ -588,7 +588,7 @@ export const staticData = {
           "description": "Strong, reliable straps for secure cotton bale packaging.",
           "button": "View Product",
           "slug": "cotton-bale-strap",
-          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791614647/strapworld/products/image_9_n04flz.webp",
+          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791748836/pet-strapping-roll-500x500_ghjhnd.webp",
           "labels": [
             "PP Strap",
             "Polypropylene Strap",
@@ -3908,7 +3908,7 @@ export const staticData = {
           "description": "High-strength PET Straps for secure, heavy-duty packaging.",
           "button": "View Product",
           "slug": "pet-strap",
-          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791485909/strapworld/products/slides/image_3.jpg",
+          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791748836/pp_image_u7gzkd.jpg",
           "labels": [
             "PET Strap",
             "PET Strapping",
@@ -4688,7 +4688,7 @@ export const staticData = {
             "Compare retention, recovery, handling and equipment fit before choosing a grade.",
           date: "Aug 28, 2026",
           readTime: "6 min read",
-          href: "/blogs/building-modern-web-applications-that-scale",
+          href: "/blogs/pet-vs-pp-strapping-where-each-material-performs-best",
         },
 
         {
@@ -4700,7 +4700,7 @@ export const staticData = {
             "A practical checklist covering load geometry, edges, transit, storage and joining.",
           date: "Aug 21, 2026",
           readTime: "5 min read",
-          href: "/blogs/why-great-ui-ux-design-matters",
+          href: "/blogs/what-to-specify-for-a-stable-export-pallet",
         },
 
         {
@@ -4712,7 +4712,7 @@ export const staticData = {
             "Understand tool setup, strap surface and maintenance factors that affect the joint.",
           date: "Aug 14, 2026",
           readTime: "7 min read",
-          href: "/blogs/from-idea-to-product",
+          href: "/blogs/improving-friction-weld-joint-consistency-in-pet-strapping",
         },
       ],
     },

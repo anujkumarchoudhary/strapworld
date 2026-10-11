@@ -6,7 +6,7 @@
       {
         "text": "About Strap World",
         "color": "#FFFFFF",
-        "weight": "400"
+        "weight": "500"
       }
     ],
     "subHeading": "PET Strap Manufacturer & Exporter from India",
@@ -31,7 +31,7 @@
         "name": "Export documentation support"
       }
     ],
-    "bgImage": "/images/about/about_banner.png"
+    "bgImage": "/images/products/products_banner_002.png"
   },
   "whoWeAre": {
     "label": "Who we are",

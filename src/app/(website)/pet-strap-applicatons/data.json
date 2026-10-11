@@ -6,13 +6,13 @@
       {
         "text": "Strapping Solutions for Every Industry",
         "color": "#FFFFFF",
-        "weight": "400"
+        "weight": "500"
       }
     ],
     "description": "Discover how our PET and PP strapping solutions support carton packaging, palletizing, cotton bale compression, textile handling and industrial load securing. Designed for reliable bundling, safe transportation and diverse packaging requirements.",
     "button": "Request a Quote",
     "button2": "Contact Us",
-    "bgImage": "/images/home/hero_banner.png"
+    "bgImage": "/images/products/products_banner_002.png"
   },
   "ourProducts": {
     "label": "OUR PRODUCTS",

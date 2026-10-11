@@ -4,9 +4,9 @@
     "label": "OUR PRODUCTS",
     "headingParts": [
       {
-        "text": "PET & Polyester Strapping Products",
+        "text": "High-Performance PET & Polyester Strapping Solutions",
         "color": "#FFFFFF",
-        "weight": "400"
+        "weight": "500"
       }
     ],
     "description": "Explore our range of PET and polyester strapping manufactured for packaging, bundling, palletizing and industrial load-securing applications. Available in multiple specifications for different products, loads and packaging requirements.",
@@ -30,7 +30,7 @@
         "name": "Export documentation support"
       }
     ],
-    "bgImage": "/images/home/hero_banner.png"
+    "bgImage": "/images/products/products_banner_002.png"
   },
   "ourProducts": {
     "label": "OUR PRODUCTS",
@@ -348,7 +348,7 @@
                 "description": "Strong, reliable straps for secure cotton bale packaging.",
                 "button": "View Product",
                 "slug": "cotton-bale-strap",
-                "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791614647/strapworld/products/image_9_n04flz.webp",
+                "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791748837/Industrial-Packaging-Pet-Strap-Roll_svmmka.jpg",
                 "labels": [
                   "PP Strap",
                   "Polypropylene Strap",
@@ -539,7 +539,7 @@
           "description": "Strong, reliable straps for secure cotton bale packaging.",
           "button": "View Product",
           "slug": "cotton-bale-strap",
-          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791614647/strapworld/products/image_9_n04flz.webp",
+          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791748836/pet-strapping-roll-500x500_ghjhnd.webp",
           "labels": [
             "PP Strap",
             "Polypropylene Strap",
@@ -3859,7 +3859,7 @@
           "description": "High-strength PET Straps for secure, heavy-duty packaging.",
           "button": "View Product",
           "slug": "pet-strap",
-          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791485909/strapworld/products/slides/image_3.jpg",
+          "image": "https://res.cloudinary.com/dzxajcpnm/image/upload/v1791748836/pp_image_u7gzkd.jpg",
           "labels": [
             "PET Strap",
             "PET Strapping",
