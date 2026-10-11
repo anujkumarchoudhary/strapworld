@@ -164,7 +164,7 @@ export default function FinalCTA({ data }: any) {
               <div className="bg-[#FFFFFF]/10 p-5 rounded-[10px] space-y-3">
                 {data?.list?.map((item: any, idx: number) => {
                   return (
-                    <div className="flex gap-2">
+                    <div key={idx} className="flex gap-2">
                       <MdCheck size={15} className="text-[#FFFFFF]" />
                       <p className="my-auto text-[15px] font-normal text-[#FFFFFF]">
                         {item?.label}
