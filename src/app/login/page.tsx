@@ -30,70 +30,80 @@ export default function LoginPage() {
     });
   };
 
-  const handleAuth = async (e: React.FormEvent) => {
-    if (
-      isSignup &&
-      (!formData.name || formData.name === "undefined" || !formData.name.trim())
-    ) {
-      toast.error("Name is required");
+const handleAuth = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (
+    isSignup &&
+    (!formData.name ||
+      formData.name === "undefined" ||
+      !formData.name.trim())
+  ) {
+    toast.error("Name is required");
+    return;
+  }
+
+  if (!formData.email.trim()) {
+    toast.error("Email is required");
+    return;
+  }
+
+  if (!formData.password.trim()) {
+    toast.error("Password is required");
+    return;
+  }
+
+  setLoading(true);
+  setError("");
+
+  try {
+    const endpoint = isSignup ? "register" : "login";
+
+    const res = await fetch(`${BaseUrl}/auth/${endpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error(
+        data.message || `${isSignup ? "Signup" : "Login"} failed`,
+      );
+    }
+
+    // Signup flow
+    if (isSignup) {
+      toast.success("Signup successful. Please verify your email.");
+      router.push("/login");
       return;
     }
 
-    if (!formData.email.trim()) {
-      toast.error("Email is required");
-      return;
+    // Validate login response
+    if (!data.token || !data.user) {
+      throw new Error("Login response is missing token or user data");
     }
 
-    if (!formData.password.trim()) {
-      toast.error("Password is required");
-      return;
-    }
+    // Store token using both keys for compatibility
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("adminAccessToken", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
-    setLoading(true);
-    setError("");
+    toast.success("Login successful");
+    router.push("/admin");
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "Something went wrong";
 
-    try {
-      const endpoint = isSignup ? "register" : "login";
-
-      const res = await fetch(`${BaseUrl}/auth/${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(
-          data.message || `${isSignup ? "Signup" : "Login"} failed`,
-        );
-      }
-
-      // 🟢 SIGNUP FLOW
-      if (isSignup) {
-        toast.success("Signup successful. Please verify your email.");
-
-        // optional redirect to login page
-        router.push("/login");
-        return;
-      }
-
-      // 🟢 LOGIN FLOW
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      toast.success("Login successful");
-
-      router.push("/admin");
-    } catch (err: any) {
-      toast.error(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+    setError(message);
+    toast.error(message);
+  } finally {
+    setLoading(false);
+  }
+};
   const handleForgotPassword = async () => {
     if (!forgotEmail.trim()) {
       toast.error("Email is required");

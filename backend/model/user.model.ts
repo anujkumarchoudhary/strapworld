@@ -4,7 +4,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  role: mongoose.Types.ObjectId;
+  role: "user" | "admin";
   isActive: boolean;
 }
 
@@ -27,17 +27,20 @@ const userSchema = new Schema<IUser>(
       required: true,
       select: false,
     },
-    // role: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Role",
-    //   required: true,
-    // },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "admin",
+      required: true,
+      lowercase: true,
+      trim: true,
+    },
     isActive: {
       type: Boolean,
       default: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.models.User ||

@@ -6,6 +6,7 @@ import Footer from "../../components/layout/Footer";
 import SmoothScroll from "../../components/layout/SmoothScroll";
 import ChatWidget from "../../components/ChatWidget";
 import { Toaster } from "react-hot-toast";
+import LiveChatWidget from "@/src/components/chat/LiveChatWidget";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -110,7 +111,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-  
+
 
   twitter: {
     card: "summary_large_image",
@@ -139,7 +140,8 @@ export default function RootLayout({
           <Toaster position="top-right" reverseOrder={false} />
 
           {children}
-          <ChatWidget />
+          <LiveChatWidget />
+          {/* <ChatWidget /> */}
         </main>
 
         <Footer />

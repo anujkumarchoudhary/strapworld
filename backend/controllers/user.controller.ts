@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import User from "../model/user.model";
 import jwt from "jsonwebtoken";
-
+import roleModel from "../model/role.model";
 
 // CREATE USER
 export async function createUser(
@@ -12,24 +12,26 @@ export async function createUser(
   next: NextFunction,
 ) {
   try {
-    const { name, email, password, role, isActive } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (
+      typeof name !== "string" ||
+      !name.trim() ||
+      typeof email !== "string" ||
+      !email.trim() ||
+      typeof password !== "string" ||
+      !password
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Name, email, password and role are required",
+        message: "Name, email and password are required",
       });
     }
 
-    // if (!mongoose.Types.ObjectId.isValid(role)) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Invalid role ID",
-    //   });
-    // }
+    const normalizedEmail = email.trim().toLowerCase();
 
     const existingUser = await User.findOne({
-      email: String(email).trim().toLowerCase(),
+      email: normalizedEmail,
     });
 
     if (existingUser) {
@@ -39,17 +41,16 @@ export async function createUser(
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-
+    // Public registration always creates a regular user.
     const user = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      isActive: isActive ?? true,
+      name: name.trim(),
+      email: normalizedEmail,
+      password: await bcrypt.hash(password, 12),
+      role: "user",
+      isActive: true,
     });
 
-    const result = await User.findById(user._id)
-      .select("-password")
+    const result = await User.findById(user._id).select("-password");
 
     return res.status(201).json({
       success: true,
@@ -84,9 +85,7 @@ export async function loginUser(
 
     const user = await User.findOne({
       email: email.trim().toLowerCase(),
-    })
-      .select("+password")
-      // .populate("role", "name permissions");
+    }).select("+password");
 
     if (!user) {
       return res.status(401).json({
@@ -114,6 +113,13 @@ export async function loginUser(
       });
     }
 
+    if (!["user", "admin"].includes(user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: "User role is missing or invalid",
+      });
+    }
+
     const secret = process.env.JWT_SECRET;
 
     if (!secret) {
@@ -124,12 +130,15 @@ export async function loginUser(
     }
 
     const token = jwt.sign(
-      { id: user._id.toString() },
+      {
+        id: user._id.toString(),
+        role: user.role,
+      },
       secret,
       { expiresIn: "1d" },
     );
 
-    const userData = user.toObject();
+    const userData = user.toObject() as Record<string, any>;
     delete userData.password;
 
     return res.status(200).json({
@@ -142,7 +151,6 @@ export async function loginUser(
     return next(error);
   }
 }
-
 // GET ALL USERS
 export async function getUsers(
   req: Request,

@@ -5,7 +5,7 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 import { RiDashboardFill } from "react-icons/ri";
 import { FaServicestack } from "react-icons/fa";
 import { FaBlog } from "react-icons/fa";
-import { MdCategory, MdRoomPreferences } from "react-icons/md";
+import { MdCategory, MdChalet, MdRoomPreferences } from "react-icons/md";
 
 import {
   HiClipboardDocument,
@@ -13,6 +13,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { GoArrowSwitch } from "react-icons/go";
+import { ChartBar } from "lucide-react";
 
 export const menuData = [
   { label: "Dashboard", path: "/admin", icon: <RiDashboardFill size={20} /> },
@@ -59,6 +60,11 @@ export const menuData = [
     // },
 
   // ✅ SALES (with submenu)
+    {
+    label: "Chat",
+    path: "/admin/chat",
+    icon: <ChartBar size={20} />,
+  },
   {
     label: "Notifications",
     path: "/admin/notification",
