@@ -16,6 +16,7 @@ import enquirieRoutes from "./backend/routes/enquiry.routes";
 import chatRoutes from "./backend/routes/chat.routes";
 
 import { registerChatSocket } from "./backend/socket/chat.socket";
+import { setChatIO } from "./backend/socket/chat.io";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "0.0.0.0";
@@ -94,6 +95,7 @@ const io = new Server(server, {
 });
 
     // Register live chat socket events
+    setChatIO(io);
     registerChatSocket(io);
 
     // Next.js request handler

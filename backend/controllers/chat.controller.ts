@@ -3,6 +3,7 @@ import { createHash, randomBytes } from "crypto";
 import mongoose from "mongoose";
 import ChatConversation from "../model/ChatConversation";
 import ChatMessage from "../model/ChatMessage";
+import { getChatIO } from "../socket/chat.io";
 
 export const hashChatToken = (token: string): string =>
   createHash("sha256").update(token).digest("hex");
@@ -288,10 +289,7 @@ export const sendAdminMessage = async (
       return;
     }
 
-    if (
-      typeof messageText !== "string" ||
-      !messageText.trim()
-    ) {
+    if (typeof messageText !== "string" || !messageText.trim()) {
       res.status(400).json({
         success: false,
         message: "Message is required.",
@@ -333,6 +331,25 @@ export const sendAdminMessage = async (
     }
 
     await conversation.save();
+    const io = getChatIO();
+
+    const payload = {
+      _id: String(savedMessage._id),
+      conversationId: String(conversation._id),
+      sender: "agent",
+      message: savedMessage.message,
+      createdAt: savedMessage.createdAt,
+    };
+
+    io?.to(`chat:${conversation._id}`).emit("chat:message", payload);
+
+    io?.to("chat:agents").emit("chat:inbox-update", {
+      conversationId: String(conversation._id),
+      lastMessage: savedMessage.message,
+      lastMessageAt: savedMessage.createdAt,
+      sender: "agent",
+      status: conversation.status,
+    });
 
     res.status(201).json({
       success: true,
