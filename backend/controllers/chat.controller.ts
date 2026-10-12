@@ -331,6 +331,9 @@ export const sendAdminMessage = async (
     }
 
     await conversation.save();
+
+    await conversation.save();
+
     const io = getChatIO();
 
     const payload = {
@@ -341,14 +344,21 @@ export const sendAdminMessage = async (
       createdAt: savedMessage.createdAt,
     };
 
+    // Send the admin's message to the visitor and anyone viewing this conversation.
     io?.to(`chat:${conversation._id}`).emit("chat:message", payload);
 
+    // Update all connected admin inboxes.
     io?.to("chat:agents").emit("chat:inbox-update", {
       conversationId: String(conversation._id),
       lastMessage: savedMessage.message,
       lastMessageAt: savedMessage.createdAt,
       sender: "agent",
       status: conversation.status,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: payload,
     });
 
     res.status(201).json({

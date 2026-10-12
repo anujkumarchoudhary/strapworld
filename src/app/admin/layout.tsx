@@ -490,12 +490,12 @@ export default function AdminLayout({
                       `}
                     >
                       {isActive && (
-                        <span className="absolute inset-0 rounded-r-full border border-white/20 bg-linear-to-r from-primary/90 to-primary shadow-md backdrop-blur-md" />
+                        <span className="absolute bg-[#2E9B4F] inset-0 rounded-r-full border border-white/20 bg-linear-to-r from-primary/90 to-primary shadow-md backdrop-blur-md" />
                       )}
 
-                      {!isActive && (
-                        <span className="absolute inset-0 rounded-r-full border border-white/20 bg-white/40 opacity-0 transition hover:opacity-100 backdrop-blur-sm" />
-                      )}
+                      {/* {!isActive && (
+                        <span className="absolute inset-0 rounded-r-full border border-white/20 opacity-0 transition hover:opacity-100 backdrop-blur-sm" />
+                      )} */}
 
                       <div
                         className={`relative z-10 flex items-center ${
@@ -513,7 +513,7 @@ export default function AdminLayout({
                         </span>
 
                         {showLabels && (
-                          <p className="truncate font-medium tracking-wide">
+                          <p className={`truncate ${isActive ? "text-white":"text-[#000000]"} font-medium tracking-wide`}>
                             {menu.label}
                           </p>
                         )}

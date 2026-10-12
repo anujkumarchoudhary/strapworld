@@ -46,13 +46,13 @@ export const menuData = [
     icon: <AiOutlineQuestionCircle size={20} />,
   },
     { label: "Blog", path: "/admin/blog", icon: <FaBlog size={20} /> },
-    { label: "Redirects", path: "/admin/redirect", icon: <GoArrowSwitch size={20} /> },
+    // { label: "Redirects", path: "/admin/redirect", icon: <GoArrowSwitch size={20} /> },
 
-    {
-      label: "Products Meta",
-      path: "/admin/products-meta",
-      icon: <FaServicestack size={20} />,
-    },
+    // {
+    //   label: "Products Meta",
+    //   path: "/admin/products-meta",
+    //   icon: <FaServicestack size={20} />,
+    // },
     // {
     //   label: "Category",
     //   path: "/admin/category",
