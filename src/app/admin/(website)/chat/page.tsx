@@ -89,7 +89,8 @@ type ApiResult = {
 
 const SOCKET_URL =
     process.env.NEXT_PUBLIC_CHAT_SOCKET_URL ||
-    (typeof window !== "undefined" ? window.location.origin : "");
+    process.env.NEXT_PUBLIC_SOCKET_URL ||
+    "http://localhost:8000";
 
 const AVATAR_COLORS = [
     "bg-emerald-100 text-emerald-800",
@@ -299,7 +300,7 @@ export default function AdminChatPage() {
     );
 
     const refreshInbox = useCallback(async (token: string) => {
-        console.log(token,"tokencheck")
+        console.log(token, "tokencheck")
         const response = await fetch(
             `${BaseUrl}/chat/admin/conversations`,
             {
@@ -307,7 +308,7 @@ export default function AdminChatPage() {
                 cache: "no-store",
             },
         );
-        console.log(response,"responsecheck")
+        console.log(response, "responsecheck")
 
         const result = await parseResponse<ApiResult>(response);
         const items = (result.conversations || []).map(toConversation);
@@ -366,7 +367,7 @@ export default function AdminChatPage() {
                     },
                 );
 
-                
+
                 const result = await parseResponse<ApiResult>(response);
                 const messages = (result.messages || []).map(toMessage);
 
@@ -505,15 +506,34 @@ export default function AdminChatPage() {
                     setError(`Live chat connection failed: ${err.message}`);
                 });
 
-                socket.on("chat:inbox-update", () => {
-                    void refreshInbox(token).catch((err) => {
-                        setError(
-                            err instanceof Error
-                                ? err.message
-                                : "Unable to refresh inbox.",
-                        );
-                    });
-                });
+                socket.on(
+                    "chat:inbox-update",
+                    (payload?: { conversationId?: string }) => {
+                        void (async () => {
+                            try {
+                                // Update the conversation list and latest-message preview.
+                                await refreshInbox(token);
+
+                                // Reload history if the updated conversation is open.
+                                const activeId = selectedIdRef.current;
+
+                                if (
+                                    activeId &&
+                                    (!payload?.conversationId ||
+                                        payload.conversationId === activeId)
+                                ) {
+                                    await loadMessages(activeId, token);
+                                }
+                            } catch (err) {
+                                setError(
+                                    err instanceof Error
+                                        ? err.message
+                                        : "Unable to refresh chat messages.",
+                                );
+                            }
+                        })();
+                    },
+                );
 
                 socket.on(
                     "chat:message",
@@ -731,7 +751,7 @@ export default function AdminChatPage() {
              * { status: "open" | "pending" | "resolved" }
              */
             const response = await fetch(
-                `${BaseUrl}/chat/admin/conversations22/${encodeURIComponent(
+                `${BaseUrl}/chat/admin/conversations/${encodeURIComponent(
                     conversationId,
                 )}/status`,
                 {
@@ -826,8 +846,8 @@ export default function AdminChatPage() {
                         <div className="hidden items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700 sm:flex">
                             <span
                                 className={`h-2 w-2 rounded-full ${socketConnected
-                                        ? "bg-emerald-500"
-                                        : "bg-amber-500"
+                                    ? "bg-emerald-500"
+                                    : "bg-amber-500"
                                     }`}
                             />
                             {socketConnected
@@ -981,8 +1001,8 @@ export default function AdminChatPage() {
                                         type="button"
                                         onClick={() => setFilter(item)}
                                         className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium transition ${filter === item
-                                                ? "bg-[#063F3D] text-white"
-                                                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                            ? "bg-[#063F3D] text-white"
+                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                                             }`}
                                     >
                                         {item}
@@ -1022,8 +1042,8 @@ export default function AdminChatPage() {
                                             selectConversation(conversation.id)
                                         }
                                         className={`w-full border-b border-gray-100 p-4 text-left transition hover:bg-[#F7FBF8] ${selectedId === conversation.id
-                                                ? "bg-[#F0F8F2]"
-                                                : "bg-white"
+                                            ? "bg-[#F0F8F2]"
+                                            : "bg-white"
                                             }`}
                                     >
                                         <div className="flex items-start gap-3">
@@ -1194,8 +1214,8 @@ export default function AdminChatPage() {
                                                     <div
                                                         key={item.id}
                                                         className={`flex ${isAgent
-                                                                ? "justify-end"
-                                                                : "justify-start"
+                                                            ? "justify-end"
+                                                            : "justify-start"
                                                             }`}
                                                     >
                                                         {!isAgent && (
@@ -1209,8 +1229,8 @@ export default function AdminChatPage() {
                                                         <div className="max-w-[85%]">
                                                             <div
                                                                 className={`whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-6 ${isAgent
-                                                                        ? "rounded-br-md bg-[#063F3D] text-white"
-                                                                        : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
+                                                                    ? "rounded-br-md bg-[#063F3D] text-white"
+                                                                    : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
                                                                     }`}
                                                             >
                                                                 {item.text}
@@ -1218,8 +1238,8 @@ export default function AdminChatPage() {
 
                                                             <div
                                                                 className={`mt-1 flex items-center gap-1 text-[10px] text-gray-400 ${isAgent
-                                                                        ? "justify-end"
-                                                                        : "justify-start"
+                                                                    ? "justify-end"
+                                                                    : "justify-start"
                                                                     }`}
                                                             >
                                                                 {item.time}

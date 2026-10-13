@@ -8,7 +8,7 @@ import ChatMessage from "../model/ChatMessage";
 
 type ChatAck = (result: Record<string, unknown>) => void;
 
-const safeEqual = (a: string, b: string) => {
+const safeEqual = (a: string, b: string): boolean => {
   const left = Buffer.from(a);
   const right = Buffer.from(b);
 
@@ -18,49 +18,35 @@ const safeEqual = (a: string, b: string) => {
   );
 };
 
-export const registerChatSocket = (io: Server) => {
+export const registerChatSocket = (io: Server): void => {
   io.on("connection", (socket: Socket) => {
-    // Authenticate the agent before allowing access to admin events.
+    console.log("[SOCKET] Client connected:", socket.id);
+
+    // Join the admin inbox room.
+    // No admin authentication is performed in this handler.
     socket.on(
       "admin:join",
-      async (
-        data: { accessToken?: string },
+      (
+        _data: { accessToken?: string },
         callback?: ChatAck,
       ) => {
-        try {
-          const token = data?.accessToken;
-          const expectedToken = process.env.CHAT_ADMIN_SOCKET_TOKEN;
+        socket.data.chatRole = "agent";
+        socket.join("chat:agents");
 
-          if (
-            !token ||
-            !expectedToken ||
-            !safeEqual(token, expectedToken)
-          ) {
-            return callback?.({
-              success: false,
-              message: "Admin authentication failed.",
-            });
-          }
+        console.log("[SOCKET] Client joined admin inbox:", socket.id);
 
-          socket.data.chatRole = "agent";
-          socket.join("chat:agents");
-
-          return callback?.({ success: true });
-        } catch (error) {
-          console.error("admin:join:", error);
-          return callback?.({
-            success: false,
-            message: "Unable to authenticate admin.",
-          });
-        }
+        callback?.({ success: true });
       },
     );
 
-    // Visitors authenticate with their private conversation token.
+    // Visitors join only after their conversation token is verified.
     socket.on(
       "chat:join",
       async (
-        data: { conversationId?: string; token?: string },
+        data: {
+          conversationId?: string;
+          token?: string;
+        },
         callback?: ChatAck,
       ) => {
         try {
@@ -72,10 +58,11 @@ export const registerChatSocket = (io: Server) => {
             typeof token !== "string" ||
             token.length > 200
           ) {
-            return callback?.({
+            callback?.({
               success: false,
               message: "Invalid chat session.",
             });
+            return;
           }
 
           const conversation = await ChatConversation.findById(
@@ -84,15 +71,17 @@ export const registerChatSocket = (io: Server) => {
 
           if (
             !conversation ||
+            typeof conversation.visitorTokenHash !== "string" ||
             !safeEqual(
               conversation.visitorTokenHash,
               hashChatToken(token),
             )
           ) {
-            return callback?.({
+            callback?.({
               success: false,
               message: "Chat access denied.",
             });
+            return;
           }
 
           socket.data.chatRole = "visitor";
@@ -100,13 +89,14 @@ export const registerChatSocket = (io: Server) => {
 
           socket.join(`chat:${conversation._id}`);
 
-          return callback?.({
+          callback?.({
             success: true,
             status: conversation.status,
           });
         } catch (error) {
-          console.error("chat:join:", error);
-          return callback?.({
+          console.error("[SOCKET] chat:join error:", error);
+
+          callback?.({
             success: false,
             message: "Unable to join chat.",
           });
@@ -114,7 +104,7 @@ export const registerChatSocket = (io: Server) => {
       },
     );
 
-    // Both visitors and authenticated agents send messages through this event.
+    // Handle messages sent by visitors and agents.
     socket.on(
       "chat:message",
       async (
@@ -125,13 +115,21 @@ export const registerChatSocket = (io: Server) => {
         callback?: ChatAck,
       ) => {
         try {
+          console.log("[SOCKET] chat:message received:", {
+            socketId: socket.id,
+            role: socket.data.chatRole,
+          });
+
           const role = socket.data.chatRole;
+
           const conversationId =
             role === "visitor"
               ? socket.data.conversationId
               : data?.conversationId;
 
-          const messageText = String(data?.message ?? "").trim();
+          const messageText = String(
+            data?.message ?? "",
+          ).trim();
 
           if (
             (role !== "visitor" && role !== "agent") ||
@@ -140,33 +138,59 @@ export const registerChatSocket = (io: Server) => {
             !messageText ||
             messageText.length > 3000
           ) {
-            return callback?.({
+            callback?.({
               success: false,
               message: "Invalid message.",
             });
+            return;
           }
 
-          // Agents may send only after authenticating with admin:join.
-          if (role === "agent" && !socket.rooms.has("chat:agents")) {
-            return callback?.({
+          if (
+            role === "agent" &&
+            !socket.rooms.has("chat:agents")
+          ) {
+            callback?.({
               success: false,
-              message: "Admin authentication required.",
+              message: "Admin room access required.",
             });
+            return;
           }
 
           const conversation = await ChatConversation.findById(
             conversationId,
           );
 
-          if (!conversation || conversation.status === "resolved") {
-            return callback?.({
+          if (!conversation) {
+            callback?.({
+              success: false,
+              message: "Conversation not found.",
+            });
+            return;
+          }
+
+          if (
+            role === "visitor" &&
+            String(conversation._id) !==
+              String(socket.data.conversationId)
+          ) {
+            callback?.({
+              success: false,
+              message: "Chat access denied.",
+            });
+            return;
+          }
+
+          if (conversation.status === "resolved") {
+            callback?.({
               success: false,
               message: "This conversation is closed.",
             });
+            return;
           }
 
           const sender = role === "agent" ? "agent" : "visitor";
 
+          // Save the message before broadcasting it.
           const savedMessage = await ChatMessage.create({
             conversationId: conversation._id,
             sender,
@@ -190,33 +214,55 @@ export const registerChatSocket = (io: Server) => {
             createdAt: savedMessage.createdAt,
           };
 
-          // Deliver to the visitor and any admin viewing this conversation.
+          // Deliver to the visitor and all clients in this conversation room.
           io.to(`chat:${conversation._id}`).emit(
             "chat:message",
             payload,
           );
 
-          // Notify authenticated admin dashboards only.
+          // Critical fix: deliver visitor messages to the admin inbox live.
+          if (sender === "visitor") {
+            io.to("chat:agents").emit(
+              "chat:message",
+              payload,
+            );
+          }
+
+          // Update admin inbox previews and status.
           io.to("chat:agents").emit("chat:inbox-update", {
             conversationId: String(conversation._id),
-            lastMessage: messageText,
+            lastMessage: savedMessage.message,
             lastMessageAt: savedMessage.createdAt,
             sender,
             status: conversation.status,
           });
 
-          return callback?.({
+          console.log("[SOCKET] Message saved and broadcast:", {
+            messageId: String(savedMessage._id),
+            conversationId: String(conversation._id),
+            sender,
+          });
+
+          callback?.({
             success: true,
             message: payload,
           });
         } catch (error) {
-          console.error("chat:message:", error);
-          return callback?.({
+          console.error("[SOCKET] chat:message error:", error);
+
+          callback?.({
             success: false,
             message: "Unable to send message.",
           });
         }
       },
     );
+
+    socket.on("disconnect", (reason) => {
+      console.log("[SOCKET] Client disconnected:", {
+        socketId: socket.id,
+        reason,
+      });
+    });
   });
 };

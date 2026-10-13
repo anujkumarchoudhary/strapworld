@@ -46,7 +46,8 @@ const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL || "/api/v1/chat";
 
 const SOCKET_URL =
-  process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:4000";
+  process.env.NEXT_PUBLIC_CHAT_SOCKET_URL ||
+  (typeof window !== "undefined" ? window.location.origin : "");
 
 const SESSION_KEY = "adaired-live-chat-session";
 
@@ -72,9 +73,9 @@ const LiveChatWidget = () => {
 
 
 
-type ContactTab = "chat" | "whatsapp" | "phone" | "email";
+  type ContactTab = "chat" | "whatsapp" | "phone" | "email";
 
-const [activeTab, setActiveTab] = useState<ContactTab>("chat");
+  const [activeTab, setActiveTab] = useState<ContactTab>("chat");
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -288,6 +289,18 @@ const [activeTab, setActiveTab] = useState<ContactTab>("chat");
         }),
       });
 
+      (response?: { success?: boolean; message?: string }) => {
+  console.log("[VISITOR] Server acknowledgement:", response);
+
+  setIsSending(false);
+
+  if (response?.success === false) {
+    setError(response.message || "Message could not be sent.");
+    return;
+  }
+
+  setMessage("");
+}
       const result = (await response.json()) as CreateConversationResponse;
 
       if (!response.ok || !result.conversationId || !result.token) {
@@ -341,6 +354,13 @@ const [activeTab, setActiveTab] = useState<ContactTab>("chat");
     setError("");
     setIsSending(true);
 
+    console.log("[VISITOR] Socket connected:", socket?.connected);
+    console.log("[VISITOR] Sending message event:", {
+      conversationId: session.conversationId,
+      messageLength: text.length,
+    });
+
+
     socket.emit(
       "chat:message",
       {
@@ -366,422 +386,417 @@ const [activeTab, setActiveTab] = useState<ContactTab>("chat");
   };
 
   return (
-<div className="fixed bottom-3 right-3 z-[9999] sm:bottom-5 sm:right-5">
-  {isOpen && !isMinimized && (
-    <section
-      aria-label="Contact support"
-      className="mb-3 flex h-[min(650px,calc(100dvh-32px))] w-[calc(100vw-24px)] max-w-[400px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:mb-4 sm:h-[625px] sm:w-[400px]"
-    >
-      {/* Header */}
-      <header className="flex shrink-0 items-center justify-between bg-[#063F3D] px-4 py-3.5 text-white sm:px-5 sm:py-4">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15">
-            <Headset size={22} />
-          </div>
-
-          <div className="min-w-0">
-            <h2 className="truncate text-lg font-semibold text-white sm:text-xl">
-              Contact us
-            </h2>
-
-            <p className="mt-0.5 flex items-center gap-1.5 text-xs text-blue-100">
-              <span
-                className={`h-2 w-2 shrink-0 rounded-full ${
-                  isConnected ? "bg-green-400" : "bg-yellow-300"
-                }`}
-              />
-              {isConnected ? "Chat connection active" : "Connecting..."}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex shrink-0 items-center gap-1">
-          <button
-            type="button"
-            onClick={() => setIsMinimized(true)}
-            aria-label="Minimize chat"
-            className="rounded-lg p-2 transition hover:bg-white/15"
-          >
-            <Minimize2 size={18} />
-          </button>
-
-          <button
-            type="button"
-            onClick={closeWidget}
-            aria-label="Close chat"
-            className="rounded-lg p-2 transition hover:bg-white/15"
-          >
-            <X size={20} />
-          </button>
-        </div>
-      </header>
-
-      {/* Contact method tabs */}
-      <nav
-        aria-label="Choose contact method"
-        className="grid shrink-0 grid-cols-4 gap-1 border-b border-gray-200 bg-white p-2 sm:gap-2"
-      >
-        {(
-          [
-            { id: "chat", label: "Live Chat", icon: MessageCircle },
-            { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
-            { id: "phone", label: "Call Us", icon: Phone },
-            { id: "email", label: "Email", icon: Mail },
-          ] as const
-        ).map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            type="button"
-            aria-pressed={activeTab === id}
-            onClick={() => {
-              setActiveTab(id);
-
-              if (id === "whatsapp") {
-                window.open(
-                  "https://wa.me/919876543210",
-                  "_blank",
-                  "noopener,noreferrer",
-                );
-              }
-
-              if (id === "phone") {
-                window.location.href = "tel:+919876543210";
-              }
-
-              if (id === "email") {
-                window.location.href = "mailto:hello@strapworld.in";
-              }
-            }}
-            className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${
-              activeTab === id
-                ? "bg-[#E8F5EC] text-[#176B35]"
-                : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-            }`}
-          >
-            {/* <Icon  size={17} className="shrink-0" /> */}
-            <span className="truncate">{label}</span>
-          </button>
-        ))}
-      </nav>
-
-      {/* Live chat */}
-      {activeTab === "chat" && (
-        <>
-          {!session ? (
-            <form
-              onSubmit={startConversation}
-              className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5"
-            >
-              <div>
-                <label
-                  htmlFor="chat-name"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
-                >
-                  Your name
-                </label>
-
-                <input
-                  id="chat-name"
-                  value={visitorName}
-                  onChange={(event) => setVisitorName(event.target.value)}
-                  placeholder="Enter your name"
-                  autoComplete="name"
-                  maxLength={100}
-                  required
-                  className="w-full rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
-                />
+    <div className="fixed bottom-3 right-3 z-[9999] sm:bottom-5 sm:right-5">
+      {isOpen && !isMinimized && (
+        <section
+          aria-label="Contact support"
+          className="mb-3 flex h-[min(650px,calc(100dvh-32px))] w-[calc(100vw-24px)] max-w-[400px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:mb-4 sm:h-[625px] sm:w-[400px]"
+        >
+          {/* Header */}
+          <header className="flex shrink-0 items-center justify-between bg-[#063F3D] px-4 py-3.5 text-white sm:px-5 sm:py-4">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15">
+                <Headset size={22} />
               </div>
 
-              <div>
-                <label
-                  htmlFor="chat-email"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
-                >
-                  Email address
-                </label>
+              <div className="min-w-0">
+                <h2 className="truncate text-lg font-semibold text-white sm:text-xl">
+                  Contact us
+                </h2>
 
-                <input
-                  id="chat-email"
-                  type="email"
-                  value={visitorEmail}
-                  onChange={(event) => setVisitorEmail(event.target.value)}
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                  maxLength={254}
-                  required
-                  className="w-full rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="chat-details"
-                  className="mb-1.5 block text-sm font-medium text-gray-700"
-                >
-                  How can we help?
-                </label>
-
-                <textarea
-                  id="chat-details"
-                  value={projectDetails}
-                  onChange={(event) => setProjectDetails(event.target.value)}
-                  placeholder="Tell us about your requirement..."
-                  rows={4}
-                  maxLength={2000}
-                  required
-                  className="w-full resize-none rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
-                />
-              </div>
-
-              {error && (
-                <p role="alert" className="text-sm text-red-600">
-                  {error}
+                <p className="mt-0.5 flex items-center gap-1.5 text-xs text-blue-100">
+                  <span
+                    className={`h-2 w-2 shrink-0 rounded-full ${isConnected ? "bg-green-400" : "bg-yellow-300"
+                      }`}
+                  />
+                  {isConnected ? "Chat connection active" : "Connecting..."}
                 </p>
-              )}
+              </div>
+            </div>
+
+            <div className="flex shrink-0 items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setIsMinimized(true)}
+                aria-label="Minimize chat"
+                className="rounded-lg p-2 transition hover:bg-white/15"
+              >
+                <Minimize2 size={18} />
+              </button>
 
               <button
-                type="submit"
-                disabled={isStarting}
-                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#2E9B4F] px-4 py-3 font-medium text-white transition hover:bg-[#247D3F] disabled:cursor-not-allowed disabled:opacity-60"
+                type="button"
+                onClick={closeWidget}
+                aria-label="Close chat"
+                className="rounded-lg p-2 transition hover:bg-white/15"
               >
-                {isStarting ? (
-                  <>
-                    <LoaderCircle size={18} className="animate-spin" />
-                    Starting chat...
-                  </>
-                ) : (
-                  <>
-                    Start conversation
-                    <Send size={17} />
-                  </>
-                )}
+                <X size={20} />
               </button>
-            </form>
-          ) : (
+            </div>
+          </header>
+
+          {/* Contact method tabs */}
+          <nav
+            aria-label="Choose contact method"
+            className="grid shrink-0 grid-cols-4 gap-1 border-b border-gray-200 bg-white p-2 sm:gap-2"
+          >
+            {(
+              [
+                { id: "chat", label: "Live Chat", icon: MessageCircle },
+                { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
+                { id: "phone", label: "Call Us", icon: Phone },
+                { id: "email", label: "Email", icon: Mail },
+              ] as const
+            ).map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                type="button"
+                aria-pressed={activeTab === id}
+                onClick={() => {
+                  setActiveTab(id);
+
+                  if (id === "whatsapp") {
+                    window.open(
+                      "https://wa.me/919876543210",
+                      "_blank",
+                      "noopener,noreferrer",
+                    );
+                  }
+
+                  if (id === "phone") {
+                    window.location.href = "tel:+919876543210";
+                  }
+
+                  if (id === "email") {
+                    window.location.href = "mailto:hello@strapworld.in";
+                  }
+                }}
+                className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${activeTab === id
+                    ? "bg-[#E8F5EC] text-[#176B35]"
+                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                  }`}
+              >
+                {/* <Icon  size={17} className="shrink-0" /> */}
+                <span className="truncate">{label}</span>
+              </button>
+            ))}
+          </nav>
+
+          {/* Live chat */}
+          {activeTab === "chat" && (
             <>
-              <div className="flex shrink-0 items-start gap-3 border-b border-gray-100 bg-gray-50 px-4 py-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E8F5EC] text-[#176B35]">
-                  <Headset size={19} />
-                </div>
-
-                <div className="min-w-0">
-                  <p className="text-sm font-medium text-gray-800">
-                    Welcome, {visitorName.trim() || "there"}!
-                  </p>
-
-                  <p className="mt-0.5 text-xs text-gray-500">
-                    Send us a message to continue your conversation.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                aria-live="polite"
-                className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-3 sm:p-4"
-              >
-                {isLoadingHistory && messages.length === 0 && (
-                  <div className="flex justify-center py-4 text-sm text-gray-500">
-                    <LoaderCircle size={17} className="mr-2 animate-spin" />
-                    Loading messages...
-                  </div>
-                )}
-
-                {messages.map((item, index) => {
-                  const isVisitor = item.sender === "visitor";
-
-                  return (
-                    <div
-                      key={item._id ?? `${item.createdAt ?? "message"}-${index}`}
-                      className={`flex ${
-                        isVisitor ? "justify-end" : "justify-start"
-                      }`}
+              {!session ? (
+                <form
+                  onSubmit={startConversation}
+                  className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5"
+                >
+                  <div>
+                    <label
+                      htmlFor="chat-name"
+                      className="mb-1.5 block text-sm font-medium text-gray-700"
                     >
-                      <div
-                        className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${
-                          isVisitor
-                            ? "rounded-br-md bg-[#2E9B4F] text-white"
-                            : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
-                        }`}
-                      >
-                        {item.message}
+                      Your name
+                    </label>
 
-                        {item.createdAt && (
-                          <p
-                            className={`mt-1.5 text-[10px] ${
-                              isVisitor ? "text-blue-100" : "text-gray-400"
-                            }`}
-                          >
-                            {new Date(item.createdAt).toLocaleTimeString([], {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+                    <input
+                      id="chat-name"
+                      value={visitorName}
+                      onChange={(event) => setVisitorName(event.target.value)}
+                      placeholder="Enter your name"
+                      autoComplete="name"
+                      maxLength={100}
+                      required
+                      className="w-full rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
+                    />
+                  </div>
 
-                {!isLoadingHistory && messages.length === 0 && (
-                  <p className="py-8 text-center text-sm text-gray-500">
-                    Send us a message to get started.
-                  </p>
-                )}
+                  <div>
+                    <label
+                      htmlFor="chat-email"
+                      className="mb-1.5 block text-sm font-medium text-gray-700"
+                    >
+                      Email address
+                    </label>
 
-                <div ref={messagesEndRef} />
-              </div>
+                    <input
+                      id="chat-email"
+                      type="email"
+                      value={visitorEmail}
+                      onChange={(event) => setVisitorEmail(event.target.value)}
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                      maxLength={254}
+                      required
+                      className="w-full rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
+                    />
+                  </div>
 
-              <form
-                onSubmit={sendMessage}
-                className="shrink-0 border-t border-gray-200 bg-white p-3"
-              >
-                {error && (
-                  <p role="alert" className="mb-2 px-1 text-xs text-red-600">
-                    {error}
-                  </p>
-                )}
+                  <div>
+                    <label
+                      htmlFor="chat-details"
+                      className="mb-1.5 block text-sm font-medium text-gray-700"
+                    >
+                      How can we help?
+                    </label>
 
-                <div className="flex items-end gap-2">
-                  <textarea
-                    aria-label="Your message"
-                    value={message}
-                    onChange={(event) => setMessage(event.target.value)}
-                    onKeyDown={(event) => {
-                      if (
-                        event.key === "Enter" &&
-                        !event.shiftKey &&
-                        !event.nativeEvent.isComposing
-                      ) {
-                        event.preventDefault();
-                        event.currentTarget.form?.requestSubmit();
-                      }
-                    }}
-                    placeholder="Type your message..."
-                    rows={1}
-                    maxLength={3000}
-                    className="max-h-28 min-h-11 min-w-0 flex-1 resize-y rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
-                  />
+                    <textarea
+                      id="chat-details"
+                      value={projectDetails}
+                      onChange={(event) => setProjectDetails(event.target.value)}
+                      placeholder="Tell us about your requirement..."
+                      rows={4}
+                      maxLength={2000}
+                      required
+                      className="w-full resize-none rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
+                    />
+                  </div>
+
+                  {error && (
+                    <p role="alert" className="text-sm text-red-600">
+                      {error}
+                    </p>
+                  )}
 
                   <button
                     type="submit"
-                    disabled={!message.trim() || isSending || !isConnected}
-                    aria-label="Send message"
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2E9B4F] text-white transition hover:bg-[#247D3F] disabled:cursor-not-allowed disabled:opacity-50"
+                    disabled={isStarting}
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#2E9B4F] px-4 py-3 font-medium text-white transition hover:bg-[#247D3F] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {isSending ? (
-                      <LoaderCircle size={19} className="animate-spin" />
+                    {isStarting ? (
+                      <>
+                        <LoaderCircle size={18} className="animate-spin" />
+                        Starting chat...
+                      </>
                     ) : (
-                      <Send size={19} />
+                      <>
+                        Start conversation
+                        <Send size={17} />
+                      </>
                     )}
                   </button>
-                </div>
+                </form>
+              ) : (
+                <>
+                  <div className="flex shrink-0 items-start gap-3 border-b border-gray-100 bg-gray-50 px-4 py-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E8F5EC] text-[#176B35]">
+                      <Headset size={19} />
+                    </div>
 
-                <p className="mt-2 text-center text-[10px] text-gray-400">
-                  Press Enter to send · Shift + Enter for a new line
-                </p>
-              </form>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-gray-800">
+                        Welcome, {visitorName.trim() || "there"}!
+                      </p>
+
+                      <p className="mt-0.5 text-xs text-gray-500">
+                        Send us a message to continue your conversation.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    aria-live="polite"
+                    className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-3 sm:p-4"
+                  >
+                    {isLoadingHistory && messages.length === 0 && (
+                      <div className="flex justify-center py-4 text-sm text-gray-500">
+                        <LoaderCircle size={17} className="mr-2 animate-spin" />
+                        Loading messages...
+                      </div>
+                    )}
+
+                    {messages.map((item, index) => {
+                      const isVisitor = item.sender === "visitor";
+
+                      return (
+                        <div
+                          key={item._id ?? `${item.createdAt ?? "message"}-${index}`}
+                          className={`flex ${isVisitor ? "justify-end" : "justify-start"
+                            }`}
+                        >
+                          <div
+                            className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${isVisitor
+                                ? "rounded-br-md bg-[#2E9B4F] text-white"
+                                : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
+                              }`}
+                          >
+                            {item.message}
+
+                            {item.createdAt && (
+                              <p
+                                className={`mt-1.5 text-[10px] ${isVisitor ? "text-blue-100" : "text-gray-400"
+                                  }`}
+                              >
+                                {new Date(item.createdAt).toLocaleTimeString([], {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    {!isLoadingHistory && messages.length === 0 && (
+                      <p className="py-8 text-center text-sm text-gray-500">
+                        Send us a message to get started.
+                      </p>
+                    )}
+
+                    <div ref={messagesEndRef} />
+                  </div>
+
+                  <form
+                    onSubmit={sendMessage}
+                    className="shrink-0 border-t border-gray-200 bg-white p-3"
+                  >
+                    {error && (
+                      <p role="alert" className="mb-2 px-1 text-xs text-red-600">
+                        {error}
+                      </p>
+                    )}
+
+                    <div className="flex items-end gap-2">
+                      <textarea
+                        aria-label="Your message"
+                        value={message}
+                        onChange={(event) => setMessage(event.target.value)}
+                        onKeyDown={(event) => {
+                          if (
+                            event.key === "Enter" &&
+                            !event.shiftKey &&
+                            !event.nativeEvent.isComposing
+                          ) {
+                            event.preventDefault();
+                            event.currentTarget.form?.requestSubmit();
+                          }
+                        }}
+                        placeholder="Type your message..."
+                        rows={1}
+                        maxLength={3000}
+                        className="max-h-28 min-h-11 min-w-0 flex-1 resize-y rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
+                      />
+
+                      <button
+                        type="submit"
+                        disabled={!message.trim() || isSending || !isConnected}
+                        aria-label="Send message"
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2E9B4F] text-white transition hover:bg-[#247D3F] disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {isSending ? (
+                          <LoaderCircle size={19} className="animate-spin" />
+                        ) : (
+                          <Send size={19} />
+                        )}
+                      </button>
+                    </div>
+
+                    <p className="mt-2 text-center text-[10px] text-gray-400">
+                      Press Enter to send · Shift + Enter for a new line
+                    </p>
+                  </form>
+                </>
+              )}
             </>
           )}
-        </>
+
+          {/* Alternative contact methods */}
+          {activeTab !== "chat" && (
+            <div className="flex flex-1 flex-col items-center justify-center px-6 py-8 text-center">
+              {activeTab === "whatsapp" && (
+                <>
+                  <MessageCircle size={42} className="mb-4 text-green-600" />
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Chat with us on WhatsApp
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Continue your conversation directly on WhatsApp.
+                  </p>
+                  <a
+                    href="https://wa.me/919876543210"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700"
+                  >
+                    <MessageCircle size={18} />
+                    Open WhatsApp
+                  </a>
+                </>
+              )}
+
+              {activeTab === "phone" && (
+                <>
+                  <Phone size={42} className="mb-4 text-[#176B35]" />
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Call our team
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Speak directly with our support team.
+                  </p>
+                  <a
+                    href="tel:+919876543210"
+                    className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
+                  >
+                    <Phone size={18} />
+                    Call us now
+                  </a>
+                </>
+              )}
+
+              {activeTab === "email" && (
+                <>
+                  <Mail size={42} className="mb-4 text-[#176B35]" />
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Email our team
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Send your enquiry and we will get back to you.
+                  </p>
+                  <a
+                    href="mailto:hello@strapworld.in"
+                    className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
+                  >
+                    <Mail size={18} />
+                    Send an email
+                  </a>
+                </>
+              )}
+            </div>
+          )}
+        </section>
       )}
 
-      {/* Alternative contact methods */}
-      {activeTab !== "chat" && (
-        <div className="flex flex-1 flex-col items-center justify-center px-6 py-8 text-center">
-          {activeTab === "whatsapp" && (
-            <>
-              <MessageCircle size={42} className="mb-4 text-green-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Chat with us on WhatsApp
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Continue your conversation directly on WhatsApp.
-              </p>
-              <a
-                href="https://wa.me/919876543210"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700"
-              >
-                <MessageCircle size={18} />
-                Open WhatsApp
-              </a>
-            </>
-          )}
-
-          {activeTab === "phone" && (
-            <>
-              <Phone size={42} className="mb-4 text-[#176B35]" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Call our team
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Speak directly with our support team.
-              </p>
-              <a
-                href="tel:+919876543210"
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
-              >
-                <Phone size={18} />
-                Call us now
-              </a>
-            </>
-          )}
-
-          {activeTab === "email" && (
-            <>
-              <Mail size={42} className="mb-4 text-[#176B35]" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Email our team
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Send your enquiry and we will get back to you.
-              </p>
-              <a
-                href="mailto:hello@strapworld.in"
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
-              >
-                <Mail size={18} />
-                Send an email
-              </a>
-            </>
-          )}
-        </div>
+      {/* Minimized widget */}
+      {isOpen && isMinimized && (
+        <button
+          type="button"
+          onClick={() => setIsMinimized(false)}
+          className="mb-3 flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-gray-800 shadow-xl ring-1 ring-gray-200 transition hover:bg-gray-50"
+        >
+          <MessageCircle size={18} className="text-[#2E9B4F]" />
+          Strap World
+          <ArrowLeft size={15} className="rotate-180 text-gray-400" />
+        </button>
       )}
-    </section>
-  )}
 
-  {/* Minimized widget */}
-  {isOpen && isMinimized && (
-    <button
-      type="button"
-      onClick={() => setIsMinimized(false)}
-      className="mb-3 flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-gray-800 shadow-xl ring-1 ring-gray-200 transition hover:bg-gray-50"
-    >
-      <MessageCircle size={18} className="text-[#2E9B4F]" />
-      Strap World
-      <ArrowLeft size={15} className="rotate-180 text-gray-400" />
-    </button>
-  )}
-
-  {/* Floating launcher */}
-  {!isOpen && (
-    <button
-      type="button"
-      onClick={() => {
-        setIsOpen(true);
-        setIsMinimized(false);
-      }}
-      aria-label="Open contact widget"
-      className="group flex h-14 w-14 items-center justify-center rounded-full bg-[#2E9B4F] text-white shadow-xl transition duration-200 hover:scale-105 hover:bg-[#247D3F] focus:outline-none focus:ring-4 focus:ring-[#2E9B4F]/30"
-    >
-      <MessageCircle
-        size={26}
-        className="transition-transform group-hover:scale-110"
-      />
-    </button>
-  )}
-</div>
+      {/* Floating launcher */}
+      {!isOpen && (
+        <button
+          type="button"
+          onClick={() => {
+            setIsOpen(true);
+            setIsMinimized(false);
+          }}
+          aria-label="Open contact widget"
+          className="group flex h-14 w-14 items-center justify-center rounded-full bg-[#2E9B4F] text-white shadow-xl transition duration-200 hover:scale-105 hover:bg-[#247D3F] focus:outline-none focus:ring-4 focus:ring-[#2E9B4F]/30"
+        >
+          <MessageCircle
+            size={26}
+            className="transition-transform group-hover:scale-110"
+          />
+        </button>
+      )}
+    </div>
   );
 };
 

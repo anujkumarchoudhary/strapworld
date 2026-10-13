@@ -182,24 +182,26 @@ export const getAdminConversations = async (req: Request, res: Response) => {
 export const getAdminConversationMessages = async (
   req: Request,
   res: Response,
-) => {
+): Promise<void> => {
   try {
     const { id } = req.params;
 
     if (!mongoose.isValidObjectId(id)) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: "Invalid conversation ID.",
       });
+      return;
     }
 
     const conversation = await ChatConversation.findById(id).lean();
 
     if (!conversation) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: "Conversation not found.",
       });
+      return;
     }
 
     const messages = await ChatMessage.find({
@@ -207,24 +209,29 @@ export const getAdminConversationMessages = async (
     })
       .sort({ createdAt: 1 })
       .limit(500)
-      .select("sender message createdAt readAt")
+      .select("_id conversationId sender message createdAt")
       .lean();
 
-    return res.json({
+    res.status(200).json({
       success: true,
       conversationId: String(conversation._id),
       messages: messages.map((item) => ({
-        ...item,
         _id: String(item._id),
+        conversationId: String(item.conversationId),
+        sender: item.sender,
+        message: item.message,
+        createdAt: item.createdAt,
       })),
     });
+    return;
   } catch (error) {
     console.error("getAdminConversationMessages:", error);
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: "Unable to load messages.",
     });
+    return;
   }
 };
 
@@ -332,8 +339,6 @@ export const sendAdminMessage = async (
 
     await conversation.save();
 
-    await conversation.save();
-
     const io = getChatIO();
 
     const payload = {
@@ -344,10 +349,13 @@ export const sendAdminMessage = async (
       createdAt: savedMessage.createdAt,
     };
 
-    // Send the admin's message to the visitor and anyone viewing this conversation.
-    io?.to(`chat:${conversation._id}`).emit("chat:message", payload);
+    // Send the message to the visitor and conversation viewers.
+    io?.to(`chat:${conversation._id}`).emit(
+      "chat:message",
+      payload,
+    );
 
-    // Update all connected admin inboxes.
+    // Update connected admin inboxes.
     io?.to("chat:agents").emit("chat:inbox-update", {
       conversationId: String(conversation._id),
       lastMessage: savedMessage.message,
@@ -356,27 +364,23 @@ export const sendAdminMessage = async (
       status: conversation.status,
     });
 
+    // Send exactly one HTTP response.
     res.status(201).json({
       success: true,
       message: payload,
     });
-
-    res.status(201).json({
-      success: true,
-      message: {
-        _id: String(savedMessage._id),
-        conversationId: String(savedMessage.conversationId),
-        sender: savedMessage.sender,
-        message: savedMessage.message,
-        createdAt: savedMessage.createdAt,
-      },
-    });
+    return;
   } catch (error) {
     console.error("sendAdminMessage:", error);
+
+    if (res.headersSent) {
+      return;
+    }
 
     res.status(500).json({
       success: false,
       message: "Unable to send message.",
     });
+    return;
   }
 };
