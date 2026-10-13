@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -42,6 +41,8 @@ type HistoryResponse = {
   message?: string;
 };
 
+type ContactTab = "chat" | "whatsapp" | "phone" | "email";
+
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL || "/api/v1/chat";
 
@@ -65,36 +66,112 @@ const LiveChatWidget = () => {
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [error, setError] = useState("");
+  const [activeTab, setActiveTab] = useState<ContactTab>("chat");
 
   const socketRef = useRef<Socket | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const messagesContainerRef = useRef<HTMLDivElement | null>(null);
   const sessionRef = useRef<ChatSession | null>(null);
   const joinedConversationRef = useRef<string | null>(null);
 
+  const widgetSectionRef = useRef<HTMLElement | null>(null);
+  const wheelHandlerRef = useRef<((event: WheelEvent) => void) | null>(
+    null,
+  );
 
+  // Attach a non-passive wheel listener to the document.
+  // Wheel events originating inside the widget are redirected to messages.
+  const setWidgetSectionRef = useCallback(
+    (node: HTMLElement | null) => {
+      const previousHandler = wheelHandlerRef.current;
 
-  type ContactTab = "chat" | "whatsapp" | "phone" | "email";
+      if (previousHandler) {
+        document.removeEventListener(
+          "wheel",
+          previousHandler,
+          true,
+        );
+      }
 
-  const [activeTab, setActiveTab] = useState<ContactTab>("chat");
+      widgetSectionRef.current = node;
+      wheelHandlerRef.current = null;
 
+      if (!node) return;
+
+      const handleWheel = (event: WheelEvent) => {
+        const widget = widgetSectionRef.current;
+        const container = messagesContainerRef.current;
+        const target = event.target;
+
+        if (
+          !widget ||
+          !(target instanceof Node) ||
+          !widget.contains(target)
+        ) {
+          return;
+        }
+
+        // Do not allow the page to scroll while using the widget.
+        // Preserve browser pinch-to-zoom gestures.
+        if (!container || event.deltaY === 0 || event.ctrlKey) {
+          if (!event.ctrlKey && event.deltaY !== 0) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        let delta = event.deltaY;
+
+        // Normalize line and page wheel units.
+        if (event.deltaMode === 1) {
+          delta *= 16;
+        } else if (event.deltaMode === 2) {
+          delta *= container.clientHeight;
+        }
+
+        // Do not let the website scroll when the message list
+        // reaches its top or bottom.
+        container.scrollTop += delta;
+      };
+
+      wheelHandlerRef.current = handleWheel;
+
+      document.addEventListener("wheel", handleWheel, {
+        capture: true,
+        passive: false,
+      });
+    },
+    [],
+  );
+
+  // Scroll only the message container.
   const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+
+    if (!container) return;
+
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: "smooth",
+    });
   }, []);
 
   useEffect(() => {
     sessionRef.current = session;
   }, [session]);
 
-  // Restore the visitor's session and connect to Socket.IO.
+  // Restore the visitor session and connect to Socket.IO.
   useEffect(() => {
-    let restoredSession: ChatSession | null = null;
-
     try {
       const saved = localStorage.getItem(SESSION_KEY);
+
       if (saved) {
         const parsed = JSON.parse(saved) as ChatSession;
+
         if (parsed.conversationId && parsed.token) {
-          restoredSession = parsed;
           setSession(parsed);
           sessionRef.current = parsed;
         }
@@ -126,11 +203,15 @@ const LiveChatWidget = () => {
         },
         (response?: { success?: boolean; message?: string }) => {
           if (response?.success === false) {
-            setError(response.message || "Unable to reconnect to chat.");
+            setError(
+              response.message || "Unable to reconnect to chat.",
+            );
             return;
           }
 
-          joinedConversationRef.current = activeSession.conversationId;
+          joinedConversationRef.current =
+            activeSession.conversationId;
+
           setIsConnected(true);
         },
       );
@@ -140,6 +221,7 @@ const LiveChatWidget = () => {
       setIsConnected(true);
 
       const activeSession = sessionRef.current;
+
       if (activeSession) {
         joinConversation(activeSession);
       }
@@ -178,10 +260,15 @@ const LiveChatWidget = () => {
     };
   }, []);
 
-  // Join when a new conversation is created while the socket is already connected.
+  // Join the conversation when a new session is created.
   useEffect(() => {
     if (!session || !isConnected || !socketRef.current) return;
-    if (joinedConversationRef.current === session.conversationId) return;
+
+    if (
+      joinedConversationRef.current === session.conversationId
+    ) {
+      return;
+    }
 
     socketRef.current.emit(
       "chat:join",
@@ -191,7 +278,9 @@ const LiveChatWidget = () => {
       },
       (response?: { success?: boolean; message?: string }) => {
         if (response?.success === false) {
-          setError(response.message || "Unable to join the conversation.");
+          setError(
+            response.message || "Unable to join the conversation.",
+          );
           return;
         }
 
@@ -218,20 +307,27 @@ const LiveChatWidget = () => {
             headers: {
               "x-chat-token": session.token,
             },
+            cache: "no-store",
           },
         );
 
         const result = (await response.json()) as HistoryResponse;
 
-        if (!response.ok) {
-          throw new Error(result.message || "Could not load chat history.");
+        if (!response.ok || result.success === false) {
+          throw new Error(
+            result.message || "Could not load chat history.",
+          );
         }
 
-        const history = Array.isArray(result.messages)
-          ? result.messages
-          : Array.isArray(result.data)
-            ? result.data
-            : result.data?.messages ?? [];
+        let history: ChatMessage[] = [];
+
+        if (Array.isArray(result.messages)) {
+          history = result.messages;
+        } else if (Array.isArray(result.data)) {
+          history = result.data;
+        } else if (result.data) {
+          history = result.data.messages ?? [];
+        }
 
         if (!cancelled) {
           setMessages(history);
@@ -245,7 +341,9 @@ const LiveChatWidget = () => {
           );
         }
       } finally {
-        if (!cancelled) setIsLoadingHistory(false);
+        if (!cancelled) {
+          setIsLoadingHistory(false);
+        }
       }
     };
 
@@ -256,11 +354,14 @@ const LiveChatWidget = () => {
     };
   }, [session]);
 
+  // Keep the newest message visible without scrolling the page.
   useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
 
-  const startConversation = async (event: React.FormEvent<HTMLFormElement>) => {
+  const startConversation = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
     setError("");
 
@@ -285,26 +386,21 @@ const LiveChatWidget = () => {
           visitorName: name,
           visitorEmail: email,
           projectDetails: details,
-          currentPage: window.location.href,
+          currentPage: window.location.pathname,
         }),
       });
 
-      (response?: { success?: boolean; message?: string }) => {
-  console.log("[VISITOR] Server acknowledgement:", response);
+      const result =
+        (await response.json()) as CreateConversationResponse;
 
-  setIsSending(false);
-
-  if (response?.success === false) {
-    setError(response.message || "Message could not be sent.");
-    return;
-  }
-
-  setMessage("");
-}
-      const result = (await response.json()) as CreateConversationResponse;
-
-      if (!response.ok || !result.conversationId || !result.token) {
-        throw new Error(result.message || "Unable to start a conversation.");
+      if (
+        !response.ok ||
+        !result.conversationId ||
+        !result.token
+      ) {
+        throw new Error(
+          result.message || "Unable to start a conversation.",
+        );
       }
 
       const newSession: ChatSession = {
@@ -312,11 +408,15 @@ const LiveChatWidget = () => {
         token: result.token,
       };
 
-      localStorage.setItem(SESSION_KEY, JSON.stringify(newSession));
+      localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(newSession),
+      );
+
       sessionRef.current = newSession;
       setSession(newSession);
 
-      // The server stores projectDetails as the initial visitor message.
+      // The backend stores projectDetails as the initial visitor message.
       setMessages([
         {
           sender: "visitor",
@@ -326,14 +426,18 @@ const LiveChatWidget = () => {
       ]);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Unable to start a conversation.",
+        err instanceof Error
+          ? err.message
+          : "Unable to start a conversation.",
       );
     } finally {
       setIsStarting(false);
     }
   };
 
-  const sendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+  const sendMessage = (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
 
     const text = message.trim();
@@ -341,8 +445,11 @@ const LiveChatWidget = () => {
 
     if (!text || !session || !socket?.connected || isSending) {
       if (!socket?.connected) {
-        setError("Reconnecting to chat. Please try again in a moment.");
+        setError(
+          "Reconnecting to chat. Please try again in a moment.",
+        );
       }
+
       return;
     }
 
@@ -354,13 +461,6 @@ const LiveChatWidget = () => {
     setError("");
     setIsSending(true);
 
-    console.log("[VISITOR] Socket connected:", socket?.connected);
-    console.log("[VISITOR] Sending message event:", {
-      conversationId: session.conversationId,
-      messageLength: text.length,
-    });
-
-
     socket.emit(
       "chat:message",
       {
@@ -371,7 +471,9 @@ const LiveChatWidget = () => {
         setIsSending(false);
 
         if (response?.success === false) {
-          setError(response.message || "Message could not be sent.");
+          setError(
+            response.message || "Message could not be sent.",
+          );
           return;
         }
 
@@ -389,8 +491,9 @@ const LiveChatWidget = () => {
     <div className="fixed bottom-3 right-3 z-[9999] sm:bottom-5 sm:right-5">
       {isOpen && !isMinimized && (
         <section
+          ref={setWidgetSectionRef}
           aria-label="Contact support"
-          className="mb-3 flex h-[min(650px,calc(100dvh-32px))] w-[calc(100vw-24px)] max-w-[400px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:mb-4 sm:h-[625px] sm:w-[400px]"
+          className="mb-3 flex h-[min(650px,calc(100dvh-32px))] min-h-0 w-[calc(100vw-24px)] max-w-[400px] flex-col overflow-hidden overscroll-contain bg-white rounded-2xl shadow-2xl sm:mb-4 sm:h-[625px] sm:w-[400px]"
         >
           {/* Header */}
           <header className="flex shrink-0 items-center justify-between bg-[#063F3D] px-4 py-3.5 text-white sm:px-5 sm:py-4">
@@ -406,10 +509,13 @@ const LiveChatWidget = () => {
 
                 <p className="mt-0.5 flex items-center gap-1.5 text-xs text-blue-100">
                   <span
-                    className={`h-2 w-2 shrink-0 rounded-full ${isConnected ? "bg-green-400" : "bg-yellow-300"
-                      }`}
+                    className={`h-2 w-2 shrink-0 rounded-full ${
+                      isConnected ? "bg-green-400" : "bg-yellow-300"
+                    }`}
                   />
-                  {isConnected ? "Chat connection active" : "Connecting..."}
+                  {isConnected
+                    ? "Chat connection active"
+                    : "Connecting..."}
                 </p>
               </div>
             </div>
@@ -447,7 +553,7 @@ const LiveChatWidget = () => {
                 { id: "phone", label: "Call Us", icon: Phone },
                 { id: "email", label: "Email", icon: Mail },
               ] as const
-            ).map(({ id, label, icon: Icon }) => (
+            ).map(({ id, label }) => (
               <button
                 key={id}
                 type="button"
@@ -471,12 +577,12 @@ const LiveChatWidget = () => {
                     window.location.href = "mailto:hello@strapworld.in";
                   }
                 }}
-                className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${activeTab === id
+                className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${
+                  activeTab === id
                     ? "bg-[#E8F5EC] text-[#176B35]"
                     : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                  }`}
+                }`}
               >
-                {/* <Icon  size={17} className="shrink-0" /> */}
                 <span className="truncate">{label}</span>
               </button>
             ))}
@@ -488,7 +594,7 @@ const LiveChatWidget = () => {
               {!session ? (
                 <form
                   onSubmit={startConversation}
-                  className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5"
+                  className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain p-4 sm:p-5"
                 >
                   <div>
                     <label
@@ -501,7 +607,9 @@ const LiveChatWidget = () => {
                     <input
                       id="chat-name"
                       value={visitorName}
-                      onChange={(event) => setVisitorName(event.target.value)}
+                      onChange={(event) =>
+                        setVisitorName(event.target.value)
+                      }
                       placeholder="Enter your name"
                       autoComplete="name"
                       maxLength={100}
@@ -522,7 +630,9 @@ const LiveChatWidget = () => {
                       id="chat-email"
                       type="email"
                       value={visitorEmail}
-                      onChange={(event) => setVisitorEmail(event.target.value)}
+                      onChange={(event) =>
+                        setVisitorEmail(event.target.value)
+                      }
                       placeholder="you@example.com"
                       autoComplete="email"
                       maxLength={254}
@@ -542,7 +652,9 @@ const LiveChatWidget = () => {
                     <textarea
                       id="chat-details"
                       value={projectDetails}
-                      onChange={(event) => setProjectDetails(event.target.value)}
+                      onChange={(event) =>
+                        setProjectDetails(event.target.value)
+                      }
                       placeholder="Tell us about your requirement..."
                       rows={4}
                       maxLength={2000}
@@ -564,7 +676,10 @@ const LiveChatWidget = () => {
                   >
                     {isStarting ? (
                       <>
-                        <LoaderCircle size={18} className="animate-spin" />
+                        <LoaderCircle
+                          size={18}
+                          className="animate-spin"
+                        />
                         Starting chat...
                       </>
                     ) : (
@@ -577,6 +692,7 @@ const LiveChatWidget = () => {
                 </form>
               ) : (
                 <>
+                  {/* Conversation header */}
                   <div className="flex shrink-0 items-start gap-3 border-b border-gray-100 bg-gray-50 px-4 py-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E8F5EC] text-[#176B35]">
                       <Headset size={19} />
@@ -593,13 +709,18 @@ const LiveChatWidget = () => {
                     </div>
                   </div>
 
+                  {/* Scrollable messages */}
                   <div
+                    ref={messagesContainerRef}
                     aria-live="polite"
-                    className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-3 sm:p-4"
+                    className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain touch-pan-y bg-gray-50 p-3 sm:p-4"
                   >
                     {isLoadingHistory && messages.length === 0 && (
                       <div className="flex justify-center py-4 text-sm text-gray-500">
-                        <LoaderCircle size={17} className="mr-2 animate-spin" />
+                        <LoaderCircle
+                          size={17}
+                          className="mr-2 animate-spin"
+                        />
                         Loading messages...
                       </div>
                     )}
@@ -609,24 +730,34 @@ const LiveChatWidget = () => {
 
                       return (
                         <div
-                          key={item._id ?? `${item.createdAt ?? "message"}-${index}`}
-                          className={`flex ${isVisitor ? "justify-end" : "justify-start"
-                            }`}
+                          key={
+                            item._id ??
+                            `${item.createdAt ?? "message"}-${index}`
+                          }
+                          className={`flex ${
+                            isVisitor ? "justify-end" : "justify-start"
+                          }`}
                         >
                           <div
-                            className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${isVisitor
+                            className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${
+                              isVisitor
                                 ? "rounded-br-md bg-[#2E9B4F] text-white"
                                 : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
-                              }`}
+                            }`}
                           >
                             {item.message}
 
                             {item.createdAt && (
                               <p
-                                className={`mt-1.5 text-[10px] ${isVisitor ? "text-blue-100" : "text-gray-400"
-                                  }`}
+                                className={`mt-1.5 text-[10px] ${
+                                  isVisitor
+                                    ? "text-blue-100"
+                                    : "text-gray-400"
+                                }`}
                               >
-                                {new Date(item.createdAt).toLocaleTimeString([], {
+                                {new Date(
+                                  item.createdAt,
+                                ).toLocaleTimeString([], {
                                   hour: "2-digit",
                                   minute: "2-digit",
                                 })}
@@ -642,16 +773,18 @@ const LiveChatWidget = () => {
                         Send us a message to get started.
                       </p>
                     )}
-
-                    <div ref={messagesEndRef} />
                   </div>
 
+                  {/* Message input */}
                   <form
                     onSubmit={sendMessage}
                     className="shrink-0 border-t border-gray-200 bg-white p-3"
                   >
                     {error && (
-                      <p role="alert" className="mb-2 px-1 text-xs text-red-600">
+                      <p
+                        role="alert"
+                        className="mb-2 px-1 text-xs text-red-600"
+                      >
                         {error}
                       </p>
                     )}
@@ -660,7 +793,9 @@ const LiveChatWidget = () => {
                       <textarea
                         aria-label="Your message"
                         value={message}
-                        onChange={(event) => setMessage(event.target.value)}
+                        onChange={(event) =>
+                          setMessage(event.target.value)
+                        }
                         onKeyDown={(event) => {
                           if (
                             event.key === "Enter" &&
@@ -679,12 +814,17 @@ const LiveChatWidget = () => {
 
                       <button
                         type="submit"
-                        disabled={!message.trim() || isSending || !isConnected}
+                        disabled={
+                          !message.trim() || isSending || !isConnected
+                        }
                         aria-label="Send message"
                         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2E9B4F] text-white transition hover:bg-[#247D3F] disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {isSending ? (
-                          <LoaderCircle size={19} className="animate-spin" />
+                          <LoaderCircle
+                            size={19}
+                            className="animate-spin"
+                          />
                         ) : (
                           <Send size={19} />
                         )}
@@ -702,10 +842,13 @@ const LiveChatWidget = () => {
 
           {/* Alternative contact methods */}
           {activeTab !== "chat" && (
-            <div className="flex flex-1 flex-col items-center justify-center px-6 py-8 text-center">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-8 text-center">
               {activeTab === "whatsapp" && (
                 <>
-                  <MessageCircle size={42} className="mb-4 text-green-600" />
+                  <MessageCircle
+                    size={42}
+                    className="mb-4 text-green-600"
+                  />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Chat with us on WhatsApp
                   </h3>
@@ -726,7 +869,10 @@ const LiveChatWidget = () => {
 
               {activeTab === "phone" && (
                 <>
-                  <Phone size={42} className="mb-4 text-[#176B35]" />
+                  <Phone
+                    size={42}
+                    className="mb-4 text-[#176B35]"
+                  />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Call our team
                   </h3>
@@ -745,7 +891,10 @@ const LiveChatWidget = () => {
 
               {activeTab === "email" && (
                 <>
-                  <Mail size={42} className="mb-4 text-[#176B35]" />
+                  <Mail
+                    size={42}
+                    className="mb-4 text-[#176B35]"
+                  />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Email our team
                   </h3>
@@ -773,9 +922,15 @@ const LiveChatWidget = () => {
           onClick={() => setIsMinimized(false)}
           className="mb-3 flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-medium text-gray-800 shadow-xl ring-1 ring-gray-200 transition hover:bg-gray-50"
         >
-          <MessageCircle size={18} className="text-[#2E9B4F]" />
+          <MessageCircle
+            size={18}
+            className="text-[#2E9B4F]"
+          />
           Strap World
-          <ArrowLeft size={15} className="rotate-180 text-gray-400" />
+          <ArrowLeft
+            size={15}
+            className="rotate-180 text-gray-400"
+          />
         </button>
       )}
 
