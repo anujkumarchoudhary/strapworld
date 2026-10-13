@@ -847,7 +847,7 @@ const LiveChatWidget = () => {
                 <>
                   <MessageCircle
                     size={42}
-                    className="mb-4 text-green-600"
+                    className="mb-4 mx-auto text-green-600"
                   />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Chat with us on WhatsApp
@@ -856,7 +856,7 @@ const LiveChatWidget = () => {
                     Continue your conversation directly on WhatsApp.
                   </p>
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/+919978735708"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700"
@@ -871,7 +871,7 @@ const LiveChatWidget = () => {
                 <>
                   <Phone
                     size={42}
-                    className="mb-4 text-[#176B35]"
+                    className="mb-4 mx-auto text-[#176B35]"
                   />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Call our team
@@ -880,7 +880,7 @@ const LiveChatWidget = () => {
                     Speak directly with our support team.
                   </p>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+919978735708"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
                   >
                     <Phone size={18} />
@@ -893,7 +893,7 @@ const LiveChatWidget = () => {
                 <>
                   <Mail
                     size={42}
-                    className="mb-4 text-[#176B35]"
+                    className="mb-4 mx-auto text-[#176B35]"
                   />
                   <h3 className="text-lg font-semibold text-gray-900">
                     Email our team
@@ -902,7 +902,7 @@ const LiveChatWidget = () => {
                     Send your enquiry and we will get back to you.
                   </p>
                   <a
-                    href="mailto:hello@strapworld.in"
+                    href="mailto:nalandaindustri@gmail.com"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
                   >
                     <Mail size={18} />

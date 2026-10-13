@@ -593,7 +593,8 @@ export default function AdminLayout({
             ${isOpen ? "lg:ml-68" : "lg:ml-24"}
           `}
         >
-          <AdminAuthGuard>{children}</AdminAuthGuard>
+          {children}
+          {/* <AdminAuthGuard></AdminAuthGuard> */}
         </main>
       </div>
     </div>

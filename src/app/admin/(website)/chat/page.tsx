@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -34,6 +33,7 @@ import { BaseUrl } from "@/src/app/baseurl";
 type Status = "Open" | "Pending" | "Resolved";
 type Sender = "visitor" | "agent";
 type Filter = "All" | Status;
+type ApiStatus = "open" | "pending" | "resolved";
 
 type Message = {
     id: string;
@@ -56,8 +56,6 @@ type Conversation = {
     messages: Message[];
 };
 
-type ApiStatus = "open" | "pending" | "resolved";
-
 type ApiConversation = {
     _id: string;
     visitorName: string;
@@ -79,17 +77,15 @@ type ApiMessage = {
 
 type ApiResult = {
     success?: boolean;
-    message?: string;
+    message?: string | ApiMessage;
     conversations?: ApiConversation[];
     messages?: ApiMessage[];
     conversation?: ApiConversation;
     data?: unknown;
 };
 
-
 const SOCKET_URL =
     process.env.NEXT_PUBLIC_CHAT_SOCKET_URL ||
-    process.env.NEXT_PUBLIC_SOCKET_URL ||
     "http://localhost:8000";
 
 const AVATAR_COLORS = [
@@ -99,7 +95,12 @@ const AVATAR_COLORS = [
     "bg-sky-100 text-sky-800",
 ];
 
-const FILTERS: Filter[] = ["All", "Open", "Pending", "Resolved"];
+const FILTERS: Filter[] = [
+    "All",
+    "Open",
+    "Pending",
+    "Resolved",
+];
 
 const toStatus = (status: ApiStatus): Status => {
     const map: Record<ApiStatus, Status> = {
@@ -168,8 +169,11 @@ const toConversation = (
     messages: [],
 });
 
-async function parseResponse<T>(response: Response): Promise<T> {
-    const contentType = response.headers.get("content-type") || "";
+async function parseResponse<T>(
+    response: Response,
+): Promise<T> {
+    const contentType =
+        response.headers.get("content-type") || "";
 
     if (!contentType.includes("application/json")) {
         throw new Error(
@@ -180,13 +184,15 @@ async function parseResponse<T>(response: Response): Promise<T> {
     }
 
     const body = (await response.json()) as T & {
-        message?: string;
+        message?: unknown;
         success?: boolean;
     };
 
     if (!response.ok || body.success === false) {
         throw new Error(
-            body.message || `Request failed (${response.status}).`,
+            typeof body.message === "string"
+                ? body.message
+                : `Request failed (${response.status}).`,
         );
     }
 
@@ -198,26 +204,34 @@ async function getAdminAccessToken(): Promise<string> {
         throw new Error("Browser session is unavailable.");
     }
 
-    // Your login controller stores the JWT in localStorage.
     const token = localStorage.getItem("token");
 
     if (!token) {
         throw new Error(
-            "Admin session not found. Please sign in to the admin dashboard."
+            "Admin session not found. Please sign in to the admin dashboard.",
         );
     }
 
     return token;
 }
 
-function authHeaders(token: string, json = false): HeadersInit {
+function authHeaders(
+    token: string,
+    json = false,
+): HeadersInit {
     return {
         Authorization: `Bearer ${token}`,
-        ...(json ? { "Content-Type": "application/json" } : {}),
+        ...(json
+            ? { "Content-Type": "application/json" }
+            : {}),
     };
 }
 
-function StatusBadge({ status }: { status: Status }) {
+function StatusBadge({
+    status,
+}: {
+    status: Status;
+}) {
     const styles: Record<Status, string> = {
         Open: "bg-emerald-50 text-emerald-700 ring-emerald-600/15",
         Pending: "bg-amber-50 text-amber-700 ring-amber-600/15",
@@ -234,7 +248,9 @@ function StatusBadge({ status }: { status: Status }) {
         <span
             className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1 ring-inset ${styles[status]}`}
         >
-            <span className={`h-1.5 w-1.5 rounded-full ${dotStyles[status]}`} />
+            <span
+                className={`h-1.5 w-1.5 rounded-full ${dotStyles[status]}`}
+            />
             {status}
         </span>
     );
@@ -258,11 +274,14 @@ export default function AdminChatPage() {
     const socketRef = useRef<Socket | null>(null);
     const tokenRef = useRef<string | null>(null);
     const selectedIdRef = useRef<string | null>(null);
-    const bottomRef = useRef<HTMLDivElement | null>(null);
+    const messageContainerRef = useRef<HTMLDivElement | null>(null);
     const loadingMessagesRef = useRef(new Set<string>());
 
     const selected = useMemo(
-        () => conversations.find((item) => item.id === selectedId) || null,
+        () =>
+            conversations.find(
+                (item) => item.id === selectedId,
+            ) || null,
         [conversations, selectedId],
     );
 
@@ -275,7 +294,8 @@ export default function AdminChatPage() {
 
         return conversations.filter((conversation) => {
             const matchesFilter =
-                filter === "All" || conversation.status === filter;
+                filter === "All" ||
+                conversation.status === filter;
 
             const matchesSearch =
                 !query ||
@@ -286,77 +306,89 @@ export default function AdminChatPage() {
             return matchesFilter && matchesSearch;
         });
     }, [conversations, filter, search]);
-    console.log(socketConnected, "socketConnected132")
+
     const counts = useMemo(
         () => ({
             All: conversations.length,
-            Open: conversations.filter((item) => item.status === "Open").length,
-            Pending: conversations.filter((item) => item.status === "Pending")
-                .length,
-            Resolved: conversations.filter((item) => item.status === "Resolved")
-                .length,
+            Open: conversations.filter(
+                (item) => item.status === "Open",
+            ).length,
+            Pending: conversations.filter(
+                (item) => item.status === "Pending",
+            ).length,
+            Resolved: conversations.filter(
+                (item) => item.status === "Resolved",
+            ).length,
         }),
         [conversations],
     );
 
-    const refreshInbox = useCallback(async (token: string) => {
-        console.log(token, "tokencheck")
-        const response = await fetch(
-            `${BaseUrl}/chat/admin/conversations`,
-            {
-                headers: authHeaders(token),
-                cache: "no-store",
-            },
-        );
-        console.log(response, "responsecheck")
-
-        const result = await parseResponse<ApiResult>(response);
-        const items = (result.conversations || []).map(toConversation);
-
-        setConversations((current) => {
-            const existing = new Map(
-                current.map((conversation) => [
-                    conversation.id,
-                    conversation,
-                ]),
+    const refreshInbox = useCallback(
+        async (token: string) => {
+            const response = await fetch(
+                `${BaseUrl}/chat/admin/conversations`,
+                {
+                    headers: authHeaders(token),
+                    cache: "no-store",
+                },
             );
 
-            return items.map((incoming) => {
-                const previous = existing.get(incoming.id);
+            const result =
+                await parseResponse<ApiResult>(response);
 
-                return previous
-                    ? {
-                        ...incoming,
-                        messages: previous.messages,
-                        unread: previous.unread,
-                    }
-                    : incoming;
+            const items = (result.conversations || [])
+                .map(toConversation);
+
+            setConversations((current) => {
+                const existing = new Map(
+                    current.map((conversation) => [
+                        conversation.id,
+                        conversation,
+                    ]),
+                );
+
+                return items.map((incoming) => {
+                    const previous = existing.get(incoming.id);
+
+                    return previous
+                        ? {
+                            ...incoming,
+                            messages: previous.messages,
+                            unread: previous.unread,
+                        }
+                        : incoming;
+                });
             });
-        });
 
-        setSelectedId((current) => {
-            if (current && items.some((item) => item.id === current)) {
-                return current;
-            }
+            setSelectedId((current) => {
+                if (
+                    current &&
+                    items.some((item) => item.id === current)
+                ) {
+                    return current;
+                }
 
-            return items[0]?.id ?? null;
-        });
-    }, []);
+                return items[0]?.id ?? null;
+            });
+        },
+        [],
+    );
 
     const loadMessages = useCallback(
-        async (conversationId: string, token: string) => {
-            if (loadingMessagesRef.current.has(conversationId)) return;
+        async (
+            conversationId: string,
+            token: string,
+        ) => {
+            if (
+                loadingMessagesRef.current.has(conversationId)
+            ) {
+                return;
+            }
 
             loadingMessagesRef.current.add(conversationId);
             setMessagesLoading(true);
 
             try {
-                /*
-                 * Expected response:
-                 * { success: true, messages: [...] }
-                 *
-                 * Change this URL if your Express route differs.
-                 */
                 const response = await fetch(
                     `${BaseUrl}/chat/admin/conversations/${encodeURIComponent(
                         conversationId,
@@ -367,14 +399,20 @@ export default function AdminChatPage() {
                     },
                 );
 
+                const result =
+                    await parseResponse<ApiResult>(response);
 
-                const result = await parseResponse<ApiResult>(response);
-                const messages = (result.messages || []).map(toMessage);
+                const messages = (result.messages || [])
+                    .map(toMessage);
 
                 setConversations((current) =>
                     current.map((conversation) =>
                         conversation.id === conversationId
-                            ? { ...conversation, messages, unread: 0 }
+                            ? {
+                                ...conversation,
+                                messages,
+                                unread: 0,
+                            }
                             : conversation,
                     ),
                 );
@@ -386,7 +424,9 @@ export default function AdminChatPage() {
                 );
             } finally {
                 loadingMessagesRef.current.delete(conversationId);
-                setMessagesLoading(false);
+                setMessagesLoading(
+                    loadingMessagesRef.current.size > 0,
+                );
             }
         },
         [],
@@ -397,6 +437,7 @@ export default function AdminChatPage() {
             setSelectedId(id);
             selectedIdRef.current = id;
             setMobileChatOpen(true);
+            setShowDetails(false);
             setError("");
 
             setConversations((current) =>
@@ -413,13 +454,10 @@ export default function AdminChatPage() {
                 void loadMessages(id, token);
             }
 
-            /*
-             * Join the conversation room if your server uses room-based
-             * Socket.IO delivery. Your backend must authorize this event.
-             */
-            socketRef.current?.emit("admin:conversation:join", {
-                conversationId: id,
-            });
+            socketRef.current?.emit(
+                "admin:conversation:join",
+                { conversationId: id },
+            );
         },
         [loadMessages],
     );
@@ -434,11 +472,11 @@ export default function AdminChatPage() {
                 setError("");
 
                 const token = await getAdminAccessToken();
-                console.log(token, "token1313123")
 
                 if (cancelled) return;
 
                 tokenRef.current = token;
+
                 await refreshInbox(token);
 
                 if (cancelled) return;
@@ -453,28 +491,14 @@ export default function AdminChatPage() {
                 socketRef.current = socket;
 
                 socket.on("connect", () => {
-                    console.log("Socket connected:", socket?.id);
-                    setSocketConnected(true);
-                });
-
-                socket.on("connect_error", (error) => {
-                    console.error("Socket connect_error:", error.message);
-                    setSocketConnected(false);
-                });
-
-                socket.on("disconnect", (reason) => {
-                    console.log("Socket disconnected:", reason);
-                    setSocketConnected(false);
-                });
-
-                socket.on("connect", () => {
                     if (cancelled) return;
 
                     setSocketConnected(true);
 
+                    // Join the admin inbox room using the existing backend event.
                     socket?.emit(
                         "admin:join",
-                        { accessToken: token },
+                        {},
                         (ack?: {
                             success?: boolean;
                             message?: string;
@@ -482,16 +506,18 @@ export default function AdminChatPage() {
                             if (!ack?.success) {
                                 setError(
                                     ack?.message ||
-                                    "Admin socket authentication failed.",
+                                    "Unable to join the live chat inbox.",
                                 );
-                            } else {
-                                const activeId = selectedIdRef.current;
+                                return;
+                            }
 
-                                if (activeId) {
-                                    socket?.emit("admin:conversation:join", {
-                                        conversationId: activeId,
-                                    });
-                                }
+                            const activeId = selectedIdRef.current;
+
+                            if (activeId) {
+                                socket?.emit(
+                                    "admin:conversation:join",
+                                    { conversationId: activeId },
+                                );
                             }
                         },
                     );
@@ -503,19 +529,22 @@ export default function AdminChatPage() {
 
                 socket.on("connect_error", (err) => {
                     setSocketConnected(false);
-                    setError(`Live chat connection failed: ${err.message}`);
+                    setError(
+                        `Live chat connection failed: ${err.message}`,
+                    );
                 });
 
                 socket.on(
                     "chat:inbox-update",
-                    (payload?: { conversationId?: string }) => {
+                    (payload?: {
+                        conversationId?: string;
+                    }) => {
                         void (async () => {
                             try {
-                                // Update the conversation list and latest-message preview.
                                 await refreshInbox(token);
 
-                                // Reload history if the updated conversation is open.
-                                const activeId = selectedIdRef.current;
+                                const activeId =
+                                    selectedIdRef.current;
 
                                 if (
                                     activeId &&
@@ -537,14 +566,17 @@ export default function AdminChatPage() {
 
                 socket.on(
                     "chat:message",
-                    (message: ApiMessage & {
-                        conversationId: string;
-                    }) => {
+                    (
+                        message: ApiMessage & {
+                            conversationId: string;
+                        },
+                    ) => {
                         const conversationId =
-                            message.conversationId ||
                             message.conversationId;
 
-                        if (!conversationId || !message._id) return;
+                        if (!conversationId || !message._id) {
+                            return;
+                        }
 
                         const incoming = toMessage(message);
                         const isActive =
@@ -552,13 +584,16 @@ export default function AdminChatPage() {
 
                         setConversations((current) =>
                             current.map((conversation) => {
-                                if (conversation.id !== conversationId) {
+                                if (
+                                    conversation.id !== conversationId
+                                ) {
                                     return conversation;
                                 }
 
                                 if (
                                     conversation.messages.some(
-                                        (item) => item.id === incoming.id,
+                                        (item) =>
+                                            item.id === incoming.id,
                                     )
                                 ) {
                                     return conversation;
@@ -569,7 +604,8 @@ export default function AdminChatPage() {
                                     lastMessage: incoming.text,
                                     lastTime: incoming.time,
                                     unread:
-                                        message.sender === "visitor" && !isActive
+                                        message.sender === "visitor" &&
+                                            !isActive
                                             ? conversation.unread + 1
                                             : conversation.unread,
                                     messages: [
@@ -582,23 +618,32 @@ export default function AdminChatPage() {
                     },
                 );
 
-                socket.on("chat:status-update", (payload: {
-                    conversationId: string;
-                    status: ApiStatus;
-                }) => {
-                    if (!payload.conversationId || !payload.status) return;
+                socket.on(
+                    "chat:status-update",
+                    (payload: {
+                        conversationId: string;
+                        status: ApiStatus;
+                    }) => {
+                        if (
+                            !payload.conversationId ||
+                            !payload.status
+                        ) {
+                            return;
+                        }
 
-                    setConversations((current) =>
-                        current.map((conversation) =>
-                            conversation.id === payload.conversationId
-                                ? {
-                                    ...conversation,
-                                    status: toStatus(payload.status),
-                                }
-                                : conversation,
-                        ),
-                    );
-                });
+                        setConversations((current) =>
+                            current.map((conversation) =>
+                                conversation.id ===
+                                    payload.conversationId
+                                    ? {
+                                        ...conversation,
+                                        status: toStatus(payload.status),
+                                    }
+                                    : conversation,
+                            ),
+                        );
+                    },
+                );
             } catch (err) {
                 if (!cancelled) {
                     setError(
@@ -608,7 +653,9 @@ export default function AdminChatPage() {
                     );
                 }
             } finally {
-                if (!cancelled) setLoading(false);
+                if (!cancelled) {
+                    setLoading(false);
+                }
             }
         }
 
@@ -625,7 +672,7 @@ export default function AdminChatPage() {
 
             tokenRef.current = null;
         };
-    }, [refreshInbox]);
+    }, [refreshInbox, loadMessages]);
 
     useEffect(() => {
         if (!selectedId || !tokenRef.current) return;
@@ -635,18 +682,27 @@ export default function AdminChatPage() {
         );
 
         if (current && current.messages.length === 0) {
-            void loadMessages(selectedId, tokenRef.current);
+            void loadMessages(
+                selectedId,
+                tokenRef.current,
+            );
         }
     }, [selectedId, conversations, loadMessages]);
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({
+        const container = messageContainerRef.current;
+
+        if (!container) return;
+
+        container.scrollTo({
+            top: container.scrollHeight,
             behavior: "smooth",
-            block: "end",
         });
     }, [selected?.messages.length, selectedId]);
 
-    async function sendReply(event: FormEvent<HTMLFormElement>) {
+    async function sendReply(
+        event: FormEvent<HTMLFormElement>,
+    ) {
         event.preventDefault();
 
         const text = reply.trim();
@@ -659,13 +715,6 @@ export default function AdminChatPage() {
         setError("");
 
         try {
-            /*
-             * Expected body:
-             * { message: "Reply text" }
-             *
-             * Expected response:
-             * { success: true, message: { _id, sender, message, createdAt } }
-             */
             const response = await fetch(
                 `${BaseUrl}/chat/admin/conversations/${encodeURIComponent(
                     conversation.id,
@@ -677,38 +726,42 @@ export default function AdminChatPage() {
                 },
             );
 
-            const result = await parseResponse<ApiResult>(response);
+            const result =
+                await parseResponse<ApiResult>(response);
 
-            if (!result.message || typeof result.message === "string") {
-                /*
-                 * If your API returns a different response shape, adapt
-                 * the mapping here to use the persisted message.
-                 */
+            if (
+                !result.message ||
+                typeof result.message === "string"
+            ) {
                 throw new Error(
-                    "The server did not return the saved message. Check the send-message API response.",
+                    "The server did not return the saved message.",
                 );
             }
 
-            const savedMessage = result.message as unknown as ApiMessage;
-            const message = toMessage(savedMessage);
+            const savedMessage =
+                result.message as ApiMessage;
+
+            const outgoing = toMessage(savedMessage);
 
             setConversations((current) =>
                 current.map((item) => {
                     if (item.id !== conversation.id) return item;
 
                     const exists = item.messages.some(
-                        (existing) => existing.id === message.id,
+                        (existing) => existing.id === outgoing.id,
                     );
 
                     return {
                         ...item,
                         status:
-                            item.status === "Resolved" ? "Open" : item.status,
-                        lastMessage: message.text,
-                        lastTime: message.time,
+                            item.status === "Resolved"
+                                ? "Open"
+                                : item.status,
+                        lastMessage: outgoing.text,
+                        lastTime: outgoing.time,
                         messages: exists
                             ? item.messages
-                            : [...item.messages, message],
+                            : [...item.messages, outgoing],
                     };
                 }),
             );
@@ -726,7 +779,13 @@ export default function AdminChatPage() {
     }
 
     async function updateStatus(status: Status) {
-        if (!selected || updatingStatus || !tokenRef.current) return;
+        if (
+            !selected ||
+            updatingStatus ||
+            !tokenRef.current
+        ) {
+            return;
+        }
 
         const conversationId = selected.id;
         const previousStatus = selected.status;
@@ -735,21 +794,16 @@ export default function AdminChatPage() {
         setUpdatingStatus(true);
         setError("");
 
-        // Optimistic update with rollback if the API fails.
+        // Optimistic UI update.
         setConversations((current) =>
             current.map((item) =>
-                item.id === conversationId ? { ...item, status } : item,
+                item.id === conversationId
+                    ? { ...item, status }
+                    : item,
             ),
         );
 
         try {
-            /*
-             * Expected endpoint:
-             * PATCH /admin/conversations/:id/status
-             *
-             * Expected body:
-             * { status: "open" | "pending" | "resolved" }
-             */
             const response = await fetch(
                 `${BaseUrl}/chat/admin/conversations/${encodeURIComponent(
                     conversationId,
@@ -768,7 +822,10 @@ export default function AdminChatPage() {
             setConversations((current) =>
                 current.map((item) =>
                     item.id === conversationId
-                        ? { ...item, status: previousStatus }
+                        ? {
+                            ...item,
+                            status: previousStatus,
+                        }
                         : item,
                 ),
             );
@@ -787,7 +844,9 @@ export default function AdminChatPage() {
         const token = tokenRef.current;
 
         if (!token) {
-            setError("Your admin session has expired. Please sign in again.");
+            setError(
+                "Your admin session has expired. Please sign in again.",
+            );
             return;
         }
 
@@ -804,7 +863,9 @@ export default function AdminChatPage() {
             }
         } catch (err) {
             setError(
-                err instanceof Error ? err.message : "Unable to refresh inbox.",
+                err instanceof Error
+                    ? err.message
+                    : "Unable to refresh inbox.",
             );
         } finally {
             setLoading(false);
@@ -825,609 +886,565 @@ export default function AdminChatPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#F5F7F6] text-gray-900">
-            <header className="sticky top-0 z-30 border-b border-gray-200 bg-white">
-                <div className="flex h-[72px] items-center justify-between px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#063F3D] text-white">
-                            <Headset size={21} />
-                        </div>
-                        <div>
-                            <h1 className="text-lg font-bold tracking-tight text-[#063F3D]">
-                                Strap World
-                            </h1>
-                            <p className="text-xs text-gray-500">
-                                Admin workspace
-                            </p>
-                        </div>
+        <main className="mx-auto w-full px-3 py-4 sm:px-5 sm:py-6 lg:px-7">
+            {/* Page title and refresh */}
+            <div className="mb-5 flex flex-col justify-between gap-4 sm:mb-6 sm:flex-row sm:items-center">
+                <div className="min-w-0 space-y-2">
+                    <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#218B55]">
+                        <MessageCircle size={14} />
+                        Customer support
                     </div>
 
-                    <div className="flex items-center gap-3">
-                        <div className="hidden items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700 sm:flex">
-                            <span
-                                className={`h-2 w-2 rounded-full ${socketConnected
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                        Live chat inbox
+                    </h2>
+
+                    <p className="mt-1 text-sm text-gray-500">
+                        Manage visitor conversations and customer enquiries.
+                    </p>
+
+                    <div className="mt-3 flex items-center gap-2 text-xs sm:hidden">
+                        <span
+                            className={`h-2 w-2 rounded-full ${socketConnected
                                     ? "bg-emerald-500"
                                     : "bg-amber-500"
-                                    }`}
-                            />
-                            {socketConnected
-                                ? "Live chat connected"
-                                : "Connecting chat"}
-                        </div>
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#063F3D] text-sm font-semibold text-white">
-                            A
-                        </div>
+                                }`}
+                        />
+                        {socketConnected
+                            ? "Live chat connected"
+                            : "Connecting chat"}
                     </div>
                 </div>
-            </header>
 
-            <main className="mx-auto max-w-[1700px] p-3 sm:p-5 lg:p-7">
-                <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-                    <div>
-                        <div className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#218B55]">
-                            <MessageCircle size={14} />
-                            Customer support
-                        </div>
-                        <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                            Live chat inbox
-                        </h2>
-                        <p className="mt-1 text-sm text-gray-500">
-                            Manage visitor conversations and customer enquiries.
-                        </p>
+                <button
+                    type="button"
+                    onClick={handleRefresh}
+                    disabled={loading}
+                    className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50 sm:w-auto"
+                >
+                    <RefreshCw
+                        size={15}
+                        className={loading ? "animate-spin" : ""}
+                    />
+                    Refresh inbox
+                </button>
+            </div>
+
+            {/* Error message */}
+            {error && (
+                <div
+                    role="alert"
+                    className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 sm:p-4"
+                >
+                    <AlertCircle
+                        size={18}
+                        className="mt-0.5 shrink-0"
+                    />
+
+                    <div className="min-w-0 flex-1 break-words">
+                        {error}
                     </div>
 
                     <button
                         type="button"
-                        onClick={handleRefresh}
-                        disabled={loading}
-                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+                        onClick={() => setError("")}
+                        className="shrink-0 font-semibold"
                     >
-                        <RefreshCw
-                            size={15}
-                            className={loading ? "animate-spin" : ""}
-                        />
-                        Refresh inbox
+                        Dismiss
                     </button>
                 </div>
+            )}
+            {/* Responsive inbox and conversation layout */}
+            <div className="grid h-[75vh] grid-cols-1 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm lg:grid-cols-[290px_minmax(0,1fr)] xl:grid-cols-[320px_minmax(0,1fr)_250px] 2xl:grid-cols-[340px_minmax(0,1fr)_270px]">
+                {/* Conversation sidebar */}
+                <aside
+                    className={`${mobileChatOpen ? "hidden lg:flex" : "flex"
+                        } min-h-0 min-w-0 flex-col overflow-hidden border-r border-gray-200`}
+                >
+                    <div className="shrink-0 border-b border-gray-100 p-3 sm:p-4">
+                        <div className="mb-3 flex items-center justify-between gap-2 sm:mb-4">
+                            <h3 className="font-semibold text-gray-900">
+                                Conversations
+                            </h3>
 
-                {error && (
-                    <div
-                        role="alert"
-                        className="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
-                    >
-                        <AlertCircle size={18} className="mt-0.5 shrink-0" />
-                        <div className="min-w-0 flex-1">{error}</div>
-                        <button
-                            type="button"
-                            onClick={() => setError("")}
-                            className="shrink-0 font-semibold"
-                        >
-                            Dismiss
-                        </button>
-                    </div>
-                )}
+                            <span className="rounded-lg bg-[#E6F5EC] px-2 py-1 text-xs font-semibold text-[#218B55]">
+                                {filteredConversations.length}
+                            </span>
+                        </div>
 
-                <div className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                    {[
-                        {
-                            label: "Total conversations",
-                            value: counts.All,
-                            icon: MessageCircle,
-                            color: "text-[#218B55]",
-                            bg: "bg-emerald-50",
-                        },
-                        {
-                            label: "Open",
-                            value: counts.Open,
-                            icon: Circle,
-                            color: "text-emerald-600",
-                            bg: "bg-emerald-50",
-                        },
-                        {
-                            label: "Pending",
-                            value: counts.Pending,
-                            icon: Clock3,
-                            color: "text-amber-600",
-                            bg: "bg-amber-50",
-                        },
-                        {
-                            label: "Resolved",
-                            value: counts.Resolved,
-                            icon: CheckCircle2,
-                            color: "text-gray-600",
-                            bg: "bg-gray-100",
-                        },
-                    ].map((stat) => {
-                        const Icon = stat.icon;
+                        <div className="relative">
+                            <Search
+                                size={17}
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                            />
 
-                        return (
-                            <div
-                                key={stat.label}
-                                className="rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm sm:p-5"
-                            >
-                                <div className="flex items-center justify-between gap-2">
-                                    <p className="text-xs font-medium text-gray-500 sm:text-sm">
-                                        {stat.label}
-                                    </p>
-                                    <div
-                                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${stat.bg} ${stat.color}`}
-                                    >
-                                        <Icon size={18} />
-                                    </div>
-                                </div>
-                                <p className="mt-3 text-2xl font-bold text-gray-900">
-                                    {stat.value}
-                                </p>
-                            </div>
-                        );
-                    })}
-                </div>
+                            <input
+                                value={search}
+                                onChange={(event) =>
+                                    setSearch(event.target.value)
+                                }
+                                placeholder="Search conversations..."
+                                className="w-full min-w-0 rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-[#39B972] focus:bg-white"
+                            />
+                        </div>
 
-                <div className="grid min-h-[650px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)_260px]">
-                    {/* Conversation sidebar */}
-                    <aside
-                        className={`${mobileChatOpen ? "hidden lg:flex" : "flex"
-                            } min-w-0 flex-col border-r border-gray-200`}
-                    >
-                        <div className="border-b border-gray-100 p-4">
-                            <div className="mb-4 flex items-center justify-between">
-                                <h3 className="font-semibold text-gray-900">
-                                    Conversations
-                                </h3>
-                                <span className="rounded-lg bg-[#E6F5EC] px-2 py-1 text-xs font-semibold text-[#218B55]">
-                                    {filteredConversations.length}
-                                </span>
-                            </div>
-
-                            <div className="relative">
-                                <Search
-                                    size={17}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                                />
-                                <input
-                                    value={search}
-                                    onChange={(event) =>
-                                        setSearch(event.target.value)
-                                    }
-                                    placeholder="Search conversations..."
-                                    className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-[#39B972] focus:bg-white"
-                                />
-                            </div>
-
-                            <div className="mt-4 flex gap-1 overflow-x-auto pb-1">
-                                {FILTERS.map((item) => (
-                                    <button
-                                        key={item}
-                                        type="button"
-                                        onClick={() => setFilter(item)}
-                                        className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium transition ${filter === item
+                        <div className="mt-3 flex gap-1 overflow-x-auto pb-1 sm:mt-4">
+                            {FILTERS.map((item) => (
+                                <button
+                                    key={item}
+                                    type="button"
+                                    onClick={() => setFilter(item)}
+                                    className={`shrink-0 rounded-lg px-3 py-2 text-xs font-medium transition ${filter === item
                                             ? "bg-[#063F3D] text-white"
                                             : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                                            }`}
-                                    >
-                                        {item}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="flex-1 overflow-y-auto">
-                            {loading ? (
-                                <div className="flex items-center justify-center gap-2 p-8 text-sm text-gray-500">
-                                    <LoaderCircle
-                                        size={18}
-                                        className="animate-spin"
-                                    />
-                                    Loading conversations...
-                                </div>
-                            ) : filteredConversations.length === 0 ? (
-                                <div className="p-8 text-center">
-                                    <MessageCircle
-                                        size={26}
-                                        className="mx-auto text-gray-300"
-                                    />
-                                    <p className="mt-3 text-sm font-medium text-gray-700">
-                                        No conversations found
-                                    </p>
-                                    <p className="mt-1 text-xs text-gray-400">
-                                        New visitor chats will appear here.
-                                    </p>
-                                </div>
-                            ) : (
-                                filteredConversations.map((conversation) => (
-                                    <button
-                                        key={conversation.id}
-                                        type="button"
-                                        onClick={() =>
-                                            selectConversation(conversation.id)
-                                        }
-                                        className={`w-full border-b border-gray-100 p-4 text-left transition hover:bg-[#F7FBF8] ${selectedId === conversation.id
-                                            ? "bg-[#F0F8F2]"
-                                            : "bg-white"
-                                            }`}
-                                    >
-                                        <div className="flex items-start gap-3">
-                                            <div
-                                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold ${conversation.color}`}
-                                            >
-                                                {conversation.initials}
-                                            </div>
-
-                                            <div className="min-w-0 flex-1">
-                                                <div className="flex items-center justify-between gap-2">
-                                                    <p className="truncate text-sm font-semibold text-gray-900">
-                                                        {conversation.name}
-                                                    </p>
-                                                    <span className="shrink-0 text-[10px] text-gray-400">
-                                                        {conversation.lastTime}
-                                                    </span>
-                                                </div>
-
-                                                <p className="mt-1 truncate text-xs text-gray-500">
-                                                    {conversation.lastMessage ||
-                                                        "No messages yet"}
-                                                </p>
-
-                                                <div className="mt-2 flex items-center justify-between gap-2">
-                                                    <StatusBadge
-                                                        status={conversation.status}
-                                                    />
-                                                    {conversation.unread > 0 && (
-                                                        <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#39B972] px-1.5 text-[10px] font-bold text-white">
-                                                            {conversation.unread}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </button>
-                                ))
-                            )}
-                        </div>
-                    </aside>
-
-                    {/* Chat panel */}
-                    <section
-                        className={`${mobileChatOpen ? "flex" : "hidden lg:flex"
-                            } min-w-0 flex-col`}
-                    >
-                        {selected ? (
-                            <>
-                                <div className="flex items-center justify-between gap-3 border-b border-gray-200 px-4 py-4 sm:px-5">
-                                    <div className="flex min-w-0 items-center gap-3">
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setMobileChatOpen(false)
-                                            }
-                                            aria-label="Back to conversations"
-                                            className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 lg:hidden"
-                                        >
-                                            <ArrowLeft size={18} />
-                                        </button>
-
-                                        <div
-                                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold ${selected.color}`}
-                                        >
-                                            {selected.initials}
-                                        </div>
-
-                                        <div className="min-w-0">
-                                            <h3 className="truncate text-sm font-semibold text-gray-900">
-                                                {selected.name}
-                                            </h3>
-                                            <p className="truncate text-xs text-gray-500">
-                                                {selected.email}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex shrink-0 items-center gap-2">
-                                        <select
-                                            value={selected.status}
-                                            disabled={updatingStatus}
-                                            onChange={(event) =>
-                                                void updateStatus(
-                                                    event.target.value as Status,
-                                                )
-                                            }
-                                            aria-label="Conversation status"
-                                            className="max-w-[125px] rounded-lg border border-gray-200 bg-white px-2 py-2 text-xs font-medium text-gray-700 outline-none focus:border-[#39B972] disabled:opacity-60"
-                                        >
-                                            <option value="Open">Open</option>
-                                            <option value="Pending">
-                                                Pending
-                                            </option>
-                                            <option value="Resolved">
-                                                Resolved
-                                            </option>
-                                        </select>
-
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setShowDetails((value) => !value)
-                                            }
-                                            aria-label="Toggle visitor details"
-                                            className="rounded-lg border border-gray-200 p-2 text-gray-500 transition hover:bg-gray-50 xl:hidden"
-                                        >
-                                            <MoreVertical size={18} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {showDetails && (
-                                    <div className="border-b border-gray-200 bg-white p-4 xl:hidden">
-                                        <div className="flex items-start gap-3">
-                                            <UserRound
-                                                size={17}
-                                                className="mt-0.5 text-gray-400"
-                                            />
-                                            <div className="min-w-0 text-xs">
-                                                <p className="font-semibold text-gray-800">
-                                                    Visitor details
-                                                </p>
-                                                <p className="mt-1 break-all text-gray-500">
-                                                    {selected.email}
-                                                </p>
-                                                <p className="mt-1 break-all text-gray-500">
-                                                    Page: {selected.page}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                <div className="flex flex-1 flex-col overflow-y-auto bg-[#F8FAF9] p-4 sm:p-6">
-                                    <div className="mb-6 text-center">
-                                        <span className="inline-block rounded-full border border-gray-200 bg-white px-3 py-1 text-[10px] text-gray-500">
-                                            Conversation {selected.id}
-                                        </span>
-                                    </div>
-
-                                    {messagesLoading &&
-                                        selected.messages.length === 0 ? (
-                                        <div className="flex flex-1 items-center justify-center gap-2 text-sm text-gray-500">
-                                            <LoaderCircle
-                                                size={18}
-                                                className="animate-spin"
-                                            />
-                                            Loading messages...
-                                        </div>
-                                    ) : selected.messages.length === 0 ? (
-                                        <div className="flex flex-1 flex-col items-center justify-center text-center">
-                                            <MessageCircle
-                                                size={30}
-                                                className="text-gray-300"
-                                            />
-                                            <p className="mt-3 text-sm text-gray-500">
-                                                No messages in this conversation yet.
-                                            </p>
-                                        </div>
-                                    ) : (
-                                        <div className="space-y-5">
-                                            {selected.messages.map((item) => {
-                                                const isAgent =
-                                                    item.sender === "agent";
-
-                                                return (
-                                                    <div
-                                                        key={item.id}
-                                                        className={`flex ${isAgent
-                                                            ? "justify-end"
-                                                            : "justify-start"
-                                                            }`}
-                                                    >
-                                                        {!isAgent && (
-                                                            <div
-                                                                className={`mr-2 mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${selected.color}`}
-                                                            >
-                                                                {selected.initials}
-                                                            </div>
-                                                        )}
-
-                                                        <div className="max-w-[85%]">
-                                                            <div
-                                                                className={`whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-6 ${isAgent
-                                                                    ? "rounded-br-md bg-[#063F3D] text-white"
-                                                                    : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
-                                                                    }`}
-                                                            >
-                                                                {item.text}
-                                                            </div>
-
-                                                            <div
-                                                                className={`mt-1 flex items-center gap-1 text-[10px] text-gray-400 ${isAgent
-                                                                    ? "justify-end"
-                                                                    : "justify-start"
-                                                                    }`}
-                                                            >
-                                                                {item.time}
-                                                                {isAgent && (
-                                                                    <CheckCheck
-                                                                        size={13}
-                                                                        className="text-[#218B55]"
-                                                                    />
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
-                                            <div ref={bottomRef} />
-                                        </div>
-                                    )}
-                                </div>
-
-                                <form
-                                    onSubmit={sendReply}
-                                    className="border-t border-gray-200 bg-white p-3 sm:p-4"
+                                        }`}
                                 >
-                                    {selected.status === "Resolved" && (
-                                        <p className="mb-2 text-xs text-amber-700">
-                                            Sending a reply will reopen this
-                                            conversation.
-                                        </p>
-                                    )}
+                                    {item}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                                    <div className="rounded-xl border border-gray-200 bg-gray-50 p-2 transition focus-within:border-[#39B972] focus-within:bg-white">
-                                        <textarea
-                                            value={reply}
-                                            onChange={(event) =>
-                                                setReply(event.target.value)
-                                            }
-                                            onKeyDown={handleReplyKeyDown}
-                                            rows={2}
-                                            maxLength={3000}
-                                            placeholder="Write your reply..."
-                                            disabled={sending}
-                                            className="max-h-32 w-full resize-y bg-transparent px-2 py-1 text-sm outline-none disabled:opacity-60"
-                                        />
-
-                                        <div className="flex items-center justify-between gap-2 px-1 pt-2">
-                                            <span className="text-[10px] text-gray-400">
-                                                Enter to send · Shift + Enter
-                                                for a new line
-                                            </span>
-
-                                            <button
-                                                type="submit"
-                                                disabled={
-                                                    !reply.trim() || sending
-                                                }
-                                                className="inline-flex items-center gap-2 rounded-lg bg-[#39B972] px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-[#218B55] disabled:cursor-not-allowed disabled:opacity-50"
-                                            >
-                                                {sending ? (
-                                                    <>
-                                                        <LoaderCircle
-                                                            size={14}
-                                                            className="animate-spin"
-                                                        />
-                                                        Sending...
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        Send reply
-                                                        <Send size={14} />
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </>
-                        ) : (
-                            <div className="flex flex-1 flex-col items-center justify-center p-8 text-center">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E6F5EC] text-[#218B55]">
-                                    <MessageCircle size={30} />
-                                </div>
-                                <h3 className="mt-4 font-semibold text-gray-900">
-                                    {loading
-                                        ? "Loading conversations..."
-                                        : "Select a conversation"}
-                                </h3>
-                                <p className="mt-1 text-sm text-gray-500">
-                                    Choose a visitor from the inbox to view
-                                    their messages.
+                    <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+                        {loading ? (
+                            <div className="flex items-center justify-center gap-2 p-6 text-sm text-gray-500">
+                                <LoaderCircle
+                                    size={18}
+                                    className="animate-spin"
+                                />
+                                Loading conversations...
+                            </div>
+                        ) : filteredConversations.length === 0 ? (
+                            <div className="p-6 text-center sm:p-8">
+                                <MessageCircle
+                                    size={26}
+                                    className="mx-auto text-gray-300"
+                                />
+                                <p className="mt-3 text-sm font-medium text-gray-700">
+                                    No conversations found
+                                </p>
+                                <p className="mt-1 text-xs text-gray-400">
+                                    New visitor chats will appear here.
                                 </p>
                             </div>
+                        ) : (
+                            filteredConversations.map((conversation) => (
+                                <button
+                                    key={conversation.id}
+                                    type="button"
+                                    onClick={() =>
+                                        selectConversation(conversation.id)
+                                    }
+                                    className={`w-full border-b border-gray-100 p-3 text-left transition hover:bg-[#F7FBF8] sm:p-4 ${selectedId === conversation.id
+                                            ? "bg-[#F0F8F2]"
+                                            : "bg-white"
+                                        }`}
+                                >
+                                    <div className="flex min-w-0 items-start gap-3">
+                                        <div
+                                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-10 sm:w-10 ${conversation.color}`}
+                                        >
+                                            {conversation.initials}
+                                        </div>
+
+                                        <div className="min-w-0 flex-1">
+                                            <div className="flex min-w-0 items-center justify-between gap-2">
+                                                <p className="truncate text-sm font-semibold text-gray-900">
+                                                    {conversation.name}
+                                                </p>
+
+                                                <span className="shrink-0 text-[10px] text-gray-400">
+                                                    {conversation.lastTime}
+                                                </span>
+                                            </div>
+
+                                            <p className="mt-1 truncate text-xs text-gray-500">
+                                                {conversation.lastMessage ||
+                                                    "No messages yet"}
+                                            </p>
+
+                                            <div className="mt-2 flex items-center justify-between gap-2">
+                                                <StatusBadge
+                                                    status={conversation.status}
+                                                />
+
+                                                {conversation.unread > 0 && (
+                                                    <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-[#39B972] px-1.5 text-[10px] font-bold text-white">
+                                                        {conversation.unread}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            ))
                         )}
-                    </section>
+                    </div>
+                </aside>
 
-                    {/* Desktop visitor details */}
-                    <aside className="hidden flex-col border-l border-gray-200 p-5 xl:flex">
-                        {selected ? (
-                            <>
-                                <div className="mb-5 flex items-center justify-between">
-                                    <h3 className="text-sm font-semibold text-gray-900">
-                                        Visitor details
-                                    </h3>
-                                    <PanelLeftClose
-                                        size={17}
-                                        className="text-gray-400"
-                                    />
-                                </div>
+                {/* Main chat panel */}
+                <section
+                    className={`${mobileChatOpen ? "flex" : "hidden lg:flex"
+                        } min-h-0 min-w-0 flex-col overflow-hidden`}
+                >
+                    {selected ? (
+                        <>
+                            {/* Chat header */}
+                            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-gray-200 px-3 py-3 sm:gap-3 sm:px-5 sm:py-4">
+                                <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setMobileChatOpen(false);
+                                            setShowDetails(false);
+                                        }}
+                                        aria-label="Back to conversations"
+                                        className="shrink-0 rounded-lg p-2 text-gray-500 hover:bg-gray-100 lg:hidden"
+                                    >
+                                        <ArrowLeft size={18} />
+                                    </button>
 
-                                <div className="flex flex-col items-center border-b border-gray-100 pb-5 text-center">
                                     <div
-                                        className={`flex h-16 w-16 items-center justify-center rounded-full text-lg font-bold ${selected.color}`}
+                                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold sm:h-10 sm:w-10 ${selected.color}`}
                                     >
                                         {selected.initials}
                                     </div>
-                                    <h4 className="mt-3 text-sm font-semibold text-gray-900">
-                                        {selected.name}
-                                    </h4>
-                                    <p className="mt-1 break-all text-xs text-gray-500">
-                                        {selected.email}
-                                    </p>
-                                    <div className="mt-3">
-                                        <StatusBadge status={selected.status} />
+
+                                    <div className="min-w-0">
+                                        <h3 className="truncate text-sm font-semibold text-gray-900">
+                                            {selected.name}
+                                        </h3>
+                                        <p className="truncate text-xs text-gray-500">
+                                            {selected.email || "Website visitor"}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div className="space-y-5 py-5">
-                                    <div>
-                                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
-                                            Contact information
-                                        </p>
-                                        <div className="flex items-start gap-2.5">
-                                            <Mail
-                                                size={16}
-                                                className="mt-0.5 shrink-0 text-gray-400"
-                                            />
-                                            <span className="break-all text-xs leading-5 text-gray-600">
+                                <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+                                    <select
+                                        value={selected.status}
+                                        disabled={updatingStatus}
+                                        onChange={(event) =>
+                                            void updateStatus(
+                                                event.target.value as Status,
+                                            )
+                                        }
+                                        aria-label="Conversation status"
+                                        className="max-w-[112px] min-w-0 rounded-lg border border-gray-200 bg-white px-2 py-2 text-xs font-medium text-gray-700 outline-none focus:border-[#39B972] disabled:opacity-60 sm:max-w-[130px] sm:px-3"
+                                    >
+                                        <option value="Open">Open</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Resolved">Resolved</option>
+                                    </select>
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setShowDetails((value) => !value)
+                                        }
+                                        aria-label="Toggle visitor details"
+                                        aria-expanded={showDetails}
+                                        className="rounded-lg border border-gray-200 p-2 text-gray-500 transition hover:bg-gray-50 xl:hidden"
+                                    >
+                                        <MoreVertical size={18} />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Mobile/tablet visitor details */}
+                            {showDetails && (
+                                <div className="shrink-0 border-b border-gray-200 bg-white p-3 sm:p-4 xl:hidden">
+                                    <div className="flex items-start gap-3">
+                                        <UserRound
+                                            size={17}
+                                            className="mt-0.5 shrink-0 text-gray-400"
+                                        />
+
+                                        <div className="min-w-0 flex-1 text-xs">
+                                            <p className="font-semibold text-gray-800">
+                                                Visitor details
+                                            </p>
+
+                                            <p className="mt-1 break-all text-gray-500">
                                                 {selected.email || "Not provided"}
-                                            </span>
+                                            </p>
+
+                                            <p className="mt-1 break-all text-gray-500">
+                                                Page: {selected.page}
+                                            </p>
+
+                                            <p className="mt-1 break-all text-gray-500">
+                                                ID: {selected.id}
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
+                            )}
 
-                                    <div>
-                                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
-                                            Visited page
-                                        </p>
-                                        <div className="flex items-start gap-2.5">
-                                            <Globe
-                                                size={16}
-                                                className="mt-0.5 shrink-0 text-gray-400"
-                                            />
-                                            <span className="break-all text-xs leading-5 text-gray-600">
-                                                {selected.page}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
-                                            Conversation ID
-                                        </p>
-                                        <p className="break-all rounded-lg bg-gray-50 p-2 text-xs text-gray-600">
-                                            {selected.id}
-                                        </p>
-                                    </div>
+                            {/* Scrollable message history */}
+                            <div
+                                ref={messageContainerRef}
+                                className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[#F8FAF9] p-3 sm:p-5 lg:p-6"
+                            >
+                                <div className="mb-4 text-center sm:mb-6">
+                                    <span className="inline-block max-w-full break-all rounded-full border border-gray-200 bg-white px-3 py-1 text-[10px] text-gray-500">
+                                        Conversation {selected.id}
+                                    </span>
                                 </div>
 
-                                <div className="mt-auto rounded-xl bg-[#F5FBF7] p-3">
-                                    <p className="text-xs font-semibold text-[#063F3D]">
-                                        Strap World Support
+                                {messagesLoading &&
+                                    selected.messages.length === 0 ? (
+                                    <div className="flex h-full min-h-32 items-center justify-center gap-2 text-sm text-gray-500">
+                                        <LoaderCircle
+                                            size={18}
+                                            className="animate-spin"
+                                        />
+                                        Loading messages...
+                                    </div>
+                                ) : selected.messages.length === 0 ? (
+                                    <div className="flex h-full min-h-32 flex-col items-center justify-center text-center">
+                                        <MessageCircle
+                                            size={30}
+                                            className="text-gray-300"
+                                        />
+                                        <p className="mt-3 text-sm text-gray-500">
+                                            No messages in this conversation yet.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4 sm:space-y-5">
+                                        {selected.messages.map((item) => {
+                                            const isAgent =
+                                                item.sender === "agent";
+
+                                            return (
+                                                <div
+                                                    key={item.id}
+                                                    className={`flex min-w-0 ${isAgent
+                                                            ? "justify-end"
+                                                            : "justify-start"
+                                                        }`}
+                                                >
+                                                    {!isAgent && (
+                                                        <div
+                                                            className={`mr-2 mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[9px] font-bold sm:mr-2.5 ${selected.color}`}
+                                                        >
+                                                            {selected.initials}
+                                                        </div>
+                                                    )}
+
+                                                    <div className="min-w-0 max-w-[88%] sm:max-w-[80%] lg:max-w-[75%]">
+                                                        <div
+                                                            className={`whitespace-pre-wrap break-words rounded-2xl px-3 py-2.5 text-sm leading-6 sm:px-4 sm:py-3 ${isAgent
+                                                                    ? "rounded-br-md bg-[#063F3D] text-white"
+                                                                    : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
+                                                                }`}
+                                                        >
+                                                            {item.text}
+                                                        </div>
+
+                                                        <div
+                                                            className={`mt-1 flex items-center gap-1 text-[10px] text-gray-400 ${isAgent
+                                                                    ? "justify-end"
+                                                                    : "justify-start"
+                                                                }`}
+                                                        >
+                                                            {item.time}
+
+                                                            {isAgent && (
+                                                                <CheckCheck
+                                                                    size={13}
+                                                                    className="text-[#218B55]"
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Reply composer stays at the bottom */}
+                            <form
+                                onSubmit={sendReply}
+                                className="shrink-0 border-t border-gray-200 bg-white p-3 sm:p-4"
+                            >
+                                {selected.status === "Resolved" && (
+                                    <p className="mb-2 text-xs text-amber-700">
+                                        Sending a reply will reopen this conversation.
                                     </p>
-                                    <p className="mt-1 text-[11px] leading-5 text-gray-500">
-                                        Respond to product questions, bulk
-                                        orders, and export enquiries.
-                                    </p>
+                                )}
+
+                                <div className="rounded-xl border border-gray-200 bg-gray-50 p-2 transition focus-within:border-[#39B972] focus-within:bg-white">
+                                    <textarea
+                                        value={reply}
+                                        onChange={(event) =>
+                                            setReply(event.target.value)
+                                        }
+                                        onKeyDown={handleReplyKeyDown}
+                                        rows={2}
+                                        maxLength={3000}
+                                        placeholder="Write your reply..."
+                                        disabled={sending}
+                                        className="max-h-32 w-full resize-y bg-transparent px-2 py-1 text-sm outline-none disabled:opacity-60"
+                                    />
+
+                                    <div className="flex flex-wrap items-center justify-between gap-2 px-1 pt-2">
+                                        <span className="text-[10px] text-gray-400">
+                                            Enter to send · Shift + Enter for a new line
+                                        </span>
+
+                                        <button
+                                            type="submit"
+                                            disabled={
+                                                !reply.trim() ||
+                                                sending ||
+                                                !tokenRef.current
+                                            }
+                                            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#39B972] px-3 py-2.5 text-xs font-semibold text-white transition hover:bg-[#218B55] disabled:cursor-not-allowed disabled:opacity-50 sm:px-4"
+                                        >
+                                            {sending ? (
+                                                <>
+                                                    <LoaderCircle
+                                                        size={14}
+                                                        className="animate-spin"
+                                                    />
+                                                    Sending...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    Send reply
+                                                    <Send size={14} />
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
-                            </>
-                        ) : (
-                            <p className="text-sm text-gray-500">
-                                Visitor details will appear here.
+                            </form>
+                        </>
+                    ) : (
+                        <div className="flex flex-1 flex-col items-center justify-center p-6 text-center sm:p-8">
+                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E6F5EC] text-[#218B55] sm:h-16 sm:w-16">
+                                <MessageCircle size={30} />
+                            </div>
+
+                            <h3 className="mt-4 font-semibold text-gray-900">
+                                {loading
+                                    ? "Loading conversations..."
+                                    : "Select a conversation"}
+                            </h3>
+
+                            <p className="mt-1 max-w-xs text-sm text-gray-500">
+                                Choose a visitor from the inbox to view their messages.
                             </p>
-                        )}
-                    </aside>
-                </div>
+                        </div>
+                    )}
+                </section>
 
-                <p className="mt-4 text-center text-xs text-gray-400">
-                    Strap World · Customer Support Dashboard
-                </p>
-            </main>
-        </div>
+                {/* Desktop visitor details */}
+                <aside className="hidden min-h-0 min-w-0 flex-col overflow-y-auto overscroll-contain border-l border-gray-200 p-4 xl:flex 2xl:p-5">
+                    {selected ? (
+                        <>
+                            <div className="mb-5 flex items-center justify-between gap-2">
+                                <h3 className="text-sm font-semibold text-gray-900">
+                                    Visitor details
+                                </h3>
+
+                                <PanelLeftClose
+                                    size={17}
+                                    className="shrink-0 text-gray-400"
+                                />
+                            </div>
+
+                            <div className="flex flex-col items-center border-b border-gray-100 pb-5 text-center">
+                                <div
+                                    className={`flex h-14 w-14 items-center justify-center rounded-full text-lg font-bold sm:h-16 sm:w-16 ${selected.color}`}
+                                >
+                                    {selected.initials}
+                                </div>
+
+                                <h4 className="mt-3 break-words text-sm font-semibold text-gray-900">
+                                    {selected.name}
+                                </h4>
+
+                                <p className="mt-1 break-all text-xs text-gray-500">
+                                    {selected.email || "Not provided"}
+                                </p>
+
+                                <div className="mt-3">
+                                    <StatusBadge status={selected.status} />
+                                </div>
+                            </div>
+
+                            <div className="space-y-5 py-5">
+                                <div>
+                                    <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
+                                        Contact information
+                                    </p>
+
+                                    <div className="flex min-w-0 items-start gap-2.5">
+                                        <Mail
+                                            size={16}
+                                            className="mt-0.5 shrink-0 text-gray-400"
+                                        />
+
+                                        <span className="break-all text-xs leading-5 text-gray-600">
+                                            {selected.email || "Not provided"}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
+                                        Visited page
+                                    </p>
+
+                                    <div className="flex min-w-0 items-start gap-2.5">
+                                        <Globe
+                                            size={16}
+                                            className="mt-0.5 shrink-0 text-gray-400"
+                                        />
+
+                                        <span className="break-all text-xs leading-5 text-gray-600">
+                                            {selected.page}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
+                                        Conversation ID
+                                    </p>
+
+                                    <p className="break-all rounded-lg bg-gray-50 p-2 text-xs text-gray-600">
+                                        {selected.id}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="mt-auto rounded-xl bg-[#F5FBF7] p-3">
+                                <p className="text-xs font-semibold text-[#063F3D]">
+                                    Strap World Support
+                                </p>
+
+                                <p className="mt-1 text-[11px] leading-5 text-gray-500">
+                                    Respond to product questions, bulk orders, and export enquiries.
+                                </p>
+                            </div>
+                        </>
+                    ) : (
+                        <p className="text-sm text-gray-500">
+                            Visitor details will appear here.
+                        </p>
+                    )}
+                </aside>
+            </div>
+
+            <p className="mt-4 text-center text-xs text-gray-400">
+                Strap World · Customer Support Dashboard
+            </p>
+        </main>
     );
 }
