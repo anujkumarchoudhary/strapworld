@@ -738,7 +738,7 @@ const LiveChatWidget = () => {
                   <div
                     ref={messagesContainerRef}
                     aria-live="polite"
-                    className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain touch-pan-y bg-gray-50 p-3 sm:p-4"
+                    className="hide-scrollbar min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain touch-pan-y bg-gray-50 p-3 sm:p-4"
                   >
                     {isLoadingHistory && messages.length === 0 && (
                       <div className="flex justify-center py-4 text-sm text-gray-500">
@@ -969,19 +969,42 @@ const LiveChatWidget = () => {
 
       {/* Floating launcher */}
       {!isOpen && (
+        // <button
+        //   type="button"
+        //   onClick={() => {
+        //     setIsOpen(true);
+        //     setIsMinimized(false);
+        //   }}
+        //   aria-label="Open contact widget"
+        //   className="group flex h-14 w-14 items-center justify-center rounded-full bg-[#2E9B4F] text-white shadow-xl transition duration-200 hover:scale-105 hover:bg-[#247D3F] focus:outline-none focus:ring-4 focus:ring-[#2E9B4F]/30"
+        // >
+        //   <MessageCircle
+        //     size={26}
+        //     className="transition-transform group-hover:scale-110"
+        //   />
+        // </button>
         <button
           type="button"
-          onClick={() => {
-            setIsOpen(true);
-            setIsMinimized(false);
-          }}
-          aria-label="Open contact widget"
-          className="group flex h-14 w-14 items-center justify-center rounded-full bg-[#2E9B4F] text-white shadow-xl transition duration-200 hover:scale-105 hover:bg-[#247D3F] focus:outline-none focus:ring-4 focus:ring-[#2E9B4F]/30"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? "Close chat" : "Open chat"}
+          className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#2E9B4F] text-white shadow-[0_8px_30px_rgba(33,139,85,0.35)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-110 hover:bg-[#218B55] focus:outline-none focus:ring-4 focus:ring-[#39B972]/25 sm:h-[60px] sm:w-[60px]"
         >
-          <MessageCircle
-            size={26}
-            className="transition-transform group-hover:scale-110"
-          />
+          {!isOpen && (
+            <span className="absolute inset-0 animate-ping rounded-full bg-[#39B972] opacity-40" />
+          )}
+
+          <span
+            className={`relative z-10 transition-all duration-300 ${isOpen
+              ? "rotate-90 scale-90"
+              : "rotate-0 scale-100"
+              }`}
+          >
+            {isOpen ? (
+              <X className="h-6 w-6 sm:h-7 sm:w-7" />
+            ) : (
+              <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7" />
+            )}
+          </span>
         </button>
       )}
     </div>
