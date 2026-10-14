@@ -52,11 +52,14 @@ const userSchema = new mongoose_1.Schema({
         required: true,
         select: false,
     },
-    // role: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Role",
-    //   required: true,
-    // },
+    role: {
+        type: String,
+        enum: ["user", "admin"],
+        default: "admin",
+        required: true,
+        lowercase: true,
+        trim: true,
+    },
     isActive: {
         type: Boolean,
         default: true,

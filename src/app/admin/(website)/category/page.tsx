@@ -1,13 +1,25 @@
 "use client";
 
 import { useEffect, useState, useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 import { Category, Column } from "@/@core/types/table.type";
 import { BaseUrl } from "@/src/app/baseurl";
 import DynamicTable from "@/src/components/table/DynamicTable";
-import QuillEditor from "@/src/components/QuillEditor";
+
+const QuillEditor = dynamic(
+  () => import("@/src/components/QuillEditor"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="min-h-[150px] rounded-md border p-3 text-gray-500">
+        Loading editor...
+      </div>
+    ),
+  },
+);
 
 const Page = () => {
   const [data, setData] = useState<Category[]>([]);
@@ -15,7 +27,9 @@ const Page = () => {
   const [search, setSearch] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openIndex, setOpenIndex] = useState<string | null>(null);
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -30,9 +44,11 @@ const Page = () => {
   const getCategories = async () => {
     try {
       setLoading(true);
+
       const res = await axios.get(`${BaseUrl}/categories`);
+
       setData(res?.data?.data || []);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch categories");
     } finally {
       setLoading(false);
@@ -40,7 +56,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    getCategories();
+    void getCategories();
   }, []);
 
   useEffect(() => {
@@ -63,37 +79,57 @@ const Page = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const createCategory = async () => {
     if (!formData.name.trim()) {
-      return toast.error("Category name required");
+      toast.error("Category name required");
+      return;
     }
+
     try {
       const res = await axios.post(`${BaseUrl}/category`, formData);
+
       if (res?.data?.success) {
         toast.success("Category created");
+
         setOpenModal(false);
+
         setFormData({
           name: "",
           description: "",
         });
-        getCategories();
+
+        await getCategories();
+      } else {
+        toast.error(res?.data?.message || "Failed to create category");
       }
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || "Something went wrong");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        toast.error(
+          error.response?.data?.message || "Something went wrong",
+        );
+      } else {
+        toast.error("Something went wrong");
+      }
     }
   };
 
   const deleteCategory = async (id: string) => {
     try {
       const res = await axios.delete(`${BaseUrl}/category/delete/${id}`);
+
       if (res?.data?.success) {
         toast.success("Category deleted");
+        await getCategories();
+      } else {
+        toast.error(res?.data?.message || "Delete failed");
       }
     } catch {
       toast.error("Delete failed");
@@ -116,69 +152,90 @@ const Page = () => {
         itemsPerPage={10}
         headingText="Category"
         searchPlaceholder="Search Category..."
-        handleClick={() => setOpenModal(!openModal)}
+        handleClick={() => setOpenModal((prev) => !prev)}
         isAction
         isEdit
         isDelete
-        onEdit={(item) => {
+        onEdit={() => {
           setOpenModal(true);
         }}
         onDelete={(item) => {
-          deleteCategory(item._id);
+          void deleteCategory(item._id);
         }}
       />
 
-      {/* OVERLAY */}
+      {/* Overlay */}
       {openModal && (
         <div
-          className="fixed inset-0 bg-black/40 z-40"
+          className="fixed inset-0 z-40 bg-black/40"
           onClick={() => setOpenModal(false)}
         />
       )}
 
-      {/* RIGHT DRAWER */}
+      {/* Right drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-105 bg-white shadow-xl z-50 transform transition-transform duration-300 ${
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-[420px] transform bg-white shadow-xl transition-transform duration-300 ${
           openModal ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="relative h-full">
-          <h4 className="text-xl font-semibold bg-primary text-white p-4 rounded-t-[20px]">
+          <h4 className="rounded-t-[20px] bg-primary p-4 text-xl font-semibold text-white">
             Create Category
           </h4>
-          <div className="flex flex-col gap-4 p-4 rounded-b-[20px]">
-            <p className="font-semibold text-[16px]">Name</p>
+
+          <div className="flex flex-col gap-4 rounded-b-[20px] p-4">
+            <label
+              htmlFor="category-name"
+              className="text-[16px] font-semibold"
+            >
+              Name
+            </label>
+
             <input
+              id="category-name"
               type="text"
               name="name"
               placeholder="Category Name"
               value={formData.name}
               onChange={handleChange}
-              className="border p-3 rounded-md outline-none"
+              className="rounded-md border p-3 outline-none focus:border-blue-900"
             />
 
-            <p className="font-semibold text-[16px]">Description</p>
-            <QuillEditor
-              value={formData.description}
-              onChange={(val: string) =>
-                setFormData({ ...formData, description: val })
-              }
-            />
+            <label
+              htmlFor="category-description"
+              className="text-[16px] font-semibold"
+            >
+              Description
+            </label>
+
+            <div id="category-description">
+              <QuillEditor
+                value={formData.description}
+                onChange={(val: string) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: val,
+                  }))
+                }
+              />
+            </div>
           </div>
 
-          <div className="flex justify-center gap-3 absolute bottom-[2rem] w-full">
+          <div className="absolute bottom-8 flex w-full justify-center gap-3 px-4">
             <button
+              type="button"
               aria-label="Cancel"
               onClick={() => setOpenModal(false)}
-              className="px-4 py-2 border rounded-md cursor-pointer hover:border-red-600 hover:text-red-600"
+              className="cursor-pointer rounded-md border px-4 py-2 hover:border-red-600 hover:text-red-600"
             >
               Cancel
             </button>
 
             <button
+              type="button"
               aria-label="Create category"
-              onClick={createCategory}
-              className="px-4 py-2 bg-blue-900 text-white rounded-md cursor-pointer hover:bg-[#FB9100]"
+              onClick={() => void createCategory()}
+              className="cursor-pointer rounded-md bg-blue-900 px-4 py-2 text-white hover:bg-[#FB9100]"
             >
               Create
             </button>

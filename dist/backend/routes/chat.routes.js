@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const chat_controller_1 = require("../controllers/chat.controller");
+const router = (0, express_1.Router)();
+router.post("/conversations", chat_controller_1.createConversation);
+router.get("/conversations/:id/messages", chat_controller_1.getConversationHistory);
+router.get("/admin/conversations", chat_controller_1.getAdminConversations);
+router.get("/admin/conversations/:id/messages", chat_controller_1.getAdminConversationMessages);
+router.post("/admin/conversations/:id/messages", chat_controller_1.sendAdminMessage);
+router.patch("/admin/conversations/:id/status", chat_controller_1.updateConversationStatus);
+exports.default = router;

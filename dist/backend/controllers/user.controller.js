@@ -16,21 +16,21 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 // CREATE USER
 async function createUser(req, res, next) {
     try {
-        const { name, email, password, role, isActive } = req.body;
-        if (!name || !email || !password) {
+        const { name, email, password } = req.body;
+        if (typeof name !== "string" ||
+            !name.trim() ||
+            typeof email !== "string" ||
+            !email.trim() ||
+            typeof password !== "string" ||
+            !password) {
             return res.status(400).json({
                 success: false,
-                message: "Name, email, password and role are required",
+                message: "Name, email and password are required",
             });
         }
-        // if (!mongoose.Types.ObjectId.isValid(role)) {
-        //   return res.status(400).json({
-        //     success: false,
-        //     message: "Invalid role ID",
-        //   });
-        // }
+        const normalizedEmail = email.trim().toLowerCase();
         const existingUser = await user_model_1.default.findOne({
-            email: String(email).trim().toLowerCase(),
+            email: normalizedEmail,
         });
         if (existingUser) {
             return res.status(409).json({
@@ -38,15 +38,15 @@ async function createUser(req, res, next) {
                 message: "Email already exists",
             });
         }
-        const hashedPassword = await bcryptjs_1.default.hash(password, 12);
+        // Public registration always creates a regular user.
         const user = await user_model_1.default.create({
-            name,
-            email,
-            password: hashedPassword,
-            isActive: isActive ?? true,
+            name: name.trim(),
+            email: normalizedEmail,
+            password: await bcryptjs_1.default.hash(password, 12),
+            role: "user",
+            isActive: true,
         });
-        const result = await user_model_1.default.findById(user._id)
-            .select("-password");
+        const result = await user_model_1.default.findById(user._id).select("-password");
         return res.status(201).json({
             success: true,
             message: "User created successfully",
@@ -72,9 +72,7 @@ async function loginUser(req, res, next) {
         }
         const user = await user_model_1.default.findOne({
             email: email.trim().toLowerCase(),
-        })
-            .select("+password");
-        // .populate("role", "name permissions");
+        }).select("+password");
         if (!user) {
             return res.status(401).json({
                 success: false,
@@ -94,6 +92,12 @@ async function loginUser(req, res, next) {
                 message: "Invalid email or password",
             });
         }
+        if (!["user", "admin"].includes(user.role)) {
+            return res.status(403).json({
+                success: false,
+                message: "User role is missing or invalid",
+            });
+        }
         const secret = process.env.JWT_SECRET;
         if (!secret) {
             return res.status(500).json({
@@ -101,7 +105,10 @@ async function loginUser(req, res, next) {
                 message: "Authentication configuration error",
             });
         }
-        const token = jsonwebtoken_1.default.sign({ id: user._id.toString() }, secret, { expiresIn: "1d" });
+        const token = jsonwebtoken_1.default.sign({
+            id: user._id.toString(),
+            role: user.role,
+        }, secret, { expiresIn: "1d" });
         const userData = user.toObject();
         delete userData.password;
         return res.status(200).json({
