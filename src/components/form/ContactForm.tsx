@@ -7,7 +7,6 @@ import { LoaderCircle, CheckCircle2, AlertCircle } from "lucide-react";
 import { BaseUrl } from "@/src/app/baseurl";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ContactForm = () => {
   const router = useRouter();

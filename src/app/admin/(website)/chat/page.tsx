@@ -86,7 +86,7 @@ type ApiResult = {
 
 const SOCKET_URL =
     process.env.NEXT_PUBLIC_CHAT_SOCKET_URL ||
-    "http://localhost:8000";
+    "https://strapworld.in";
 
 const AVATAR_COLORS = [
     "bg-emerald-100 text-emerald-800",

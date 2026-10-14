@@ -40,6 +40,7 @@ const startServer = async () => {
             "http://localhost:3000",
             "http://localhost:4000",
             "http://localhost:8000",
+            "https://strapworld.in"
         ];
         app.use((0, cors_1.default)({
             origin: allowedOrigins,
