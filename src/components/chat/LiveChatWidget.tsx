@@ -486,14 +486,24 @@ const LiveChatWidget = () => {
     setIsOpen(false);
     setIsMinimized(false);
   };
-
   return (
-    <div className="fixed bottom-3 right-3 z-[9999] sm:bottom-5 sm:right-5">
+    <div
+      className={`fixed z-[9999] ${isOpen && !isMinimized
+        ? "inset-0 sm:inset-auto sm:bottom-5 sm:right-5"
+        : "bottom-3 right-3 sm:bottom-5 sm:right-5"
+        }`}
+    >
+      {/* Open chat widget */}
       {isOpen && !isMinimized && (
         <section
           ref={setWidgetSectionRef}
           aria-label="Contact support"
-          className="mb-3 flex h-[min(650px,calc(100dvh-32px))] min-h-0 w-[calc(100vw-24px)] max-w-[400px] flex-col overflow-hidden overscroll-contain bg-white rounded-2xl shadow-2xl sm:mb-4 sm:h-[625px] sm:w-[400px]"
+          className="
+          flex h-full min-h-0 w-full max-w-none flex-col
+          overflow-hidden rounded-none bg-white shadow-2xl
+          sm:mb-4 sm:h-[625px] sm:max-h-[calc(100dvh-40px)]
+          sm:w-[400px] sm:max-w-[400px] sm:rounded-2xl
+        "
         >
           {/* Header */}
           <header className="flex shrink-0 items-center justify-between bg-[#063F3D] px-4 py-3.5 text-white sm:px-5 sm:py-4">
@@ -509,10 +519,10 @@ const LiveChatWidget = () => {
 
                 <p className="mt-0.5 flex items-center gap-1.5 text-xs text-blue-100">
                   <span
-                    className={`h-2 w-2 shrink-0 rounded-full ${
-                      isConnected ? "bg-green-400" : "bg-yellow-300"
-                    }`}
+                    className={`h-2 w-2 shrink-0 rounded-full ${isConnected ? "bg-green-400" : "bg-yellow-300"
+                      }`}
                   />
+
                   {isConnected
                     ? "Chat connection active"
                     : "Connecting..."}
@@ -548,10 +558,26 @@ const LiveChatWidget = () => {
           >
             {(
               [
-                { id: "chat", label: "Live Chat", icon: MessageCircle },
-                { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
-                { id: "phone", label: "Call Us", icon: Phone },
-                { id: "email", label: "Email", icon: Mail },
+                {
+                  id: "chat",
+                  label: "Live Chat",
+                  icon: MessageCircle,
+                },
+                {
+                  id: "whatsapp",
+                  label: "WhatsApp",
+                  icon: MessageCircle,
+                },
+                {
+                  id: "phone",
+                  label: "Call Us",
+                  icon: Phone,
+                },
+                {
+                  id: "email",
+                  label: "Email",
+                  icon: Mail,
+                },
               ] as const
             ).map(({ id, label }) => (
               <button
@@ -577,11 +603,10 @@ const LiveChatWidget = () => {
                     window.location.href = "mailto:hello@strapworld.in";
                   }
                 }}
-                className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${
-                  activeTab === id
-                    ? "bg-[#E8F5EC] text-[#176B35]"
-                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                }`}
+                className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${activeTab === id
+                  ? "bg-[#E8F5EC] text-[#176B35]"
+                  : "text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                  }`}
               >
                 <span className="truncate">{label}</span>
               </button>
@@ -734,26 +759,23 @@ const LiveChatWidget = () => {
                             item._id ??
                             `${item.createdAt ?? "message"}-${index}`
                           }
-                          className={`flex ${
-                            isVisitor ? "justify-end" : "justify-start"
-                          }`}
+                          className={`flex ${isVisitor ? "justify-end" : "justify-start"
+                            }`}
                         >
                           <div
-                            className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${
-                              isVisitor
-                                ? "rounded-br-md bg-[#2E9B4F] text-white"
-                                : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
-                            }`}
+                            className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-3 text-sm leading-5 sm:max-w-[85%] ${isVisitor
+                              ? "rounded-br-md bg-[#2E9B4F] text-white"
+                              : "rounded-bl-md border border-gray-200 bg-white text-gray-800"
+                              }`}
                           >
                             {item.message}
 
                             {item.createdAt && (
                               <p
-                                className={`mt-1.5 text-[10px] ${
-                                  isVisitor
-                                    ? "text-blue-100"
-                                    : "text-gray-400"
-                                }`}
+                                className={`mt-1.5 text-[10px] ${isVisitor
+                                  ? "text-blue-100"
+                                  : "text-gray-400"
+                                  }`}
                               >
                                 {new Date(
                                   item.createdAt,
@@ -775,7 +797,7 @@ const LiveChatWidget = () => {
                     )}
                   </div>
 
-                  {/* Message input */}
+                  {/* Message input stays at the bottom */}
                   <form
                     onSubmit={sendMessage}
                     className="shrink-0 border-t border-gray-200 bg-white p-3"
@@ -842,19 +864,22 @@ const LiveChatWidget = () => {
 
           {/* Alternative contact methods */}
           {activeTab !== "chat" && (
-            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-8 text-center">
+            <div className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-y-auto overscroll-contain px-6 py-8 text-center">
               {activeTab === "whatsapp" && (
                 <>
                   <MessageCircle
                     size={42}
-                    className="mb-4 mx-auto text-green-600"
+                    className="mx-auto mb-4 text-green-600"
                   />
+
                   <h3 className="text-lg font-semibold text-gray-900">
                     Chat with us on WhatsApp
                   </h3>
+
                   <p className="mt-2 text-sm text-gray-500">
                     Continue your conversation directly on WhatsApp.
                   </p>
+
                   <a
                     href="https://wa.me/+919978735708"
                     target="_blank"
@@ -871,14 +896,17 @@ const LiveChatWidget = () => {
                 <>
                   <Phone
                     size={42}
-                    className="mb-4 mx-auto text-[#176B35]"
+                    className="mx-auto mb-4 text-[#176B35]"
                   />
+
                   <h3 className="text-lg font-semibold text-gray-900">
                     Call our team
                   </h3>
+
                   <p className="mt-2 text-sm text-gray-500">
                     Speak directly with our support team.
                   </p>
+
                   <a
                     href="tel:+919978735708"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
@@ -893,14 +921,17 @@ const LiveChatWidget = () => {
                 <>
                   <Mail
                     size={42}
-                    className="mb-4 mx-auto text-[#176B35]"
+                    className="mx-auto mb-4 text-[#176B35]"
                   />
+
                   <h3 className="text-lg font-semibold text-gray-900">
                     Email our team
                   </h3>
+
                   <p className="mt-2 text-sm text-gray-500">
                     Send your enquiry and we will get back to you.
                   </p>
+
                   <a
                     href="mailto:nalandaindustri@gmail.com"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
@@ -926,7 +957,9 @@ const LiveChatWidget = () => {
             size={18}
             className="text-[#2E9B4F]"
           />
+
           Strap World
+
           <ArrowLeft
             size={15}
             className="rotate-180 text-gray-400"
