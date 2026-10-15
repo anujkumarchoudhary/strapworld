@@ -501,7 +501,7 @@ const LiveChatWidget = () => {
           className="
           flex h-full min-h-0 w-full max-w-none flex-col
           overflow-hidden rounded-none bg-white shadow-2xl
-          sm:mb-4 sm:h-[625px] sm:max-h-[calc(100dvh-40px)]
+          sm:mb-4 sm:h-[550px] sm:max-h-[calc(100dvh-40px)]
           sm:w-[400px] sm:max-w-[400px] sm:rounded-2xl
         "
         >
@@ -681,7 +681,7 @@ const LiveChatWidget = () => {
                         setProjectDetails(event.target.value)
                       }
                       placeholder="Tell us about your requirement..."
-                      rows={8}
+                      rows={4}
                       maxLength={2000}
                       required
                       className="w-full resize-none rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
