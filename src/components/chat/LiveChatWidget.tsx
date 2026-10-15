@@ -666,7 +666,7 @@ const LiveChatWidget = () => {
                     />
                   </div>
 
-                  <div className="bg-yellow-200 p-4">
+                  <div className="">
                     <label
                       htmlFor="chat-details"
                       className="mb-1.5 block text-sm font-medium text-gray-700"
