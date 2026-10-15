@@ -105,7 +105,7 @@ const Banner = ({ data }: any) => {
                   </h3>
 
                   <p className="text-[13px] text-white/50 sm:text-[14px]">
-                    9+ Years of Experience
+                    8+ Years of Experience
                   </p>
                 </div>
               </div>
