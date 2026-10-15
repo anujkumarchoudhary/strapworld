@@ -587,21 +587,21 @@ const LiveChatWidget = () => {
                 onClick={() => {
                   setActiveTab(id);
 
-                  if (id === "whatsapp") {
-                    window.open(
-                      "https://wa.me/919876543210",
-                      "_blank",
-                      "noopener,noreferrer",
-                    );
-                  }
+                  // if (id === "whatsapp") {
+                  //   window.open(
+                  //     "https://wa.me/919876543210",
+                  //     "_blank",
+                  //     "noopener,noreferrer",
+                  //   );
+                  // }
 
-                  if (id === "phone") {
-                    window.location.href = "tel:+919876543210";
-                  }
+                  // if (id === "phone") {
+                  //   window.location.href = "tel:+919876543210";
+                  // }
 
-                  if (id === "email") {
-                    window.location.href = "mailto:hello@strapworld.in";
-                  }
+                  // if (id === "email") {
+                  //   window.location.href = "mailto:hello@strapworld.in";
+                  // }
                 }}
                 className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-[10px] font-medium transition sm:flex-row sm:gap-1.5 sm:px-2 sm:py-2.5 sm:text-xs ${activeTab === id
                   ? "bg-[#E8F5EC] text-[#176B35]"
@@ -666,7 +666,7 @@ const LiveChatWidget = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="bg-yellow-200 p-4">
                     <label
                       htmlFor="chat-details"
                       className="mb-1.5 block text-sm font-medium text-gray-700"
@@ -681,7 +681,7 @@ const LiveChatWidget = () => {
                         setProjectDetails(event.target.value)
                       }
                       placeholder="Tell us about your requirement..."
-                      rows={4}
+                      rows={8}
                       maxLength={2000}
                       required
                       className="w-full resize-none rounded-xl border border-gray-300 px-3.5 py-3 text-sm outline-none transition focus:border-[#2E9B4F] focus:ring-2 focus:ring-[#2E9B4F]/15"
