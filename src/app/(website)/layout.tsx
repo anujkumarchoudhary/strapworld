@@ -59,10 +59,10 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-  title: "Strap World | PET & Polyester Strapping Manufacturer",
+  title: "PET Strap Manufacturer & Exporter in India | Strap World",
 
   description:
-    "Strap World Pvt. Ltd. manufactures and supplies PET and polyester strapping for packaging, palletizing, bundling and industrial load-securing applications across India and international markets.",
+    "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
 
   keywords: [
     "Strap World",
@@ -104,9 +104,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Strap World | PET & Polyester Strapping Manufacturer",
+    title: "PET Strap Manufacturer & Exporter in India | Strap World",
     description:
-      "PET and polyester strapping manufactured for packaging, palletizing, bundling and industrial load-securing applications. Serving customers across India and international markets.",
+      "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
     siteName: "Strap World",
     type: "website",
     locale: "en_IN",
@@ -115,9 +115,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Strap World | PET & Polyester Strapping Manufacturer",
+    title: "PET Strap Manufacturer & Exporter in India | Strap World",
     description:
-      "Manufacturer and supplier of PET and polyester strapping for packaging, palletizing, bundling and industrial load-securing applications.",
+      "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
   },
 
   category: "manufacturing",
