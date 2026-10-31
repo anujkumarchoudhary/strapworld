@@ -2,7 +2,7 @@ export function formatBlogHTML(html: string = ""): string {
   if (!html) return "";
 
   const bulletIcon =
-    "https://strap.com/_next/static/media/localKeyStatsIcon.c90e823e.svg";
+    "https://strapworld.in/_next/static/media/localKeyStatsIcon.c90e823e.svg";
 
   const bodyTextStyle =
     "font-family:var(--font-urbanist);font-size:18px;color:#171717;font-weight:500;line-height:1.7;text-align:justify;";

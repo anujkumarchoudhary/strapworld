@@ -3,22 +3,22 @@ export const usaOfficeSchema = {
 
   "@type": "LocalBusiness",
 
-  "@id": "https://strap.com/#miami-office",
+  "@id": "https://strapworld.in/#miami-office",
 
-  name: "strap Digital Media USA",
+  name: "Strap World USA",
 
-  image: "https://strap.com/_next/static/media/strap_Logo.cdbe72f0.svg",
+  image: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
 
-  url: "https://strap.com",
+  url: "https://strapworld.in",
 
   telephone: "+1-775-295-8661",
 
-  email: "info@strap.com",
+  email: "info@strapworld.in",
 
   priceRange: "$$",
 
   parentOrganization: {
-    "@id": "https://strap.com/#organization",
+    "@id": "https://strapworld.in/#organization",
   },
 
   address: {

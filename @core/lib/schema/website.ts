@@ -1,23 +1,24 @@
+
 export const websiteSchema = {
   "@context": "https://schema.org",
-
   "@type": "WebSite",
 
-  "@id": "https://strap.com/#website",
+  "@id": "https://strapworld.in/#website",
 
-  url: "https://strap.com",
+  url: "https://strapworld.in",
 
-  name: "strap Digital Media",
+  name: "Strap World",
+
+  description:
+    "Explore Strap World, an Indian manufacturer and exporter of PET strapping, polyester straps, PP straps, cotton bale straps, and industrial packaging solutions.",
 
   publisher: {
-    "@id": "https://strap.com/#organization",
+    "@id": "https://strapworld.in/#organization",
   },
 
-  inLanguage: ["en-US", "en-IN"],
+  inLanguage: "en-IN",
 
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://strap.com/?s={search_term_string}",
-    "query-input": "required name=search_term_string",
+  about: {
+    "@id": "https://strapworld.in/#organization",
   },
 };

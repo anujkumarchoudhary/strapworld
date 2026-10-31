@@ -3,22 +3,22 @@ export const indiaOfficeSchema = {
 
   "@type": "LocalBusiness",
 
-  "@id": "https://strap.com/#mohali-office",
+  "@id": "https://strapworld.in/#mohali-office",
 
-  name: "strap Digital Media",
+  name: "Strap World",
 
-  image: "https://strap.com/_next/static/media/strap_Logo.cdbe72f0.svg",
+  image: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
 
-  url: "https://strap.com",
+  url: "https://strapworld.in",
 
   telephone: "+91-8907300008",
 
-  email: "info@strap.com",
+  email: "info@strapworld.in",
 
   priceRange: "$$",
 
   parentOrganization: {
-    "@id": "https://strap.com/#organization",
+    "@id": "https://strapworld.in/#organization",
   },
 
   address: {

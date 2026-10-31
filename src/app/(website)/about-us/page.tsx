@@ -9,6 +9,8 @@ import type { Metadata } from "next";
 import WhyChooseUs from '@/src/components/WhyChooseUs'
 import OurQuality from '@/src/components/OurQuality'
 import Blog from '@/src/components/Blog'
+import JsonLd from '@/@core/lib/schema/JsonLd'
+import { AboutPageSchema } from '@/@core/lib/schema/pages/aboutPageSchema'
 
 export const metadata: Metadata = {
   title: "About Strap World | PET Strap Manufacturer in India",
@@ -67,19 +69,23 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  const { banner, whoWeAre, technicalPerformance, whyChoose,blogs, finalCTA } = data || {};
+  const { banner, whoWeAre, technicalPerformance, whyChoose, blogs, finalCTA } = data || {};
   return (
-    <div>
-      <Banner data={banner} />
-      <WhoWeAre data={whoWeAre} />
-            <WhyChooseUs />
+    <>
+      <JsonLd data={AboutPageSchema} />
+      <div>
+        <Banner data={banner} />
+        <WhoWeAre data={whoWeAre} />
+        <WhyChooseUs />
 
-            <OurQuality />
-                  <Blog data={blogs} />
+        <OurQuality />
+        <Blog data={blogs} />
 
-      <FinalCTA data={finalCTA} />
+        <FinalCTA data={finalCTA} />
 
-    </div>
+      </div>
+    </>
+
   )
 }
 

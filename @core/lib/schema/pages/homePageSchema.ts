@@ -2,8 +2,9 @@ import { websiteSchema } from "../website";
 import { organizationSchema } from "../organization";
 import { homeFaqSchema } from "../faq/homeFaq";
 import { homeBreadcrumbSchema } from "../breadcrumb/homeBreadcrumb";
-import { usaOfficeSchema } from "../usaAddress";
 import { indiaOfficeSchema } from "../indiaAddress";
+// import { usaOfficeSchema } from "../usaAddress";
+// import { indiaOfficeSchema } from "../indiaAddress";
 
 export const homePageSchema = {
   "@context": "https://schema.org",
@@ -12,7 +13,6 @@ export const homePageSchema = {
     homeBreadcrumbSchema,
     organizationSchema,
     websiteSchema,
-    usaOfficeSchema,
     indiaOfficeSchema,
     homeFaqSchema,
   ],

@@ -1,96 +1,132 @@
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://strap.com/#organization",
+  "@id": "https://strapworld.in/#organization",
 
-  name: "strap Digital Media",
+  name: "Strap World",
+  legalName: "Strap World Pvt. Ltd.",
 
-  url: "https://strap.com",
+  url: "https://strapworld.in",
 
-  logo: "https://strap.com/_next/static/media/strap_Logo.cdbe72f0.svg",
-
-  image: "https://strap.com/_next/static/media/strap_Logo.cdbe72f0.svg",
+  logo: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
+  image: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
 
   description:
-    "strap Digital Media is a full-service digital marketing agency providing SEO, AI SEO, Local SEO, Link Building, PPC Advertising, Content Marketing, Social Media Marketing, Web Design, WordPress Development, Shopify Development, and Custom Web Development services.",
+    "Strap World is an Indian manufacturer and exporter of high-quality PET strapping, polyester straps, PP straps, cotton bale straps, and industrial packaging straps. We provide durable strapping solutions for industrial packaging, palletizing, bundling, and load securing.",
 
-  foundingDate: "2017",
-
-  email: "contact@strap.com",
-
-  telephone: "+1-775-295-8661",
+  email: "nalandaindustri@gmail.com",
+  telephone: "+91-9978735708",
 
   address: {
     "@type": "PostalAddress",
-    streetAddress: "390 NE 191st St STE 8548",
-    addressLocality: "Miami",
-    addressRegion: "FL",
-    postalCode: "33179",
-    addressCountry: "US",
+    streetAddress:
+      "Gokul Industries Estate - A, Plot No 16 & 17, S No 261/P1, Morbi Highway, Near Khodiyar Temple",
+    addressLocality: "Kagdadi, Rajkot",
+    addressRegion: "Gujarat",
+    postalCode: "360003",
+    addressCountry: "IN",
   },
 
-  location: [
-    {
-      "@type": "Place",
-      name: "strap  USA",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "390 NE 191st St STE 8548",
-        addressLocality: "Miami",
-        addressRegion: "FL",
-        postalCode: "33179",
-        addressCountry: "US",
-      },
+  location: {
+    "@type": "Place",
+    name: "Strap World Manufacturing Facility",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "Gokul Industries Estate - A, Plot No 16 & 17, S No 261/P1, Morbi Highway, Near Khodiyar Temple",
+      addressLocality: "Kagdadi, Rajkot",
+      addressRegion: "Gujarat",
+      postalCode: "360003",
+      addressCountry: "IN",
     },
-    {
-      "@type": "Place",
-      name: "strap  India",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "B-509, 5th Floor, Bestech Business Towers, Sector 66",
-        addressLocality: "SAS Nagar (Mohali)",
-        addressRegion: "Punjab",
-        postalCode: "160066",
-        addressCountry: "IN",
-      },
-    },
-  ],
+  },
 
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+1-775-295-8661",
+      telephone: "+91-9978735708",
+      email: "nalandaindustri@gmail.com",
       contactType: "sales",
-      areaServed: "US",
-      availableLanguage: "English",
+      areaServed: "IN",
+      availableLanguage: ["English", "Hindi"],
     },
     {
       "@type": "ContactPoint",
-      telephone: "+91-8907300008",
-      contactType: "sales",
-      areaServed: "IN",
-      availableLanguage: "English",
+      telephone: "+91-9978735708",
+      email: "nalandaindustri@gmail.com",
+      contactType: "export enquiries",
+      areaServed: "Worldwide",
+      availableLanguage: ["English", "Hindi"],
     },
   ],
 
-  sameAs: [
-    "https://www.facebook.com/",
-    "https://www.linkedin.com/",
-    "https://www.instagram.com/",
-    "https://x.com/",
+  areaServed: [
+    {
+      "@type": "Country",
+      name: "India",
+    },
+    {
+      "@type": "Place",
+      name: "International Markets",
+    },
   ],
 
   knowsAbout: [
-    "Search Engine Optimization",
-    "AI SEO",
-    "Local SEO",
-    "Link Building",
-    "PPC Advertising",
-    "Content Marketing",
-    "Social Media Marketing",
-    "Web Design",
-    "WordPress Development",
-    "Shopify Development",
-    "Custom Web Development",
+    "PET Strapping",
+    "Polyester Strapping",
+    "PET Packing Straps",
+    "PP Strapping",
+    "Polypropylene Straps",
+    "Cotton Bale Straps",
+    "Industrial Packaging Straps",
+    "Plastic Strapping Rolls",
+    "Heat Sealing PP Straps",
+    "Manual Box Strapping",
+    "Industrial Packaging Solutions",
+    "Palletizing and Load Securing",
+    "Packaging and Bundling Solutions",
   ],
+
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Industrial Strapping Products",
+    itemListElement: [
+      {
+        "@type": "OfferCatalog",
+        name: "PET and Polyester Straps",
+        url: "https://strapworld.in/polyester-pet-strap",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Cotton Bale Strap",
+        url: "https://strapworld.in/cotton-bale-strap",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "PP Straps",
+        url: "https://strapworld.in/pp-strap",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Industrial Packaging Strap",
+        url: "https://strapworld.in/industrial-packaging-strap",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Plastic Box Strapping Roll",
+        url: "https://strapworld.in/plastic-box-strapping-roll",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Semi Automatic PP Strap",
+        url: "https://strapworld.in/semi-automatic-pp-strap",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Heat Sealing PP Strapping Roll",
+        url: "https://strapworld.in/heat-sealing-pp-strap",
+      },
+    ],
+  },
 };

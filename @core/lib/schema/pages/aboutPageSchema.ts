@@ -1,27 +1,33 @@
+
 export const AboutPageSchema = {
+  "@context": "https://schema.org",
   "@type": "AboutPage",
 
-  "@id": "https://strap.com/about-us/#webpage",
+  "@id": "https://strapworld.in/about-us/#webpage",
 
-  url: "https://strap.com/about-us",
+  url: "https://strapworld.in/about-us",
 
-  name: "About strap Digital Media",
+  name: "About Strap World | PET & Polyester Strapping Manufacturer",
 
   description:
-    "Learn about strap Digital Media, a full-service digital marketing agency providing SEO, AI SEO, Local SEO, Link Building, PPC Advertising, Content Marketing, Social Media Marketing, Web Design, WordPress Development, Shopify Development, and Custom Web Development services.",
+    "Learn about Strap World, an Indian manufacturer and exporter of PET strapping, polyester straps, PP straps, and industrial packaging solutions. Discover our manufacturing capabilities, product quality, industry expertise, and commitment to reliable strapping solutions.",
 
   isPartOf: {
-    "@id": "https://strap.com/#website",
+    "@id": "https://strapworld.in/#website",
   },
 
   about: {
-    "@id": "https://strap.com/#organization",
+    "@id": "https://strapworld.in/#organization",
+  },
+
+  mainEntity: {
+    "@id": "https://strapworld.in/#organization",
   },
 
   primaryImageOfPage: {
     "@type": "ImageObject",
-    url: "https://strap.com/_next/static/media/strap_Logo.cdbe72f0.svg",
+    url: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
   },
 
-  inLanguage: "en",
+  inLanguage: "en-IN",
 };

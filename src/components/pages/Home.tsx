@@ -19,6 +19,8 @@ import WhyChooseUs from "../WhyChooseUs";
 import OurQuality from "../OurQuality";
 import Gallery from "../Gallery";
 import { BaseUrl } from "@/src/app/baseurl";
+import JsonLd from "@/@core/lib/schema/JsonLd";
+import { homePageSchema } from "@/@core/lib/schema/pages/homePageSchema";
 
 interface Product {
     _id?: string;
@@ -102,33 +104,37 @@ const Home = () => {
     };
 
     return (
-        <div>
-            <Banner data={banner} />
+        <>
+            <JsonLd data={homePageSchema} />
+            <div>
+                <Banner data={banner} />
 
-            <KayStatas data={keyStats} />
+                <KayStatas data={keyStats} />
 
-            <OurProducts data={ourProducts} />
+                <OurProducts data={ourProducts} />
 
-            <OurQuality />
+                <OurQuality />
 
-            <Applications />
+                <Applications />
 
-            <WhyChooseUs />
+                <WhyChooseUs />
 
-            <ManufactureProcess data={manufactureProcess} />
+                <ManufactureProcess data={manufactureProcess} />
 
-            <GlobalExport />
+                <GlobalExport />
 
-            <Gallery />
+                <Gallery />
 
-            <IndustriesWeServe data={industriesWeServe} />
+                <IndustriesWeServe data={industriesWeServe} />
 
-            <Blog data={blogs} />
+                <Blog data={blogs} />
 
-            <FAQ data={faqData} />
+                <FAQ data={faqData} />
 
-            <FinalCTA data={finalCTA} />
-        </div>
+                <FinalCTA data={finalCTA} />
+            </div>
+        </>
+
     );
 };
 

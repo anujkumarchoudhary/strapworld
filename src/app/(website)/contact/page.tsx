@@ -1,3 +1,5 @@
+import JsonLd from "@/@core/lib/schema/JsonLd";
+import { contactPageSchema } from "@/@core/lib/schema/pages/contactPageSchema";
 import Heading from "@/src/components/common/Heading";
 import CommonBanner from "@/src/components/CommonBanner";
 import ContactForm from "@/src/components/form/ContactForm";
@@ -66,66 +68,70 @@ Kagdadi town, Rajkot - 360003.`,
 
 const Page = () => {
   return (
-    <div>
-      {/* ==================== BANNER ==================== */}
-      <CommonBanner headingParts={[{ text: "Contact Us", color: "#FFFFFF", weight:600 }]} />
+    <>
+      <JsonLd data={contactPageSchema} />
 
-      {/* ==================== CONTACT ==================== */}
-      <section className="py-10 md:py-12 lg:py-20">
-        <MaxWidth>
-          <div className="grid grid-cols-1 lg:grid-cols-[45%_45%] justify-between gap-8 lg:lg:gap-16">
-            {/* Left - Contact Details */}
-            <div className="my-auto">
-              <Heading isAccentLine={true} labelColor="2E9B4F" accentColor="#2E9B4F" label="LET'S CONNECT" headingParts={[{ text: " Let’s Discuss " }]} description={`Have a product requirement, specification or packaging
+      <div>
+        {/* ==================== BANNER ==================== */}
+        <CommonBanner headingParts={[{ text: "Contact Us", color: "#FFFFFF", weight: 600 }]} />
+
+        {/* ==================== CONTACT ==================== */}
+        <section className="py-10 md:py-12 lg:py-20">
+          <MaxWidth>
+            <div className="grid grid-cols-1 lg:grid-cols-[45%_45%] justify-between gap-8 lg:lg:gap-16">
+              {/* Left - Contact Details */}
+              <div className="my-auto">
+                <Heading isAccentLine={true} labelColor="2E9B4F" accentColor="#2E9B4F" label="LET'S CONNECT" headingParts={[{ text: " Let’s Discuss " }]} description={`Have a product requirement, specification or packaging
                 challenge? Tell us what you need, and our team will get back
                 to you with the right PET strapping solution.`} />
 
-              {/* Details */}
-              <div className="mt-10 space-y-7">
-                {contactDetails.map((item, idx) => (
-                  <div key={idx} className="flex space-y-10 gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0F7F5] text-[#063F3D]">
-                      {item.icon}
-                    </div>
+                {/* Details */}
+                <div className="mt-10 space-y-7">
+                  {contactDetails.map((item, idx) => (
+                    <div key={idx} className="flex space-y-10 gap-5">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F0F7F5] text-[#063F3D]">
+                        {item.icon}
+                      </div>
 
-                    <div className="space-y-2">
-                      <h3 className="font-semibold text-[#001845]">
-                        {item.title}
-                      </h3>
+                      <div className="space-y-2">
+                        <h3 className="font-semibold text-[#001845]">
+                          {item.title}
+                        </h3>
 
-                      <p className="mt-1 max-w-md text- leading-6 text-gray-600">
-                        {item.description}
-                      </p>
+                        <p className="mt-1 max-w-md text- leading-6 text-gray-600">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+
+              {/* Right - Form */}
+              <div>
+                <ContactForm />
               </div>
             </div>
+          </MaxWidth>
+        </section>
 
-            {/* Right - Form */}
-            <div>
-              <ContactForm />
-            </div>
+        {/* ==================== MAP ==================== */}
+        <section className="">
+          {/* Google Map */}
+          <div className="h-88 lg:h-125">
+            <iframe
+              src="https://www.google.com/maps?q=Nalanda+Industries,+Gokul+Industries+Estate+A,+Plot+No+16+17,+S+No+261%2FP1,+Morbi+Highway,+Near+Khodiyar+Temple,+Kagdadi,+Rajkot,+Gujarat+360003,+India&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Nalanda Industries Location - Rajkot, Gujarat"
+            />
           </div>
-        </MaxWidth>
-      </section>
-
-      {/* ==================== MAP ==================== */}
-      <section className="">
-        {/* Google Map */}
-        <div className="h-88 lg:h-125">
-          <iframe
-            src="https://www.google.com/maps?q=Nalanda+Industries,+Gokul+Industries+Estate+A,+Plot+No+16+17,+S+No+261%2FP1,+Morbi+Highway,+Near+Khodiyar+Temple,+Kagdadi,+Rajkot,+Gujarat+360003,+India&output=embed"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Nalanda Industries Location - Rajkot, Gujarat"
-          />
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
