@@ -1,4 +1,3 @@
-
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -10,10 +9,9 @@ export const organizationSchema = {
   url: "https://strapworld.in",
 
   logo: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
-  image: "https://strapworld.in/_next/static/media/strap_Logo.cdbe72f0.svg",
 
   description:
-    "Strap World is an Indian manufacturer and exporter of high-quality PET strapping, polyester straps, PP straps, cotton bale straps, and industrial packaging straps. We provide durable strapping solutions for industrial packaging, palletizing, bundling, and load securing.",
+    "Strap World Pvt. Ltd. is an Indian manufacturer and exporter of PET strapping, polyester straps, PP straps, cotton bale straps and industrial packaging straps. The company provides strapping solutions for industrial packaging, palletizing, bundling and load securing.",
 
   email: "nalandaindustri@gmail.com",
   telephone: "+91-9978735708",
@@ -21,7 +19,7 @@ export const organizationSchema = {
   address: {
     "@type": "PostalAddress",
     streetAddress:
-      "Gokul Industries Estate - A, Plot No 16 & 17, S No 261/P1, Morbi Highway, Near Khodiyar Temple",
+      "Gokul Industries Estate - A, Plot No. 16 & 17, S No. 261/P1, Morbi Highway, Near Khodiyar Temple",
     addressLocality: "Kagdadi, Rajkot",
     addressRegion: "Gujarat",
     postalCode: "360003",
@@ -34,7 +32,7 @@ export const organizationSchema = {
     address: {
       "@type": "PostalAddress",
       streetAddress:
-        "Gokul Industries Estate - A, Plot No 16 & 17, S No 261/P1, Morbi Highway, Near Khodiyar Temple",
+        "Gokul Industries Estate - A, Plot No. 16 & 17, S No. 261/P1, Morbi Highway, Near Khodiyar Temple",
       addressLocality: "Kagdadi, Rajkot",
       addressRegion: "Gujarat",
       postalCode: "360003",
@@ -48,7 +46,10 @@ export const organizationSchema = {
       telephone: "+91-9978735708",
       email: "nalandaindustri@gmail.com",
       contactType: "sales",
-      areaServed: "IN",
+      areaServed: {
+        "@type": "Country",
+        name: "India",
+      },
       availableLanguage: ["English", "Hindi"],
     },
     {
@@ -67,25 +68,31 @@ export const organizationSchema = {
       name: "India",
     },
     {
-      "@type": "Place",
-      name: "International Markets",
+      "@type": "Country",
+      name: "Bangladesh",
+    },
+    {
+      "@type": "Country",
+      name: "United States",
+    },
+    {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
+    {
+      "@type": "Country",
+      name: "Turkey",
     },
   ],
 
   knowsAbout: [
-    "PET Strapping",
-    "Polyester Strapping",
-    "PET Packing Straps",
-    "PP Strapping",
-    "Polypropylene Straps",
-    "Cotton Bale Straps",
-    "Industrial Packaging Straps",
-    "Plastic Strapping Rolls",
-    "Heat Sealing PP Straps",
-    "Manual Box Strapping",
-    "Industrial Packaging Solutions",
-    "Palletizing and Load Securing",
-    "Packaging and Bundling Solutions",
+    "PET and Polyester Strapping",
+    "Polypropylene Strapping",
+    "Cotton Bale Strapping",
+    "Industrial Packaging",
+    "Palletizing",
+    "Bundling",
+    "Load Securing",
   ],
 
   hasOfferCatalog: {

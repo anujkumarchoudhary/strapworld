@@ -1,9 +1,7 @@
 export const indiaOfficeSchema = {
   "@context": "https://schema.org",
-
   "@type": "LocalBusiness",
-
-  "@id": "https://strapworld.in/#mohali-office",
+  "@id": "https://strapworld.in/#rajkot-gujarat-india-office",
 
   name: "Strap World",
 
@@ -11,9 +9,8 @@ export const indiaOfficeSchema = {
 
   url: "https://strapworld.in",
 
-  telephone: "+91-8907300008",
-
-  email: "info@strapworld.in",
+  telephone: "+919978735708",
+  email: "nalandaindustri@gmail.com",
 
   priceRange: "$$",
 
@@ -23,18 +20,16 @@ export const indiaOfficeSchema = {
 
   address: {
     "@type": "PostalAddress",
-    streetAddress: "B-509, 5th Floor, Bestech Business Towers, Sector 66",
-    addressLocality: "SAS Nagar (Mohali)",
-    addressRegion: "Punjab",
-    postalCode: "160066",
+    streetAddress:
+      "Gokul Industries Estate - A, Plot No. 16 & 17, Survey No. 261/P1, Morbi Highway, Near Khodiyar Temple, Kagdadi Town",
+    addressLocality: "Rajkot",
+    addressRegion: "Gujarat",
+    postalCode: "360003",
     addressCountry: "IN",
   },
 
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "30.7046",
-    longitude: "76.7179",
+  areaServed: {
+    "@type": "Country",
+    name: "India",
   },
-
-  areaServed: "India",
 };

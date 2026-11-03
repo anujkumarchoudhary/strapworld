@@ -59,37 +59,54 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-  title: "PET Strap Manufacturer & Exporter in India | Strap World",
+  title:
+    "PET Strap Manufacturer & Global Exporter in Rajkot, Gujarat, India | Strap World",
 
   description:
-    "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
+    "Strap World is a PET strap manufacturer, supplier and global exporter based in Rajkot, Gujarat, India, serving domestic and international markets including Bangladesh, USA, UAE and Turkey with reliable industrial packaging solutions.",
 
   keywords: [
     "Strap World",
     "Strap World Pvt Ltd",
+    "PET strap manufacturer in India",
     "PET strapping manufacturer",
-    "PET strap manufacturer",
+    "best PET strap manufacturer in India",
+    "PET strap manufacturing company",
     "PET strapping supplier",
+    "PET strap exporter from India",
     "PET strapping exporter",
-    "PET packing strap",
-    "PET strapping band",
-    "industrial PET strapping",
+    "PET strapping supplier India",
+    "PET strap manufacturer in Gujarat",
+    "PET strap supplier in Gujarat",
+    "PET strap manufacturer in Rajkot",
+    "PET strap supplier in Rajkot",
     "polyester strapping manufacturer",
     "polyester strap manufacturer",
-    "polyester strapping supplier",
-    "polyester packing strap",
     "packaging strap manufacturer",
     "packaging strap exporter",
-    "PET strapping manufacturer India",
-    "PET strap exporter India",
-    "PET strapping supplier India",
+    "industrial packaging solutions",
     "industrial strapping solutions",
     "load securing straps",
+    "global PET strap supplier",
   ],
-
+  icons: {
+    icon: [
+      { url: "/favicon.svg", sizes: "any" },
+      { url: "/favicon.svg", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      {
+        url: "/apple-icon.svg",
+        type: "image/png",
+        sizes: "180x180",
+      },  
+    ],
+  },
   authors: [{ name: "Strap World Pvt. Ltd." }],
   creator: "Strap World Pvt. Ltd.",
   publisher: "Strap World Pvt. Ltd.",
+
+
 
   robots: {
     index: true,
@@ -110,8 +127,8 @@ export const metadata: Metadata = {
     siteName: "Strap World",
     type: "website",
     locale: "en_IN",
+    url: "https://www.strapworld.in",
   },
-
 
   twitter: {
     card: "summary_large_image",

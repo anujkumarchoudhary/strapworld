@@ -95,32 +95,6 @@ const Page = () => {
       {/* Homepage Banner */}
       <Banner data={banner} />
 
-      {/* Products Section */}
-      {/* {loading ? (
-        <section className="bg-[#F5F7F2] px-4 py-16">
-          <div className="mx-auto max-w-7xl text-center">
-            <p className="text-base text-gray-600">
-              Loading products...
-            </p>
-          </div>
-        </section>
-      ) : error ? (
-        <section className="bg-[#F5F7F2] px-4 py-16">
-          <div className="mx-auto max-w-7xl text-center">
-            <p className="text-base text-red-600">{error}</p>
-
-            <button
-              type="button"
-              onClick={() => window.location.reload()}
-              className="mt-4 rounded-md bg-black px-5 py-2 text-white transition hover:bg-gray-800"
-            >
-              Try Again
-            </button>
-          </div>
-        </section>
-      ) : (
-      )} */}
-
       <OurProducts data={ourProducts} />
 
 

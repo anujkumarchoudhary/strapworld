@@ -9,7 +9,7 @@ export const homeBreadcrumbSchema = {
 
       name: "Home",
 
-      item: "https://strap.in",
+      item: "https://strapworld.in",
     },
   ],
 };

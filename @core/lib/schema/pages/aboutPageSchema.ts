@@ -1,8 +1,6 @@
-
 export const AboutPageSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-
   "@id": "https://strapworld.in/about-us/#webpage",
 
   url: "https://strapworld.in/about-us",
@@ -10,7 +8,7 @@ export const AboutPageSchema = {
   name: "About Strap World | PET & Polyester Strapping Manufacturer",
 
   description:
-    "Learn about Strap World, an Indian manufacturer and exporter of PET strapping, polyester straps, PP straps, and industrial packaging solutions. Discover our manufacturing capabilities, product quality, industry expertise, and commitment to reliable strapping solutions.",
+    "Discover Strap World Pvt. Ltd., an Indian industrial packaging manufacturer specializing in PET and polyester strapping, PP straps and cotton bale straps. Learn about our manufacturing capabilities, product quality, industry expertise and commitment to reliable packaging and load-securing solutions.",
 
   isPartOf: {
     "@id": "https://strapworld.in/#website",
