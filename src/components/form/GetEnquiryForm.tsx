@@ -183,7 +183,7 @@ const GetEnquiryForm = ({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-999 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
       onClick={() => {
         if (!isSubmitting) handleClose();
       }}

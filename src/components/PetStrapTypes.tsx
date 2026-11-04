@@ -1,3 +1,4 @@
+"use client";
 import {
   ShieldCheck,
   Layers,
@@ -8,6 +9,8 @@ import {
 } from "lucide-react";
 
 import MaxWidth from "./layout/MaxWidth";
+import GetEnquiryForm from "./form/GetEnquiryForm";
+import { useState } from "react";
 
 const iconMap = {
   ShieldCheck,
@@ -44,6 +47,7 @@ interface PetStrapTypesProps {
 export default function PetStrapTypes({
   data,
 }: PetStrapTypesProps) {
+  const [open, setOpen] = useState(false);
   if (!data) return null;
 
   return (
@@ -110,14 +114,18 @@ export default function PetStrapTypes({
             </p>
 
             <a
-              href={data.bottomCTA.buttonLink || "#contact"}
-              className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#39B972] px-7 py-3 font-semibold text-white transition-colors hover:bg-[#2E9B4F]"
+              onClick={() => setOpen(!open)}
+              className="mt-6 inline-flex cursor-pointer items-center justify-center rounded-lg bg-[#39B972] px-7 py-3 font-semibold text-white transition-colors hover:bg-[#2E9B4F]"
             >
               {data.bottomCTA.buttonText || "Request a Quote"}
             </a>
           </div>
         )}
       </MaxWidth>
+      <GetEnquiryForm
+        isOpen={open}
+        handleClose={() => setOpen(false)}
+      />
     </section>
   );
 }

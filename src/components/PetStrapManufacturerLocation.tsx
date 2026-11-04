@@ -1,3 +1,4 @@
+"use client";
 import {
   MapPin,
   Factory,
@@ -8,6 +9,8 @@ import {
 } from "lucide-react";
 
 import MaxWidth from "./layout/MaxWidth";
+import GetEnquiryForm from "./form/GetEnquiryForm";
+import { useState } from "react";
 
 const iconMap = {
   Factory,
@@ -51,6 +54,9 @@ interface PetStrapManufacturerLocationProps {
 export default function PetStrapManufacturerLocation({
   data,
 }: PetStrapManufacturerLocationProps) {
+  const [open, setOpen] = useState(false);
+
+
   if (!data) return null;
 
   const LocationIcon = data.locationInfo?.icon
@@ -93,10 +99,10 @@ export default function PetStrapManufacturerLocation({
                 {data.buttons.map((button, index) => (
                   <a
                     key={`${button.text}-${index}`}
-                    href={button.link}
+                    onClick={() => setOpen(!open)}
                     className={
                       button.style === "secondary"
-                        ? "inline-flex items-center justify-center rounded-lg border border-[#167653] px-7 py-3.5 font-semibold text-[#167653] transition hover:bg-[#E8F5EE]"
+                        ? "inline-flex cursor-pointer items-center justify-center rounded-lg border border-[#167653] px-7 py-3.5 font-semibold text-[#167653] transition hover:bg-[#E8F5EE]"
                         : "inline-flex items-center justify-center rounded-lg bg-[#167653] px-7 py-3.5 font-semibold text-white transition hover:bg-[#063F3D]"
                     }
                   >
@@ -163,8 +169,8 @@ export default function PetStrapManufacturerLocation({
 
             {data.locationInfo.linkText && (
               <a
-                href={data.locationInfo.link || "#contact"}
-                className="shrink-0 font-semibold text-[#167653] transition hover:text-[#063F3D]"
+                onClick={()=>setOpen(!open)}
+                className="shrink-0 font-semibold cursor-pointer text-[#167653] transition hover:text-[#063F3D]"
               >
                 {data.locationInfo.linkText} →
               </a>
@@ -172,6 +178,10 @@ export default function PetStrapManufacturerLocation({
           </div>
         )}
       </MaxWidth>
+      <GetEnquiryForm
+        isOpen={open}
+        handleClose={() => setOpen(false)}
+      />
     </section>
   );
 }

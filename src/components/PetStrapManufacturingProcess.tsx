@@ -1,3 +1,4 @@
+"use client";
 import {
   Recycle,
   Flame,
@@ -9,6 +10,8 @@ import {
 } from "lucide-react";
 
 import MaxWidth from "./layout/MaxWidth";
+import { useState } from "react";
+import GetEnquiryForm from "./form/GetEnquiryForm";
 
 const iconMap = {
   Recycle,
@@ -46,6 +49,8 @@ interface PetStrapManufacturingProcessProps {
 export default function PetStrapManufacturingProcess({
   data,
 }: PetStrapManufacturingProcessProps) {
+  const [open, setOpen] = useState(false);
+
   if (!data) return null;
 
   return (
@@ -151,7 +156,7 @@ export default function PetStrapManufacturingProcess({
             </div>
 
             <a
-              href={data.bottomCTA.buttonLink || "#contact"}
+              onClick={() => setOpen(!open)}
               className="inline-flex shrink-0 items-center justify-center gap-3 rounded-lg bg-[#39B972] px-7 py-4 font-semibold text-white transition-all hover:bg-[#2E9B4F]"
             >
               {data.bottomCTA.buttonText || "Request a Quote"}
@@ -162,6 +167,10 @@ export default function PetStrapManufacturingProcess({
         )}
 
       </MaxWidth>
+      <GetEnquiryForm
+        isOpen={open}
+        handleClose={() => setOpen(false)}
+      />
     </section>
   );
 }
