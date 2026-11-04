@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Mona_Sans, Montserrat, Playfair_Display, Poppins, Roboto_Mono } from "next/font/google";
 import "../globals.css";
 import Header from "../../components/layout/Header";
@@ -55,90 +54,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
 });
-
-
-
-export const metadata: Metadata = {
-  title:
-    "PET Strap Manufacturer & Global Exporter in Rajkot, Gujarat, India | Strap World",
-
-  description:
-    "Strap World is a PET strap manufacturer, supplier and global exporter based in Rajkot, Gujarat, India, serving domestic and international markets including Bangladesh, USA, UAE and Turkey with reliable industrial packaging solutions.",
-
-  keywords: [
-    "Strap World",
-    "Strap World Pvt Ltd",
-    "PET strap manufacturer in India",
-    "PET strapping manufacturer",
-    "best PET strap manufacturer in India",
-    "PET strap manufacturing company",
-    "PET strapping supplier",
-    "PET strap exporter from India",
-    "PET strapping exporter",
-    "PET strapping supplier India",
-    "PET strap manufacturer in Gujarat",
-    "PET strap supplier in Gujarat",
-    "PET strap manufacturer in Rajkot",
-    "PET strap supplier in Rajkot",
-    "polyester strapping manufacturer",
-    "polyester strap manufacturer",
-    "packaging strap manufacturer",
-    "packaging strap exporter",
-    "industrial packaging solutions",
-    "industrial strapping solutions",
-    "load securing straps",
-    "global PET strap supplier",
-  ],
-  icons: {
-    icon: [
-      { url: "/favicon.svg", sizes: "any" },
-      { url: "/favicon.svg", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [
-      {
-        url: "/apple-icon.svg",
-        type: "image/png",
-        sizes: "180x180",
-      },  
-    ],
-  },
-  authors: [{ name: "Strap World Pvt. Ltd." }],
-  creator: "Strap World Pvt. Ltd.",
-  publisher: "Strap World Pvt. Ltd.",
-
-
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-
-  openGraph: {
-    title: "PET Strap Manufacturer & Exporter in India | Strap World",
-    description:
-      "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
-    siteName: "Strap World",
-    type: "website",
-    locale: "en_IN",
-    url: "https://www.strapworld.in",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "PET Strap Manufacturer & Exporter in India | Strap World",
-    description:
-      "Strap World is an Indian PET strap manufacturer and exporter offering high-quality PET strapping, polyester straps, PP straps and industrial packaging solutions for businesses worldwide.",
-  },
-
-  category: "manufacturing",
-};
 
 export default function RootLayout({
   children,

@@ -10,6 +10,10 @@ import FAQ from "@/src/components/FAQ";
 
 import sData from "./StaticData.json";
 import { BaseUrl } from "../../baseurl";
+import PetStrapTypes from "@/src/components/PetStrapTypes";
+import PetStrapManufacturerLocation from "@/src/components/PetStrapManufacturerLocation";
+import PetStrapManufacturingProcess from "@/src/components/PetStrapManufacturingProcess";
+import PetStrapBanner from "@/src/components/PetStrapBanner";
 
 // --------------------------------------------------
 // CONSTANTS
@@ -40,6 +44,9 @@ interface ProductData {
   image?: string;
   metaDetails?: MetaDetails;
   banner?: any;
+  petStrapTypes?: any;
+  manufacturingProcess?: any;
+  manufacturerLocation?: any;
   productOverview?: any;
   technicalOverview?: any;
   relatedProducts?: any;
@@ -349,11 +356,15 @@ export default async function ProductDetailsPage({
   }
 
   const {
+    banner,
     productOverview,
     technicalOverview,
     relatedProducts,
     image,
     faqData,
+    petStrapTypes,
+    manufacturingProcess,
+    manufacturerLocation,
   } = productDetails;
 
   const { finalCTA } = sData || {};
@@ -385,6 +396,9 @@ export default async function ProductDetailsPage({
       />
 
       <main>
+        <PetStrapBanner />
+        {banner && <PetStrapBanner data={banner} />}
+
         {/* PRODUCT OVERVIEW */}
         {productOverview && (
           <ProductOverview
@@ -398,6 +412,14 @@ export default async function ProductDetailsPage({
           <TechnicalOverview
             data={technicalOverview}
           />
+        )}
+
+        {petStrapTypes && <PetStrapTypes data={petStrapTypes} />}
+        {manufacturingProcess && (
+          <PetStrapManufacturingProcess data={manufacturingProcess} />
+        )}
+        {manufacturerLocation && (
+          <PetStrapManufacturerLocation data={manufacturerLocation} />
         )}
 
         {/* RELATED PRODUCTS */}
