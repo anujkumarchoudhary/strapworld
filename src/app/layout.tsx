@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     "global PET strap supplier",
   ],
   icons: {
-    icon: '/favicon.svg',
+    icon: "/icon.svg",
   },
   authors: [{ name: "Strap World Pvt. Ltd." }],
   creator: "Strap World Pvt. Ltd.",
