@@ -84,17 +84,7 @@ export const metadata: Metadata = {
     "global PET strap supplier",
   ],
   icons: {
-    icon: [
-      { url: "/favicon.svg", sizes: "any" },
-      { url: "/favicon.svg", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [
-      {
-        url: "/apple-icon.svg",
-        type: "image/png",
-        sizes: "180x180",
-      },
-    ],
+    icon: '/favicon.svg',
   },
   authors: [{ name: "Strap World Pvt. Ltd." }],
   creator: "Strap World Pvt. Ltd.",
