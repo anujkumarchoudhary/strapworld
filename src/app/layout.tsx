@@ -135,10 +135,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${playfair.variable} ${poppins.variable} ${inter.variable} ${robotoMono.variable} ${monaSans.variable} ${montserrat.variable}`}
       >
         {children}
-
-        {/* Google Analytics - GA4 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BL6R5X6D0K"
+          src="https://www.googletagmanager.com/gtag/js?id=G-5RCFJ8WWW3"
           strategy="afterInteractive"
         />
 
@@ -147,7 +145,7 @@ export default function RootLayout({
         window.dataLayer = window.dataLayer || [];
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-BL6R5X6D0K');
+        gtag('config', 'G-5RCFJ8WWW3');
       `}
         </Script>
       </body>
