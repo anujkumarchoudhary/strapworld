@@ -215,7 +215,7 @@ export default function TermsAndConditionsPage() {
                 Strap World
               </p>
 
-              <p className="mt-3" onClick={() => trackEvent("click_email")}>
+              <p>
                 <span className="font-medium text-[#0B1E2D]">
                   Email:
                 </span>{" "}
