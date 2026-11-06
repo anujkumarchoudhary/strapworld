@@ -1,7 +1,8 @@
 "use client";
 
+import { trackEvent } from "@/@core/lib/analytics";
 import { BaseUrl } from "@/src/app/baseurl";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 interface GetEnquiryFormProps {
@@ -154,6 +155,15 @@ const GetEnquiryForm = ({
         );
       }
 
+      // Track successful enquiry submission in GA4
+      trackEvent("generate_lead", {
+        form_name: "enquiry",
+        lead_type: "contact_enquiry",
+        page_url: window.location.href,
+        page_path: window.location.pathname,
+        page_title: document.title,
+      });
+
       toast.success(
         result.message || "Your enquiry has been submitted successfully!"
       );
@@ -175,12 +185,27 @@ const GetEnquiryForm = ({
   };
 
   const inputClass = (fieldError?: string) =>
-    `w-full rounded-xl border bg-white px-4 py-2.5 text-black outline-none placeholder:text-black/30 transition ${
-      fieldError
-        ? "border-red-500"
-        : "border-black/15 focus:border-[#2E9B4F]"
+    `w-full rounded-xl border bg-white px-4 py-2.5 text-black outline-none placeholder:text-black/30 transition ${fieldError
+      ? "border-red-500"
+      : "border-black/15 focus:border-[#2E9B4F]"
     }`;
+  const formStartTracked = useRef(false);
 
+  useEffect(() => {
+    if (isOpen) {
+      formStartTracked.current = false;
+    }
+  }, [isOpen]);
+
+  const handleFormStart = () => {
+    if (!formStartTracked.current) {
+      trackEvent("form_start", {
+        form_name: "enquiry",
+      });
+
+      formStartTracked.current = true;
+    }
+  };
   return (
     <div
       className="fixed inset-0 z-999 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
@@ -221,7 +246,11 @@ const GetEnquiryForm = ({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} noValidate>
+        <form
+          onSubmit={handleSubmit}
+          onFocusCapture={handleFormStart}
+          noValidate
+        >
           <div className="space-y-4">
             {/* Name */}
             <div>
@@ -328,11 +357,10 @@ const GetEnquiryForm = ({
                 placeholder="Tell us about your project or requirements..."
                 disabled={isSubmitting}
                 aria-invalid={!!errors.message}
-                className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-black outline-none placeholder:text-black/30 transition disabled:opacity-60 ${
-                  errors.message
-                    ? "border-red-500"
-                    : "border-black/15 focus:border-[#2E9B4F]"
-                }`}
+                className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-black outline-none placeholder:text-black/30 transition disabled:opacity-60 ${errors.message
+                  ? "border-red-500"
+                  : "border-black/15 focus:border-[#2E9B4F]"
+                  }`}
               />
 
               {errors.message && (

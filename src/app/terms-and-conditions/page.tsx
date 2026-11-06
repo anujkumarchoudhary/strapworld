@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CommonBanner from "@/src/components/CommonBanner";
 import MaxWidth from "@/src/components/layout/MaxWidth";
+import { trackEvent } from "@/@core/lib/analytics";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Strap World",
@@ -214,7 +215,7 @@ export default function TermsAndConditionsPage() {
                 Strap World
               </p>
 
-              <p className="mt-3">
+              <p className="mt-3" onClick={() => trackEvent("click_email")}>
                 <span className="font-medium text-[#0B1E2D]">
                   Email:
                 </span>{" "}

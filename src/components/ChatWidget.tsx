@@ -22,6 +22,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import GetEnquiryForm from "./form/GetEnquiryForm";
+import { trackEvent } from "@/@core/lib/analytics";
 
 type ChatMessage = {
   _id?: string;
@@ -559,6 +560,7 @@ const ChatWidget = () => {
             {/* WhatsApp */}
             <a
               href="https://wa.me/919978735708"
+              onClick={() => trackEvent("click_whatsapp")}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 rounded-[12px] border border-gray-200 p-3 transition-all duration-300 hover:border-[#39B972]/40 hover:bg-[#F5FBF7]"
@@ -582,6 +584,7 @@ const ChatWidget = () => {
             {/* Email */}
             <a
               href="mailto:nalandaindustri@gmail.com"
+              onClick={() => trackEvent("click_email")}
               className="group flex items-center gap-3 rounded-[12px] border border-gray-200 p-3 transition-all duration-300 hover:border-[#39B972]/40 hover:bg-[#F5FBF7]"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6F5EC] text-[#218B55]">
@@ -603,6 +606,7 @@ const ChatWidget = () => {
             {/* Call */}
             <a
               href="tel:+919978735708"
+              onClick={() => trackEvent("click_phone")}
               className="group flex items-center gap-3 rounded-[12px] border border-gray-200 p-3 transition-all duration-300 hover:border-[#39B972]/40 hover:bg-[#F5FBF7]"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6F5EC] text-[#218B55]">

@@ -15,6 +15,7 @@ import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { VscDebugStop } from "react-icons/vsc";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
+import { trackEvent } from "@/@core/lib/analytics";
 
 
 
@@ -138,6 +139,7 @@ const Header = () => {
           <div className="flex flex-wrap justify-between gap-3 sm:gap-4 lg:items-center">
             <a
               href="tel:+919978735708"
+              onClick={() => trackEvent("click_phone")}
               className="flex items-center gap-2"
             >
               <MdPhone className="shrink-0 animate-contact-attention text-white" />
@@ -149,6 +151,7 @@ const Header = () => {
 
             <a
               href="mailto:nalandaindustri@gmail.com"
+              onClick={() => trackEvent("click_email")}
               className="flex items-center gap-2"
             >
               <MdMarkEmailUnread
@@ -318,6 +321,7 @@ const Header = () => {
                   {/* Phone */}
                   <a
                     href="tel:+919978735708"
+                    onClick={() => trackEvent("click_phone")}
                     className="flex items-center gap-3 rounded-xl border border-[#063F3D]/10 bg-white px-4 py-3 transition-all duration-300 hover:border-[#39B972]/40"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#063F3D] text-white">
@@ -344,7 +348,7 @@ const Header = () => {
                       <MdMarkEmailUnread size={17} />
                     </span>
 
-                    <div className="min-w-0">
+                    <div onClick={() => trackEvent("click_email")} className="min-w-0">
                       <p className="font-montserrat text-[10px] font-medium uppercase tracking-wide text-black/45">
                         Email Us
                       </p>

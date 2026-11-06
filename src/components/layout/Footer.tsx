@@ -8,6 +8,7 @@ import logo from '../../../public/logo.svg'
 import Link from "next/link";
 import { MdApartment, MdArrowOutward, MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt } from "react-icons/fa";
+import { trackEvent } from "@/@core/lib/analytics";
 
 const Footer = () => {
   return (
@@ -122,6 +123,7 @@ const Footer = () => {
 
               <a
                 href="tel:+919978735708"
+                onClick={() => trackEvent("click_phone")}
                 className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70 transition-colors hover:text-[#39B972]"
               >
                 +91 997 873 5708
@@ -137,7 +139,7 @@ const Footer = () => {
                 />
               </div>
 
-              <p className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70">
+              <p onClick={() => trackEvent("click_email")} className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70">
                 nalandaindustri@gmail.com
               </p>
             </div>

@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { AlertCircle, CheckCircle2, LoaderCircle } from "lucide-react";
 import { BaseUrl } from "../app/baseurl";
+import { trackEvent } from "@/@core/lib/analytics";
 
 interface FinalCTAData {
   label: string;
@@ -390,6 +391,7 @@ export default function FinalCTA({ data }: any) {
               <div className="hidden lg:flex gap-3">
                 <a
                   href="mailto:nalandaindustri@gmail.com"
+                  onClick={() => trackEvent("click_email")}
                   className="flex gap-2"
                 >
                   <MdOutlineMailOutline
@@ -403,6 +405,7 @@ export default function FinalCTA({ data }: any) {
 
                 <a
                   href="tel:+919978735708"
+                  onClick={() => trackEvent("click_phone")}
                   className="flex gap-2"
                 >
                   <MdPhone

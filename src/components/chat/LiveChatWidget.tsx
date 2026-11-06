@@ -13,6 +13,7 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
+import { trackEvent } from "@/@core/lib/analytics";
 
 type ChatMessage = {
   _id?: string;
@@ -883,6 +884,7 @@ const LiveChatWidget = () => {
                   <a
                     href="https://wa.me/+919978735708"
                     target="_blank"
+                    onClick={() => trackEvent("click_whatsapp")}
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700"
                   >
@@ -909,6 +911,7 @@ const LiveChatWidget = () => {
 
                   <a
                     href="tel:+919978735708"
+                    onClick={() => trackEvent("click_phone")}
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
                   >
                     <Phone size={18} />
@@ -934,6 +937,7 @@ const LiveChatWidget = () => {
 
                   <a
                     href="mailto:nalandaindustri@gmail.com"
+                    onClick={() => trackEvent("click_email")}
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
                   >
                     <Mail size={18} />
