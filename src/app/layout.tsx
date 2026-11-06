@@ -135,14 +135,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${playfair.variable} ${poppins.variable} ${inter.variable} ${robotoMono.variable} ${monaSans.variable} ${montserrat.variable}`}
       >
         {children}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL6R5X6D0K"></script>
+
+        {/* Google Analytics - GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BL6R5X6D0K"
+          strategy="afterInteractive"
+        />
+
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-DJQT9002F4');
-        `}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BL6R5X6D0K');
+      `}
         </Script>
       </body>
     </html>
