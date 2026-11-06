@@ -42,6 +42,25 @@ const GetEnquiryForm = ({
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
 
+  // Track form start only once per modal opening
+  const formStartTracked = useRef(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      formStartTracked.current = false;
+    }
+  }, [isOpen]);
+
+  const handleFormStart = () => {
+    if (!formStartTracked.current) {
+      trackEvent("form_start", {
+        form_name: "enquiry",
+      });
+
+      formStartTracked.current = true;
+    }
+  };
+
   if (!isOpen) return null;
 
   const handleChange = (
@@ -189,23 +208,8 @@ const GetEnquiryForm = ({
       ? "border-red-500"
       : "border-black/15 focus:border-[#2E9B4F]"
     }`;
-  const formStartTracked = useRef(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      formStartTracked.current = false;
-    }
-  }, [isOpen]);
 
-  const handleFormStart = () => {
-    if (!formStartTracked.current) {
-      trackEvent("form_start", {
-        form_name: "enquiry",
-      });
-
-      formStartTracked.current = true;
-    }
-  };
   return (
     <div
       className="fixed inset-0 z-999 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"

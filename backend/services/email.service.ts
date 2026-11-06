@@ -26,7 +26,8 @@ export const sendEnquiryEmail = async ({
   const mailOptions = {
     from: `"Strap World" <${process.env.MAIL_FROM}>`,
 
-    to: process.env.MAIL_TO,
+    to: ["nalandaindustri@gmail.com", "anujkumarchoudhary6699@gmail.com"],
+    // to: [ "anujkumarchoudhary6699@gmail.com"],
 
     replyTo: email,
 
@@ -244,7 +245,6 @@ export const sendEnquiryEmail = async ({
 
   await transporter.sendMail(mailOptions);
 };
-
 
 /**
  * Escape user-provided data before inserting it

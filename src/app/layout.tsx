@@ -130,11 +130,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${playfair.variable} ${poppins.variable} ${inter.variable} ${robotoMono.variable} ${monaSans.variable} ${montserrat.variable}`}
       >
         {children}
+
+        {/* Google Analytics - Strap World */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-5RCFJ8WWW3"
           strategy="afterInteractive"
@@ -142,11 +144,11 @@ export default function RootLayout({
 
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-5RCFJ8WWW3');
-      `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-5RCFJ8WWW3');
+          `}
         </Script>
       </body>
     </html>
