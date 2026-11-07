@@ -122,7 +122,7 @@ const Banner = ({ data }: any) => {
                   </h3>
 
                   <p className="text-[13px] text-white/50 sm:text-[14px]">
-                    Exporting Worlwide
+                    Exporting Worldwide
                   </p>
                 </div>
               </div>

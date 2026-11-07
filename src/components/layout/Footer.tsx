@@ -140,7 +140,7 @@ const Footer = () => {
               </div>
 
               <p onClick={() => trackEvent("click_email")} className="flex items-center text-[clamp(14px,1.0625vw,17px)] font-medium text-white/70">
-                nalandaindustri@gmail.com
+                manoj@nalandapetstrap.com
               </p>
             </div>
           </div>

@@ -219,7 +219,7 @@ export default function TermsAndConditionsPage() {
                 <span className="font-medium text-[#0B1E2D]">
                   Email:
                 </span>{" "}
-                nalandaindustri@gmail.com
+                manoj@nalandapetstrap.com
               </p>
 
               <p>

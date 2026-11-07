@@ -59,7 +59,7 @@ export const homeFaqSchema = {
       name: "How can I request a quotation for PET or PP straps?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You can contact Strap World at +91 9978735708 or email nalandaindustri@gmail.com to discuss your packaging requirements and request a quotation for PET straps, polyester straps, PP straps, and other industrial packaging products.",
+        text: "You can contact Strap World at +91 9978735708 or email manoj@nalandapetstrap.com to discuss your packaging requirements and request a quotation for PET straps, polyester straps, PP straps, and other industrial packaging products.",
       },
     },
   ],

@@ -62,7 +62,7 @@ Kagdadi town, Rajkot - 360003.`,
   {
     icon: <IoIosMailOpen size={32} />,
     title: "Email Us",
-    description: "nalandaindustri@gmail.com",
+    description: "manoj@nalandapetstrap.com",
   },
 ];
 

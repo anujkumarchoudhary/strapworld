@@ -30,7 +30,7 @@ const exportCountries = [
 const GlobalExport = () => {
   return (
     <section className="relative overflow-hidden py-10 md:py-12 lg:py-20">
-      <MaxWidth className="relative z-10 grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+      <MaxWidth className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <div className="max-w-2xl">
           <Heading
             isAccentLine

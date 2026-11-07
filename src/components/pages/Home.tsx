@@ -21,6 +21,8 @@ import Gallery from "../Gallery";
 import { BaseUrl } from "@/src/app/baseurl";
 import JsonLd from "@/@core/lib/schema/JsonLd";
 import { homePageSchema } from "@/@core/lib/schema/pages/homePageSchema";
+import ClientsSection from "../ClientsSection";
+import Testimonials from "../Testimonials";
 
 interface Product {
     _id?: string;
@@ -122,6 +124,8 @@ const Home = () => {
                 <ManufactureProcess data={manufactureProcess} />
 
                 <GlobalExport />
+
+
 
                 <Gallery />
 

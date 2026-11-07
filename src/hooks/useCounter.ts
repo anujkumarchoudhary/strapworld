@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -16,10 +17,9 @@ export const useCounter = (
   const [count, setCount] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
 
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLSpanElement | null>(null);
 
-  // Extract numeric part
-  const stringValue = String(value);
+  const stringValue = String(value ?? "");
 
   const numericMatch = stringValue.match(/[\d.]+/);
 
@@ -37,12 +37,10 @@ export const useCounter = (
       )
     : "";
 
-  // Observe visibility
   useEffect(() => {
     if (!start || numericValue === null || isStarted) return;
 
     const element = ref.current;
-
     if (!element) return;
 
     const observer = new IntersectionObserver(
@@ -52,9 +50,7 @@ export const useCounter = (
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.3,
-      }
+      { threshold: 0.3 }
     );
 
     observer.observe(element);
@@ -62,36 +58,23 @@ export const useCounter = (
     return () => observer.disconnect();
   }, [start, numericValue, isStarted]);
 
-  // Smooth counter animation
   useEffect(() => {
     if (!isStarted || numericValue === null) return;
 
     let startTime: number | null = null;
-    let animationFrame: number;
+    let animationFrame = 0;
 
     const animate = (currentTime: number) => {
-      if (startTime === null) {
-        startTime = currentTime;
-      }
+      if (startTime === null) startTime = currentTime;
 
       const elapsed = currentTime - startTime;
 
-      const progress = Math.min(
-        elapsed / duration,
-        1
-      );
+      const progress = Math.min(elapsed / duration, 1);
 
-      /*
-       * Smooth ease-out cubic
-       *
-       * Starts fast and gradually slows
-       * near the final value.
-       */
       const easedProgress =
         1 - Math.pow(1 - progress, 3);
 
-      const rawValue =
-        easedProgress * numericValue;
+      const rawValue = easedProgress * numericValue;
 
       const currentValue =
         numericValue % 1 === 0
@@ -101,21 +84,17 @@ export const useCounter = (
       setCount(currentValue);
 
       if (progress < 1) {
-        animationFrame =
-          requestAnimationFrame(animate);
+        animationFrame = requestAnimationFrame(animate);
       } else {
         setCount(numericValue);
       }
     };
 
-    animationFrame =
-      requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
 
-    return () =>
-      cancelAnimationFrame(animationFrame);
+    return () => cancelAnimationFrame(animationFrame);
   }, [isStarted, numericValue, duration]);
 
-  // Non-numeric values
   if (numericValue === null) {
     return {
       ref,

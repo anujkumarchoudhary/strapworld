@@ -936,7 +936,7 @@ const LiveChatWidget = () => {
                   </p>
 
                   <a
-                    href="mailto:nalandaindustri@gmail.com"
+                    href="mailto:manoj@nalandapetstrap.com"
                     onClick={() => trackEvent("click_email")}
                     className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#063F3D] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#0A5551]"
                   >

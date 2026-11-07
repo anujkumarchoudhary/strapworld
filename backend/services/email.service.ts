@@ -26,7 +26,7 @@ export const sendEnquiryEmail = async ({
   const mailOptions = {
     from: `"Strap World" <${process.env.MAIL_FROM}>`,
 
-    to: ["nalandaindustri@gmail.com", "anujkumarchoudhary6699@gmail.com"],
+    to: ["manoj@nalandapetstrap.com", "anujkumarchoudhary6699@gmail.com"],
     // to: [ "anujkumarchoudhary6699@gmail.com"],
 
     replyTo: email,

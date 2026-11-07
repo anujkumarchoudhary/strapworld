@@ -583,7 +583,7 @@ const ChatWidget = () => {
 
             {/* Email */}
             <a
-              href="mailto:nalandaindustri@gmail.com"
+              href="mailto:manoj@nalandapetstrap.com"
               onClick={() => trackEvent("click_email")}
               className="group flex items-center gap-3 rounded-[12px] border border-gray-200 p-3 transition-all duration-300 hover:border-[#39B972]/40 hover:bg-[#F5FBF7]"
             >
@@ -596,7 +596,7 @@ const ChatWidget = () => {
                   Email us
                 </p>
                 <p className="truncate text-[12px] text-[#647077]">
-                  nalandaindustri@gmail.com
+                  manoj@nalandapetstrap.com
                 </p>
               </div>
 

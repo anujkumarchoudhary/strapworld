@@ -150,7 +150,7 @@ const Header = () => {
             </a>
 
             <a
-              href="mailto:nalandaindustri@gmail.com"
+              href="mailto:manoj@nalandapetstrap.com"
               onClick={() => trackEvent("click_email")}
               className="flex items-center gap-2"
             >
@@ -160,7 +160,7 @@ const Header = () => {
               />
 
               <p className="my-auto font-montserrat text-[clamp(14px,1.2vw,16px)] text-[#DCE5E8]">
-                nalandaindustri@gmail.com
+                manoj@nalandapetstrap.com
               </p>
             </a>
           </div>
@@ -341,7 +341,7 @@ const Header = () => {
 
                   {/* Email */}
                   <a
-                    href="mailto:nalandaindustri@gmail.com"
+                    href="mailto:manoj@nalandapetstrap.com"
                     className="flex items-center gap-3 rounded-xl border border-[#063F3D]/10 bg-white px-4 py-3 transition-all duration-300 hover:border-[#39B972]/40"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#39B972] text-white">
@@ -354,7 +354,7 @@ const Header = () => {
                       </p>
 
                       <p className="mt-0.5 truncate font-montserrat text-sm font-semibold text-[#063F3D]">
-                        nalandaindustri@gmail.com
+                        manoj@nalandapetstrap.com
                       </p>
                     </div>
                   </a>

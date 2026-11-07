@@ -18,7 +18,7 @@ const ProductOverview = ({ data, image }: any) => {
         <div className="bg-[#FFFFFF] py-12 lg:py-16">
             <MaxWidth className=" space-y-10 grid grid-cols-1 lg:grid-cols-[45%_50%] justify-between gap-14">
                 <div className="relative aspect-16/14 shadow rounded-[10px]">
-                    {data?.isSlides ? <ImageSlider slides={data?.slides} /> : <Image src={image} fill alt="prodice" />}
+                    {!data?.isSlides ? <ImageSlider slides={data?.slides} /> : <Image src={image} fill alt="prodice" />}
                 </div>
 
                 <div className="space-y-8 my-auto">

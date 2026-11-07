@@ -10,7 +10,7 @@ export const indiaOfficeSchema = {
   url: "https://strapworld.in",
 
   telephone: "+919978735708",
-  email: "nalandaindustri@gmail.com",
+  email: "manoj@nalandapetstrap.com",
 
   priceRange: "$$",
 

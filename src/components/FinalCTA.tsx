@@ -390,7 +390,7 @@ export default function FinalCTA({ data }: any) {
               />
               <div className="hidden lg:flex gap-3">
                 <a
-                  href="mailto:nalandaindustri@gmail.com"
+                  href="mailto:manoj@nalandapetstrap.com"
                   onClick={() => trackEvent("click_email")}
                   className="flex gap-2"
                 >
@@ -399,7 +399,7 @@ export default function FinalCTA({ data }: any) {
                     className="my-auto text-[#FFFFFF]"
                   />
                   <p className="my-auto text-[14px] font-bold text-[#FFFFFF]">
-                    nalandaindustri@gmail.com
+                    manoj@nalandapetstrap.com
                   </p>
                 </a>
 

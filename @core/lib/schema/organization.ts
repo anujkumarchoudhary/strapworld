@@ -13,7 +13,7 @@ export const organizationSchema = {
   description:
     "Strap World Pvt. Ltd. is an Indian manufacturer and exporter of PET strapping, polyester straps, PP straps, cotton bale straps and industrial packaging straps. The company provides strapping solutions for industrial packaging, palletizing, bundling and load securing.",
 
-  email: "nalandaindustri@gmail.com",
+  email: "manoj@nalandapetstrap.com",
   telephone: "+91-9978735708",
 
   address: {
@@ -44,7 +44,7 @@ export const organizationSchema = {
     {
       "@type": "ContactPoint",
       telephone: "+91-9978735708",
-      email: "nalandaindustri@gmail.com",
+      email: "manoj@nalandapetstrap.com",
       contactType: "sales",
       areaServed: {
         "@type": "Country",
@@ -55,7 +55,7 @@ export const organizationSchema = {
     {
       "@type": "ContactPoint",
       telephone: "+91-9978735708",
-      email: "nalandaindustri@gmail.com",
+      email: "manoj@nalandapetstrap.com",
       contactType: "export enquiries",
       areaServed: "Worldwide",
       availableLanguage: ["English", "Hindi"],

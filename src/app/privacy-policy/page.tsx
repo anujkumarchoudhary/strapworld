@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
 
                 <p className="mt-3">
                   <span className="font-medium text-[#0B1E2D]">Email:</span>{" "}
-                  nalandaindustri@gmail.com
+                  manoj@nalandapetstrap.com
                 </p>
 
                 <p>

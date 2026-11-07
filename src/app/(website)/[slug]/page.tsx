@@ -14,6 +14,9 @@ import PetStrapTypes from "@/src/components/PetStrapTypes";
 import PetStrapManufacturerLocation from "@/src/components/PetStrapManufacturerLocation";
 import PetStrapManufacturingProcess from "@/src/components/PetStrapManufacturingProcess";
 import PetStrapBanner from "@/src/components/PetStrapBanner";
+import GlobalExport from "@/src/components/GlobalExport";
+import ClientsSection from "@/src/components/ClientsSection";
+import Testimonials from "@/src/components/Testimonials";
 
 // --------------------------------------------------
 // CONSTANTS
@@ -396,8 +399,7 @@ export default async function ProductDetailsPage({
       />
 
       <main>
-        <PetStrapBanner />
-        {banner && <PetStrapBanner data={banner} />}
+        {/* {banner && <PetStrapBanner data={banner} />} */}
 
         {/* PRODUCT OVERVIEW */}
         {productOverview && (
@@ -418,6 +420,8 @@ export default async function ProductDetailsPage({
         {manufacturingProcess && (
           <PetStrapManufacturingProcess data={manufacturingProcess} />
         )}
+        <ClientsSection />
+        <Testimonials />
         {manufacturerLocation && (
           <PetStrapManufacturerLocation data={manufacturerLocation} />
         )}

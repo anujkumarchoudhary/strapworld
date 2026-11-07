@@ -54,10 +54,10 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title:
-    "PET Strap Manufacturer & Global Exporter in Rajkot, Gujarat, India | Strap World",
+    "PET Strap Manufacturer in India | Strap World",
 
   description:
-    "Strap World is a PET strap manufacturer, supplier and global exporter based in Rajkot, Gujarat, India, serving domestic and international markets including Bangladesh, USA, UAE and Turkey with reliable industrial packaging solutions.",
+    "Strap World is a leading PET strap manufacturer and exporter in India, offering high-strength PET strapping rolls, PP straps and reliable industrial packaging solutions for domestic and international markets.",
 
   keywords: [
     "Strap World",
