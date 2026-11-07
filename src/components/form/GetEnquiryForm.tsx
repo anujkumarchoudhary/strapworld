@@ -2,6 +2,7 @@
 
 import { trackEvent } from "@/@core/lib/analytics";
 import { BaseUrl } from "@/src/app/baseurl";
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -221,7 +222,7 @@ const GetEnquiryForm = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="enquiry-heading"
-        className="relative max-h-[90vh] w-full overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8 lg:w-[30%] lg:min-w-[380px]"
+        className="relative max-h-[90vh] w-full overflow-y-auto rounded-3xl bg-white shadow-2xl  lg:w-[65%]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
@@ -235,186 +236,194 @@ const GetEnquiryForm = ({
           ×
         </button>
 
-        {/* Heading */}
-        <div className="mb-8 pr-12">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#2E9B4F]">
-            Get In Touch
-          </span>
+        <div className=" grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative hidden lg:block aspect-16/12 mt-auto">
+            <Image src={"/images/Industrial Strapping and Packaging Showcase.png"} fill alt="img" className="object-fill"/>
+          </div>
+          <div className="p-6 bg-[#F5F5F5] sm:px-12 py-8">
+            {/* Heading */}
+            <div className="mb-8 pr-12">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#2E9B4F]">
+                Get In Touch
+              </span>
 
-          <h2
-            id="enquiry-heading"
-            className="mt-3 text-3xl font-bold text-black"
-          >
-            Let's Connect
-          </h2>
-        </div>
-
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          onFocusCapture={handleFormStart}
-          noValidate
-        >
-          <div className="space-y-4">
-            {/* Name */}
-            <div>
-              <label
-                htmlFor="enquiry-name"
-                className="mb-2 block text-sm font-semibold text-black"
+              <h2
+                id="enquiry-heading"
+                className="mt-3 text-3xl font-bold text-black"
               >
-                Full Name <span className="text-red-500">*</span>
-              </label>
-
-              <input
-                id="enquiry-name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                autoComplete="name"
-                disabled={isSubmitting}
-                aria-invalid={!!errors.name}
-                className={inputClass(errors.name)}
-              />
-
-              {errors.name && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.name}
-                </p>
-              )}
+                Let's Connect
+              </h2>
             </div>
 
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="enquiry-email"
-                className="mb-2 block text-sm font-semibold text-black"
-              >
-                Email Address <span className="text-red-500">*</span>
-              </label>
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit}
+              onFocusCapture={handleFormStart}
+              noValidate
+            >
+              <div className="space-y-4">
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="enquiry-name"
+                    className="mb-2 block text-sm font-semibold text-black"
+                  >
+                    Name <span className="text-red-500">*</span>
+                  </label>
 
-              <input
-                id="enquiry-email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="you@company.com"
-                autoComplete="email"
-                disabled={isSubmitting}
-                aria-invalid={!!errors.email}
-                className={inputClass(errors.email)}
-              />
+                  <input
+                    id="enquiry-name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    autoComplete="name"
+                    disabled={isSubmitting}
+                    aria-invalid={!!errors.name}
+                    className={inputClass(errors.name)}
+                  />
 
-              {errors.email && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.email}
-                </p>
-              )}
-            </div>
+                  {errors.name && (
+                    <p className="mt-1.5 text-xs text-red-500">
+                      {errors.name}
+                    </p>
+                  )}
+                </div>
 
-            {/* Phone */}
-            <div>
-              <label
-                htmlFor="enquiry-phone"
-                className="mb-2 block text-sm font-semibold text-black"
-              >
-                Phone Number <span className="text-red-500">*</span>
-              </label>
+                {/* Email */}
+                <div>
+                  <label
+                    htmlFor="enquiry-email"
+                    className="mb-2 block text-sm font-semibold text-black"
+                  >
+                    Email <span className="text-red-500">*</span>
+                  </label>
 
-              <input
-                id="enquiry-phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+91 00000 00000"
-                autoComplete="tel"
-                disabled={isSubmitting}
-                aria-invalid={!!errors.phone}
-                className={inputClass(errors.phone)}
-              />
+                  <input
+                    id="enquiry-email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@company.com"
+                    autoComplete="email"
+                    disabled={isSubmitting}
+                    aria-invalid={!!errors.email}
+                    className={inputClass(errors.email)}
+                  />
 
-              {errors.phone && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.phone}
-                </p>
-              )}
-            </div>
+                  {errors.email && (
+                    <p className="mt-1.5 text-xs text-red-500">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
 
-            {/* Message */}
-            <div>
-              <label
-                htmlFor="enquiry-message"
-                className="mb-2 block text-sm font-semibold text-black"
-              >
-                Message <span className="text-red-500">*</span>
-              </label>
+                {/* Phone */}
+                <div>
+                  <label
+                    htmlFor="enquiry-phone"
+                    className="mb-2 block text-sm font-semibold text-black"
+                  >
+                    Phone <span className="text-red-500">*</span>
+                  </label>
 
-              <textarea
-                id="enquiry-message"
-                name="message"
-                rows={3}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell us about your project or requirements..."
-                disabled={isSubmitting}
-                aria-invalid={!!errors.message}
-                className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-black outline-none placeholder:text-black/30 transition disabled:opacity-60 ${errors.message
-                  ? "border-red-500"
-                  : "border-black/15 focus:border-[#2E9B4F]"
-                  }`}
-              />
+                  <input
+                    id="enquiry-phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+91 00000 00000"
+                    autoComplete="tel"
+                    disabled={isSubmitting}
+                    aria-invalid={!!errors.phone}
+                    className={inputClass(errors.phone)}
+                  />
 
-              {errors.message && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.message}
-                </p>
-              )}
-            </div>
+                  {errors.phone && (
+                    <p className="mt-1.5 text-xs text-red-500">
+                      {errors.phone}
+                    </p>
+                  )}
+                </div>
 
-            {/* Agreement */}
-            <div>
-              <div className="flex items-start gap-3">
-                <input
-                  id="enquiry-agree"
-                  name="agree"
-                  type="checkbox"
-                  checked={formData.agree}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="mt-1 h-4 w-4 cursor-pointer accent-[#2E9B4F] disabled:cursor-not-allowed"
-                />
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="enquiry-message"
+                    className="mb-2 block text-sm font-semibold text-black"
+                  >
+                    Message <span className="text-red-500">*</span>
+                  </label>
 
-                <label
-                  htmlFor="enquiry-agree"
-                  className="cursor-pointer text-sm leading-5 text-black/60"
-                >
-                  I agree to be contacted by Strap World regarding my
-                  enquiry.
-                </label>
+                  <textarea
+                    id="enquiry-message"
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your project or requirements..."
+                    disabled={isSubmitting}
+                    aria-invalid={!!errors.message}
+                    className={`w-full resize-none rounded-xl border bg-white px-4 py-3 text-black outline-none placeholder:text-black/30 transition disabled:opacity-60 ${errors.message
+                      ? "border-red-500"
+                      : "border-black/15 focus:border-[#2E9B4F]"
+                      }`}
+                  />
+
+                  {errors.message && (
+                    <p className="mt-1.5 text-xs text-red-500">
+                      {errors.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Agreement */}
+                <div>
+                  <div className="flex items-start gap-3">
+                    <input
+                      id="enquiry-agree"
+                      name="agree"
+                      type="checkbox"
+                      checked={formData.agree}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className="mt-1 h-4 w-4 cursor-pointer accent-[#2E9B4F] disabled:cursor-not-allowed"
+                    />
+
+                    <label
+                      htmlFor="enquiry-agree"
+                      className="cursor-pointer text-sm leading-5 text-black/60"
+                    >
+                      I agree to be contacted by Strap World regarding my
+                      enquiry.
+                    </label>
+                  </div>
+
+                  {errors.agree && (
+                    <p className="mt-1.5 text-xs text-red-500">
+                      {errors.agree}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              {errors.agree && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.agree}
-                </p>
-              )}
-            </div>
+              {/* Submit */}
+              <div className="mt-5 flex justify-end border-t border-black/10 pt-6">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full cursor-pointer rounded-full bg-black px-8 py-3 font-semibold text-white transition hover:bg-[#2E9B4F] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {isSubmitting ? "Sending..." : "Send Enquiry"}
+                </button>
+              </div>
+            </form>
           </div>
 
-          {/* Submit */}
-          <div className="mt-5 flex justify-end border-t border-black/10 pt-6">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full cursor-pointer rounded-full bg-black px-8 py-3 font-semibold text-white transition hover:bg-[#2E9B4F] disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {isSubmitting ? "Sending..." : "Send Enquiry"}
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );

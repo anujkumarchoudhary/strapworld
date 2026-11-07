@@ -129,7 +129,7 @@ const RelatedProducts = ({ data }: any) => {
                 aria-label="Next products"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition hover:bg-white hover:text-[#063F3D]"
               >
-                <MdArrowRight size={22} />
+                <MdArrowBack size={22} className="rotate-180" />
               </button>
             </div>
           )}
