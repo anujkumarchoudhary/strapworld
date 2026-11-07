@@ -20,9 +20,9 @@ type Service = {
 };
 
 const OurProducts = ({ data }: any) => {
-  const path =usePathname()
+  const path = usePathname()
   // const {slug}=path
-  console.log(path,"slug234")
+  console.log(path, "slug234")
   const { headingParts, label, list, description } = data || {};
   const { isDesktop } = useResponsive();
   const {
@@ -92,6 +92,8 @@ const OurProducts = ({ data }: any) => {
                     src={product?.image}
                     fill
                     alt={product.title}
+                    aria-label={`View ${product?.title} details`}
+                    title={`View ${product?.title}`}
                     className="rounded-tl-[10px] rounded-tr-[10px] object-cover   transition-transform
               duration-500
               ease-out
@@ -102,13 +104,17 @@ const OurProducts = ({ data }: any) => {
                 {/* Content */}
                 <div className="relative flex min-h-[160px] flex-col p-6">
                   {/* Title */}
-                  <Link href={product?.slug} className="pr-12 text-[20px] font-semibold tracking-[-0.01em] text-[#16161D]">
+                  <Link href={product?.slug}
+                    aria-label={`View ${product?.title} details`}
+                    title={`View ${product?.title}`} className="pr-12 text-[20px] font-semibold tracking-[-0.01em] text-[#16161D]">
                     {product?.title}
                   </Link>
 
                   {/* Arrow: top-right */}
                   <Link
                     href={product?.slug ?? "#"}
+                    aria-label={`View ${product?.title} details`}
+                    title={`View ${product?.title}`}
                     className="group absolute right-4 top-4"
                   >
                     <MdArrowBack
