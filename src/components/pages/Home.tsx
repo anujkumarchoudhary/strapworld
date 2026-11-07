@@ -125,7 +125,8 @@ const Home = () => {
 
                 <GlobalExport />
 
-
+                <ClientsSection />
+                <Testimonials />
 
                 <Gallery />
 
